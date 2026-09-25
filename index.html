@@ -2798,8 +2798,33 @@
         เป็นแกนหลักในการคำนวณ ไม่ใช้ PPV/NPV ตรงๆ<br><br>
         เกณฑ์คร่าวๆ: LR+ สูงมาก (&gt;10) = ผลบวกช่วยยืนยันโรคได้ดีมาก, LR− ต่ำมาก (&lt;0.1) = ผลลบช่วยตัดโรคออกได้ดีมาก<br><br>
         <b>เชื่อมกับ Bayes Factor:</b> LR+ และ LR− ก็คือ <b>Bayes Factor</b> ของคู่สมมติฐาน "มีโรค vs ไม่มีโรค" นั่นเอง — ดูรายละเอียด
-        เพิ่มเติมได้ในการ์ด Bayes Factor ที่แท็บเดียวกัน
+        เพิ่มเติมได้ในการ์ด Bayes Factor ที่แท็บเดียวกัน<br><br>
+        <b>"LR เป็น Odds แบบหนึ่ง" — ใกล้เคียงแต่ไม่เป๊ะ:</b> LR+ = Se/(1−Sp) เป็น<b>อัตราส่วนของ probability สองตัว</b> (P(T+|D+)
+        หาร P(T+|D−)) ไม่ใช่ odds ตรงๆ (odds ต้องเป็น P/(1−P) ของ<b>ตัวแปรเดียวกัน</b>) — แต่ LR "มีพฤติกรรมแบบ odds": ค่าอยู่ในช่วง
+        0 ถึง ∞ ไม่ใช่ 0-1, LR=1 คือจุด "เป็นกลาง" (ไม่เปลี่ยนความเชื่อ) เหมือน OR=1, และคูณกันได้ตรงๆ (Posterior Odds = Prior
+        Odds × LR) — <b>ตัวที่เป็น "odds ratio" ตรงตัวจริงๆ</b> คือ <b>Diagnostic Odds Ratio (DOR) = LR+/LR− = (TP×TN)/(FP×FN)</b>
+        ซึ่งเท่ากับ odds ของผลตรวจเป็นบวก<b>ในกลุ่มป่วย</b> หารด้วย odds ของผลตรวจเป็นบวก<b>ในกลุ่มไม่ป่วย</b> — เป็น odds ratio
+        แบบเดียวกับ OR ในการ์ดกลุ่ม C ทุกประการ แค่เปลี่ยนบริบทจาก exposure/outcome เป็น test/disease
       </div>
+      <p class="desc" style="max-width:none;margin:10px 0 4px"><b>ตัวอย่างจริง: PA/Lat chest radiograph ตรวจ Parapneumonic effusion (Reference standard: Chest CT)</b></p>
+      <div class="table-scroll">
+        <table class="dx" style="min-width:280px">
+          <tr><td class="corner"></td><th class="colhead">Disease+ (CT+)</th><th class="colhead">Disease− (CT−)</th></tr>
+          <tr><th class="rowhead">Test+</th><td><div class="cell good"><label>TP</label><div class="v">40</div></div></td><td><div class="cell warn"><label>FP</label><div class="v">3</div></div></td></tr>
+          <tr><th class="rowhead">Test−</th><td><div class="cell warn"><label>FN</label><div class="v">24</div></div></td><td><div class="cell good"><label>TN</label><div class="v">48</div></div></td></tr>
+        </table>
+      </div>
+      <details class="dsep-quiz" style="margin-top:10px">
+        <summary>กดดูเฉลย — คำนวณ LR+ และ LR−</summary>
+        <div class="dsep-answer">
+          Se = 40/64 = 62.5% &nbsp;|&nbsp; Sp = 48/51 ≈ 94.1%<br><br>
+          <b>LR+</b> = Se/(1−Sp) = 0.625/0.0588 ≈ <b>10.63</b> — ผลบวกช่วยยืนยันโรคได้ค่อนข้างดี (&gt;10)<br>
+          <b>LR−</b> = (1−Se)/Sp = 0.375/0.941 ≈ <b>0.40</b> — ผลลบช่วยตัดโรคได้ระดับปานกลางเท่านั้น (ไม่ต่ำกว่า 0.1 ดังนั้นผลลบ
+          <u>ไม่ควร</u>ใช้ตัดโรคออกอย่างมั่นใจเต็มที่ — Sensitivity แค่ 62.5% พลาดคนป่วยไปเกือบ 40% ทำให้ LR− ไม่ต่ำมาก)<br><br>
+          <b>DOR</b> = LR+/LR− = 10.63/0.40 ≈ 26.6 (หรือคำนวณตรงจาก TP×TN/(FP×FN) = (40×48)/(3×24) = 1920/72 ≈ 26.7 ตัวเลข
+          ต่างเล็กน้อยจากการปัดเศษ)
+        </div>
+      </details>
     </div>
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>Accuracy (ความแม่นยำโดยรวม)</h4><span class="fw-tag both">ใช้ทั้งคู่</span></div>
