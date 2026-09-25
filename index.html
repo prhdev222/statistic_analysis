@@ -2106,7 +2106,14 @@
             standard เองด้วย จะเกิด <b>circularity</b> — ผลจะดูแม่นเกินจริงเสมอ)</li>
           <li><b>คนอ่านผลทั้งสองฝั่ง "blind" ต่อกันหรือไม่</b> — คนอ่าน Reference Standard (เช่น จักษุแพทย์ให้เกรด diabetic
             retinopathy) ต้อง<b>ไม่รู้ผลของ Index test/AI ล่วงหน้า</b> เวลาตัดสิน — ถ้ารู้ผล AI ก่อนแล้วอาจถูก "ชักจูง" ให้
-            ตัดสินคล้อยตาม (<b>review bias</b>) ทำให้ agreement ดูดีเกินจริงทั้งที่ไม่ใช่ความแม่นยำจริงของ AI</li>
+            ตัดสินคล้อยตาม (<b>review bias</b>) ทำให้ agreement ดูดีเกินจริงทั้งที่ไม่ใช่ความแม่นยำจริงของ AI<br><br>
+            <b>ตัวอย่างจริงที่ blinding ล้มเหลว:</b><br>
+            • เป้าหมายคือหา pulmonary nodule บน CT แต่<b>ผลเคยถูกรายงานไว้แล้วในการศึกษาก่อนหน้า</b> — คนอ่าน CT รอบนี้เห็น
+            รายงานเก่ามาก่อน ทำให้รู้คำตอบล่วงหน้าไม่ทางใดก็ทางหนึ่ง<br>
+            • เป้าหมายคือประเมิน BI-RADS score จาก mammogram แต่ผู้ประเมิน<b>รู้อยู่แล้วว่าคนไข้เคยได้รับ biopsy</b> — จึงมักให้
+            คะแนน BI-RADS อย่างน้อย 4 โดยอัตโนมัติ (เพราะรู้ว่า biopsy มักทำเมื่อสงสัยมากพอ ตรงกับเกณฑ์ BI-RADS 4-5 ในการ์ด Test/
+            Treatment Threshold ด้านบน) — คะแนนที่ได้จึงไม่ใช่การประเมินภาพอย่างอิสระจริงๆ แต่ถูก "ชี้นำ" จากการรู้ผล reference
+            standard (biopsy) ไปก่อนแล้ว</li>
         </ol>
       </div>
       <svg class="dag-svg" viewBox="0 0 620 220" width="100%" height="200" style="display:block;margin:8px auto;max-width:580px">
@@ -2140,10 +2147,46 @@
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>4) ผลตรวจ Index Test มีอิทธิพลต่อการตัดสินใจทำ Reference Standard หรือไม่ — Verification Bias</h4></div>
       <div class="gloss-why">
-        ตรงกับ <b>Verification Bias (Work-up Bias)</b> ที่อธิบายไว้แล้วในการ์ด "ปัญหาจริงของ Reference Standard" ด้านบน — ถ้า
-        แพทย์เห็นผล AI เป็นบวกก่อน แล้วค่อยตัดสินใจว่าจะส่ง biopsy/CT ยืนยันหรือไม่ (เฉพาะคนที่ AI บอกบวกถึงจะได้ reference
-        standard) กลุ่มตัวอย่างที่ใช้คำนวณ Se/Sp จะไม่ใช่ตัวแทนของทุกเคสจริง ทำให้ accuracy ดูดีเกินจริง — reference standard
-        ต้องทำกับ<b>ทุกคน</b>โดยไม่ขึ้นกับผล index test เสมอ
+        ตรงกับ <b>Verification Bias (Work-up Bias)</b> ที่อธิบายไว้แล้วในการ์ด "ปัญหาจริงของ Reference Standard" ด้านบน — แบ่ง
+        เป็น 2 แบบย่อย:
+        <ol class="dsep-steps" style="margin-top:8px">
+          <li><b>Partial Verification</b> — มีแค่<b>บางส่วน</b>ของคนที่ตรวจ Index test แล้ว ได้ไป verify ด้วย Reference
+            Standard ต่อ (อีกส่วนไม่ได้ verify เลย) มักเกิดเพราะผล Index test เป็นตัวตัดสินว่าใครจะได้ตรวจต่อ</li>
+          <li><b>Differential Verification</b> — คนละกลุ่มได้ verify ด้วย Reference Standard <b>คนละตัว</b> (บางคนได้ A บางคน
+            ได้ B บางคนได้ C) ไม่ใช่ standard เดียวกันทุกคน ทำให้เทียบกันตรงๆ ไม่ได้ เพราะ reference standard แต่ละตัวมี
+            ความแม่นยำไม่เท่ากัน</li>
+        </ol>
+      </div>
+      <svg class="dag-svg" viewBox="0 0 560 220" width="100%" height="200" style="display:block;margin:8px auto;max-width:520px">
+        <defs><marker id="arrowhead-vb" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--muted)"/></marker></defs>
+        <rect x="10" y="80" width="130" height="55" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+        <text x="75" y="112" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">PIOPED study</text>
+        <line x1="140" y1="95" x2="200" y2="45" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-vb)"/>
+        <line x1="140" y1="120" x2="200" y2="175" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-vb)"/>
+        <rect x="200" y="15" width="140" height="55" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+        <text x="270" y="38" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">V/Q scan</text>
+        <text x="270" y="55" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">positive</text>
+        <line x1="340" y1="42" x2="390" y2="42" stroke="var(--good)" stroke-width="1.5" marker-end="url(#arrowhead-vb)"/>
+        <rect x="390" y="15" width="160" height="55" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+        <text x="470" y="47" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">Pulmonary angiogram</text>
+        <rect x="200" y="145" width="140" height="55" rx="8" fill="var(--warn-soft)" stroke="var(--warn)" stroke-width="1.5"/>
+        <text x="270" y="168" font-size="12" fill="var(--warn)" text-anchor="middle" font-weight="700">V/Q scan</text>
+        <text x="270" y="185" font-size="12" fill="var(--warn)" text-anchor="middle" font-weight="700">negative</text>
+        <line x1="340" y1="172" x2="390" y2="172" stroke="var(--warn)" stroke-width="1.5" marker-end="url(#arrowhead-vb)"/>
+        <rect x="390" y="145" width="160" height="55" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+        <text x="470" y="168" font-size="11.5" fill="var(--muted)" text-anchor="middle" font-weight="700">Pulmonary angiogram</text>
+        <text x="470" y="185" font-size="11.5" fill="var(--muted)" text-anchor="middle" font-weight="700">not done</text>
+      </svg>
+      <div class="warn-box">
+        <b>ตัวอย่างจริง — PIOPED study (Partial Verification แบบคลาสสิก):</b> ผู้ป่วยที่ V/Q scan (index test) ให้ผล <b>บวก</b>
+        ถูกส่งไปทำ <b>Pulmonary angiogram</b> (reference standard) ต่อ — แต่ผู้ป่วยที่ V/Q scan ให้ผล <b>ลบ กลับไม่ได้ทำ
+        angiogram เลย</b> — ผล Se/Sp ที่คำนวณได้จึงมาจากกลุ่มตัวอย่างที่ไม่สมบูรณ์ (มีแต่คนที่ผลบวกเท่านั้นที่รู้ความจริงแน่ชัด)
+        เป็นตัวอย่างคลาสสิกที่สอนกันในวงการ diagnostic accuracy research ทั่วโลก
+      </div>
+      <div class="gloss-why">
+        <b>ทางแก้/เกณฑ์ที่ต้องเช็ค:</b> Reference standard ต้องทำกับ<b>ทุกคน</b>โดยไม่ขึ้นกับผล index test เสมอ (หรืออย่างน้อย
+        สุ่มเลือกกลุ่มตัวอย่างบางส่วนจากฝั่งผลลบมาตรวจยืนยันด้วย เพื่อประเมิน false negative rate จริงได้) — และต้องใช้
+        reference standard <b>เดียวกันทุกคน</b> ไม่ใช่คนละตัวตามความสะดวก
       </div>
     </div>
     <div class="gloss-item">
