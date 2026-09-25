@@ -3146,6 +3146,18 @@
         จากข้อมูลแบบ P-value — ถ้าอยากได้ "ความน่าจะเป็นที่ H1 ถูก" แบบตรงๆ ต้องใช้กรอบคิด Bayesian (posterior probability, การ์ด
         Prior→Posterior) ไม่ใช่ P-value
       </div>
+      <p class="desc" style="max-width:none;margin-top:12px"><b>ตัวอย่างที่สอง — RCT เปรียบเทียบยา (ใช้กฎการตัดสินใจเดียวกัน):</b></p>
+      <div style="background:var(--surface-2);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6">
+        RCT เปรียบเทียบ Drug A กับ Drug B พบผลลัพธ์ต่างกัน ด้วย <b>P-value = 0.03 = 3%</b><br><br>
+        <b>0.03 (3%) &lt; α ที่ตั้งไว้ 0.05 (5%)</b> → <b>ปฏิเสธ H0</b> → สรุปว่า Drug A กับ Drug B ให้ผลลัพธ์<b>แตกต่างกันจริง</b>
+        อย่างมีนัยสำคัญทางสถิติ
+      </div>
+      <div class="warn-box" style="margin-top:8px">
+        คำอธิบายแบบสั้นที่มักได้ยินคือ <i>"ผลต่างนี้เกิดจากความบังเอิญ (due to chance) = 3%"</i> — เป็นทางลัดที่พอเข้าใจได้ในบริบทเรียน
+        แต่ความหมายที่<b>เป๊ะ</b>กว่าคือ: <b>"ถ้าสมมติว่ายา A กับ B ให้ผลจริงๆ ไม่ต่างกันเลย (H0 จริง, ผลต่างที่เห็นเกิดจากความบังเอิญ
+        ล้วนๆ) โอกาสจะสุ่มได้ผลต่างขนาดนี้หรือมากกว่า คือ 3%"</b> — ไม่ใช่ "มีโอกาส 3% ที่ผลต่างนี้เกิดจากความบังเอิญ" (ประโยคหลังเป็น
+        posterior probability ซึ่ง P-value ไม่ได้คำนวณให้ตรงๆ เหมือนที่อธิบายไว้ด้านบน)
+      </div>
     </div>
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>Alpha (α) — Significance Level</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
