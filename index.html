@@ -2983,6 +2983,65 @@
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>ตัวอย่างจริง — Step 1: Calcium Supplement กับ BMD</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none;margin:0 0 8px">
+        <i>"Researchers want to test if the means of BMD between postmenopausal women who received and did not receive
+        calcium supplement are different."</i> — นักวิจัยต้องการทดสอบว่าค่าเฉลี่ย <b>BMD (Bone Mineral Density)</b> ของสตรีวัยหมด
+        ประจำเดือนที่ได้รับ กับไม่ได้รับ calcium supplement นั้น<b>แตกต่างกันหรือไม่</b>
+      </p>
+      <div class="gloss-formula">H0: μ<sub>BMD(Ca+)</sub> = μ<sub>BMD(Ca−)</sub> &nbsp;|&nbsp; Ha (H1): μ<sub>BMD(Ca+)</sub> ≠ μ<sub>BMD(Ca−)</sub></div>
+      <svg class="dag-svg" viewBox="0 0 820 400" width="100%" height="380" style="display:block;margin:10px auto;max-width:760px">
+        <defs>
+          <marker id="arrowhead-bmd" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--muted)"/></marker>
+          <marker id="arrowhead-bmd-warn" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--warn)"/></marker>
+          <marker id="arrowhead-bmd-good" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--good)"/></marker>
+        </defs>
+        <rect x="310" y="8" width="200" height="52" rx="10" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+        <text x="410" y="30" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">Postmenopausal</text>
+        <text x="410" y="47" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">women (Sample)</text>
+        <line x1="410" y1="60" x2="410" y2="77" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-bmd)"/>
+        <circle cx="410" cy="95" r="18" fill="var(--accent)"/>
+        <text x="410" y="99" font-size="10" fill="var(--surface)" text-anchor="middle" font-weight="700">R</text>
+        <text x="410" y="123" font-size="10.5" fill="var(--muted)" text-anchor="middle">Randomized</text>
+        <line x1="398" y1="108" x2="175" y2="147" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-bmd)"/>
+        <line x1="422" y1="108" x2="645" y2="147" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-bmd)"/>
+        <rect x="60" y="150" width="220" height="52" rx="10" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+        <text x="170" y="181" font-size="12.5" fill="var(--accent)" text-anchor="middle" font-weight="700">Calcium supplement (+)</text>
+        <rect x="540" y="150" width="220" height="52" rx="10" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+        <text x="650" y="181" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">Placebo (−)</text>
+        <line x1="170" y1="202" x2="170" y2="230" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-bmd)"/>
+        <line x1="650" y1="202" x2="650" y2="230" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-bmd)"/>
+        <rect x="60" y="233" width="220" height="52" rx="10" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+        <text x="170" y="255" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">Measure BMD</text>
+        <text x="170" y="272" font-size="11.5" fill="var(--muted)" text-anchor="middle">(sample mean x̄)</text>
+        <rect x="540" y="233" width="220" height="52" rx="10" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+        <text x="650" y="255" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">Measure BMD</text>
+        <text x="650" y="272" font-size="11.5" fill="var(--muted)" text-anchor="middle">(sample mean x̄)</text>
+        <line x1="284" y1="259" x2="536" y2="259" stroke="var(--warn)" stroke-width="1.5" marker-end="url(#arrowhead-bmd-warn)" marker-start="url(#arrowhead-bmd-warn)"/>
+        <text x="410" y="250" font-size="10.5" fill="var(--warn)" text-anchor="middle" font-weight="700">Compare (sample) — คำนวณ test statistic ตรงนี้</text>
+        <line x1="170" y1="285" x2="170" y2="325" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead-bmd)"/>
+        <text x="128" y="308" font-size="10.5" fill="var(--muted)" text-anchor="middle" font-style="italic">Infer</text>
+        <line x1="650" y1="285" x2="650" y2="325" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead-bmd)"/>
+        <text x="692" y="308" font-size="10.5" fill="var(--muted)" text-anchor="middle" font-style="italic">Infer</text>
+        <rect x="60" y="328" width="220" height="52" rx="10" fill="none" stroke="var(--good)" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="170" y="350" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">Population mean</text>
+        <text x="170" y="367" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">μ BMD(Ca+)</text>
+        <rect x="540" y="328" width="220" height="52" rx="10" fill="none" stroke="var(--good)" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="650" y="350" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">Population mean</text>
+        <text x="650" y="367" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">μ BMD(Ca−)</text>
+        <line x1="284" y1="354" x2="536" y2="354" stroke="var(--good)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowhead-bmd-good)" marker-start="url(#arrowhead-bmd-good)"/>
+        <text x="410" y="345" font-size="10.5" fill="var(--good)" text-anchor="middle" font-weight="700">Compare (population) ← คำถามจริงที่อยากรู้</text>
+      </svg>
+      <div class="gloss-why">
+        <b>ทำไมต้องมี "Infer" สองชั้น:</b> สิ่งที่<b>วัดได้จริง</b>ในการทดลองคือ x̄ (sample mean) ของกลุ่มตัวอย่างที่ randomize มาเท่านั้น
+        แต่สิ่งที่นักวิจัย<b>อยากรู้จริงๆ</b>คือ μ (population mean) — ถ้า<b>ทั้งประชากร</b>ได้รับ/ไม่ได้รับ calcium supplement ค่าเฉลี่ย
+        BMD จะต่างกันหรือไม่ — H0/Ha ด้านบนจึงเขียนด้วย <b>μ</b> (population parameter) ไม่ใช่ x̄ (sample statistic) เพราะ hypothesis
+        testing คือการอนุมานเกี่ยวกับ<b>ประชากร</b>โดยดูจาก<b>ตัวอย่าง</b>เท่านั้น (นิยามในการ์ด "Steps of Hypothesis Testing" ด้านบน) —
+        เชื่อมกับแนวคิด "Fixed Parameter" ฝั่ง Frequentist ที่การ์ด Frequentist vs Bayesian (แท็บ "แนวคิดพื้นฐาน"): μ ที่แท้จริงมีค่าคงที่
+        ตายตัวอยู่แล้ว เราแค่ยังไม่รู้ ต้องใช้ x̄ จากตัวอย่างมาประมาณ (estimate) เท่านั้น
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>เลือก Test Statistic ยังไง — Test Selection Table</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <p class="desc" style="max-width:none;margin:0 0 8px">
         ตอบ Step 3 ของการ์ด "Steps of Hypothesis Testing" ด้านบน — ต้องตอบ 5 คำถามนี้ <b>ตามลำดับ</b> ก่อนจะรู้ว่าใช้ test อะไร
@@ -3056,6 +3115,36 @@
         <b>ข้อควรระวังที่พบบ่อย:</b> P-value <u>ไม่ใช่</u> "ความน่าจะเป็นที่ H0 เป็นจริง" และไม่ใช่ "ความน่าจะเป็นที่ผลการทดลองเป็นเรื่องบังเอิญ"
         — เป็นความน่าจะเป็นของข้อมูล<b>ภายใต้สมมติฐานว่า H0 จริง</b> เท่านั้น การตีความผิดแบบนี้คือหนึ่งในสาเหตุหลักที่วงการสถิติเริ่มหันมาสนใจ
         แนวทาง Bayesian (posterior probability, Bayes Factor) ที่ตอบคำถามที่นักวิจัยอยากรู้ได้ตรงกว่า
+      </div>
+      <p class="desc" style="max-width:none;margin-top:12px"><b>ตัวอย่าง (two-tailed test):</b></p>
+      <div class="gloss-formula">H0: μ = 0 &nbsp;|&nbsp; H1: μ ≠ 0 &nbsp;→&nbsp; P-value = 0.017 + 0.017 = 0.034 = 3.4%</div>
+      <svg viewBox="0 0 480 190" style="width:100%;height:auto;max-width:480px;display:block;margin:8px auto;background:var(--surface-2);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 20.0,139.8 L 26.3,139.7 L 32.6,139.6 L 38.9,139.5 L 45.1,139.3 L 51.4,139.0 L 57.7,138.7 L 64.0,138.2 L 70.3,137.6 L 76.6,136.9 L 82.9,136.0 L 89.1,134.9 L 95.4,133.6 L 101.7,132.0 L 108.0,130.1 L 114.3,127.8 L 120.6,125.2 L 126.9,122.2 L 133.1,118.8 L 139.4,115.0 L 145.7,110.8 L 152.0,106.2 L 158.3,101.3 L 164.6,96.2 L 170.9,90.9 L 177.1,85.4 L 183.4,80.0 L 189.7,74.6 L 196.0,69.6 L 202.3,64.8 L 208.6,60.6 L 214.9,56.9 L 221.1,54.0 L 227.4,51.8 L 233.7,50.4 L 240.0,50.0 L 246.3,50.4 L 252.6,51.8 L 258.9,54.0 L 265.1,56.9 L 271.4,60.6 L 277.7,64.8 L 284.0,69.6 L 290.3,74.6 L 296.6,80.0 L 302.9,85.4 L 309.1,90.9 L 315.4,96.2 L 321.7,101.3 L 328.0,106.2 L 334.3,110.8 L 340.6,115.0 L 346.9,118.8 L 353.1,122.2 L 359.4,125.2 L 365.7,127.8 L 372.0,130.1 L 378.3,132.0 L 384.6,133.6 L 390.9,134.9 L 397.1,136.0 L 403.4,136.9 L 409.7,137.6 L 416.0,138.2 L 422.3,138.7 L 428.6,139.0 L 434.9,139.3 L 441.1,139.5 L 447.4,139.6 L 453.7,139.7 L 460.0,139.8"
+          fill="none" stroke="var(--ink)" stroke-width="2"/>
+        <path d="M 20.0,140 L 20.0,139.8 L 26.3,139.7 L 32.6,139.6 L 38.9,139.5 L 45.1,139.3 L 51.4,139.0 L 57.7,138.7 L 64.0,138.2 L 70.3,137.6 L 76.6,136.9 L 82.9,136.0 L 89.1,134.9 L 95.4,133.6 L 101.7,132.0 L 108.0,130.1 L 114.3,127.8 L 116.8,126.7 L 116.8,140 Z"
+          fill="var(--warn)" opacity="0.8" stroke="var(--warn)" stroke-width="1"/>
+        <path d="M 363.2,126.7 L 365.7,127.8 L 372.0,130.1 L 378.3,132.0 L 384.6,133.6 L 390.9,134.9 L 397.1,136.0 L 403.4,136.9 L 409.7,137.6 L 416.0,138.2 L 422.3,138.7 L 428.6,139.0 L 434.9,139.3 L 441.1,139.5 L 447.4,139.6 L 453.7,139.7 L 460.0,139.8 L 460.0,140 Z"
+          fill="var(--warn)" opacity="0.8" stroke="var(--warn)" stroke-width="1"/>
+        <line x1="240" y1="14" x2="240" y2="140" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="240" y="12" font-size="13" fill="var(--muted)" text-anchor="middle" font-weight="700">H0: μ=0</text>
+        <line x1="116.8" y1="127" x2="116.8" y2="160" stroke="var(--warn)" stroke-width="1.5"/>
+        <line x1="363.2" y1="127" x2="363.2" y2="160" stroke="var(--warn)" stroke-width="1.5"/>
+        <text x="70" y="120" font-size="12" fill="var(--warn)" text-anchor="middle" font-weight="700">0.017</text>
+        <text x="410" y="120" font-size="12" fill="var(--warn)" text-anchor="middle" font-weight="700">0.017</text>
+        <text x="240" y="175" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">P-value รวม 2 หาง = 0.034 = 3.4%</text>
+      </svg>
+      <div class="interp-box">
+        <b>ตัดสินใจ:</b> ถ้าตั้ง α = 0.05 (5%) ไว้ล่วงหน้า → P-value (3.4%) &lt; α (5%) → <b>ปฏิเสธ H0</b> สรุปว่า μ ≠ 0 อย่างมีนัยสำคัญทางสถิติ
+        (ตรงกับ Step 6 ของการ์ด "Steps of Hypothesis Testing" ด้านบน: p-value &lt; α → ปฏิเสธ H0)
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ "ถ้ายอมรับ H1 แล้วผิด 3.4%" — เป็นการตีความที่<u>คลาดเคลื่อน</u> แม้จะพบบ่อยมาก</div>
+        3.4% ที่ได้ คือ P(เห็นข้อมูลสุดขั้วเท่านี้หรือมากกว่า | <b>สมมติว่า H0 เป็นจริง</b>) — <b>ไม่ใช่</b> "ความน่าจะเป็นที่ H1 ผิด"
+        และไม่ใช่ "โอกาสที่การตัดสินใจปฏิเสธ H0 ครั้งนี้ผิดพลาด" สองอย่างหลังนี้คือ<b>ความน่าจะเป็นแบบ posterior</b>
+        (P(H0 จริง | ข้อมูล) หรือ P(ตัดสินใจผิด | ข้อมูล)) ซึ่ง P-value <u>ไม่ได้บอกโดยตรง</u> — ตัวเลขที่ใกล้เคียงกับคำถามแบบนี้จริงๆ
+        คือ <b>α (Type I error rate)</b> ซึ่งเป็นค่าที่<b>ตั้งไว้ล่วงหน้า</b>ก่อนเห็นข้อมูล (การ์ด Alpha ด้านล่าง) ไม่ใช่ตัวเลขที่คำนวณ
+        จากข้อมูลแบบ P-value — ถ้าอยากได้ "ความน่าจะเป็นที่ H1 ถูก" แบบตรงๆ ต้องใช้กรอบคิด Bayesian (posterior probability, การ์ด
+        Prior→Posterior) ไม่ใช่ P-value
       </div>
     </div>
     <div class="gloss-item">
