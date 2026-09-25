@@ -2096,9 +2096,19 @@
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>3) Independent, Blind Comparison with Reference Standard</h4></div>
       <div class="gloss-why">
-        คนอ่านผล Reference Standard (เช่น จักษุแพทย์ให้เกรด diabetic retinopathy) ต้อง<b>ไม่รู้ผลของ Index test/AI ล่วงหน้า</b>
-        เวลาตัดสิน — ถ้ารู้ผล AI ก่อนแล้วอาจถูก "ชักจูง" ให้ตัดสินคล้อยตาม (review bias) ทำให้ agreement ดูดีเกินจริงทั้งที่ไม่ใช่
-        ความแม่นยำจริงของ AI — ต้อง<b>ตัดสินแยกกันอย่างอิสระ (independent) และไม่รู้ผลอีกฝั่ง (blind)</b> เสมอ
+        แยกได้เป็น 3 คำถามย่อยที่ต้องเช็คแยกกัน:
+        <ol class="dsep-steps" style="margin-top:8px">
+          <li><b>เลือก Reference Standard ที่ "เหมาะสม" (appropriate) หรือไม่</b> — ตรงกับการ์ด "Gold Standard vs Reference
+            Standard" ด้านบน: ใช้ตัวที่ดีที่สุดเท่าที่ทำได้จริงหรือเปล่า ไม่ใช่ตัวที่ง่าย/ถูกแต่ไม่แม่นพอ (เช่น ใช้แค่ผล fasting
+            blood sugar แทน HbA1c เพื่อวินิจฉัยเบาหวาน ทั้งที่ HbA1c เหมาะสมกว่า)</li>
+          <li><b>Reference Standard นั้น "independent" จาก Index test หรือไม่</b> — ผล reference standard ต้องไม่ได้มาจาก
+            หรือถูกปนเปื้อนด้วยข้อมูลของ index test เลย (เช่น ถ้า index test เป็นส่วนหนึ่งของเกณฑ์วินิจฉัยที่ใช้สร้าง reference
+            standard เองด้วย จะเกิด <b>circularity</b> — ผลจะดูแม่นเกินจริงเสมอ)</li>
+          <li><b>คนอ่านผลทั้งสองฝั่ง "blind" ต่อกันหรือไม่</b> — คนอ่าน Reference Standard (เช่น จักษุแพทย์ให้เกรด diabetic
+            retinopathy) ต้อง<b>ไม่รู้ผลของ Index test/AI ล่วงหน้า</b> เวลาตัดสิน — ถ้ารู้ผล AI ก่อนแล้วอาจถูก "ชักจูง" ให้
+            ตัดสินคล้อยตาม (<b>review bias</b>) ทำให้ agreement ดูดีเกินจริงทั้งที่ไม่ใช่ความแม่นยำจริงของ AI</li>
+        </ol>
+        ต้องผ่านทั้ง 3 ข้อพร้อมกัน — ขาดข้อไหนข้อหนึ่งก็ทำให้ผลลัพธ์ที่รายงานไม่น่าเชื่อถือได้ทั้งหมด
       </div>
     </div>
     <div class="gloss-item">
