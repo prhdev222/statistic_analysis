@@ -2233,6 +2233,7 @@
     <div class="table-scroll">
       <table class="gloss-table">
         <tr><th>ค่า</th><th>สูตร</th><th>กรอบคิด</th><th>ทำไมต้องหา (สรุปสั้น)</th></tr>
+        <tr><td>Prevalence</td><td>(TP+FN) / (TP+TN+FN+FP)</td><td><span class="fw-tag freq">Frequentist</span></td><td>สัดส่วนคนป่วยจริงในประชากรทั้งหมด (ตัวเศษ = คอลัมน์ Disease+ ทั้งคอลัมน์) — คือ Prior ก่อนตรวจ</td></tr>
         <tr><td>Sensitivity</td><td>TP / (TP+FN)</td><td><span class="fw-tag freq">Frequentist</span></td><td>รู้ว่าการตรวจ "ไม่พลาดคนป่วย" แค่ไหน — ใช้ rule out เมื่อผลลบ</td></tr>
         <tr><td>Specificity</td><td>TN / (TN+FP)</td><td><span class="fw-tag freq">Frequentist</span></td><td>รู้ว่าการตรวจ "ไม่กันคนปกติเป็นผลบวก" แค่ไหน — ใช้ rule in เมื่อผลบวก</td></tr>
         <tr><td>PPV</td><td>TP / (TP+FP)</td><td><span class="fw-tag both">ใช้ทั้งคู่</span></td><td>ตอบคำถามคนไข้จริงๆ: "ผลบวกแล้วป่วยจริงแค่ไหน" — คือ posterior probability</td></tr>
