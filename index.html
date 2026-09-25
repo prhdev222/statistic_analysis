@@ -2481,6 +2481,22 @@
         โมเดลนี้ใช้งานไม่ได้จริง เพราะ Recall แย่มาก) — เชื่อมกับ SnNout/SpPin ด้านบน: โมเดลที่เอียงไปทาง Sensitivity สูงมาก
         (SnNout) แต่ Precision ต่ำมาก ก็ยังได้ F1 ต่ำอยู่ดี ไม่ได้แปลว่า "ดี" เสมอไปถ้าดูแค่ Sensitivity ตัวเดียว
       </div>
+      <p class="desc" style="max-width:none;margin:10px 0 4px"><b>ตัวอย่างคำนวณ (N=1,000,000):</b></p>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:280px">
+          <tr><th></th><th>Actual Malignant</th><th>Actual Benign</th></tr>
+          <tr><td>Predicted Malignant</td><td>TP = 990</td><td>FP = 9,990</td></tr>
+          <tr><td>Predicted Benign</td><td>FN = 10</td><td>TN = 989,010</td></tr>
+        </table>
+      </div>
+      <div class="interp-box">
+        Accuracy = (990+989,010)/1,000,000 = <b>99.0%</b> (ดูดีมาก) — F1 (สูตรถูกต้อง 2TP/(2TP+FN+FP)) = 2×990/(1,980+10+9,990)
+        = 1,980/11,980 ≈ <b>16.5%</b> (เปิดโปงว่าโมเดลนี้ยังใช้ไม่ได้จริง แม้จับ TP ได้เกือบหมด (Sensitivity 99%) เพราะ FP สูงมาก
+        — Precision เหลือแค่ 990/10,980 ≈ 9%) — ตัวอย่างนี้พิสูจน์ชัดว่าสูตร "2×Sen×Spec/(Sen+Spec)" ที่บางสไลด์เขียนไว้<b>ผิด</b>จริง:
+        Sen=99%, Spec=989,010/999,000≈99% → 2×0.99×0.99/(0.99+0.99) = <b>99%</b> เท่ากับ Accuracy เป๊ะ — ถ้าสูตรนั้นถูก F1 จะไม่
+        ต่างจาก Accuracy เลย ซึ่ง<b>ขัดกับเป้าหมายทั้งหมดของการมี F1</b> (ต้องต่างจาก Accuracy เวลา class ไม่สมดุล) — ยืนยันว่าต้องใช้
+        Precision/Recall เท่านั้น ไม่ใช่ Sensitivity/Specificity
+      </div>
     </div>
   </section>
 
