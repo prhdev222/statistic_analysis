@@ -1943,6 +1943,58 @@
   </section>
 
   <section class="card">
+    <h2>Accuracy vs AUROC — คนละคำถามกัน</h2>
+    <div class="compare-row">
+      <div class="compare-col">
+        <h3>Accuracy</h3>
+        <div class="compare-point"><b>ต้องเลือก cutoff ก่อน</b><span>วัดผลที่<b>จุดเดียว</b>ที่เลือกใช้งานจริง — "ที่ cutoff นี้ ทายถูกกี่ %"</span></div>
+        <div class="compare-point"><b>ขึ้นกับ prevalence</b><span>(Accuracy Paradox — การ์ดกลุ่ม B)</span></div>
+        <div class="compare-point"><b>ใช้รายงานผลตอนใช้งานจริง</b><span>หลังตัดสินใจ cutoff สุดท้ายแล้ว</span></div>
+      </div>
+      <div class="compare-col freq">
+        <h3>AUROC</h3>
+        <div class="compare-point"><b>ไม่ต้องเลือก cutoff</b><span>วัดผล<b>ทุก cutoff พร้อมกัน</b> — สรุปความสามารถ "แยกแยะ" โดยรวมของโมเดล/การตรวจทั้งตัว</span></div>
+        <div class="compare-point"><b>Se/Sp ไม่ขึ้นกับ prevalence</b><span>รูปร่างเส้น ROC จึงไม่เปลี่ยนตาม prevalence (แม้ AUC จะยัง "หลอกตา" เรื่อง PPV ได้เมื่อ imbalance มาก — การ์ด PR Curve ด้านบน)</span></div>
+        <div class="compare-point"><b>ใช้เปรียบเทียบ/เลือกโมเดล</b><span>ก่อนตัดสินใจ cutoff สุดท้าย</span></div>
+      </div>
+    </div>
+    <div class="interp-box">
+      <b>ความหมายที่แท้จริงของ AUROC (ไม่ใช่แค่ "พื้นที่ใต้กราฟ"):</b> AUROC = ความน่าจะเป็นที่โมเดล<b>จัดอันดับถูก</b> — ถ้าสุ่มหยิบ
+      คน 1 คนที่<b>เป็นโรคจริง</b> กับอีก 1 คนที่<b>ไม่เป็นโรคจริง</b> มาคู่กัน AUROC คือความน่าจะเป็นที่โมเดลให้ <b>score ของคนที่
+      เป็นโรค > score ของคนที่ไม่เป็นโรค</b> — ตีความแบบนี้ทำให้เห็นชัดว่า AUROC วัด "การจัดอันดับ" (ranking) ไม่ใช่ "ความถูกต้องที่
+      จุดใดจุดหนึ่ง" แบบ Accuracy — นี่คือเหตุผลที่ AUROC=0.84 (ตัวอย่างการ์ด ROC ด้านบน) แปลว่า "สุ่มจับคู่คนป่วย-ไม่ป่วยมา 100 คู่
+      โมเดลจะจัดอันดับถูก (score คนป่วย > score คนไม่ป่วย) ประมาณ 84 คู่"
+    </div>
+    <div class="gloss-why">
+      <b>เมื่อไหร่ใช้อันไหน:</b> กำลังพัฒนา/เปรียบเทียบโมเดลหลายตัว หรือยังไม่ตัดสินใจ cutoff → ใช้ <b>AUROC</b> (และ AUPRC ถ้า
+      imbalance) — ตัดสินใจ cutoff แล้ว จะเอาไปใช้งานจริง/รายงานผลให้ผู้ป่วยหรือผู้บริหารเข้าใจง่ายๆ → ใช้ <b>Accuracy</b>
+      (คู่กับ Sensitivity/Specificity/PPV/NPV ที่ cutoff นั้นเสมอ ไม่ใช่ Accuracy ตัวเดียวลอยๆ — การ์ด "ห้ามรายงาน P-value
+      ตัวเดียวลอยๆ" หลักการเดียวกัน)
+    </div>
+    <h3 style="margin-top:18px;font-size:15px">คู่ขนานฝั่ง Imbalanced Data: F1 vs AUPRC</h3>
+    <p class="desc" style="max-width:none">โครงสร้างความสัมพันธ์<b>เดียวกันเป๊ะ</b>กับ Accuracy vs AUROC ด้านบน แค่ย้ายไปฝั่งที่
+      สนใจ Precision/Recall แทน Sensitivity/Specificity:</p>
+    <div class="compare-row">
+      <div class="compare-col">
+        <h3>F1 Score</h3>
+        <div class="compare-point"><b>ต้องเลือก cutoff ก่อน</b><span>วัด Precision/Recall balance <b>ที่จุดเดียว</b> ที่เลือกใช้งานจริง</span></div>
+        <div class="compare-point"><b>ใช้รายงานผลตอนใช้งานจริง</b><span>หลังตัดสินใจ cutoff สุดท้ายแล้ว บนข้อมูล imbalanced</span></div>
+      </div>
+      <div class="compare-col freq">
+        <h3>AUPRC</h3>
+        <div class="compare-point"><b>ไม่ต้องเลือก cutoff</b><span>วัด Precision/Recall trade-off <b>ทุก cutoff พร้อมกัน</b> สรุปเป็นพื้นที่ใต้เส้น PR curve</span></div>
+        <div class="compare-point"><b>ใช้เปรียบเทียบ/เลือกโมเดล</b><span>ก่อนตัดสินใจ cutoff สุดท้าย บนข้อมูล imbalanced</span></div>
+      </div>
+    </div>
+    <div class="gloss-why">
+      <b>สรุปเป็นตาราง 2×2 ของเมตริกทั้งหมด:</b> แกนหนึ่งคือ "ต้องเลือก cutoff ไหม" อีกแกนคือ "เน้น Se/Sp หรือ Precision/Recall"
+      — <b>Accuracy</b> (เลือก cutoff + Se/Sp) ↔ <b>AUROC</b> (ทุก cutoff + Se/Sp) ↔ <b>F1</b> (เลือก cutoff + Precision/Recall)
+      ↔ <b>AUPRC</b> (ทุก cutoff + Precision/Recall) — เลือกฝั่งซ้าย/ขวาตามว่ากำลังเลือก cutoff อยู่หรือยัง เลือกฝั่งบน/ล่างตามว่า
+      ข้อมูล balanced หรือ imbalanced
+    </div>
+  </section>
+
+  <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
     <div class="mode-toggle">
