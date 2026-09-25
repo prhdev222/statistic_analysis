@@ -1543,6 +1543,32 @@
       ไม่ต้องรอติดตามผู้ป่วยไปข้างหน้านานเหมือน cohort study — แต่การเลือกแบบนี้ก็สร้างปัญหาที่ต้องระวังตามมา ดังตัวอย่างนี้</p>
     <p class="desc" style="max-width:none;margin-top:8px"><b>ตัวอย่าง:</b> พัฒนา AI ช่วยแยกก้อนในเต้านมว่าเป็นมะเร็งหรือไม่ —
       Reference Standard ที่ใช้คือ <b>Biopsy</b></p>
+    <div class="table-scroll">
+      <table class="dx">
+        <tr>
+          <td class="corner">2×2</td>
+          <th class="colhead">Actual: Malignant<br>(Positive) — Ref. Std. (Biopsy)</th>
+          <th class="colhead">Actual: Benign<br>(Negative) — Ref. Std. (Biopsy)</th>
+          <td class="corner"></td>
+        </tr>
+        <tr>
+          <th class="rowhead">Predicted: Malignant<br>(Positive) — Test (AI)</th>
+          <td><div class="cell good"><label>TP</label></div></td>
+          <td><div class="cell warn"><label>FP</label></div></td>
+        </tr>
+        <tr>
+          <th class="rowhead">Predicted: Benign<br>(Negative) — Test (AI)</th>
+          <td><div class="cell warn"><label>FN</label></div></td>
+          <td><div class="cell good"><label>TN</label></div></td>
+        </tr>
+      </table>
+    </div>
+    <div class="interp-box">
+      ตาราง 2×2 ของ AI นี้คือ<b>โครงสร้างเดียวกันเป๊ะ</b>กับตาราง 2×2 ที่ใช้ทั้งเว็บนี้ (การ์ด "0 ค่าตั้งต้น" ด้านล่าง) เพียงแต่ในวงการ
+      AI/Machine Learning มักเรียก <b>"Confusion Matrix"</b> และเปลี่ยนชื่อแกน: แถว = <b>Predicted Result</b> (มาจาก Test/AI)
+      คอลัมน์ = <b>Actual Result</b> (มาจาก Reference Standard) — ชื่อเรียกต่างไปตามวงการ แต่ TP/FP/FN/TN และสูตร Sensitivity/
+      Specificity/PPV/NPV คำนวณเหมือนเดิมทุกประการ
+    </div>
 
     <div class="warn-box">
       <div class="wt">⚠️ ปัญหาที่ 1: Verification Bias (Work-up Bias) — ไม่ใช่ทุกก้อนถูกเจาะ Biopsy</div>
