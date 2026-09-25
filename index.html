@@ -3188,6 +3188,51 @@
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>ผลจริง — ทำไมเลือก Test ผิดถึงเปลี่ยนคำตอบทั้งหมด</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none;margin:0 0 8px">
+        รันข้อมูล 7 คนชุดเดียวกันด้วย<b>ทั้งสองแบบ</b> — จุดประมาณการ (point estimate) ออกมา<b>เท่ากันเป๊ะ</b> (4.43 kg) แต่ข้อสรุปกลับ<b>ตรงข้ามกัน</b>
+      </p>
+      <div class="compare-row">
+        <div class="compare-col">
+          <h3>Hypotheses A <span class="tag">Independent T-test ❌</span></h3>
+          <pre style="font-family:var(--font-mono);font-size:10.5px;line-height:1.5;background:var(--surface);border-radius:8px;padding:10px;overflow-x:auto;color:var(--ink);margin:0 0 8px">. ttest weight, by(gr)
+Two-sample t test, equal variances
+
+Group    Obs    Mean      Std.Err.
+0 (Pre)   7    66.42857   3.030458
+1 (Post)  7    62.00000   2.526055
+
+diff = mean(0)-mean(1) = 4.428571
+SE(diff) = 3.945203
+t = 1.1225, df = 12
+Ha: diff != 0
+Pr(|T| > |t|) = 0.2836</pre>
+          <div class="compare-point"><b>P-value = 0.284</b><span>&gt; α (0.05) → <b>ไม่ปฏิเสธ H0</b> → "cannot reject that means of pre and post may be equal" — สรุป<b>ผิด</b>ว่าน้ำหนักไม่ได้ลดลงจริง</span></div>
+        </div>
+        <div class="compare-col freq">
+          <h3>Hypotheses B <span class="tag">✓ Dependent T-test</span></h3>
+          <pre style="font-family:var(--font-mono);font-size:10.5px;line-height:1.5;background:var(--surface);border-radius:8px;padding:10px;overflow-x:auto;color:var(--ink);margin:0 0 8px">. ttest weight_before == weight_after
+Paired t test
+
+Mean(d) = -4.43 kg
+95% CI  = [-8.63, -0.23]
+
+H0: μd = 0
+P-value = 0.042</pre>
+          <div class="compare-point"><b>P-value = 0.042</b><span>&lt; α (0.05) → <b>ปฏิเสธ H0</b> → น้ำหนักลดลงจริงอย่างมีนัยสำคัญทางสถิติ (mean ≈ 4.43 kg)</span></div>
+        </div>
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ Point estimate เท่ากัน (4.43 kg) แต่ significant/ไม่ significant ต่างกัน — เกิดจาก SE เท่านั้น</div>
+        Independent T-test คำนวณ SE จาก variance ของสองกลุ่ม<b>โดยไม่รู้เลยว่า pre/post เป็นคนเดียวกัน</b> (SE(diff)=3.945 — กว้าง
+        เพราะรวม<b>ความแตกต่างระหว่างคน</b> เช่น คนที่หนักอยู่แล้วกับคนที่เบาอยู่แล้ว เข้าไปเป็น "noise" ด้วย) ส่วน Paired T-test คำนวณ SE
+        จาก<b>ผลต่างรายคู่ (d) ของแต่ละคนเอง</b> เท่านั้น ซึ่งตัด "ความแตกต่างระหว่างคน" ที่คงที่อยู่แล้วออกไปโดยอัตโนมัติ (คนหนักอยู่แล้ว
+        กับคนเบาอยู่แล้ว ก็ลดน้ำหนักได้ใกล้เคียงกัน) เหลือแต่<b>ความแปรปรวนที่แท้จริงของการเปลี่ยนแปลง</b> — SE เลยแคบกว่ามาก และ<b>เจอ
+        นัยสำคัญที่ Independent T-test มองไม่เห็น</b> ทั้งที่เป็นข้อมูลชุดเดียวกัน — นี่คือเหตุผลเดียวกับคำเตือนในการ์ด "เลือก Test Statistic
+        ยังไง" ด้านบนว่าทำไม Step 2 (Independent vs Paired) ต้องตอบให้ถูกก่อนเสมอ ไม่ใช่แค่รายละเอียดทางเทคนิค
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>P-value</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <div class="gloss-formula">P = P(ได้ข้อมูลนี้ หรือสุดขั้วกว่านี้ | H0 เป็นจริง)</div>
       <div class="gloss-why">
@@ -3196,6 +3241,15 @@
         <b>ข้อควรระวังที่พบบ่อย:</b> P-value <u>ไม่ใช่</u> "ความน่าจะเป็นที่ H0 เป็นจริง" และไม่ใช่ "ความน่าจะเป็นที่ผลการทดลองเป็นเรื่องบังเอิญ"
         — เป็นความน่าจะเป็นของข้อมูล<b>ภายใต้สมมติฐานว่า H0 จริง</b> เท่านั้น การตีความผิดแบบนี้คือหนึ่งในสาเหตุหลักที่วงการสถิติเริ่มหันมาสนใจ
         แนวทาง Bayesian (posterior probability, Bayes Factor) ที่ตอบคำถามที่นักวิจัยอยากรู้ได้ตรงกว่า
+      </div>
+      <div class="warn-box" style="margin-top:10px">
+        <div class="wt">⚠️ ห้ามรายงาน P-value ตัวเดียวลอยๆ — ต้องรายงานคู่กับ Descriptive Statistics (mean, 95% CI) เสมอ</div>
+        P-value บอกแค่ "<b>มีผลต่างจริงหรือไม่</b>" (statistical significance) แต่ไม่ได้บอกว่า<b>ผลต่างนั้นมีขนาดเท่าไหร่ มีความหมาย
+        ทางคลินิกหรือเปล่า</b> (clinical significance) — sample ใหญ่มากพอ แม้ผลต่างจิ๊บจ๊อยไม่มีความหมายทางคลินิกเลยก็ยัง significant
+        ได้ (P ต่ำ) ในทางกลับกัน effect ที่ใหญ่จริงแต่ sample เล็ก ก็อาจไม่ significant ได้เช่นกัน (การ์ด Beta/Power ด้านล่าง) — การรายงาน
+        ที่ถูกต้องเสมอคือ <b>mean (หรือ effect size อื่น) + 95% CI + P-value</b> มาด้วยกันเป็นชุด เช่น "mean = 4.43 kg (95% CI 0.23
+        ถึง 8.63), P = 0.042" ไม่ใช่แค่ "P = 0.042 นัยสำคัญ" เฉยๆ — ตัวอย่างเต็มดูได้ที่การ์ด "ผลจริง — ทำไมเลือก Test ผิดถึงเปลี่ยนคำตอบ
+        ทั้งหมด" ด้านบน ที่ทั้ง mean และ CI ถูกรายงานคู่กับ P-value ทุกครั้ง
       </div>
       <p class="desc" style="max-width:none;margin-top:12px"><b>ตัวอย่าง (two-tailed test):</b></p>
       <div class="gloss-formula">H0: μ = 0 &nbsp;|&nbsp; H1: μ ≠ 0 &nbsp;→&nbsp; P-value = 0.017 + 0.017 = 0.034 = 3.4%</div>
