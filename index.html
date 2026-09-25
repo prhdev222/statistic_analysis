@@ -2227,6 +2227,65 @@
   </section>
 
   <section class="card">
+    <h2>Fagan's Nomogram — Prior → Posterior แบบกราฟิก</h2>
+    <p class="desc" style="max-width:none">
+      วิธีคิดเลขเดียวกันเป๊ะกับเครื่องคิดเลข "Prior → Posterior" ด้านบน (Posterior Odds = Prior Odds × LR) แค่เปลี่ยนจาก
+      "กดคำนวณ" มาเป็น "<b>ลากเส้นตรง</b>" บนกระดาษ/สไลด์ — ใช้บ่อยในห้องตรวจที่ไม่มีเครื่องคิดเลขอยู่ตรงหน้า: ปักหมุดที่ Pre-test
+      Probability (แกนซ้าย) ลากเส้นตรงผ่านค่า Likelihood Ratio (แกนกลาง) ลากยาวไปจนตัดแกนขวา อ่านค่าที่จุดตัดได้เป็น
+      Post-test Probability ทันที
+    </p>
+    <svg viewBox="0 0 580 420" width="100%" height="400" style="display:block;margin:10px auto;max-width:560px;background:var(--surface-2);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrowhead-fagan" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--warn)"/></marker></defs>
+      <text x="90" y="12" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">Pre-test Prob (%)</text>
+      <text x="490" y="12" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">Post-test Prob (%)</text>
+      <text x="290" y="30" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">Likelihood Ratio</text>
+      <line x1="90" y1="20" x2="90" y2="380" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="490" y1="20" x2="490" y2="380" stroke="var(--muted)" stroke-width="1.5"/>
+      <g font-size="10" fill="var(--muted)" text-anchor="end">
+        <text x="82" y="24">0.1</text><text x="82" y="84">1</text><text x="82" y="127">5</text><text x="82" y="147">10</text>
+        <text x="82" y="168">20</text><text x="82" y="182">30</text><text x="82" y="204">50</text><text x="82" y="226">70</text>
+        <text x="82" y="261">90</text><text x="82" y="281">95</text><text x="82" y="324">99</text><text x="82" y="384">99.9</text>
+      </g>
+      <g font-size="10" fill="var(--muted)" text-anchor="start">
+        <text x="498" y="24">99.9</text><text x="498" y="84">99</text><text x="498" y="127">95</text><text x="498" y="147">90</text>
+        <text x="498" y="168">80</text><text x="498" y="182">70</text><text x="498" y="204">50</text><text x="498" y="226">30</text>
+        <text x="498" y="261">10</text><text x="498" y="281">5</text><text x="498" y="324">1</text><text x="498" y="384">0.1</text>
+      </g>
+      <g stroke="var(--line-soft)" stroke-width="1">
+        <line x1="86" y1="24" x2="94" y2="24"/><line x1="86" y1="84" x2="94" y2="84"/><line x1="86" y1="127" x2="94" y2="127"/>
+        <line x1="86" y1="147" x2="94" y2="147"/><line x1="86" y1="168" x2="94" y2="168"/><line x1="86" y1="182" x2="94" y2="182"/>
+        <line x1="86" y1="204" x2="94" y2="204"/><line x1="86" y1="226" x2="94" y2="226"/><line x1="86" y1="261" x2="94" y2="261"/>
+        <line x1="86" y1="281" x2="94" y2="281"/><line x1="86" y1="324" x2="94" y2="324"/>
+        <line x1="486" y1="24" x2="494" y2="24"/><line x1="486" y1="84" x2="494" y2="84"/><line x1="486" y1="127" x2="494" y2="127"/>
+        <line x1="486" y1="147" x2="494" y2="147"/><line x1="486" y1="168" x2="494" y2="168"/><line x1="486" y1="182" x2="494" y2="182"/>
+        <line x1="486" y1="204" x2="494" y2="204"/><line x1="486" y1="226" x2="494" y2="226"/><line x1="486" y1="261" x2="494" y2="261"/>
+        <line x1="486" y1="281" x2="494" y2="281"/><line x1="486" y1="324" x2="494" y2="324"/>
+      </g>
+      <line x1="90" y1="206" x2="490" y2="133" stroke="var(--warn)" stroke-width="2" marker-end="url(#arrowhead-fagan)"/>
+      <line x1="90" y1="206" x2="490" y2="219" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowhead-fagan)"/>
+      <circle cx="90" cy="206" r="5" fill="var(--ink)"/>
+      <circle cx="490" cy="133" r="4.5" fill="var(--warn)"/>
+      <circle cx="490" cy="219" r="4.5" fill="var(--accent)"/>
+      <text x="70" y="200" font-size="11" fill="var(--ink)" text-anchor="end" font-weight="700">Prior 56%</text>
+      <text x="290" y="163" font-size="11.5" fill="var(--warn)" text-anchor="middle" font-weight="700">LR+ = 11</text>
+      <text x="290" y="220" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">LR− = 0.40</text>
+      <text x="505" y="130" font-size="12" fill="var(--warn)" font-weight="700">93%</text>
+      <text x="505" y="223" font-size="12" fill="var(--accent)" font-weight="700">33%</text>
+    </svg>
+    <div class="interp-box">
+      <b>ตัวอย่างในกราฟ</b> (ตรงกับตัวอย่าง chest radiograph ด้านบน): Prior = 56% — ลากเส้นผ่าน <b>LR+ = 11</b> (เส้นส้ม) ตัดแกนขวา
+      ที่ <b>93%</b> — ลากอีกเส้นผ่าน <b>LR− = 0.40</b> (เส้นน้ำเงินประ) ตัดแกนขวาที่ <b>33%</b> — ตัวเลขตรงกับที่คำนวณด้วยสูตร
+      Posterior Odds = Prior Odds × LR ในการ์ด LR ด้านบนทุกประการ (93.0% และ 1−NPV=33.3% ตามลำดับ)
+    </div>
+    <div class="gloss-why">
+      <b>ทำไมแกนซ้าย/ขวาไม่ใช่สเกลเชิงเส้นธรรมดา (ระยะห่างระหว่างตัวเลขไม่เท่ากัน):</b> ทั้งสองแกนใช้สเกล <b>log-odds</b> (ไม่ใช่ %
+      ตรงๆ) เพราะสมการที่แท้จริงเบื้องหลังคือ logit(posterior) = logit(prior) + ln(LR) — เป็นสมการ<b>บวกกันแบบเส้นตรง</b>ในหน่วย
+      log-odds เท่านั้น (ไม่ใช่หน่วย % ธรรมดา) การใช้สเกล log-odds นี่เองที่ทำให้ "ลากเส้นตรงเส้นเดียว" ให้คำตอบที่ถูกต้องได้ —
+      ถ้าใช้สเกล % เชิงเส้นตรงๆ เส้นจะไม่ตรงและอ่านค่าผิด
+    </div>
+  </section>
+
+  <section class="card">
     <h2>Bayes Factor — เทียบสมมติฐาน 2 ข้อด้วยหลักฐานเดียวกัน</h2>
     <p class="desc" style="max-width:none">
       LR ที่ใช้ทั้งเครื่องมือนี้จนถึงตอนนี้ เป็น Bayes Factor เวอร์ชันเฉพาะทางสำหรับ "มีโรค vs ไม่มีโรค" — <b>Bayes Factor
@@ -2795,8 +2854,29 @@
         — ต่างจาก PPV/NPV ตรงที่ LR <b>ไม่ขึ้นกับ prevalence เลย</b> (เป็นคุณสมบัติคงที่ของการตรวจ เหมือน sensitivity/specificity)
         จึงนำไปใช้กับผู้ป่วยที่มี pretest probability ต่างจากประชากรทั่วไปได้ทันที เช่น ผู้ป่วยที่มีปัจจัยเสี่ยงส่วนตัวสูงกว่า
         prevalence เฉลี่ย — นี่คือเหตุผลที่การ์ด "Prior → Posterior" และ "Sequential Testing" ในแท็บ Prior→Posterior ใช้ LR
-        เป็นแกนหลักในการคำนวณ ไม่ใช้ PPV/NPV ตรงๆ<br><br>
-        เกณฑ์คร่าวๆ: LR+ สูงมาก (&gt;10) = ผลบวกช่วยยืนยันโรคได้ดีมาก, LR− ต่ำมาก (&lt;0.1) = ผลลบช่วยตัดโรคออกได้ดีมาก<br><br>
+        เป็นแกนหลักในการคำนวณ ไม่ใช้ PPV/NPV ตรงๆ
+      </div>
+      <p class="desc" style="max-width:none;margin:10px 0 4px"><b>เกณฑ์เต็ม — LR เปลี่ยนความน่าจะเป็นของโรคได้มากแค่ไหน:</b></p>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:360px;text-align:center">
+          <tr><th>LR+</th><th>Interpretation</th><th>LR−</th></tr>
+          <tr><td><b style="color:var(--good)">&gt;10</b></td><td>Large changes</td><td>&lt;0.1</td></tr>
+          <tr><td>5–10</td><td>Moderate changes</td><td>0.1–0.2</td></tr>
+          <tr><td>2–5</td><td>Small changes</td><td><b style="color:var(--warn)">0.2–0.5</b></td></tr>
+          <tr><td>&lt;2</td><td>Little or No change</td><td>&gt;0.5</td></tr>
+        </table>
+      </div>
+      <div class="gloss-why">
+        <b>LR+ = 10 หมายถึงอะไรกันแน่:</b> LR+ = P(ผลบวก | ป่วยจริง) / P(ผลบวก | ไม่ป่วยจริง) — ดังนั้น <b>LR+ = 10 แปลว่า
+        "คนที่ป่วยจริง มีโอกาสตรวจได้ผลบวก มากกว่าคนที่ไม่ป่วยจริง 10 เท่า"</b> (ตัวอย่าง chest radiograph ด้านบน LR+=10.625
+        คือคนที่เป็น parapneumonic effusion จริง มีโอกาสตรวจพบผลบวกมากกว่าคนที่ไม่เป็นโรคจริงประมาณ 10.6 เท่า) — ไม่ได้แปลว่า
+        "เป็นโรคแน่ 10 เท่า" หรือ "posterior probability = 10" (LR ไม่ใช่ probability เอง เป็นแค่ตัวคูณของ odds) — ผลจริงที่
+        posterior probability จะเป็นเท่าไหร่ ยังต้องเอาไปคูณกับ prior odds ก่อนเสมอ (Posterior Odds = Prior Odds × LR)<br><br>
+        <b>แล้ว LR− = 0.4 ล่ะ:</b> LR− = P(ผลลบ | ป่วยจริง) / P(ผลลบ | ไม่ป่วยจริง) — <b>LR− = 0.4 แปลว่า "คนที่ป่วยจริง มีโอกาส
+        ตรวจได้ผลลบ เพียง 0.4 เท่า (40%) ของคนที่ไม่ป่วยจริง"</b> — ค่าน้อยกว่า 1 แปลว่าผลลบ "พบได้น้อยกว่า" ในคนป่วยจริง ซึ่งเป็น
+        ทิศทางที่ถูกต้อง (สนับสนุนว่าไม่ป่วย) แต่ <b>0.4 ยังไม่ต่ำพอ</b> (เกณฑ์ที่ตัดโรคได้มั่นใจคือ &lt;0.1) จึงบอกได้แค่ว่า
+        "โอกาสไม่ป่วยลดลงบ้าง" ไม่ใช่ "มั่นใจได้ว่าไม่ป่วย" — ตรงกับตัวอย่าง chest radiograph ด้านบนที่ Sensitivity เพียง 62.5%
+        (พลาดคนป่วยเกือบ 40%) ทำให้ผลลบของการตรวจนี้ยัง<b>ไม่น่าเชื่อถือพอจะ rule out</b> โรคได้เต็มที่<br><br>
         <b>เชื่อมกับ Bayes Factor:</b> LR+ และ LR− ก็คือ <b>Bayes Factor</b> ของคู่สมมติฐาน "มีโรค vs ไม่มีโรค" นั่นเอง — ดูรายละเอียด
         เพิ่มเติมได้ในการ์ด Bayes Factor ที่แท็บเดียวกัน<br><br>
         <b>"LR เป็น Odds แบบหนึ่ง" — ใกล้เคียงแต่ไม่เป๊ะ:</b> LR+ = Se/(1−Sp) เป็น<b>อัตราส่วนของ probability สองตัว</b> (P(T+|D+)
@@ -2820,9 +2900,10 @@
           Se = (40/64)×100 = 62.5% &nbsp;|&nbsp; Sp = (48/51)×100 = 94.1%<br>
           PPV = (40/43)×100 = 93.0% &nbsp;|&nbsp; NPV = (48/72)×100 = 66.7%<br>
           Pretest probability (prevalence ของกลุ่มตัวอย่างนี้) = (64/115)×100 = 55.7%<br><br>
-          <b>LR+</b> = (40/64)/(3/51) = <b>10.625</b> — ผลบวกช่วยยืนยันโรคได้ค่อนข้างดี (&gt;10)<br>
-          <b>LR−</b> = (24/64)/(48/51) = <b>0.398</b> — ผลลบช่วยตัดโรคได้ระดับปานกลางเท่านั้น (ไม่ต่ำกว่า 0.1 ดังนั้นผลลบ
-          <u>ไม่ควร</u>ใช้ตัดโรคออกอย่างมั่นใจเต็มที่ — Sensitivity แค่ 62.5% พลาดคนป่วยไปเกือบ 40% ทำให้ LR− ไม่ต่ำมาก)<br><br>
+          <b>LR+</b> = (40/64)/(3/51) = <b>10.625</b> — อยู่ในช่วง &gt;10 = <b>Large changes</b> (ผลบวกเปลี่ยนความน่าจะเป็นของโรคได้มาก)<br>
+          <b>LR−</b> = (24/64)/(48/51) = <b>0.398</b> — อยู่ในช่วง 0.2–0.5 = <b>Small changes เท่านั้น</b> (ไม่ใช่ moderate/large)
+          — ผลลบของการตรวจนี้<u>เปลี่ยนความน่าจะเป็นของโรคได้น้อย</u> ไม่ควรใช้ตัดโรคออกอย่างมั่นใจ — Sensitivity แค่ 62.5%
+          พลาดคนป่วยไปเกือบ 40% ทำให้ LR− ไม่ต่ำพอ<br><br>
           <b>DOR</b> = LR+/LR− = 10.625/0.398 ≈ 26.7 (หรือคำนวณตรงจาก TP×TN/(FP×FN) = (40×48)/(3×24) = 1920/72 ≈ 26.7)<br><br>
           สังเกต PPV (93.0%) สูงกว่า Sensitivity (62.5%) มาก เพราะ prevalence ของกลุ่มตัวอย่างนี้สูงถึง 55.7% (ไม่ใช่โรคหายาก) —
           ตรงกับกลไก "prevalence สูง → PPV สูง" ที่อธิบายไว้ในการ์ดกลุ่ม B
