@@ -2052,6 +2052,46 @@
         คนละสถาบัน/คนละช่วงเวลาด้วยยิ่งดี — "external validation") — ถ้าทดสอบบนข้อมูลที่ใกล้เคียงกับที่เทรนมากเกินไป (data leakage
         หรือ overfitting) ผลที่ได้จะดีเกินจริง ใช้งานจริงในสถานที่อื่นแล้วอาจแย่ลงมาก
       </div>
+      <p class="desc" style="max-width:none;margin:10px 0 4px"><b>Terminology ที่สับสนบ่อยมาก (ศัพท์ซ้อนทับกันเยอะ):</b></p>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:420px">
+          <tr><th>ศัพท์</th><th>ความหมาย</th></tr>
+          <tr><td>Development Set</td><td>= Training set + Tuning set (รวมกัน)</td></tr>
+          <tr><td>Training set</td><td>ข้อมูลที่ใช้ "เทรน" โมเดลจริงๆ (ปรับ weight)</td></tr>
+          <tr><td>Tuning set</td><td>= Validation set = "Development set" (ศัพท์ในวงการ engineering) — ใช้ปรับ hyperparameter
+            ไม่ใช่ใช้ประกาศผลสุดท้าย</td></tr>
+          <tr><td>Test set</td><td>= Validation set = Holdout set = Evaluation set — ชุดสุดท้ายที่ <b>independent จริง</b>
+            ใช้รายงานผลเท่านั้น ห้ามเอาไปปรับโมเดลอีก</td></tr>
+        </table>
+      </div>
+      <div class="warn-box" style="margin-top:8px">
+        คำว่า "Validation" ถูกใช้ซ้อนทับกันได้ทั้งความหมาย "Tuning" และ "Test ขั้นสุดท้าย" แล้วแต่วงการ/paper — อ่าน paper ต้องดู
+        <b>บริบทว่าชุดนั้นถูกเอาไปใช้ปรับโมเดลหรือไม่</b> ไม่ใช่ดูแค่ชื่อ ถ้าถูกใช้ปรับโมเดล (เช่น เลือก hyperparameter/early
+        stopping) คือ Tuning set แม้จะตั้งชื่อว่า "Validation" — ถ้าไม่เคยถูกแตะเลยจนกว่าจะรายงานผลสุดท้าย ถึงจะนับเป็น
+        "completely independent" ตามที่ checklist ข้อนี้ถาม
+      </div>
+      <p class="desc" style="max-width:none;margin:10px 0 4px"><b>ตัวอย่างจริง: Gulshan et al. (Diabetic Retinopathy AI, JAMA 2016)</b></p>
+      <div class="compare-row">
+        <div class="compare-col">
+          <h3>Development Set <span class="tag">ใช้สร้างโมเดล</span></h3>
+          <div class="compare-point"><b>Training set</b><span>80% ของ Development Set = 102,540 ภาพ</span></div>
+          <div class="compare-point"><b>Tuning set</b><span>20% ของ Development Set = 25,635 ภาพ — ใช้ evaluation
+            ระหว่างเทรน แล้ว update hyperparameters วนกลับไปเทรนใหม่</span></div>
+        </div>
+        <div class="compare-col freq">
+          <h3>Test Set <span class="tag">✓ Completely Independent</span></h3>
+          <div class="compare-point"><span>มาจากคนละแหล่งข้อมูลโดยสิ้นเชิง: <b>EyePACS-1</b> (9,963 ภาพ) + <b>Messidor-2</b>
+            (1,748 ภาพ)</span></div>
+          <div class="compare-point"><span>ไม่เคยถูกใช้เทรนหรือปรับ hyperparameter เลยแม้แต่ครั้งเดียว → ใช้รายงาน
+            Performance metrics สุดท้ายเท่านั้น</span></div>
+        </div>
+      </div>
+      <div class="gloss-why">
+        <b>ทำไมถึงเรียกว่า "independent" ได้จริง:</b> Test set (EyePACS-1, Messidor-2) เป็นคนละ dataset จาก Development Set
+        โดยสิ้นเชิง (ไม่ใช่แค่แบ่งสุ่มจาก dataset เดียวกัน) — ตอบข้อ 2 ของ checklist ได้ตรงๆ ว่า "ใช่ มี independent validation
+        set จริง" — ถ้า paper ไหนรายงานผลจาก Tuning set (หรือ Training set) เป็นตัวเลข performance สุดท้าย โดยไม่มี Test set
+        แยกต่างหากเลย ต้องสงสัยว่าผลลัพธ์อาจสูงเกินจริงจาก overfitting
+      </div>
     </div>
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>3) Independent, Blind Comparison with Reference Standard</h4></div>
