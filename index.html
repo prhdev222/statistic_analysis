@@ -1764,6 +1764,94 @@
       <tr data-lo="100" data-hi="999999"><td>&gt; 100</td><td>Decisive / ชี้ขาด</td></tr>
     </table>
   </section>
+
+  <section class="card">
+    <h2>Diagnostic Test in Clinical Practice</h2>
+    <p class="desc">ทุกอย่างในหัวข้อนี้คือแนวคิด Prior→Posterior ด้านบน ตัวเดียวกัน แค่ใช้<b>ศัพท์ทาง clinical epidemiology</b>
+      และขยายจาก "โรค/ไม่มีโรค" (binary) ไปเป็น <b>รายการ differential diagnosis (DDx) หลายโรคพร้อมกัน</b></p>
+
+    <h3 style="margin-top:4px;font-size:15px">ศัพท์ที่ใช้แทนกันได้</h3>
+    <svg class="dag-svg" viewBox="0 0 480 90" width="100%" height="85" style="display:block;margin:4px auto;max-width:460px">
+      <defs><marker id="arrowhead-dxt" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--good)"/></marker></defs>
+      <rect x="10" y="20" width="150" height="50" rx="10" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="85" y="50" font-size="12.5" fill="var(--good)" text-anchor="middle" font-weight="700">Pre-test Probability</text>
+      <line x1="165" y1="45" x2="212" y2="45" stroke="var(--good)" stroke-width="1.5" marker-end="url(#arrowhead-dxt)"/>
+      <text x="188" y="35" font-size="11" fill="var(--warn)" text-anchor="middle" font-weight="700">Index test</text>
+      <rect x="320" y="20" width="150" height="50" rx="10" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="395" y="50" font-size="12.5" fill="var(--good)" text-anchor="middle" font-weight="700">Post-test Probability</text>
+    </svg>
+    <div class="interp-box" style="text-align:center">
+      Pre-test Probability = <b>Prior</b> &nbsp;|&nbsp; Index test = <b>ตัวตรวจ/หลักฐานที่นำมาอัปเดต</b> &nbsp;|&nbsp;
+      Post-test Probability = <b>Posterior</b> — ศัพท์ต่างกัน ความหมายเดียวกันทุกประการกับที่ใช้ทั้งเว็บนี้
+    </div>
+
+    <h3 style="margin-top:18px;font-size:15px">ตัวอย่าง: RLQ pain — DDx ก็อัปเดตแบบ Bayesian ได้ (หลายโรคพร้อมกัน)</h3>
+    <p class="desc" style="max-width:none">Prior→Posterior ที่ใช้ทั้งเว็บนี้เป็นแบบ 2 ทาง (มีโรค/ไม่มีโรค) แต่ในชีวิตจริง แพทย์ถือ DDx
+      <b>หลายโรคในหัวพร้อมกัน</b> แล้วอัปเดต<b>ความน่าจะเป็นของทุกโรคพร้อมกัน</b>ทุกครั้งที่ได้ข้อมูล/ผลตรวจใหม่ — ตรรกะเดียวกับ LR
+      chain ที่การ์ด Sequential Testing ด้านบน เพียงแต่ทำพร้อมกันหลายเส้นทาง</p>
+    <div class="table-scroll">
+      <table class="gloss-table" style="min-width:760px">
+        <tr>
+          <th>DDx</th>
+          <th>① RLQ pain <span style="font-weight:400;color:var(--muted)">(pretest)</span></th>
+          <th>② + Hx/PE/Lab <span style="font-weight:400;color:var(--muted)">(Male, 3วัน on-off, no localizing sign, no inflammation)</span></th>
+          <th>③ + CT <span style="font-weight:400;color:var(--muted)">(Normal CT)</span></th>
+        </tr>
+        <tr><td>GI disturbance</td><td>12%</td><td><b style="color:var(--good)">50%</b></td><td><b style="color:var(--good)">90%</b></td></tr>
+        <tr><td>Acute appendicitis</td><td>20%</td><td>5%</td><td>—</td></tr>
+        <tr><td>Ureteric stone</td><td>15%</td><td>10%</td><td>—</td></tr>
+        <tr><td>Gut obstruction</td><td>10%</td><td>3%</td><td>—</td></tr>
+        <tr><td>Ectopic pregnancy</td><td>5%</td><td><b style="color:var(--warn)">0%</b></td><td>—</td></tr>
+        <tr><td>Diverticulitis</td><td>2%</td><td>0.1%</td><td>—</td></tr>
+        <tr><td>Mesenteric infarct</td><td>0.5%</td><td>0.01%</td><td>—</td></tr>
+        <tr><td>Dissecting aneurysm</td><td>0.5%</td><td>0.001%</td><td>—</td></tr>
+        <tr><td>Etc.</td><td>—</td><td>—</td><td>—</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>อ่านตารางนี้ยังไง:</b> คอลัมน์ ① คือ prior จากแค่ "RLQ pain" เฉยๆ (ยังไม่รู้อะไรเพิ่ม) — พอได้ Hx+PE+Lab (index test รอบ 1)
+      → posterior รอบ 1 (คอลัมน์ ②) กลายเป็น prior ของรอบถัดไปทันที (ตรรกะเดียวกับ chain LR ด้านบน) — <b>GI disturbance</b> ถูกดันขึ้นจาก
+      12%→50% (กลายเป็นอันดับ 1) ในขณะที่ <b>Ectopic pregnancy หายไปเป็น 0%</b> ทันที เพราะรู้ว่าเป็น "Male" — นี่คือตัวอย่างของ
+      <b>deterministic rule-out</b> (ความน่าจะเป็น = 0 เป๊ะ จาก fact ที่ขัดกันเอง ไม่ใช่แค่ likelihood ต่ำ) ต่างจากโรคอื่นที่แค่<b>ลดลง</b>
+      ตามความน่าจะเป็น (probabilistic) — พอ CT ปกติ (index test รอบ 2) → posterior สุดท้าย (คอลัมน์ ③) GI disturbance ขึ้นไป 90%
+    </div>
+
+    <h3 style="margin-top:18px;font-size:15px">เมื่อไหร่ควรหยุดตรวจ เริ่มรักษา — Test Threshold / Treatment Threshold (Pauker–Kassirer)</h3>
+    <p class="desc" style="max-width:none">Prior/Posterior บอก "ความน่าจะเป็น" แต่ไม่ได้บอกว่า<b>ควรทำอะไรต่อ</b> — โมเดลนี้ (Pauker &amp;
+      Kassirer, NEJM 1980) ตอบคำถามนั้นด้วยเส้นความน่าจะเป็น 0–100% แบ่ง 3 โซนด้วยจุดตัดสินใจ 2 จุด</p>
+    <svg class="dag-svg" viewBox="0 0 620 170" width="100%" height="160" style="display:block;margin:6px auto;max-width:600px">
+      <defs><marker id="arrowhead-thr" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,8 L4,0 L8,8 Z" fill="var(--muted)"/></marker></defs>
+      <line x1="30" y1="70" x2="590" y2="70" stroke="var(--ink)" stroke-width="1.5"/>
+      <line x1="30" y1="55" x2="30" y2="85" stroke="var(--ink)" stroke-width="1.5"/>
+      <text x="30" y="45" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">0%</text>
+      <line x1="150" y1="55" x2="150" y2="85" stroke="var(--warn)" stroke-width="1.5"/>
+      <text x="150" y="40" font-size="11.5" fill="var(--warn)" text-anchor="middle" font-weight="700">Test threshold</text>
+      <line x1="470" y1="55" x2="470" y2="85" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="470" y="40" font-size="11.5" fill="var(--good)" text-anchor="middle" font-weight="700">Treatment threshold</text>
+      <line x1="590" y1="55" x2="590" y2="85" stroke="var(--ink)" stroke-width="1.5"/>
+      <text x="590" y="45" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">100%</text>
+      <line x1="85" y1="120" x2="85" y2="90" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-thr)"/>
+      <text x="85" y="135" font-size="10.5" fill="var(--muted)" text-anchor="middle">ต่ำกว่า Test threshold</text>
+      <text x="85" y="148" font-size="10.5" fill="var(--muted)" text-anchor="middle">ไม่ต้องตรวจเพิ่ม</text>
+      <line x1="310" y1="120" x2="310" y2="90" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-thr)"/>
+      <text x="310" y="135" font-size="10.5" fill="var(--muted)" text-anchor="middle">อยู่ระหว่างสองเส้น</text>
+      <text x="310" y="148" font-size="10.5" fill="var(--muted)" text-anchor="middle">ต้องตรวจเพิ่มก่อน</text>
+      <line x1="530" y1="120" x2="530" y2="90" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-thr)"/>
+      <text x="530" y="135" font-size="10.5" fill="var(--muted)" text-anchor="middle">สูงกว่า Treatment threshold</text>
+      <text x="530" y="148" font-size="10.5" fill="var(--muted)" text-anchor="middle">หยุดตรวจ เริ่มรักษาได้เลย</text>
+    </svg>
+    <div class="gloss-why">
+      <b>เชื่อมกับตัวอย่าง RLQ pain ด้านบน:</b> โรคอันตราย (appendicitis, mesenteric infarct, dissecting aneurysm) ที่ posterior
+      ตกลงมาเหลือ &lt;1% หลัง Hx+PE+Lab → ต่ำกว่า test threshold ของโรคเหล่านั้นแล้ว (ไม่ต้องตรวจเพิ่มเพื่อ<b>ตัดโรคเหล่านี้ทิ้ง</b>) —
+      ส่วน GI disturbance ที่ posterior ขึ้นไป 90% หลัง CT → สูงกว่า treatment threshold แล้ว (รักษาตามอาการได้เลย ไม่ต้องตรวจเพิ่ม)
+      — จุดที่<b>ยังต้องตรวจต่อ</b>คือช่วงกลางที่ยังไม่มีโรคไหนสูงพอจะรักษา และยังไม่มีโรคอันตรายไหนต่ำพอจะตัดทิ้งได้อย่างมั่นใจ
+    </div>
+    <div class="warn-box" style="margin-top:8px">
+      Test threshold และ Treatment threshold <b>ไม่ใช่ตัวเลขตายตัว</b> — ขึ้นกับความรุนแรงของโรค (โรคอันตรายมาก threshold ต่ำ
+      ยอมตรวจ/รักษาทั้งที่ probability ยังไม่สูงมาก), ความเสี่ยง/ผลข้างเคียงของการตรวจ/รักษานั้นๆ, และต้นทุน — เช่นเดียวกับ MCID และ
+      non-inferiority margin (Δ) ที่พูดถึงในการ์ดอื่นๆ ของเว็บนี้ ล้วนมาจาก<b>วิจารณญาณทางคลินิก ไม่ใช่สูตรคำนวณสากล</b>
+    </div>
+  </section>
   </div>
 
   <div class="tab-panel" data-tab="treatment" hidden>
