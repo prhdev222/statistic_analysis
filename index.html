@@ -1999,6 +1999,55 @@
   </section>
 
   <section class="card">
+    <h2>Factors Affecting Model Performance — Checklist วิจารณ์งานวิจัย Diagnostic/AI</h2>
+    <p class="desc" style="max-width:none">ก่อนเชื่อตัวเลข Se/Sp/AUC ของ paper ไหน (เช่น AI วินิจฉัย diabetic retinopathy, Gulshan
+      et al. JAMA 2016) ต้องเช็ค 5 ข้อนี้ก่อนเสมอ — เป็น checklist มาตรฐานสำหรับวิจารณ์ diagnostic accuracy study (ใกล้เคียงกับ
+      กรอบ QUADAS ที่ใช้ทั่วไปในวงการ)</p>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>1) Appropriate Spectrum of Patients — Spectrum Bias</h4></div>
+      <div class="gloss-why">
+        "กลุ่มตัวอย่างครอบคลุมผู้ป่วยกลุ่มที่จะใช้ test จริงในคลินิกหรือไม่" — ถ้า paper เทรน/ทดสอบโมเดลด้วยเคสที่<b>ชัดเจนสุดขั้ว</b>
+        เท่านั้น (โรคระยะรุนแรงมาก vs ปกติสนิทมาก ไม่มีเคสกำกวม) Se/Sp ที่ได้จะสูงเกินจริง เพราะในคลินิกจริงมีเคส "borderline"
+        ปนอยู่เสมอซึ่งแยกยากกว่ามาก — เรียกว่า <b>Spectrum Bias</b> — ต้องเช็คว่ากลุ่มตัวอย่างมีความหลากหลายของความรุนแรงโรค
+        ตรงกับผู้ป่วยที่จะเจอจริงหรือไม่
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>2) Completely Independent Validation Set</h4></div>
+      <div class="gloss-why">
+        โมเดล AI/ML ต้องทดสอบบนข้อมูล<b>ที่ไม่เคยใช้เทรนเลย</b> (ไม่ใช่แค่แบ่ง train/test จากแหล่งข้อมูลเดียวกันแบบสุ่ม แต่ควรมาจาก
+        คนละสถาบัน/คนละช่วงเวลาด้วยยิ่งดี — "external validation") — ถ้าทดสอบบนข้อมูลที่ใกล้เคียงกับที่เทรนมากเกินไป (data leakage
+        หรือ overfitting) ผลที่ได้จะดีเกินจริง ใช้งานจริงในสถานที่อื่นแล้วอาจแย่ลงมาก
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>3) Independent, Blind Comparison with Reference Standard</h4></div>
+      <div class="gloss-why">
+        คนอ่านผล Reference Standard (เช่น จักษุแพทย์ให้เกรด diabetic retinopathy) ต้อง<b>ไม่รู้ผลของ Index test/AI ล่วงหน้า</b>
+        เวลาตัดสิน — ถ้ารู้ผล AI ก่อนแล้วอาจถูก "ชักจูง" ให้ตัดสินคล้อยตาม (review bias) ทำให้ agreement ดูดีเกินจริงทั้งที่ไม่ใช่
+        ความแม่นยำจริงของ AI — ต้อง<b>ตัดสินแยกกันอย่างอิสระ (independent) และไม่รู้ผลอีกฝั่ง (blind)</b> เสมอ
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>4) ผลตรวจ Index Test มีอิทธิพลต่อการตัดสินใจทำ Reference Standard หรือไม่ — Verification Bias</h4></div>
+      <div class="gloss-why">
+        ตรงกับ <b>Verification Bias (Work-up Bias)</b> ที่อธิบายไว้แล้วในการ์ด "ปัญหาจริงของ Reference Standard" ด้านบน — ถ้า
+        แพทย์เห็นผล AI เป็นบวกก่อน แล้วค่อยตัดสินใจว่าจะส่ง biopsy/CT ยืนยันหรือไม่ (เฉพาะคนที่ AI บอกบวกถึงจะได้ reference
+        standard) กลุ่มตัวอย่างที่ใช้คำนวณ Se/Sp จะไม่ใช่ตัวแทนของทุกเคสจริง ทำให้ accuracy ดูดีเกินจริง — reference standard
+        ต้องทำกับ<b>ทุกคน</b>โดยไม่ขึ้นกับผล index test เสมอ
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>5) Sufficient Detail to Permit Replication</h4></div>
+      <div class="gloss-why">
+        รายงานวิธีทำ test/train โมเดลละเอียดพอให้คนอื่นทำซ้ำได้หรือไม่ (เช่น สถาปัตยกรรมโมเดล, hyperparameter, ขั้นตอน
+        preprocessing, เกณฑ์ label กลุ่มตัวอย่าง) — งานวิจัยที่ดีต้อง<b>reproducible</b> ถ้ารายงานไม่ละเอียดพอ ไม่มีทางตรวจสอบ
+        ได้ว่าผลลัพธ์ที่รายงานเชื่อถือได้จริงหรือมี bias แอบแฝงอยู่หรือไม่
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
     <div class="mode-toggle">
