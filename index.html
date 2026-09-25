@@ -2188,6 +2188,16 @@
         สุ่มเลือกกลุ่มตัวอย่างบางส่วนจากฝั่งผลลบมาตรวจยืนยันด้วย เพื่อประเมิน false negative rate จริงได้) — และต้องใช้
         reference standard <b>เดียวกันทุกคน</b> ไม่ใช่คนละตัวตามความสะดวก
       </div>
+      <div class="warn-box" style="margin-top:8px">
+        <div class="wt">⚠️ ระวังเป็นพิเศษ: NPV และ F1 Score คือเมตริกที่บิดเบือนหนักที่สุดจาก Partial Verification แบบ PIOPED</div>
+        ตัวอย่าง PIOPED (verify เฉพาะฝั่ง V/Q scan <b>บวก</b>): เรารู้ TP กับ FP จริง (มาจากฝั่งที่ verify แล้ว) แต่<b>ไม่รู้ FN
+        กับ TN เลย</b> เพราะฝั่งผลลบไม่เคยถูกยืนยันด้วย angiogram — เมตริกที่ต้องใช้ FN/TN ในสูตรจึง<b>คำนวณไม่ได้จริง</b>
+        หรือคำนวณได้ก็ต้อง<b>สมมติเอาเองว่าผลลบทุกคนคือ TN ทั้งหมด</b> (สมมติฐานที่ผิดบ่อยมาก) — <b>NPV = TN/(TN+FN)</b> และ
+        <b>F1 = 2TP/(2TP+FP+FN)</b> (กลุ่ม B) ทั้งสองตัวมี FN อยู่ในสูตรโดยตรง จึงถูกกระทบหนักที่สุด เช่นเดียวกับ Sensitivity,
+        Specificity, Accuracy ที่ต้องใช้ FN/TN เหมือนกัน — <b>มีแต่ PPV = TP/(TP+FP) เท่านั้น</b>ที่ยังคำนวณได้ตรงไปตรงมาจาก
+        ข้อมูลที่ verify แล้วจริงๆ โดยไม่ต้องสมมติอะไรเพิ่ม — เวลาอ่าน paper ที่มี partial verification แบบนี้ ต้องดู PPV เป็น
+        หลัก และตั้งคำถามกับ NPV/Sensitivity/F1/Accuracy ที่รายงานไว้เสมอ
+      </div>
     </div>
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>5) Sufficient Detail to Permit Replication</h4></div>
