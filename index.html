@@ -1567,7 +1567,8 @@
       ตาราง 2×2 ของ AI นี้คือ<b>โครงสร้างเดียวกันเป๊ะ</b>กับตาราง 2×2 ที่ใช้ทั้งเว็บนี้ (การ์ด "0 ค่าตั้งต้น" ด้านล่าง) เพียงแต่ในวงการ
       AI/Machine Learning มักเรียก <b>"Confusion Matrix"</b> และเปลี่ยนชื่อแกน: แถว = <b>Predicted Result</b> (มาจาก Test/AI)
       คอลัมน์ = <b>Actual Result</b> (มาจาก Reference Standard) — ชื่อเรียกต่างไปตามวงการ แต่ TP/FP/FN/TN และสูตร Sensitivity/
-      Specificity/PPV/NPV คำนวณเหมือนเดิมทุกประการ
+      Specificity/PPV/NPV คำนวณเหมือนเดิมทุกประการ — ศัพท์ AI/ML ที่พบบ่อย: <b>Sensitivity = True Positive Rate = Recall</b>,
+      <b>PPV = Precision</b> (ดูรายละเอียดที่การ์ด Sensitivity/PPV ในกลุ่ม A แท็บ "สรุปสูตรสถิติ")
     </div>
 
     <div class="warn-box">
@@ -2335,7 +2336,10 @@
       <div class="gloss-why">
         <b>ทำไมต้องหา:</b> วัดว่าในกลุ่มคน "ป่วยจริง" การตรวจนี้จับได้กี่เปอร์เซ็นต์ — ถ้า sensitivity สูง แปลว่าโอกาสตรวจพลาดคนป่วย (false negative) ต่ำ
         จึงใช้ตัวเลขนี้เวลาต้องการ <b>"rule out"</b> โรค (คัดกรองเบื้องต้นให้แน่ใจว่าไม่พลาดคนป่วย เช่น คัดกรองมะเร็ง คัดกรองก่อนผ่าตัด)<br><br>
-        จำง่ายๆ ด้วยคำย่อ <b>SnNout</b>: Sensitivity สูง + ผลลบ (Negative) → ใช้ rule <b>out</b> โรคได้ค่อนข้างมั่นใจ
+        จำง่ายๆ ด้วยคำย่อ <b>SnNout</b>: Sensitivity สูง + ผลลบ (Negative) → ใช้ rule <b>out</b> โรคได้ค่อนข้างมั่นใจ<br><br>
+        <b>ชื่ออื่นที่ใช้แทนกันได้:</b> Sensitivity = <b>True Positive Rate (TPR)</b> = <b>Recall</b> (ศัพท์ในวงการ Machine
+        Learning) — ทั้งสามคำคือสูตรเดียวกัน TP/(TP+FN) เป๊ะ ความหมายตรงตัว: โมเดล/การตรวจ "จำได้" (recall) ว่ามีคนป่วยจริงกี่คน
+        จากทั้งหมดที่ป่วยจริง — เจอศัพท์ TPR หรือ Recall ในเปเปอร์ AI/ML ให้รู้ว่าคือ Sensitivity ตัวเดียวกับที่ใช้ทั้งเว็บนี้
       </div>
     </div>
     <div class="gloss-item">
@@ -2344,7 +2348,10 @@
       <div class="gloss-why">
         <b>ทำไมต้องหา:</b> วัดว่าในกลุ่มคน "ไม่ป่วยจริง" การตรวจนี้บอกถูกว่า "ปกติ" กี่เปอร์เซ็นต์ — ถ้า specificity สูง แปลว่าโอกาสตรวจผิดว่าคนปกติเป็นผลบวก
         (false positive) ต่ำ จึงใช้ตัวเลขนี้เวลาต้องการ <b>"rule in"</b> โรค (ยืนยันการวินิจฉัยให้มั่นใจว่าไม่ใช่ผลบวกลวง)<br><br>
-        จำง่ายๆ ด้วยคำย่อ <b>SpPin</b>: Specificity สูง + ผลบวก (Positive) → ใช้ rule <b>in</b> โรคได้ค่อนข้างมั่นใจ
+        จำง่ายๆ ด้วยคำย่อ <b>SpPin</b>: Specificity สูง + ผลบวก (Positive) → ใช้ rule <b>in</b> โรคได้ค่อนข้างมั่นใจ<br><br>
+        <b>ชื่ออื่นที่ใช้แทนกันได้:</b> Specificity = <b>True Negative Rate (TNR)</b> — สูตรเดียวกัน TN/(TN+FP) เป๊ะ — ในวงการ
+        AI/ML ไม่ค่อยมีศัพท์เฉพาะเทียบเท่า Recall/Precision สำหรับ Specificity โดยตรง มักเรียก TNR ตรงตัว หรือพูดถึงผ่าน False
+        Positive Rate (FPR = 1−Specificity) แทน — ที่ใช้ในกราฟ ROC curve
       </div>
     </div>
   </section>
