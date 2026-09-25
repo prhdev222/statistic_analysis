@@ -1842,6 +1842,43 @@
       ว่าจะมีคำตอบเดียวเสมอไป กรณีแบบนี้ต้องใช้เกณฑ์อื่นช่วยตัดสิน เช่น ดูว่า cutoff ไหนเป็นตัวเลขที่ตีความ/สื่อสารง่ายกว่ากันในทางปฏิบัติ
       หรือกลับไปใช้บริบทคลินิกช่วยตัดสินใจในที่สุดอยู่ดี
     </div>
+    <h3 style="margin-top:18px;font-size:15px">Choosing the Cutoff — สรุปทุกวิธี</h3>
+    <p class="desc" style="max-width:none">
+      สรุปวิธีเลือก cutoff ทั้งหมด: การตรวจที่ "แยกแยะโรค/ไม่โรคได้ดี" คือเส้น ROC ที่โป่งเข้าใกล้<b>มุมซ้ายบน</b> — และเมื่อ
+      Sensitivity เพิ่มขึ้น มักจะ<b>แทบไม่เสีย Specificity เลยจนกว่าจะถึงระดับ Sensitivity สูงมากๆ</b> (ช่วงต้นของเส้น ROC มักชันขึ้น
+      เร็ว แล้วค่อยๆ แบนราบลง) — <b>เส้นทแยงมุม = การตรวจที่ไม่ให้ข้อมูลอะไรเลย</b> (เทียบเท่าการโยนเหรียญทาย, AUC=0.5)
+    </p>
+    <p class="desc" style="max-width:none;margin-top:8px"><b>วิธีเลือก cutoff ที่ "ดีที่สุด" มีหลายวิธี (ไม่ได้มีคำตอบเดียว):</b></p>
+    <div class="table-scroll">
+      <table class="gloss-table" style="min-width:280px">
+        <tr><th>Cutoff</th><th>Least Distance <span style="font-weight:400">(ระยะถึงมุม (0,1))</span></th><th>Accuracy</th></tr>
+        <tr><td>≥ 0</td><td>1.000</td><td>50%</td></tr>
+        <tr><td>≥ 1</td><td>0.800</td><td>60%</td></tr>
+        <tr><td>≥ 3</td><td>0.400</td><td><b style="color:var(--good)">80%</b></td></tr>
+        <tr><td>≥ 4</td><td><b style="color:var(--good)">0.283</b></td><td><b style="color:var(--good)">80%</b></td></tr>
+        <tr><td>≥ 6</td><td>0.447</td><td>70%</td></tr>
+        <tr><td>≥ 7</td><td>0.632</td><td>60%</td></tr>
+        <tr><td>≥ 10</td><td>0.800</td><td>60%</td></tr>
+        <tr><td>&gt; 10</td><td>1.000</td><td>50%</td></tr>
+      </table>
+    </div>
+    <div class="interp-box">
+      <b>วิธีที่ 3 — Least Distance Method:</b> เลือก cutoff ที่จุดบนกราฟ ROC อยู่<b>ใกล้มุมซ้ายบน (0,1) ที่สุด</b> (ระยะทาง
+      Euclidean = √[(1−Sp)² + (1−Se)²], ยิ่งน้อยยิ่งดี) — ในตัวอย่างนี้ <b>cutoff ≥4 ชนะเดี่ยว</b> (ระยะ 0.283) ต่างจาก Youden's
+      Index ที่เสมอกันระหว่าง ≥3 และ ≥4 — <b>Least Distance Method จึงช่วยตัดสินเสมอในกรณีนี้ได้</b><br><br>
+      <b>วิธีที่ 4 — Best Accuracy:</b> เลือก cutoff ที่ Accuracy=(TP+TN)/N สูงสุด — ในตัวอย่างนี้เสมอกันที่ ≥3 และ ≥4 (80%
+      ทั้งคู่) เหมือน Youden's Index เป๊ะ (เพราะข้อมูลชุดนี้ prevalence พอดี 50% — เมื่อ balanced Accuracy กับ J จะให้อันดับ
+      เดียวกันเสมอ ทางคณิตศาสตร์คือ Accuracy=(Se+Sp)/2=(J+1)/2 เมื่อ prevalence=50%) — <b>แต่ต้องระวัง</b>: ถ้า prevalence
+      ไม่ใช่ 50% (กรณีทั่วไปในเว็บนี้ เช่นตัวอย่าง AI มะเร็งเต้านมด้านบน) Accuracy จะถูก class ที่เยอะกว่าครอบงำ (Accuracy
+      Paradox — การ์ดกลุ่ม B) ให้ผลต่างจาก Youden's Index ได้<br><br>
+      <b>"Shoulder" ของ ROC curve:</b> จุดที่เส้นเริ่ม "หักโค้ง" จากชันมาแบนราบ (แถวนี้คือช่วง ≥3 ถึง ≥4 พอดี) — เป็นจุดที่มัก
+      สมดุล Se/Sp ได้ดีที่สุดแบบคร่าวๆ ด้วยตาเปล่า ตรงกับทั้ง Youden's Index และ Least Distance Method ที่คำนวณได้ในตัวอย่างนี้พอดี
+    </div>
+    <div class="warn-box">
+      <b>สรุป:</b> มีอย่างน้อย 4 วิธีเลือก cutoff — (1) บริบทคลินิก (SnNout/SpPin), (2) Youden's Index, (3) Least Distance
+      Method, (4) Best Accuracy — แต่ละวิธีอาจให้คำตอบ<b>ไม่ตรงกัน</b>เสมอไป (โดยเฉพาะเมื่อ prevalence ไม่ balanced) — ไม่มีวิธี
+      ไหน "ถูกที่สุด" ตายตัว ขึ้นกับว่าโจทย์ให้ความสำคัญกับอะไร
+    </div>
   </section>
 
   <section class="card">
