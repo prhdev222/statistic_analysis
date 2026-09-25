@@ -3354,6 +3354,67 @@ P-value = 0.042</pre>
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>P-value is not Everything — Statistical ≠ Clinical Significance</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <div class="interp-box" style="text-align:center;font-size:15px">
+        <b>Statistical significance ≠ Clinical significance</b>
+      </div>
+      <div class="compare-row" style="margin:10px 0">
+        <div class="compare-col freq">
+          <h3>P-value <span class="tag">= magnitude of chance</span></h3>
+          <div class="compare-point"><span>บอกว่าผลที่เห็น "เกิดจากบังเอิญได้มากน้อยแค่ไหน" ถ้า H0 จริง</span></div>
+        </div>
+        <div class="compare-col">
+          <h3>P-value <span class="tag">≠ magnitude of association</span></h3>
+          <div class="compare-point"><span><u>ไม่ได้</u>บอกว่าความสัมพันธ์/ผลต่างนั้น<b>ใหญ่แค่ไหน</b> — ต้องดู effect size (OR/RR/mean diff) แยกต่างหากเสมอ</span></div>
+        </div>
+      </div>
+      <p class="desc" style="max-width:none;margin:8px 0 4px"><b>ตัวอย่าง:</b> OR<sub>Drug A vs Drug B</sub> = 1.02 (P&lt;0.001), 95% CI 1.01 ถึง 1.03 — significant มาก (P ต่ำจิ๋ว, CI แคบไม่คร่อม 1) แต่ OR=1.02 ใกล้เคียงกับ "ไม่มีผลต่าง" (OR=1) มาก — <b>มี clinical significance จริงหรือไม่?</b></p>
+      <p class="desc" style="max-width:none;margin:10px 0 4px"><b>ตัวอย่างที่สอง — ยาลดความดัน ผลต่างจริงคงที่ ~3 mmHg (n ต่างกัน):</b></p>
+      <svg viewBox="0 0 560 250" width="100%" height="240" style="display:block;margin:8px auto;max-width:560px;background:var(--surface-2);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+        <line x1="405" y1="15" x2="405" y2="235" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="405" y="12" font-size="11" fill="var(--muted)" text-anchor="middle" font-weight="700">0 mmHg (ไม่มีผลต่าง)</text>
+        <text x="20" y="44" font-size="12" fill="var(--ink)" font-weight="700">n=30</text>
+        <line x1="150" y1="35" x2="320" y2="35" stroke="var(--good)" stroke-width="3"/>
+        <circle cx="232" cy="35" r="4" fill="var(--good)"/>
+        <line x1="170" y1="48" x2="340" y2="48" stroke="var(--warn)" stroke-width="3" stroke-dasharray="6,3"/>
+        <circle cx="252" cy="48" r="4" fill="var(--warn)"/>
+        <text x="530" y="45" font-size="13" fill="var(--muted)" text-anchor="middle" font-weight="700">NS</text>
+        <text x="10" y="104" font-size="12" fill="var(--ink)" font-weight="700">n=300</text>
+        <line x1="200" y1="95" x2="280" y2="95" stroke="var(--good)" stroke-width="3"/>
+        <circle cx="240" cy="95" r="4" fill="var(--good)"/>
+        <line x1="215" y1="108" x2="295" y2="108" stroke="var(--warn)" stroke-width="3" stroke-dasharray="6,3"/>
+        <circle cx="255" cy="108" r="4" fill="var(--warn)"/>
+        <text x="530" y="105" font-size="13" fill="var(--muted)" text-anchor="middle" font-weight="700">NS</text>
+        <text x="0" y="164" font-size="12" fill="var(--ink)" font-weight="700">n=3,000</text>
+        <line x1="222" y1="155" x2="258" y2="155" stroke="var(--good)" stroke-width="3"/>
+        <circle cx="240" cy="155" r="4" fill="var(--good)"/>
+        <line x1="233" y1="168" x2="269" y2="168" stroke="var(--warn)" stroke-width="3" stroke-dasharray="6,3"/>
+        <circle cx="251" cy="168" r="4" fill="var(--warn)"/>
+        <text x="530" y="165" font-size="13" fill="var(--muted)" text-anchor="middle" font-weight="700">NS</text>
+        <text x="-6" y="224" font-size="12" fill="var(--ink)" font-weight="700">n=30,000</text>
+        <line x1="233" y1="215" x2="247" y2="215" stroke="var(--good)" stroke-width="3"/>
+        <circle cx="240" cy="215" r="4" fill="var(--good)"/>
+        <line x1="253" y1="228" x2="267" y2="228" stroke="var(--warn)" stroke-width="3" stroke-dasharray="6,3"/>
+        <circle cx="260" cy="228" r="4" fill="var(--warn)"/>
+        <text x="530" y="225" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">S</text>
+      </svg>
+      <div class="gloss-why">
+        <b>ขนาดผลต่างจริง (≈3 mmHg) เท่ากันทุกแถว</b> — เปลี่ยนแค่ n เท่านั้น: n=30 ถึง 3,000 ยัง <b>NS</b> (CI กว้าง ยังคร่อม 0
+        หรือ Drug A/B ยังทับกัน) จนกระทั่ง n=30,000 ถึงแยกออกจากกันชัดเจนจน<b>ปฏิเสธ H0 ได้</b> — แต่ผลต่างทางคลินิกจริงๆ ก็ยังเป็น
+        ~3 mmHg เท่าเดิม ไม่ได้ "มีความหมายมากขึ้น" เพียงเพราะ n มากขึ้น — ความดันต่างกันแค่ 2-3 mmHg มักไม่ถูกมองว่ามี
+        clinical significance ในทางปฏิบัติ แม้ P-value จะต่ำมากก็ตาม
+      </div>
+      <div class="warn-box" style="margin-top:10px">
+        <b>เช็คคลินิกัลซิกนิฟิแคนซ์ ต้องดูหลายประเด็นประกอบกัน</b> ไม่ใช่ดู P-value ตัวเดียว:
+        <ol class="dsep-steps" style="margin-top:6px">
+          <li><b>ขนาด effect จริง</b> (mean diff/OR/RR ตัวเลขจริง ไม่ใช่แค่ "significant หรือไม่")</li>
+          <li><b>95% CI</b> กว้าง/แคบแค่ไหน ขอบทั้งสองด้านยังอยู่ในช่วงที่มีความหมายทางคลินิกหรือไม่ (ไม่ใช่แค่ไม่คร่อม null)</li>
+          <li><b>เกณฑ์ทางคลินิกที่ยอมรับกัน</b> (clinically meaningful difference/MCID) ของตัวแปรนั้นๆ — ผลต่างต้องมากกว่าเกณฑ์นี้ถึงจะนับ</li>
+          <li><b>บริบทอื่น</b> — ผลข้างเคียง ต้นทุน ความเป็นไปได้ในการใช้จริง</li>
+        </ol>
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>Alpha (α) — Significance Level</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <div class="gloss-formula">α = P(ปฏิเสธ H0 | H0 จริง) = P(Type I error)</div>
       <div class="gloss-why">
