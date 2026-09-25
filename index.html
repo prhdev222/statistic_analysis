@@ -3107,6 +3107,72 @@
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>One-tailed vs Two-tailed Test — ตัวอย่าง: โปรแกรมลดน้ำหนัก</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none;margin:0 0 8px">
+        <b>Example: New Dietary Program to Lose your Weight</b> — "Is there any statistically significant weight loss after diet?"
+        วัดน้ำหนัก<b>คนเดิม</b>ก่อน-หลังเข้าโปรแกรม (paired samples — ตรงกับแถว "Paired samples" ในตาราง Test Selection ด้านบน)
+      </p>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:400px">
+          <tr><th>ID</th><th>Weight Before</th><th>Weight After</th><th>Weight Loss (d)</th></tr>
+          <tr><td>1</td><td>70</td><td>65</td><td>−5</td></tr>
+          <tr><td>2</td><td>60</td><td>55</td><td>−5</td></tr>
+          <tr><td>3</td><td>65</td><td>60</td><td>−5</td></tr>
+          <tr><td>4</td><td>65</td><td>55</td><td>−10</td></tr>
+          <tr><td>5</td><td>70</td><td>65</td><td>−5</td></tr>
+          <tr><td>6</td><td>80</td><td>74</td><td>−6</td></tr>
+          <tr><td>7</td><td>55</td><td>60</td><td>+5</td></tr>
+        </table>
+      </div>
+      <p class="desc" style="max-width:none;margin:10px 0 4px"><b>Research hypothesis:</b> ค่าเฉลี่ยของ "Weight Loss" (d) ไม่เท่ากับศูนย์ — Mean of "Weight Loss" is not equal to zero</p>
+      <p class="desc" style="max-width:none;margin:0 0 8px"><b>Statistical hypothesis</b> — ใช้ผลต่างรายคู่ (paired difference) d = wt<sub>post</sub> − wt<sub>pre</sub> แทนการเทียบ μ สองตัวตรงๆ (ลด 2 ตัวแปรสุ่มเหลือ 1 ตัวแปรสุ่ม d ต่อคน — เหมาะกับ paired design พอดี):</p>
+      <div class="gloss-formula">H0: μ<sub>d</sub> = 0 &nbsp;|&nbsp; H1: μ<sub>d</sub> ≠ 0 &nbsp;&nbsp;<span style="font-size:11.5px;color:var(--muted);font-weight:400">โดย d = wt<sub>post</sub> − wt<sub>pre</sub></span></div>
+      <div class="gloss-formula" style="margin-top:6px">เทียบเท่ากับ H0: μ<sub>pre</sub> = μ<sub>post</sub> &nbsp;|&nbsp; H1: μ<sub>pre</sub> ≠ μ<sub>post</sub></div>
+      <div class="gloss-why" style="margin-top:8px">
+        <b>สังเกตทิศทางของ d:</b> เพราะนิยาม d = wt<sub>post</sub> − wt<sub>pre</sub> (หลัง − ก่อน) <b>น้ำหนักลดลง</b> จึงให้ d เป็น
+        <b>ลบ</b> (เช่น ID 1: 65−70 = −5) และ <b>น้ำหนักเพิ่มขึ้น</b> ให้ d เป็น<b>บวก</b> (ID 7: 60−55 = +5) — ต้องเช็คทิศทางนิยาม d
+        ให้ตรงกับที่โจทย์ตั้งไว้เสมอ สลับ post/pre แล้วเครื่องหมายจะกลับด้านทันที
+      </div>
+      <div class="compare-row" style="margin:12px 0">
+        <div class="compare-col freq">
+          <h3>Two-tailed <span class="tag">ไม่ระบุทิศทาง</span></h3>
+          <div class="compare-point"><b>H1: μd ≠ 0</b><span>น้ำหนัก "เปลี่ยนไป" ก็ได้ ไม่ว่าจะ<b>เพิ่มขึ้นหรือลดลง</b> (d เป็นบวกหรือลบก็ได้) — ยังถือว่ามีนัยสำคัญ</span></div>
+          <div class="compare-point"><span>ใช้เมื่อ<b>ไม่รู้ทิศทางล่วงหน้า</b> หรืออยากเผื่อทั้งสองทาง (ทางเลือกปลอดภัยกว่า/มาตรฐานทั่วไป)</span></div>
+          <svg viewBox="0 0 480 190" style="width:100%;height:auto;display:block;margin:6px auto;background:var(--surface);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20.0,139.8 L 26.3,139.7 L 32.6,139.6 L 38.9,139.5 L 45.1,139.3 L 51.4,139.0 L 57.7,138.7 L 64.0,138.2 L 70.3,137.6 L 76.6,136.9 L 82.9,136.0 L 89.1,134.9 L 95.4,133.6 L 101.7,132.0 L 108.0,130.1 L 114.3,127.8 L 120.6,125.2 L 126.9,122.2 L 133.1,118.8 L 139.4,115.0 L 145.7,110.8 L 152.0,106.2 L 158.3,101.3 L 164.6,96.2 L 170.9,90.9 L 177.1,85.4 L 183.4,80.0 L 189.7,74.6 L 196.0,69.6 L 202.3,64.8 L 208.6,60.6 L 214.9,56.9 L 221.1,54.0 L 227.4,51.8 L 233.7,50.4 L 240.0,50.0 L 246.3,50.4 L 252.6,51.8 L 258.9,54.0 L 265.1,56.9 L 271.4,60.6 L 277.7,64.8 L 284.0,69.6 L 290.3,74.6 L 296.6,80.0 L 302.9,85.4 L 309.1,90.9 L 315.4,96.2 L 321.7,101.3 L 328.0,106.2 L 334.3,110.8 L 340.6,115.0 L 346.9,118.8 L 353.1,122.2 L 359.4,125.2 L 365.7,127.8 L 372.0,130.1 L 378.3,132.0 L 384.6,133.6 L 390.9,134.9 L 397.1,136.0 L 403.4,136.9 L 409.7,137.6 L 416.0,138.2 L 422.3,138.7 L 428.6,139.0 L 434.9,139.3 L 441.1,139.5 L 447.4,139.6 L 453.7,139.7 L 460.0,139.8"
+              fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <path d="M 20.0,140 L 20.0,139.8 L 26.3,139.7 L 32.6,139.6 L 38.9,139.5 L 45.1,139.3 L 51.4,139.0 L 57.7,138.7 L 64.0,138.2 L 70.3,137.6 L 76.6,136.9 L 82.9,136.0 L 89.1,134.9 L 95.4,133.6 L 101.7,132.0 L 108.0,130.1 L 114.3,127.8 L 116.8,126.7 L 116.8,140 Z"
+              fill="var(--warn)" opacity="0.8" stroke="var(--warn)" stroke-width="1"/>
+            <path d="M 363.2,126.7 L 365.7,127.8 L 372.0,130.1 L 378.3,132.0 L 384.6,133.6 L 390.9,134.9 L 397.1,136.0 L 403.4,136.9 L 409.7,137.6 L 416.0,138.2 L 422.3,138.7 L 428.6,139.0 L 434.9,139.3 L 441.1,139.5 L 447.4,139.6 L 453.7,139.7 L 460.0,139.8 L 460.0,140 Z"
+              fill="var(--warn)" opacity="0.8" stroke="var(--warn)" stroke-width="1"/>
+            <text x="70" y="120" font-size="12" fill="var(--warn)" text-anchor="middle" font-weight="700">α/2</text>
+            <text x="410" y="120" font-size="12" fill="var(--warn)" text-anchor="middle" font-weight="700">α/2</text>
+            <text x="240" y="175" font-size="12" fill="var(--muted)" text-anchor="middle">α ทั้งหมด = 0.05 แบ่ง 2 ฝั่ง</text>
+          </svg>
+        </div>
+        <div class="compare-col freq">
+          <h3>One-tailed <span class="tag">ระบุทิศทาง</span></h3>
+          <div class="compare-point"><b>H0: μd ≥ 0 &nbsp;|&nbsp; H1: μd &lt; 0</b><span>สนใจเฉพาะทิศทาง "น้ำหนักลดลง" เท่านั้น (d เป็น<b>ลบ</b>) — ถ้าน้ำหนักเพิ่มขึ้นแทน (d เป็นบวก) ไม่นับว่ามีนัยสำคัญไม่ว่าจะเพิ่มมากแค่ไหน</span></div>
+          <div class="compare-point"><span>ใช้ได้เมื่อ research hypothesis <b>ระบุทิศทางไว้ชัดเจนตั้งแต่ก่อนเก็บข้อมูล</b> (เช่น "โปรแกรมนี้ช่วยลดน้ำหนัก" ไม่ใช่แค่ "ทำให้น้ำหนักเปลี่ยน")</span></div>
+          <svg viewBox="0 0 480 190" style="width:100%;height:auto;display:block;margin:6px auto;background:var(--surface);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20.0,139.8 L 26.3,139.7 L 32.6,139.6 L 38.9,139.5 L 45.1,139.3 L 51.4,139.0 L 57.7,138.7 L 64.0,138.2 L 70.3,137.6 L 76.6,136.9 L 82.9,136.0 L 89.1,134.9 L 95.4,133.6 L 101.7,132.0 L 108.0,130.1 L 114.3,127.8 L 120.6,125.2 L 126.9,122.2 L 133.1,118.8 L 139.4,115.0 L 145.7,110.8 L 152.0,106.2 L 158.3,101.3 L 164.6,96.2 L 170.9,90.9 L 177.1,85.4 L 183.4,80.0 L 189.7,74.6 L 196.0,69.6 L 202.3,64.8 L 208.6,60.6 L 214.9,56.9 L 221.1,54.0 L 227.4,51.8 L 233.7,50.4 L 240.0,50.0 L 246.3,50.4 L 252.6,51.8 L 258.9,54.0 L 265.1,56.9 L 271.4,60.6 L 277.7,64.8 L 284.0,69.6 L 290.3,74.6 L 296.6,80.0 L 302.9,85.4 L 309.1,90.9 L 315.4,96.2 L 321.7,101.3 L 328.0,106.2 L 334.3,110.8 L 340.6,115.0 L 346.9,118.8 L 353.1,122.2 L 359.4,125.2 L 365.7,127.8 L 372.0,130.1 L 378.3,132.0 L 384.6,133.6 L 390.9,134.9 L 397.1,136.0 L 403.4,136.9 L 409.7,137.6 L 416.0,138.2 L 422.3,138.7 L 428.6,139.0 L 434.9,139.3 L 441.1,139.5 L 447.4,139.6 L 453.7,139.7 L 460.0,139.8"
+              fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <path d="M 20.0,140 L 20.0,139.8 L 26.3,139.7 L 32.6,139.6 L 38.9,139.5 L 45.1,139.3 L 51.4,139.0 L 57.7,138.7 L 64.0,138.2 L 70.3,137.6 L 76.6,136.9 L 82.9,136.0 L 89.1,134.9 L 95.4,133.6 L 101.7,132.0 L 108.0,130.1 L 114.3,127.8 L 120.6,125.2 L 126.9,122.2 L 133.1,118.8 L 139.4,115.0 L 139.4,140 Z"
+              fill="var(--warn)" opacity="0.8" stroke="var(--warn)" stroke-width="1"/>
+            <text x="80" y="120" font-size="12" fill="var(--warn)" text-anchor="middle" font-weight="700">α</text>
+            <text x="240" y="175" font-size="12" fill="var(--muted)" text-anchor="middle">α ทั้งหมด = 0.05 อยู่ฝั่งเดียว (ด้าน d&lt;0)</text>
+          </svg>
+        </div>
+      </div>
+      <div class="gloss-why">
+        <b>ทำไมต้องเลือกก่อนเห็นข้อมูล:</b> One-tailed test มี power สูงกว่าที่ α เท่ากัน (พื้นที่ปฏิเสธทั้งหมดอยู่ฝั่งเดียว ไม่ถูกแบ่งครึ่ง)
+        แต่ใช้ได้เฉพาะเมื่อ<b>ทิศทางถูกกำหนดไว้ในสมมติฐานตั้งแต่ต้น</b> (Step 1 ของการ์ด "Steps of Hypothesis Testing") — ถ้าดูข้อมูลก่อนแล้ว
+        ค่อยเลือกว่าจะทดสอบทิศทางไหน หรือเปลี่ยนจาก two-tailed เป็น one-tailed <u>หลัง</u>เห็นว่าผลออกมาทางไหน ถือเป็น p-hacking
+        รูปแบบหนึ่ง — เมื่อไม่แน่ใจ หรือทั้งสองทิศทางมีความหมายทางคลินิก (เช่น น้ำหนักอาจขึ้นจากผลข้างเคียงของโปรแกรมก็ได้) ให้ใช้
+        <b>two-tailed เป็นค่าเริ่มต้นที่ปลอดภัยกว่าเสมอ</b>
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>P-value</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <div class="gloss-formula">P = P(ได้ข้อมูลนี้ หรือสุดขั้วกว่านี้ | H0 เป็นจริง)</div>
       <div class="gloss-why">
