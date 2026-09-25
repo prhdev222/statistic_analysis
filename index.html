@@ -1877,7 +1877,45 @@
     <div class="warn-box">
       <b>สรุป:</b> มีอย่างน้อย 4 วิธีเลือก cutoff — (1) บริบทคลินิก (SnNout/SpPin), (2) Youden's Index, (3) Least Distance
       Method, (4) Best Accuracy — แต่ละวิธีอาจให้คำตอบ<b>ไม่ตรงกัน</b>เสมอไป (โดยเฉพาะเมื่อ prevalence ไม่ balanced) — ไม่มีวิธี
-      ไหน "ถูกที่สุด" ตายตัว ขึ้นกับว่าโจทย์ให้ความสำคัญกับอะไร
+      ไหน "ถูกที่สุด" ตายตัว ขึ้นกับว่าโจทย์ให้ความสำคัญกับอะไร<br><br>
+      <b>อีกจุดสำคัญ:</b> Accuracy <b>ไม่ได้ไล่ขึ้นหรือลงทางเดียวตาม cutoff เสมอไป</b> — จากตารางด้านบน Accuracy ไล่จาก
+      50%→60%→80%→80%→70%→60%→60%→50% คือ<b>ขึ้นแล้วลง</b> (มี peak เดียวในตัวอย่างนี้ แต่ข้อมูลชุดใหญ่/ซับซ้อนกว่านี้อาจมีหลาย
+      local peak แกว่งขึ้นลงได้มากกว่านี้) — และต่อให้หา cutoff ที่ Accuracy สูงสุดได้แล้ว ก็<b>อาจมีหลาย cutoff ที่ Accuracy
+      เท่ากันพอดี</b> (เหมือนกรณี ≥3/≥4 ในตัวอย่างนี้) สุดท้ายก็ต้อง<b>เลือกเองอยู่ดี</b> — ไม่มีวิธีไหนในทั้ง 4 วิธีที่รับประกันคำตอบ
+      เดียวแบบอัตโนมัติ 100%
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Imbalanced Dataset — ROC ยังใช้ได้ไหม? เปลี่ยนมาใช้ Precision-Recall Curve</h2>
+    <p class="desc" style="max-width:none">
+      <b>คำตอบสั้นๆ:</b> Sensitivity/Specificity <b>ยังเป็นตัวแทนของ test ได้ดีเหมือนเดิม</b> ไม่เปลี่ยนตาม prevalence/imbalance
+      (คำนวณแยกกันคนละคอลัมน์ ไม่ปนกัน — การ์ด "Confusion Matrix" ด้านบน) เพราะฉะนั้น<b>รูปร่างของเส้น ROC ไม่เปลี่ยนตาม imbalance</b>
+      — แต่<b>ปัญหาคือ ROC/AUC ที่ดูดีอาจไม่สะท้อนการใช้งานจริง</b> เมื่อข้อมูล imbalance มาก เพราะไม่ได้บอกอะไรเกี่ยวกับ
+      <b>Precision (PPV)</b> เลย ซึ่ง PPV ต่างหากที่ขึ้นกับ prevalence โดยตรง (การ์ด "กลไกที่แท้จริง — ทำไม prevalence เพิ่ม→PPV
+      เพิ่ม" กลุ่ม B) — ทางแก้คือเปลี่ยนไปพล็อต <b>Precision-Recall (PR) Curve</b> แทน หรือควบคู่กับ ROC
+    </p>
+    <p class="desc" style="max-width:none;margin-top:8px"><b>ตัวอย่างที่ทำให้เห็นภาพชัด — AI วินิจฉัยมะเร็งเต้านม (การ์ด Confusion Matrix ด้านบน):</b></p>
+    <div class="table-scroll">
+      <table class="gloss-table" style="min-width:420px">
+        <tr><th>เมตริก</th><th>สูตร</th><th>ค่า</th><th>มุมมอง</th></tr>
+        <tr><td>Sensitivity (Recall)</td><td>TP/(TP+FN)</td><td>990/1000 = <b>99%</b></td><td>ดูดีมาก — ROC/AUC จะดูดีตาม</td></tr>
+        <tr><td>Specificity</td><td>TN/(TN+FP)</td><td>989,010/999,000 ≈ <b>99%</b></td><td>ดูดีมาก — ROC/AUC จะดูดีตาม</td></tr>
+        <tr><td>Precision (PPV)</td><td>TP/(TP+FP)</td><td>990/10,980 ≈ <b style="color:var(--warn)">9%</b></td><td><b style="color:var(--warn)">แย่มาก — เห็นได้จาก PR curve เท่านั้น</b></td></tr>
+      </table>
+    </div>
+    <div class="warn-box">
+      Se/Sp ทั้งคู่ ~99% ทำให้ ROC curve/AUC ดูสวยงามมาก แต่ในความเป็นจริง เมื่อโมเดลทาย Positive 10,980 ครั้ง มีแค่ 990 ครั้ง
+      (9%) ที่ถูกจริง — คนไข้ที่ผล AI เป็นบวก<b>ส่วนใหญ่ไม่ได้เป็นมะเร็งจริง</b> ซึ่งเป็นปัญหาการใช้งานจริงที่ ROC curve <b>มองไม่เห็น
+      เลย</b> เพราะ ROC ไม่มี FP/TN สัดส่วนต่อ class negative (ที่ใหญ่มาก) เข้ามาปนกับ Positive class เลย
+    </div>
+    <div class="gloss-why">
+      <b>วิธีพล็อต PR Curve:</b> ทำแบบเดียวกับ ROC curve ทุกประการ — ไล่ทุก cutoff ที่เป็นไปได้ แต่แทนที่จะพล็อต Sensitivity
+      vs 1−Specificity ให้พล็อต <b>Recall (แกน x) vs Precision (แกน y)</b> แทน — เส้น baseline ของ PR curve (เทียบเท่า "เดาสุ่ม"
+      ของ ROC) ไม่ใช่เส้นทแยงมุม แต่เป็น<b>เส้นราบระดับ prevalence</b> (เช่น prevalence 0.1% เส้น baseline จะอยู่ที่ Precision≈0.001
+      เกือบชิดพื้น) — ยิ่ง imbalance มาก เส้น baseline ยิ่งต่ำ ยิ่งเห็นชัดว่าโมเดลทำได้ดีกว่าสุ่มจริงหรือไม่ ต่างจาก ROC ที่ baseline
+      อยู่ที่เส้นทแยงมุมเสมอไม่ว่า imbalance แค่ไหน — <b>PR curve จึงไวต่อ imbalance โดยตั้งใจ</b> ซึ่งคือข้อดีสำหรับ imbalanced data
+      โดยเฉพาะ (F1-score ก็มาจากหลักการเดียวกันนี้ — การ์ดกลุ่ม B)
     </div>
   </section>
 
