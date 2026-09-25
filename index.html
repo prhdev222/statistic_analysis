@@ -1570,6 +1570,14 @@
       Specificity/PPV/NPV คำนวณเหมือนเดิมทุกประการ — ศัพท์ AI/ML ที่พบบ่อย: <b>Sensitivity = True Positive Rate = Recall</b>,
       <b>PPV = Precision</b> (ดูรายละเอียดที่การ์ด Sensitivity/PPV ในกลุ่ม A แท็บ "สรุปสูตรสถิติ")
     </div>
+    <div class="gloss-why">
+      <b>จำง่ายๆ จากตำแหน่งในตาราง — เทียบกับ "แกน" ไหน:</b> Sensitivity/Specificity คำนวณ<b>ไล่ตามคอลัมน์</b> (เทียบกับ
+      <b>Actual Result / Reference Standard</b> — Se = TP/(TP+FN) หารด้วยผลรวมทั้งคอลัมน์ Malignant, Sp = TN/(TN+FP) หารด้วยผลรวม
+      ทั้งคอลัมน์ Benign) ส่วน PPV/NPV คำนวณ<b>ไล่ตามแถว</b> (เทียบกับ <b>Predicted Result / Test</b> — PPV = TP/(TP+FP) หารด้วย
+      ผลรวมทั้งแถว Predicted Malignant, NPV = TN/(TN+FN) หารด้วยผลรวมทั้งแถว Predicted Benign) — นี่คือเหตุผลเชิงโครงสร้างเดียวกับ
+      ที่อธิบายด้วยสัญลักษณ์ P(A|B) ในการ์ด Sensitivity/PPV กลุ่ม A: <b>คอลัมน์ = เงื่อนไขจาก reference standard, แถว = เงื่อนไขจาก
+      test</b> — ตัวส่วนของแต่ละค่าจึงมาจากคนละทิศทางกันเสมอ
+    </div>
 
     <div class="warn-box">
       <div class="wt">⚠️ ปัญหาที่ 1: Verification Bias (Work-up Bias) — ไม่ใช่ทุกก้อนถูกเจาะ Biopsy</div>
