@@ -1678,6 +1678,34 @@
       เมื่อขยับ cutoff บนตัวแปร continuous เดียวกัน — นี่คือจุดเริ่มต้นของ <b>ROC Curve</b>: ลองทุก cutoff ที่เป็นไปได้ แล้ววาดกราฟ
       Sensitivity (แกน y) เทียบกับ 1−Specificity (แกน x) ที่แต่ละจุด
     </div>
+    <div class="warn-box" style="border-color:transparent;background:var(--accent-soft)">
+      <div class="wt" style="color:var(--accent)">🧠 จำเป็นกฎเดียว</div>
+      <b>Cutoff สูง</b> → Sensitivity <b>ลด</b>, Specificity <b>เพิ่ม</b> &nbsp;|&nbsp; <b>Cutoff ต่ำ</b> → Sensitivity <b>เพิ่ม</b>,
+      Specificity <b>ลด</b> — สองค่านี้สวนทางกันเสมอเมื่อขยับ cutoff บนตัวแปร continuous เดียวกัน ไม่มีทาง "เพิ่มพร้อมกันทั้งคู่"
+      ได้จากการขยับ cutoff อย่างเดียว (ต้องเปลี่ยนตัวตรวจทั้งชุดถึงจะทำได้)
+    </div>
+    <h3 style="margin-top:16px;font-size:15px">แล้วเราควรเลือก cutoff ไหนดี — สองคำตอบ ใช้คู่กัน</h3>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>1) คำตอบเชิงสถิติ <span class="tag">Youden's Index</span></h3>
+        <div class="gloss-formula" style="margin:0">J = Sensitivity + Specificity − 1</div>
+        <div class="compare-point"><span>เลือก cutoff ที่ทำให้ <b>J สูงที่สุด</b> — คือจุดบน ROC curve ที่ "ห่างจากเส้นทแยงมุม
+          (เดาสุ่ม)" มากที่สุด ถือเป็นจุดสมดุลระหว่าง Se กับ Sp ที่ดีที่สุดในเชิงคณิตศาสตร์ล้วนๆ</span></div>
+      </div>
+      <div class="compare-col">
+        <h3>2) คำตอบเชิงคลินิก <span class="tag">ต้องมาก่อนเสมอ</span></h3>
+        <div class="compare-point"><span>Youden's Index <b>ให้น้ำหนัก Se กับ Sp เท่ากัน</b> — แต่ในทางคลินิกสองค่านี้มักสำคัญ
+          ไม่เท่ากัน (การ์ด "เลือกใช้เมื่อไหร่" ด้านบน: SnNout เมื่อพลาดเคสอันตรายมาก, SpPin เมื่อผลบวกลวงอันตรายมาก)</span></div>
+        <div class="compare-point"><span>cutoff ที่ "ดีที่สุดทางคณิตศาสตร์" อาจไม่ใช่ cutoff ที่ "ดีที่สุดทางคลินิก" เสมอไป</span></div>
+      </div>
+    </div>
+    <div class="gloss-why">
+      <b>ลองคำนวณ J เทียบทั้ง 3 cutoff ที่ผ่านมา:</b> cutoff≥2 → J = 1.00+0.60−1 = <b>0.60</b> (สูงสุด) — cutoff≥6
+      (โจทย์ฝึกด้านล่าง) → J = 0.75+0.667−1 ≈ <b>0.42</b> — cutoff≥5 → J = 0.60+0.80−1 = <b>0.40</b> (ต่ำสุด) — ในชุดข้อมูลนี้
+      cutoff≥2 จึงเป็นตัวเลือกที่สมดุลที่สุดทางสถิติ (Youden's J สูงสุด) — <b>แต่</b>ถ้าบริบทจริงคือ screening โรคอันตรายที่ห้ามพลาด
+      เคส (เช่นตัวอย่าง SnNout ด้านบน) cutoff≥2 (Se=100%) ก็ยังเป็นตัวเลือกที่เหมาะกับบริบทคลินิกพอดีในกรณีนี้ด้วย — แต่ไม่ได้
+      แปลว่า J สูงสุดจะตรงกับคำตอบทางคลินิกเสมอไปในทุกสถานการณ์
+    </div>
     <h3 style="margin-top:16px;font-size:15px">ฝึกก่อนสอบ: ลองหาตาราง 2×2 เอง</h3>
     <p class="desc" style="max-width:none">ข้อมูลชุดใหม่ 10 เคส (คนละชุดกับตัวอย่างด้านบน) — <b>Cutoff: Positive ถ้า score ≥ 6</b>
       ลองสร้างตาราง 2×2 และคำนวณ Sensitivity/Specificity/PPV/NPV เอง ก่อนกดดูเฉลย</p>
