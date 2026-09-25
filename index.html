@@ -1624,6 +1624,63 @@
   </section>
 
   <section class="card">
+    <h2>Cutoff เปลี่ยน → 2×2 Table เปลี่ยน — จุดเริ่มต้นของ ROC Curve</h2>
+    <p class="desc" style="max-width:none">เมื่อ Index test ให้ผลเป็น <b>continuous score</b> (เช่น ML score 0–10) ไม่ใช่ Positive/
+      Negative ตรงๆ ต้องเลือก <b>cutoff</b> มาตัดก่อนถึงจะสร้างตาราง 2×2 ได้ — cutoff ต่างกัน ให้ตาราง 2×2 (และ Sensitivity/
+      Specificity) ต่างกันจาก<b>ข้อมูลชุดเดียวกัน</b></p>
+    <p class="desc" style="max-width:none;margin-top:8px"><b>ตัวอย่าง: 10 เคส วัด ML score เทียบกับ Disease จริง (0=ไม่เป็น, 1=เป็น)</b></p>
+    <div class="table-scroll">
+      <table class="gloss-table" style="min-width:200px">
+        <tr><th>Case</th><th>ML score</th><th>Disease</th></tr>
+        <tr><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>2</td><td>1</td><td>0</td></tr>
+        <tr><td>3</td><td>1</td><td>0</td></tr>
+        <tr><td>4</td><td>3</td><td>1</td></tr>
+        <tr><td>5</td><td>3</td><td>0</td></tr>
+        <tr><td>6</td><td>4</td><td>1</td></tr>
+        <tr><td>7</td><td>6</td><td>1</td></tr>
+        <tr><td>8</td><td>7</td><td>0</td></tr>
+        <tr><td>9</td><td>7</td><td>1</td></tr>
+        <tr><td>10</td><td>10</td><td>1</td></tr>
+      </table>
+    </div>
+    <div class="compare-row" style="margin-top:12px">
+      <div class="compare-col freq">
+        <h3>Cutoff: Positive ถ้า ≥ 2 <span class="tag">คัดกว้าง</span></h3>
+        <div class="table-scroll">
+          <table class="dx" style="min-width:280px">
+            <tr><td class="corner"></td><th class="colhead">Disease+</th><th class="colhead">Disease−</th></tr>
+            <tr><th class="rowhead">Test+</th><td><div class="cell good"><label>TP</label><div class="v">5</div></div></td><td><div class="cell warn"><label>FP</label><div class="v">2</div></div></td></tr>
+            <tr><th class="rowhead">Test−</th><td><div class="cell warn"><label>FN</label><div class="v">0</div></div></td><td><div class="cell good"><label>TN</label><div class="v">3</div></div></td></tr>
+          </table>
+        </div>
+        <div class="compare-point"><span>Se = 5/5 = <b>100%</b>, Sp = 3/5 = <b>60%</b></span></div>
+        <div class="compare-point"><span>PPV = 5/7 ≈ 71.4%, NPV = 3/3 = 100%</span></div>
+      </div>
+      <div class="compare-col">
+        <h3>Cutoff: Positive ถ้า ≥ 5 <span class="tag">คัดแคบ</span></h3>
+        <div class="table-scroll">
+          <table class="dx" style="min-width:280px">
+            <tr><td class="corner"></td><th class="colhead">Disease+</th><th class="colhead">Disease−</th></tr>
+            <tr><th class="rowhead">Test+</th><td><div class="cell good"><label>TP</label><div class="v">3</div></div></td><td><div class="cell warn"><label>FP</label><div class="v">1</div></div></td></tr>
+            <tr><th class="rowhead">Test−</th><td><div class="cell warn"><label>FN</label><div class="v">2</div></div></td><td><div class="cell good"><label>TN</label><div class="v">4</div></div></td></tr>
+          </table>
+        </div>
+        <div class="compare-point"><span>Se = 3/5 = <b>60%</b>, Sp = 4/5 = <b>80%</b></span></div>
+        <div class="compare-point"><span>PPV = 3/4 = 75%, NPV = 4/6 ≈ 66.7%</span></div>
+      </div>
+    </div>
+    <div class="gloss-why">
+      <b>เห็นอะไรจากตัวอย่างนี้:</b> ข้อมูลดิบชุดเดียวกันทั้ง 10 เคส แต่เลือก cutoff ต่างกัน (≥2 vs ≥5) ได้ตาราง 2×2 คนละชุด —
+      cutoff <b>ต่ำ</b> (≥2, "คัดกว้าง" ยอมให้ผ่านง่าย) → จับคนป่วยได้ครบ (<b>Sensitivity สูง</b> = 100%) แต่ยอมให้คนปกติหลุดมาเป็นผลบวก
+      มากขึ้น (<b>Specificity ต่ำลง</b> = 60%) — cutoff <b>สูง</b> (≥5, "คัดแคบ" เข้มงวด) → คนปกติผ่านยากขึ้น (<b>Specificity สูงขึ้น</b>
+      = 80%) แต่เริ่มพลาดคนป่วยบางคน (<b>Sensitivity ลดลง</b> = 60%) — Sensitivity กับ Specificity จึง<b>แลกกันเสมอ (trade-off)</b>
+      เมื่อขยับ cutoff บนตัวแปร continuous เดียวกัน — นี่คือจุดเริ่มต้นของ <b>ROC Curve</b>: ลองทุก cutoff ที่เป็นไปได้ แล้ววาดกราฟ
+      Sensitivity (แกน y) เทียบกับ 1−Specificity (แกน x) ที่แต่ละจุด
+    </div>
+  </section>
+
+  <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
     <div class="mode-toggle">
