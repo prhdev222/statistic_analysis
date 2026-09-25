@@ -3395,6 +3395,15 @@ P-value = 0.042</pre>
         CI ไม่คร่อม null) <b>ไม่เท่ากับ clinically significant</b> (ขนาดผลต่างมีความหมายจริงในทางคลินิก) — ต้องดูขนาด effect
         (mean diff, OR, RR ตัวจริง) ควบคู่ไปด้วยเสมอ ไม่ใช่แค่ดูว่า "significant หรือไม่" อย่างเดียว
       </div>
+      <div class="interp-box" style="margin-top:10px">
+        <b>สรุปเป็นเหตุเป็นผล (ทำไม hypothesis testing ถึง "ไม่มีวันยอมรับ H0"):</b><br>
+        เราไม่มีวัน "ยอมรับ" H0 ได้จริง — เพราะถ้าเพิ่ม n ไปเรื่อยๆ ไม่ว่าผลต่างจริงจะเล็กแค่ไหน (ตราบใดที่ไม่ใช่ศูนย์เป๊ะ) P-value
+        ก็จะ significant ได้เสมอในที่สุด (การ์ดด้านบน) — ดังนั้น "ไม่ significant" ที่ n ปัจจุบัน จึงแปลว่า <b>"ยังไม่มีหลักฐานพอจะปฏิเสธ
+        H0" เท่านั้น ไม่ใช่ "H0 เป็นจริง"</b> (ตรงกับ Step 6 ของการ์ด "Steps of Hypothesis Testing" ด้านบนสุด) — สิ่งที่ทำได้จริงคือ
+        เมื่อ significant ก็ "ยอมรับ H1" (ปฏิเสธ H0) แล้ว<b>ค่อยไปถกกันต่อว่ามี clinical significance หรือไม่</b> — นี่คือเหตุผลที่
+        โครงสร้างทั้งหมดของ hypothesis testing แบบ Frequentist เป็น "ปฏิเสธ H0 ได้ / ไม่ได้" เท่านั้น ไม่เคยเป็น "พิสูจน์ H0 จริง"
+        และเป็นเหตุผลเดียวกับที่ต้องแยกคำถาม statistical significance ออกจาก clinical significance เสมอ (การ์ดถัดไป)
+      </div>
     </div>
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>P-value is not Everything — Statistical ≠ Clinical Significance</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
