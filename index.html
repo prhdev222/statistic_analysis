@@ -2963,6 +2963,26 @@
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Steps of Hypothesis Testing</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none;margin:0 0 8px">
+        เป้าหมายของ hypothesis testing คือการ<b>ตัดสินใจเกี่ยวกับ population</b> โดยดูจาก sample ที่สุ่มมาจาก population นั้น
+      </p>
+      <ol class="dsep-steps">
+        <li><b>Step 1 — Generate null and alternative hypotheses</b> — ตั้ง H0/H1 ตามการ์ด "Hypothesis" ด้านบน</li>
+        <li><b>Step 2 — Determine the significance level</b> — ตั้ง α ล่วงหน้าก่อนดูข้อมูล (ดูการ์ด Alpha ด้านล่าง)</li>
+        <li><b>Step 3 — Select an appropriate test statistic</b> — เลือกให้เหมาะกับชนิดข้อมูล/การออกแบบการศึกษา (เช่น t-test, chi-square,
+          z-test) — เครื่องมือนี้ไม่ได้ครอบคลุมการเลือกสูตร แต่ทุกสูตรในหน้านี้ (RR/OR/PPV/NPV ฯลฯ) คือตัวอย่างของค่าที่นำไปทดสอบได้</li>
+        <li><b>Step 4 — Calculate the test statistic</b> — คำนวณค่าสถิติจากข้อมูลตัวอย่างจริง</li>
+        <li><b>Step 5 — Convert the test statistic to p-value</b> — ดูการ์ด P-value ด้านล่าง</li>
+        <li><b>Step 6 — Draw a conclusion</b> — เทียบ p-value กับ α: p-value &lt; α → ปฏิเสธ H0 (มีนัยสำคัญทางสถิติ),
+          p-value ≥ α → ไม่ปฏิเสธ H0 (ไม่ใช่ "พิสูจน์ว่า H0 จริง")</li>
+      </ol>
+      <div class="gloss-why">
+        <b>ทำไมต้องเรียงเป็นขั้นตอน:</b> α (Step 2) และเกณฑ์การตัดสินใจ (Step 6) ต้อง<b>ตั้งไว้ก่อนเห็นข้อมูล</b> เสมอ — ถ้าเลือก test
+        หรือปรับเกณฑ์ <u>หลัง</u>เห็นผลแล้วค่อยเลือกให้ได้ผลตามที่ต้องการ (p-hacking) จะทำให้ p-value ที่ได้ไม่มีความหมายทางสถิติอีกต่อไป
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>P-value</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <div class="gloss-formula">P = P(ได้ข้อมูลนี้ หรือสุดขั้วกว่านี้ | H0 เป็นจริง)</div>
       <div class="gloss-why">
