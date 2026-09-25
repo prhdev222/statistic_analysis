@@ -2978,6 +2978,15 @@
           ตรงกับกลไก "prevalence สูง → PPV สูง" ที่อธิบายไว้ในการ์ดกลุ่ม B
         </div>
       </details>
+      <div class="interp-box" style="margin-top:10px">
+        <b>สรุปแบ่งกลุ่มเมตริกทั้งหมดในกลุ่ม B/แท็บเครื่องคิดเลข เป็น 2 กลุ่มใหญ่:</b><br>
+        <b>1) LR</b> — ดู <b>impact ของตัว test จริงๆ</b> ได้ตรงๆ (Pretest prob → Posttest prob ผ่านการคูณ odds) เป็นตัวเดียวที่
+        "แปลง" ความเชื่อได้ ไม่ใช่แค่บอกคุณภาพเฉยๆ<br>
+        <b>2) Sensitivity, Specificity, PPV, NPV, Accuracy, AUROC, AUPRC, F1</b> — ทั้งหมดนี้ดู <b>Performance ของ test</b>
+        (แม่นแค่ไหน แยกแยะได้ดีแค่ไหน) แต่ไม่มีตัวไหนบอกตรงๆ ว่าถ้าเอาไปใช้กับคนไข้ตรงหน้า ความเชื่อจะเปลี่ยนไปเท่าไหร่ — ต้องเอา
+        LR (ที่มาจาก Se/Sp) ไปคูณกับ prior ของคนไข้แต่ละคนก่อนเสมอ ถึงจะได้คำตอบที่ใช้ตัดสินใจได้จริง (การ์ด Fagan's Nomogram
+        และตาราง "LR คงที่ แต่ posterior ไม่คงที่" ในแท็บ Prior→Posterior)
+      </div>
     </div>
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>Accuracy (ความแม่นยำโดยรวม)</h4><span class="fw-tag both">ใช้ทั้งคู่</span></div>
