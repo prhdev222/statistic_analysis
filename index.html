@@ -3323,6 +3323,37 @@ P-value = 0.042</pre>
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>P-value & 95% CI & Sample Size — ความสัมพันธ์ที่ต้องรู้</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none;margin:0 0 8px"><b>P-value ⟺ 95% CI</b> — สองค่านี้บอกเรื่องเดียวกัน แค่คนละมุมมอง ดูจาก 95% CI ได้เลยว่า significant หรือไม่โดยไม่ต้องรอ P-value:</p>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:520px">
+          <tr><th>ชนิดค่า</th><th>Null value</th><th>H0 / H1</th><th>กฎจาก 95% CI</th></tr>
+          <tr><td>Ratio (OR, RR, HR)</td><td>1</td><td>H0: OR=1 | H1: OR≠1</td><td>CI <b>ไม่คร่อมเลข 1</b> ⟺ P-value &lt; α (significant)</td></tr>
+          <tr><td>Difference (mean diff, RD, ARR)</td><td>0</td><td>H0: diff=0 | H1: diff≠0</td><td>CI <b>ไม่คร่อมเลข 0</b> ⟺ P-value &lt; α (significant)</td></tr>
+        </table>
+      </div>
+      <p class="desc" style="max-width:none;margin:12px 0 4px"><b>Sample size ยิ่งมาก 95% CI ยิ่งแคบ</b> — ตัวอย่าง (ตัวแปรเดียวกัน วัดคนละขนาดตัวอย่าง):</p>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:360px">
+          <tr><th>Sample size</th><th>Mean age</th><th>95% CI</th></tr>
+          <tr><td>30</td><td>54</td><td>15, 80 <span style="color:var(--muted)">(กว้างมาก)</span></td></tr>
+          <tr><td>500</td><td>55</td><td>50, 58 <span style="color:var(--muted)">(แคบลงมาก)</span></td></tr>
+        </table>
+      </div>
+      <div class="gloss-why">
+        <b>ทำไม CI แคบลงเมื่อ n มากขึ้น:</b> point estimate (mean age) แทบไม่เปลี่ยน (54 vs 55) แต่ CI แคบลงมาก เพราะ SE = SD/√n
+        (การ์ด "95% CI for Mean" ด้านบน) — n มากขึ้น 16.7 เท่า (30→500) ทำให้ SE เล็กลงตามรากที่สอง ≈ 4 เท่า ซึ่งตรงกับที่ CI แคบลง
+        เห็นได้ชัด
+      </div>
+      <div class="warn-box" style="margin-top:10px">
+        <div class="wt">⚠️ "With enough n, we can always reject the null hypothesis"</div>
+        เมื่อ n ใหญ่มากพอ CI จะแคบลงจนไม่คร่อม null value ได้เสมอ <b>แม้ผลต่างที่แท้จริงจะเล็กจิ๋วจนไม่มีความหมายทางคลินิกเลยก็ตาม</b>
+        — นี่คือเหตุผลเดียวกับกฎ "ห้ามรายงาน P-value ตัวเดียวลอยๆ" ในการ์ด P-value ด้านบน: <b>statistically significant</b> (P ต่ำ,
+        CI ไม่คร่อม null) <b>ไม่เท่ากับ clinically significant</b> (ขนาดผลต่างมีความหมายจริงในทางคลินิก) — ต้องดูขนาด effect
+        (mean diff, OR, RR ตัวจริง) ควบคู่ไปด้วยเสมอ ไม่ใช่แค่ดูว่า "significant หรือไม่" อย่างเดียว
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>Alpha (α) — Significance Level</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <div class="gloss-formula">α = P(ปฏิเสธ H0 | H0 จริง) = P(Type I error)</div>
       <div class="gloss-why">
