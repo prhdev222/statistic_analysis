@@ -1755,6 +1755,76 @@
   </section>
 
   <section class="card">
+    <h2>Plotting ROC Curve — ลองทุก Cutoff ที่เป็นไปได้</h2>
+    <p class="desc" style="max-width:none">ใช้ข้อมูล 10 เคสจากตัวอย่างแรกสุด (บนของหัวข้อนี้) ลองไล่ cutoff <b>ทุกค่าที่เป็นไปได้</b>
+      ตั้งแต่ต่ำสุดยันสูงสุด แล้วคำนวณ Sensitivity/Specificity ของแต่ละ cutoff:</p>
+    <div class="table-scroll">
+      <table class="gloss-table" style="min-width:420px">
+        <tr><th>Cutoff</th><th>Sensitivity</th><th>Specificity</th><th>1−Specificity</th></tr>
+        <tr><td>≥ 0</td><td>100.00%</td><td>0.00%</td><td>100.00%</td></tr>
+        <tr><td>≥ 1</td><td>100.00%</td><td>20.00%</td><td>80.00%</td></tr>
+        <tr><td>≥ 3</td><td>100.00%</td><td>60.00%</td><td>40.00%</td></tr>
+        <tr><td>≥ 4</td><td>80.00%</td><td>80.00%</td><td>20.00%</td></tr>
+        <tr><td>≥ 6</td><td>60.00%</td><td>80.00%</td><td>20.00%</td></tr>
+        <tr><td>≥ 7</td><td>40.00%</td><td>80.00%</td><td>20.00%</td></tr>
+        <tr><td>≥ 10</td><td>20.00%</td><td>100.00%</td><td>0.00%</td></tr>
+        <tr><td>&gt; 10</td><td>0.00%</td><td>100.00%</td><td>0.00%</td></tr>
+      </table>
+    </div>
+    <svg viewBox="0 0 480 460" width="100%" height="420" style="display:block;margin:12px auto;max-width:460px;background:var(--surface-2);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrowhead-roc" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--muted)"/></marker></defs>
+      <line x1="60" y1="20" x2="60" y2="400" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="60" y1="400" x2="440" y2="400" stroke="var(--muted)" stroke-width="1.5"/>
+      <text x="10" y="24" font-size="11" fill="var(--muted)">1.00</text>
+      <text x="10" y="115" font-size="11" fill="var(--muted)">0.75</text>
+      <text x="10" y="210" font-size="11" fill="var(--muted)">0.50</text>
+      <text x="10" y="305" font-size="11" fill="var(--muted)">0.25</text>
+      <text x="10" y="404" font-size="11" fill="var(--muted)">0.00</text>
+      <text x="55" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">0.00</text>
+      <text x="150" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">0.25</text>
+      <text x="250" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">0.50</text>
+      <text x="345" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">0.75</text>
+      <text x="440" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">1.00</text>
+      <text x="250" y="440" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">1 − Specificity</text>
+      <text x="-210" y="18" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700" transform="rotate(-90)">Sensitivity</text>
+      <line x1="60" y1="400" x2="440" y2="20" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <path d="M60,400 L60,324 L136,248 L136,172 L136,96 L212,20 L364,20 L440,20"
+        fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+      <circle cx="440" cy="20" r="4" fill="var(--accent)"/>
+      <circle cx="364" cy="20" r="4" fill="var(--accent)"/>
+      <circle cx="212" cy="20" r="4" fill="var(--accent)"/>
+      <circle cx="136" cy="96" r="4" fill="var(--accent)"/>
+      <circle cx="136" cy="172" r="4" fill="var(--accent)"/>
+      <circle cx="136" cy="248" r="4" fill="var(--accent)"/>
+      <circle cx="60" cy="324" r="4" fill="var(--accent)"/>
+      <circle cx="60" cy="400" r="4" fill="var(--accent)"/>
+      <text x="440" y="14" font-size="10.5" fill="var(--accent)" text-anchor="end" font-weight="700">≥0</text>
+      <text x="364" y="14" font-size="10.5" fill="var(--accent)" text-anchor="middle" font-weight="700">≥1</text>
+      <text x="212" y="14" font-size="10.5" fill="var(--accent)" text-anchor="middle" font-weight="700">≥3</text>
+      <text x="146" y="92" font-size="10.5" fill="var(--accent)" font-weight="700">≥4</text>
+      <text x="146" y="168" font-size="10.5" fill="var(--accent)" font-weight="700">≥6</text>
+      <text x="146" y="244" font-size="10.5" fill="var(--accent)" font-weight="700">≥7</text>
+      <text x="66" y="320" font-size="10.5" fill="var(--accent)" font-weight="700">≥10</text>
+      <text x="66" y="398" font-size="10.5" fill="var(--accent)" font-weight="700">&gt;10</text>
+    </svg>
+    <div class="interp-box" style="text-align:center">
+      <b style="font-size:15px">Area under ROC curve (AUC) = 0.8400</b>
+    </div>
+    <div class="gloss-why">
+      <b>อ่านกราฟยังไง:</b> แต่ละจุดคือ cutoff หนึ่งค่า — ยิ่ง cutoff <b>ต่ำ</b> (คัดกว้าง) จุดยิ่งอยู่<b>ขวาบน</b> (Se สูง, 1−Sp สูง
+      คือ Sp ต่ำ) ยิ่ง cutoff <b>สูง</b> (คัดแคบ) จุดยิ่งอยู่<b>ซ้ายล่าง</b> (Se ต่ำ, 1−Sp ต่ำ คือ Sp สูง) — เส้นประทแยงมุมคือ
+      "เดาสุ่ม" (การตรวจที่ไม่มีความสามารถแยกแยะเลย, AUC=0.5) — เส้น ROC ยิ่งโป่ง<b>ห่างจากเส้นทแยงมุมไปทางมุมซ้ายบน</b>มากเท่าไหร่
+      การตรวจยิ่งแยกแยะโรค/ไม่โรคได้ดีเท่านั้น (มุมซ้ายบนสุด = Se=100%, Sp=100% พร้อมกัน = การตรวจสมบูรณ์แบบ)
+    </div>
+    <div class="interp-box">
+      <b>AUC คืออะไร:</b> พื้นที่ใต้เส้น ROC (0 ถึง 1) — สรุป "ความสามารถแยกแยะโรค/ไม่โรค" ของการตรวจเป็น<b>ตัวเลขเดียว โดยไม่ต้อง
+      เลือก cutoff ใดๆ ล่วงหน้า</b> — AUC=0.5 คือแย่พอๆ กับเดาสุ่ม, AUC=1.0 คือแยกแยะได้สมบูรณ์แบบ — ในตัวอย่างนี้ AUC=0.84
+      ถือว่า<b>ดี</b> (ธรรมเนียมทั่วไป: 0.7–0.8 พอใช้, 0.8–0.9 ดี, &gt;0.9 ดีมาก) — จุดสำคัญ: AUC บอก<b>ภาพรวม</b>ของการตรวจทั้งตัว
+      แต่<b>ไม่ได้บอกว่าควรเลือก cutoff ไหน</b> — เลือก cutoff ต้องกลับไปใช้ Youden's Index หรือบริบทคลินิก (การ์ดด้านบน) เสมอ
+    </div>
+  </section>
+
+  <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
     <div class="mode-toggle">
