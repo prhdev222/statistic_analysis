@@ -1987,10 +1987,14 @@
       </div>
     </div>
     <div class="gloss-why">
-      <b>สรุปเป็นตาราง 2×2 ของเมตริกทั้งหมด:</b> แกนหนึ่งคือ "ต้องเลือก cutoff ไหม" อีกแกนคือ "เน้น Se/Sp หรือ Precision/Recall"
-      — <b>Accuracy</b> (เลือก cutoff + Se/Sp) ↔ <b>AUROC</b> (ทุก cutoff + Se/Sp) ↔ <b>F1</b> (เลือก cutoff + Precision/Recall)
-      ↔ <b>AUPRC</b> (ทุก cutoff + Precision/Recall) — เลือกฝั่งซ้าย/ขวาตามว่ากำลังเลือก cutoff อยู่หรือยัง เลือกฝั่งบน/ล่างตามว่า
-      ข้อมูล balanced หรือ imbalanced
+      <b>สรุปเป็นตาราง 2×2 ของเมตริกทั้งหมด:</b> แกนหนึ่งคือ "ต้องเลือก cutoff ไหม" อีกแกนคือ "ข้อมูล balanced หรือ imbalanced"
+    </div>
+    <div class="table-scroll">
+      <table class="gloss-table" style="min-width:360px;text-align:center">
+        <tr><th></th><th>1 Cutoff</th><th>ทุก Cutoff</th></tr>
+        <tr><td><b>Balanced</b></td><td>Accuracy</td><td>AUROC</td></tr>
+        <tr><td><b>Imbalanced</b></td><td>F1 Score</td><td>AUPRC</td></tr>
+      </table>
     </div>
   </section>
 
