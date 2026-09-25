@@ -2971,7 +2971,7 @@
         <li><b>Step 1 — Generate null and alternative hypotheses</b> — ตั้ง H0/H1 ตามการ์ด "Hypothesis" ด้านบน</li>
         <li><b>Step 2 — Determine the significance level</b> — ตั้ง α ล่วงหน้าก่อนดูข้อมูล (ดูการ์ด Alpha ด้านล่าง)</li>
         <li><b>Step 3 — Select an appropriate test statistic</b> — เลือกให้เหมาะกับชนิดข้อมูล/การออกแบบการศึกษา (เช่น t-test, chi-square,
-          z-test) — เครื่องมือนี้ไม่ได้ครอบคลุมการเลือกสูตร แต่ทุกสูตรในหน้านี้ (RR/OR/PPV/NPV ฯลฯ) คือตัวอย่างของค่าที่นำไปทดสอบได้</li>
+          z-test) — ดูการ์ด "เลือก Test Statistic ยังไง" ถัดไปสำหรับตารางตัดสินใจแบบเต็ม</li>
         <li><b>Step 4 — Calculate the test statistic</b> — คำนวณค่าสถิติจากข้อมูลตัวอย่างจริง</li>
         <li><b>Step 5 — Convert the test statistic to p-value</b> — ดูการ์ด P-value ด้านล่าง</li>
         <li><b>Step 6 — Draw a conclusion</b> — เทียบ p-value กับ α: p-value &lt; α → ปฏิเสธ H0 (มีนัยสำคัญทางสถิติ),
@@ -2980,6 +2980,71 @@
       <div class="gloss-why">
         <b>ทำไมต้องเรียงเป็นขั้นตอน:</b> α (Step 2) และเกณฑ์การตัดสินใจ (Step 6) ต้อง<b>ตั้งไว้ก่อนเห็นข้อมูล</b> เสมอ — ถ้าเลือก test
         หรือปรับเกณฑ์ <u>หลัง</u>เห็นผลแล้วค่อยเลือกให้ได้ผลตามที่ต้องการ (p-hacking) จะทำให้ p-value ที่ได้ไม่มีความหมายทางสถิติอีกต่อไป
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>เลือก Test Statistic ยังไง — Test Selection Table</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none;margin:0 0 8px">
+        ตอบ Step 3 ของการ์ด "Steps of Hypothesis Testing" ด้านบน — ต้องตอบ 5 คำถามนี้ <b>ตามลำดับ</b> ก่อนจะรู้ว่าใช้ test อะไร
+      </p>
+      <ol class="dsep-steps">
+        <li><b>1) ชนิดของ Outcome variable</b> — Categorical (นับจำนวน/สัดส่วน) หรือ Continuous (ค่าต่อเนื่อง เช่น น้ำหนัก, ความดัน)?
+          ถ้าเป็น categorical vs categorical (contingency table) ต้องเช็ค <b>expected count</b> ในแต่ละช่องด้วย: ทุกช่อง expected
+          count ≥5 → ใช้ <b>Pearson's χ² test</b> ได้; ถ้ามีช่องไหน expected count &lt;5 (มักเกิดเมื่อกลุ่มตัวอย่างเล็ก) → ต้องใช้
+          <b>Fisher's exact test</b> แทน เพราะการประมาณค่าแบบ χ² ไม่แม่นยำพอ</li>
+        <li><b>2) Independent หรือ Paired (related) samples</b> — Independent = คนละกลุ่ม ไม่เกี่ยวข้องกัน (เช่น กลุ่มยา A vs กลุ่มยา B
+          คนละคน); Paired/related = วัดซ้ำในคนเดียวกัน หรือจับคู่กัน (เช่น ก่อน-หลังรักษาในผู้ป่วยคนเดิม)</li>
+        <li><b>3) จำนวนกลุ่มที่เปรียบเทียบ</b> — 2 กลุ่ม หรือ ≥3 กลุ่ม? ถ้า ≥3 กลุ่มและ outcome เป็น continuous ต้องใช้ <b>ANOVA</b>
+          ทีเดียว ห้ามทำ t-test ทีละคู่หลายรอบ เพราะจะทำให้ Type I error สะสมสูงกว่า α ที่ตั้งไว้</li>
+        <li><b>4) การกระจายของข้อมูล (Distribution)</b> — ถ้า outcome เป็น continuous ต้องเช็คว่าข้อมูลมี Normal distribution หรือไม่
+          (เช่น Shapiro-Wilk test, histogram, Q-Q plot) — เช่น เปรียบเทียบ mean ระหว่าง 2 กลุ่มที่ independent กัน ถ้าข้อมูล normal
+          → <b>Student's t-test</b>; ถ้าไม่ normal → <b>Mann-Whitney U test</b> แทน (non-parametric)</li>
+        <li><b>5) ตรวจสอบ Assumption เพิ่มเติมของ test ที่เลือก</b> — T-test ต้องเช็คว่า variance ของสองกลุ่ม<b>เท่ากันหรือไม่</b>
+          (equal variance → Student's t-test มาตรฐาน, unequal variance → Welch's t-test) มักเช็คด้วย Levene's test; ANOVA ก็ต้องการ
+          variance <b>ใกล้เคียงกันระหว่างทุกกลุ่ม</b> (homogeneity of variance) เช่นกัน — ถ้าไม่ผ่านสมมติฐานนี้ ให้พิจารณาใช้
+          non-parametric test แทน (เช่น Kruskal-Wallis)</li>
+      </ol>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:860px">
+          <tr>
+            <th colspan="3">Predictor variable ↓ / Outcome variable →</th>
+            <th colspan="2">Categorical</th>
+            <th colspan="2">Continuous</th>
+          </tr>
+          <tr><th colspan="3"></th><th>2 groups</th><th>≥3 groups</th><th>Normal<br>Distribution</th><th>Non-normal<br>Distribution</th></tr>
+          <tr>
+            <td rowspan="3">Categorical</td>
+            <td rowspan="2">Independent<br>samples</td>
+            <td>2 groups</td>
+            <td rowspan="2" colspan="2">Pearson's χ² test,<br>Fisher's exact test</td>
+            <td>Student t-test</td>
+            <td>Mann-Whitney test,<br>quantile regression</td>
+          </tr>
+          <tr>
+            <td>≥3 groups</td>
+            <td>One-way ANOVA</td>
+            <td>Kruskal-Wallis test,<br>quantile regression</td>
+          </tr>
+          <tr>
+            <td>Paired<br>samples</td>
+            <td>2 groups</td>
+            <td>McNemar test</td>
+            <td>—</td>
+            <td>Paired t-test</td>
+            <td>Wilcoxon sign-rank test</td>
+          </tr>
+          <tr>
+            <td colspan="3">Continuous</td>
+            <td>Logistic regression</td>
+            <td>—</td>
+            <td>Pearson correlation,<br>Linear regression</td>
+            <td>Spearman rank correlation</td>
+          </tr>
+        </table>
+      </div>
+      <div class="warn-box" style="margin-top:10px">
+        ลำดับ 5 ข้อนี้ต้องตอบ<b>ก่อน</b>เห็นผลข้อมูล เช่นเดียวกับ Step 2/6 ของการ์ด "Steps of Hypothesis Testing" — การเลือก test
+        <u>หลัง</u>เห็นผลแล้วเปลี่ยนไปเรื่อยๆ จนได้ p-value ที่ต้องการ ถือเป็นรูปแบบหนึ่งของ p-hacking เช่นเดียวกับการเลื่อน α ทีหลัง
       </div>
     </div>
     <div class="gloss-item">
