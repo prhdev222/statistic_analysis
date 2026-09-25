@@ -2435,7 +2435,28 @@
         (เพราะ TN เยอะโดยธรรมชาติ) โดยไม่ต้องตรวจอะไรเลย — accuracy สูงจึงไม่ได้แปลว่าชุดตรวจดีเสมอไป ต้องดู sensitivity/specificity
         แยกกันด้วยเสมอ<br><br>
         เหมือน PPV/NPV ตรงที่<b>ขึ้นกับ prevalence</b> (แทนค่า TP=Prev×Sens×N, TN=(1−Prev)×Spec×N แล้วจัดรูปจะได้ Accuracy =
-        Prev×Sens + (1−Prev)×Spec) — จึงจัดเป็น "ใช้ทั้งสองกรอบคิด" เหมือนกัน
+        Prev×Sens + (1−Prev)×Spec) — จึงจัดเป็น "ใช้ทั้งสองกรอบคิด" เหมือนกัน<br><br>
+        <b>กฎเลือกใช้ Accuracy vs F1 Score:</b> Accuracy เหมาะกับ<b>ข้อมูลที่ class สมดุลกัน (balanced dataset)</b> — จำนวน
+        positive/negative ใกล้เคียงกัน ตัวเลขจะไม่ถูกหลอกจาก class ไหนเป็นพิเศษ — ส่วน<b>ข้อมูลที่ class ไม่สมดุล (imbalanced
+        dataset)</b> เช่น โรคหายาก ต้องใช้ <b>F1 Score</b> แทน (การ์ดถัดไป) เพราะ Accuracy จะถูกครอบงำโดย class ที่เยอะกว่าเสมอ
+      </div>
+      <div class="compare-row" style="margin-top:10px">
+        <div class="compare-col">
+          <h3>Accuracy</h3>
+          <div class="compare-point"><span>Easy to understand — ตีความง่าย ตรงไปตรงมา</span></div>
+          <div class="compare-point"><span>เหมาะกับ Balanced classes</span></div>
+          <div class="compare-point"><span>ใช้เมื่อ <b>True Positive และ True Negative สำคัญพอๆ กัน</b> (สนใจทั้งสองฝั่งเท่ากัน)</span></div>
+        </div>
+        <div class="compare-col freq">
+          <h3>F1-score</h3>
+          <div class="compare-point"><span>Less interpretable — ตีความยากกว่า (ไม่ได้เป็น "สัดส่วนที่ถูก" ตรงๆ แบบ accuracy)</span></div>
+          <div class="compare-point"><span>เหมาะกับ Imbalanced classes</span></div>
+          <div class="compare-point"><span>ใช้เมื่อ <b>False Negative และ False Positive สำคัญมาก</b> (ผิดพลาดฝั่งไหนก็มีผลเสียหนัก)</span></div>
+        </div>
+      </div>
+      <div class="interp-box" style="margin-top:8px">
+        ในปัญหา classification จริงส่วนใหญ่ (ทั้งทางการแพทย์และ ML ทั่วไป) <b>ข้อมูลมักไม่สมดุลกันอยู่แล้ว</b> (imbalanced class
+        distribution) — ในทางปฏิบัติจึง<b>นิยมใช้ F1-score เป็น default</b> มากกว่า Accuracy เมื่อประเมินโมเดล classification
       </div>
     </div>
     <div class="gloss-item">
