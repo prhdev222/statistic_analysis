@@ -3125,13 +3125,28 @@
         </table>
       </div>
       <p class="desc" style="max-width:none;margin:10px 0 4px"><b>Research hypothesis:</b> ค่าเฉลี่ยของ "Weight Loss" (d) ไม่เท่ากับศูนย์ — Mean of "Weight Loss" is not equal to zero</p>
-      <p class="desc" style="max-width:none;margin:0 0 8px"><b>Statistical hypothesis</b> — ใช้ผลต่างรายคู่ (paired difference) d = wt<sub>post</sub> − wt<sub>pre</sub> แทนการเทียบ μ สองตัวตรงๆ (ลด 2 ตัวแปรสุ่มเหลือ 1 ตัวแปรสุ่ม d ต่อคน — เหมาะกับ paired design พอดี):</p>
-      <div class="gloss-formula">H0: μ<sub>d</sub> = 0 &nbsp;|&nbsp; H1: μ<sub>d</sub> ≠ 0 &nbsp;&nbsp;<span style="font-size:11.5px;color:var(--muted);font-weight:400">โดย d = wt<sub>post</sub> − wt<sub>pre</sub></span></div>
-      <div class="gloss-formula" style="margin-top:6px">เทียบเท่ากับ H0: μ<sub>pre</sub> = μ<sub>post</sub> &nbsp;|&nbsp; H1: μ<sub>pre</sub> ≠ μ<sub>post</sub></div>
-      <div class="gloss-why" style="margin-top:8px">
+      <p class="desc" style="max-width:none;margin:0 0 8px"><b>Statistical hypothesis</b> — เขียนได้ 2 แบบ ตามชนิดของ test ที่จะใช้ (สำคัญ: <u>ไม่ใช่แค่สไตล์การเขียน</u> แต่บอกว่าต้องเลือก test ไหน):</p>
+      <div class="compare-row" style="margin-bottom:10px">
+        <div class="compare-col">
+          <h3>Hypotheses A <span class="tag">Independent T-test</span></h3>
+          <div class="gloss-formula" style="margin:0">H0: μ<sub>pre</sub> = μ<sub>post</sub> &nbsp;|&nbsp; H1: μ<sub>pre</sub> ≠ μ<sub>post</sub></div>
+          <div class="compare-point"><span>มองข้อมูล pre/post เป็น<b>คนละกลุ่มที่เป็นอิสระต่อกัน</b> — <u>ผิด</u>สำหรับตัวอย่างนี้ เพราะเป็น<b>คนเดิม</b>วัดซ้ำ 2 ครั้ง (ไม่เป็นอิสระต่อกัน)</span></div>
+        </div>
+        <div class="compare-col freq">
+          <h3>Hypotheses B <span class="tag">✓ Dependent (Paired) T-test</span></h3>
+          <div class="gloss-formula" style="margin:0">H0: μ<sub>d</sub> = 0 &nbsp;|&nbsp; H1: μ<sub>d</sub> ≠ 0</div>
+          <div class="compare-point"><span>โดย d = wt<sub>post</sub> − wt<sub>pre</sub> — ใช้<b>ผลต่างรายคู่</b>ต่อคนแทน ตรงกับ design จริงที่วัด<b>คนเดิม</b>ก่อน-หลัง</span></div>
+        </div>
+      </div>
+      <div class="gloss-why">
+        <b>ทำไมเลือกผิดไม่ได้ ทั้งที่สมมติฐานดู "เท่ากัน" ทางพีชคณิต:</b> μd = μpost − μpre ดังนั้น H0: μd=0 กับ H0: μpre=μpost
+        เป็นข้อความเดียวกันจริง — แต่ Hypotheses A บอกเป็นนัยว่าจะใช้ <b>Independent T-test</b> (คำนวณ variance ของแต่ละกลุ่มแยกกัน
+        โดยสมมติว่าไม่เกี่ยวข้องกัน) ซึ่ง<b>ผิดหลักการ</b>สำหรับข้อมูล paired แบบนี้ เพราะละเลยความสัมพันธ์ระหว่างค่า pre/post ของคน
+        เดียวกัน (คนน้ำหนักเยอะแต่แรกมักมี pre/post สูงทั้งคู่ไปด้วยกัน) ทำให้ SE ที่คำนวณได้<b>ผิด</b>และ power ต่ำกว่าที่ควร — Hypotheses B
+        (ใช้ d รายคู่) คือรูปแบบที่ถูกต้อง ตรงกับ Paired t-test ในตาราง Test Selection ด้านบน (แถว "Paired samples")<br><br>
         <b>สังเกตทิศทางของ d:</b> เพราะนิยาม d = wt<sub>post</sub> − wt<sub>pre</sub> (หลัง − ก่อน) <b>น้ำหนักลดลง</b> จึงให้ d เป็น
-        <b>ลบ</b> (เช่น ID 1: 65−70 = −5) และ <b>น้ำหนักเพิ่มขึ้น</b> ให้ d เป็น<b>บวก</b> (ID 7: 60−55 = +5) — ต้องเช็คทิศทางนิยาม d
-        ให้ตรงกับที่โจทย์ตั้งไว้เสมอ สลับ post/pre แล้วเครื่องหมายจะกลับด้านทันที
+        <b>ลบ</b> (เช่น ID 1: 65−70 = −5) และ <b>น้ำหนักเพิ่มขึ้น</b> ให้ d เป็น<b>บวก</b> (ID 7: 60−55 = +5) — สลับ post/pre แล้ว
+        เครื่องหมายจะกลับด้านทันที
       </div>
       <div class="compare-row" style="margin:12px 0">
         <div class="compare-col freq">
