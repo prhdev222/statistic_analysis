@@ -1488,6 +1488,36 @@
 
   <div class="tab-panel" data-tab="diagnostic" hidden>
   <section class="card">
+    <h2>แนวคิดพื้นฐาน — Study Test vs Gold Standard</h2>
+    <p class="desc" style="max-width:none">ก่อนจะกรอกตัวเลขในเครื่องคิดเลขด้านล่าง ต้องเข้าใจก่อนว่า TP/FP/FN/TN
+      (และ Sensitivity/Specificity/PPV/NPV ทุกตัวที่คำนวณจากมัน) มาจากการ<b>เทียบผลตรวจ 2 ตัว</b>เสมอ ไม่ใช่ตัวเดียว</p>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>Gold Standard <span class="tag">Reference Test</span></h3>
+        <div class="compare-point"><b>คือ "ความจริง"</b><span>indication of TRUTH — บอกว่าเป็นโรคจริงหรือไม่จริง แม่นยำที่สุดเท่าที่มี ณ ปัจจุบัน</span></div>
+        <div class="compare-point"><b>ตัวอย่าง</b><span>Tissue pathology (ตัดชิ้นเนื้อ), Physiologic studies เช่น Cardiac catheterization</span></div>
+      </div>
+      <div class="compare-col">
+        <h3>Study Test <span class="tag">ตัวที่กำลังประเมิน</span></h3>
+        <div class="compare-point"><b>พยายามเดา/ประมาณผล Gold Standard</b><span>ให้ผลใกล้เคียงความจริงให้มากที่สุด แต่ไม่ใช่ความจริงเอง</span></div>
+        <div class="compare-point"><b>เลือกใช้เพราะ</b><span>Feasibility (ทำได้จริงในสถานการณ์นั้น), Cost (ถูกกว่า), Safety (ปลอดภัยกว่า)</span></div>
+      </div>
+    </div>
+    <div class="gloss-why">
+      <b>ทำไมต้องมี Study Test เลย ในเมื่อ Gold Standard แม่นกว่า:</b> เพราะ Gold Standard มักมีข้อจำกัดในทางปฏิบัติ — <b>invasive</b>
+      (ต้องผ่า/สอดสาย เจ็บตัว เสี่ยงภาวะแทรกซ้อน), <b>แพง</b>, <b>คิวนาน/ใช้เวลานาน</b>, หรือ<b>เข้าถึงยาก</b> (ต้องใช้เครื่องมือ/
+      ผู้เชี่ยวชาญเฉพาะ ไม่มีทุกโรงพยาบาล) — Study Test (เช่น เจาะเลือด, X-ray, การตรวจร่างกาย) จึงถูกพัฒนาขึ้นมาเป็นทางเลือกที่ทำได้
+      ง่ายกว่า/เร็วกว่า/ถูกกว่า แต่ต้อง<b>ตรวจสอบความแม่นยำเทียบกับ Gold Standard ก่อน</b>จะเอาไปใช้จริง — นี่คือที่มาของ Sensitivity/
+      Specificity ทั้งหมดในเครื่องคิดเลขนี้
+    </div>
+    <div class="interp-box">
+      <b>เชื่อมกับตาราง 2×2:</b> แถว (Disease+/Disease−) ของตารางทุกที่ในเว็บนี้ <b>มาจาก Gold Standard เท่านั้น</b> — คอลัมน์
+      (Test+/Test−) มาจาก <b>Study Test</b> — TP/FN คือกลุ่มที่ Gold Standard บอกว่าเป็นโรคจริง (แยกตามที่ Study Test ตรวจถูก/พลาด)
+      ส่วน FP/TN คือกลุ่มที่ Gold Standard บอกว่าไม่เป็นโรคจริง — ถ้าไม่มี Gold Standard ที่เชื่อถือได้ จะไม่มีทาง "รู้ความจริง" มา
+      คำนวณ Sensitivity/Specificity ได้เลย (ดูตาราง 2×2 หลักที่การ์ด Group A ในแท็บ "สรุปสูตรสถิติ" ประกอบ)
+    </div>
+  </section>
+  <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
     <div class="mode-toggle">
