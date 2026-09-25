@@ -1535,6 +1535,49 @@
       accuracy ของ study test เดิมก็อาจเปลี่ยนตามไปด้วย
     </div>
   </section>
+
+  <section class="card">
+    <h2>ปัญหาจริงของ Reference Standard — ตัวอย่าง AI วินิจฉัยมะเร็งเต้านม</h2>
+    <p class="desc" style="max-width:none">Diagnostic accuracy study (เทียบ Study Test กับ Reference Standard) มักเลือกใช้
+      <b>Cross-sectional study design</b> เพราะข้อจำกัดด้าน<b>ระยะเวลา</b> — วัด Study Test กับ Reference Standard ณ จุดเวลาเดียวกัน
+      ไม่ต้องรอติดตามผู้ป่วยไปข้างหน้านานเหมือน cohort study — แต่การเลือกแบบนี้ก็สร้างปัญหาที่ต้องระวังตามมา ดังตัวอย่างนี้</p>
+    <p class="desc" style="max-width:none;margin-top:8px"><b>ตัวอย่าง:</b> พัฒนา AI ช่วยแยกก้อนในเต้านมว่าเป็นมะเร็งหรือไม่ —
+      Reference Standard ที่ใช้คือ <b>Biopsy</b></p>
+
+    <div class="warn-box">
+      <div class="wt">⚠️ ปัญหาที่ 1: Verification Bias (Work-up Bias) — ไม่ใช่ทุกก้อนถูกเจาะ Biopsy</div>
+      ในทางปฏิบัติ <b>บางก้อนไม่ได้ถูกเจาะ Biopsy</b> (แพทย์ตัดสินว่าไม่น่าสงสัยพอ หรือเหตุผลอื่น) — ถ้าคำนวณ Sensitivity/Specificity
+      จากแค่กลุ่มที่มีผล Biopsy ยืนยันแล้วเท่านั้น กลุ่มตัวอย่างนั้น<b>ไม่ใช่ตัวแทนของทุกก้อนที่ AI ตรวจจริง</b> — มักเป็นกลุ่มที่
+      "ชัดเจน" อยู่แล้ว (ผิดปกติมากจนต้องเจาะ) ตัดกรณีกำกวม/ยากออกไป ทำให้ accuracy ที่ได้<b>ดูดีเกินความเป็นจริง</b> เมื่อเทียบกับการใช้
+      งานจริงในทุกก้อน
+    </div>
+    <div class="warn-box" style="margin-top:8px">
+      <div class="wt">⚠️ ปัญหาที่ 2: Biopsy เองก็ Error ได้ (Imperfect Reference Standard)</div>
+      Reference Standard ไม่ใช่ "ความจริง 100%" เสมอไป (การ์ดด้านบน) — บาง Biopsy ให้ผล<b>ผิดพลาดได้</b> (sampling error: เข็มพลาด
+      ตำแหน่งที่เป็นมะเร็งจริง) บางก้อนเป็นมะเร็งจริงแต่ทั้ง Biopsy และ AI บอกว่าไม่เป็น — <b>negative ปลอม</b>ที่ตรวจไม่พบทั้งคู่พร้อมกัน
+    </div>
+
+    <h3 style="margin-top:16px;font-size:15px">ทางแก้สำหรับก้อนที่ไม่ได้เจาะ Biopsy — ใช้ Follow-up เป็น Reference Standard ทดแทน</h3>
+    <p class="desc" style="max-width:none">
+      ก้อนที่ไม่ได้เจาะ Biopsy ไม่ได้แปลว่าไม่มีทาง "รู้ความจริง" เลย — ใช้วิธี<b>ติดตามผู้ป่วยต่อ (follow-up, f/u 2 ปี)</b> แทน:
+      ถ้าติดตาม 2 ปีแล้ว<b>ไม่พบมะเร็งเกิดขึ้น</b>ในตำแหน่งนั้น ถือว่าก้อนนั้น "น่าจะไม่ใช่มะเร็ง" ใช้แทนผล Biopsy ที่ไม่มี — เป็นรูปแบบ
+      หนึ่งของ <b>Composite Reference Standard</b> (ผสม Biopsy + Clinical follow-up เข้าด้วยกัน แล้วแต่ว่าก้อนไหนมีข้อมูลแบบไหน)
+    </p>
+    <div class="interp-box">
+      <b>ทำไมเลือก "2 ปี" ไม่ใช่เลขสุ่ม — อิงตาม Guideline ของ Mammogram (BI-RADS):</b> BI-RADS 2 (benign) แทบไม่มี
+      short-interval follow-up — กลับไปตรวจตามรอบคัดกรองปกติเหมือนเดิม ในขณะที่ <b>BI-RADS 3</b> (probably benign) มีเกณฑ์ความเสี่ยง
+      มะเร็ง <b>&lt; 2%</b> และมาตรฐานคือติดตามระยะสั้น (short-interval follow-up ต่อเนื่องจนครบ 2 ปี) เพื่อยืนยันว่าก้อนคงที่/ไม่ใช่
+      มะเร็งจริง — ตัวเลข "2 ปี" ในงานวิจัยจึงมาจาก<b>มาตรฐานทางคลินิกที่มีอยู่แล้ว</b> (BI-RADS follow-up protocol) ไม่ใช่ตัวเลขที่
+      นักวิจัยเลือกเอง
+    </div>
+    <div class="gloss-why">
+      <b>เชื่อมกับ Test/Treatment Threshold ในแท็บ "Prior → Posterior":</b> BI-RADS category คือตัวอย่างจริงของ threshold model —
+      BI-RADS 2 = probability ต่ำกว่า test threshold มาก (ไม่ต้องตรวจเพิ่ม, กลับไปคัดกรองตามปกติ), BI-RADS 3 = อยู่ใน "โซนกลาง"
+      (ยังไม่ต่ำพอจะตัดทิ้ง ยังไม่สูงพอจะ biopsy ทันที) จึงใช้ follow-up เป็นการตรวจเพิ่มแบบ "เฝ้าดูตามเวลา" แทนการตรวจแบบทันที —
+      ส่วน BI-RADS 4-5 คือ probability สูงเกิน treatment threshold (biopsy/รักษาทันที)
+    </div>
+  </section>
+
   <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
