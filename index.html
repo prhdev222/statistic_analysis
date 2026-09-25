@@ -3107,6 +3107,34 @@
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Distribution กำหนด Parameter ที่ใช้สรุปผล — Mean±SD vs Median (IQR)</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none;margin:0 0 8px">
+        <b>Statistical test effects the results</b> — การเลือก test (ตาราง Test Selection ด้านบน) จริงๆ แล้วผูกกับคำถามที่ลึกกว่านั้น:
+        <b>ค่าไหนเป็น "ตัวแทนที่ดี" ของกลุ่มตัวอย่าง</b> ระหว่าง Mean กับ Median — คำตอบขึ้นกับ distribution เท่านั้น
+      </p>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:560px">
+          <tr><th>Distribution</th><th>Parameter</th><th>Condition</th><th>Statistical test</th></tr>
+          <tr><td>Normal</td><td>Mean</td><td>Paired</td><td>Paired t-test</td></tr>
+          <tr><td>Normal</td><td>Mean</td><td>Independent</td><td>Student t-test</td></tr>
+          <tr><td>Non-normal</td><td>Median</td><td>Paired</td><td>Wilcoxon matched signed-rank test</td></tr>
+          <tr><td>Non-normal</td><td>Median</td><td>Independent</td><td>Wilcoxon rank-sum test (Mann-Whitney) หรือ Quantile regression</td></tr>
+        </table>
+      </div>
+      <div class="interp-box" style="margin-top:10px">
+        <b>Normal distribution:</b> Mean (± SD) เป็น<b>ตัวแทนที่ดี</b>ของกลุ่มตัวอย่างได้ — สมมาตร ไม่ถูกดึงด้วยค่าผิดปกติ (outlier)
+        → ใช้ Mean-based test (t-test) และ<b>รายงานผลเป็น Mean ± SD</b><br><br>
+        <b>Non-normal (skewed) distribution:</b> Mean ถูก outlier/ค่าเบ้ดึงออกจากกลุ่มก้อนใหญ่ได้ง่าย <b>ไม่ใช่ตัวแทนที่ดี</b>อีกต่อไป
+        → ใช้ Median-based test (Wilcoxon) และ<b>รายงานผลเป็น Median (IQR)</b> แทน — ไม่ใช่ Mean ± SD
+      </div>
+      <div class="gloss-why">
+        <b>เชื่อมกับกฎการรายงานผลด้านล่าง:</b> "ห้ามรายงาน P-value ตัวเดียวลอยๆ ต้องคู่กับ descriptive statistics เสมอ" (การ์ด P-value)
+        — การ์ดนี้ตอบว่า<b>ควรใช้ descriptive statistic ตัวไหน</b>: ข้อมูล normal → Mean ± SD คู่กับ P-value จาก t-test; ข้อมูล
+        non-normal → <b>Median (IQR)</b> คู่กับ P-value จาก Wilcoxon/Mann-Whitney เสมอ ไม่ใช่ Mean ± SD (ซึ่งจะทำให้ผู้อ่านเข้าใจ
+        ข้อมูลผิดถ้าข้อมูลเบ้มาก) — เช็ค normal/non-normal ได้จาก Step 4 ของการ์ด "Steps of Hypothesis Testing" ด้านบน
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>One-tailed vs Two-tailed Test — ตัวอย่าง: โปรแกรมลดน้ำหนัก</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <p class="desc" style="max-width:none;margin:0 0 8px">
         <b>Example: New Dietary Program to Lose your Weight</b> — "Is there any statistically significant weight loss after diet?"
