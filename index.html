@@ -3474,6 +3474,28 @@ P-value = 0.042</pre>
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>สรุป: Assumption กำหนดว่าสูตร/Model ไหน "ใช้ได้จริง"</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none;margin:0 0 8px">
+        ทุก assumption ที่พูดถึงในการ์ดต่างๆ ด้านบน จริงๆ แล้วคือเรื่องเดียวกัน: <b>assumption ของข้อมูล (ไม่ใช่สิ่งที่เราอยากให้เป็น)
+        เป็นตัวกำหนดว่าสูตร/model ไหน "ใช้ได้จริง" — เลือกผิด แม้สูตรจะคำนวณตัวเลขออกมาได้ปกติ ตัวเลขนั้นก็ไม่มีความหมายทางสถิติที่ถูกต้อง</b>
+      </p>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:680px">
+          <tr><th>Assumption</th><th>ตรวจสอบด้วย</th><th>ถ้าไม่ตรงตามสมมติฐาน</th><th>การ์ดที่เกี่ยวข้อง</th></tr>
+          <tr><td>Distribution<br>(Normal / Non-normal)</td><td>Shapiro-Wilk, histogram, Q-Q plot</td><td>เปลี่ยนจาก Mean-based เป็น Median-based test (parametric → non-parametric)</td><td>"Distribution กำหนด Parameter..."</td></tr>
+          <tr><td>Independence<br>(Independent / Paired)</td><td>ออกแบบการศึกษา — วัดคนละกลุ่ม vs วัดคนเดิมซ้ำ</td><td>เลือกผิด → SE ผิด, power เพี้ยน แม้ point estimate เท่ากันเป๊ะ</td><td>"เลือก Test Statistic ยังไง", "Hypotheses A vs B", "ผลจริง (STATA)"</td></tr>
+          <tr><td>Variance homogeneity<br>(equal / unequal)</td><td>Levene's test</td><td>Student's → Welch's t-test; ANOVA ต้องการ homogeneity ด้วย</td><td>"เลือก Test Statistic ยังไง" ข้อ 5</td></tr>
+          <tr><td>Expected cell count<br>(categorical data)</td><td>นับ expected count แต่ละช่องใน contingency table</td><td>Pearson's χ² → Fisher's exact test เมื่อช่องไหนมี expected count &lt;5</td><td>"เลือก Test Statistic ยังไง" ข้อ 1</td></tr>
+        </table>
+      </div>
+      <div class="gloss-why">
+        <b>ทำไมต้องเช็คทุกข้อก่อนคำนวณ ไม่ใช่หลัง:</b> Steps 3 และ 5 ของการ์ด "Steps of Hypothesis Testing" (Select test statistic /
+        ตรวจ assumption) ต้องทำ<b>ก่อน</b>ดูผลข้อมูลเสมอ ด้วยเหตุผลเดียวกับที่ห้ามเปลี่ยน test <u>หลัง</u>เห็นผล (p-hacking) — assumption
+        ที่แท้จริงของข้อมูลไม่ได้เปลี่ยนไปตามที่เราอยากได้ ผลลัพธ์ significant/ไม่ significant ก็ไม่ควรเป็นตัวกำหนดว่าจะย้อนกลับไปเลือก
+        assumption/test แบบไหน
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>Alpha (α) — Significance Level</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <div class="gloss-formula">α = P(ปฏิเสธ H0 | H0 จริง) = P(Type I error)</div>
       <div class="gloss-why">
