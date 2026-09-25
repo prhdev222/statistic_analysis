@@ -3406,6 +3406,49 @@ P-value = 0.042</pre>
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Non-inferiority / Equivalence Trial — เมื่ออยากได้ H1 ว่า "เท่ากัน"</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none;margin:0 0 8px">
+        <b>มีจริง</b> — เช่นตัวอย่างยาสามัญ (generic) หลังหมดสิทธิบัตร (เช่น loratadine) ผู้ผลิตอยากแสดงว่ายาที่ผลิตเอง <b>"ให้ผลเท่ากับ"</b>
+        ยาต้นแบบ — แต่มีจุดที่ต้องแก้จากที่ถามมา: <u>ไม่ได้</u>ตั้ง H1: μ1=μ2 ตรงๆ (เพราะพิสูจน์ "เท่ากันเป๊ะ" ไม่ได้ ด้วยเหตุผลเดียวกับ
+        การ์ด "ทำไมไม่มีวันยอมรับ H0" ด้านบน) — แต่ใช้วิธี<b>สลับบทบาท H0/H1 + กำหนดขอบเขตที่ยอมรับได้ (margin, Δ)</b> แทน
+      </p>
+      <div class="compare-row" style="margin:10px 0">
+        <div class="compare-col">
+          <h3>Superiority Trial <span class="tag">แบบปกติ</span></h3>
+          <div class="gloss-formula" style="margin:0">H0: μ1=μ2 &nbsp;|&nbsp; H1: μ1≠μ2</div>
+          <div class="compare-point"><span>ค่า default (H0) = "ไม่ต่างกัน" — ต้องหาหลักฐานมาหักล้างว่า<b>ต่างกัน</b>ถึงจะสรุปว่ายาใหม่ดีกว่า</span></div>
+        </div>
+        <div class="compare-col freq">
+          <h3>Non-inferiority Trial <span class="tag">สลับบทบาท</span></h3>
+          <div class="gloss-formula" style="margin:0">H0: μnew − μstd ≤ −Δ &nbsp;|&nbsp; H1: μnew − μstd &gt; −Δ</div>
+          <div class="compare-point"><span>ค่า default (H0) = "แย่กว่าเกินขอบเขตที่ยอมรับได้" — ต้องหาหลักฐานมาหักล้างว่า<b>ไม่ได้แย่กว่าเกิน Δ</b> ถึงจะสรุปว่า non-inferior</span></div>
+        </div>
+      </div>
+      <svg viewBox="0 0 480 130" width="100%" height="120" style="display:block;margin:8px auto;max-width:460px;background:var(--surface-2);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+        <line x1="140" y1="10" x2="140" y2="110" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="140" y="123" font-size="11" fill="var(--warn)" text-anchor="middle" font-weight="700">−Δ (margin)</text>
+        <line x1="340" y1="10" x2="340" y2="110" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="340" y="123" font-size="11" fill="var(--muted)" text-anchor="middle" font-weight="700">0 (เท่ากันเป๊ะ)</text>
+        <rect x="140" y="10" width="200" height="100" fill="var(--good)" opacity="0.08"/>
+        <line x1="220" y1="55" x2="380" y2="55" stroke="var(--good)" stroke-width="3"/>
+        <circle cx="300" cy="55" r="4.5" fill="var(--good)"/>
+        <text x="395" y="59" font-size="11" fill="var(--good)" font-weight="700">✓ Non-inferior</text>
+      </svg>
+      <div class="gloss-why">
+        <b>อ่านกราฟ:</b> ถ้า 95% CI ของผลต่าง (μnew−μstd) ทั้งเส้น<b>อยู่เหนือ −Δ ทั้งหมด</b> (ไม่ว่าจะครอบคลุม 0 หรือไม่ก็ตาม)
+        → ปฏิเสธ H0 ได้ → สรุปว่า non-inferior (ยาใหม่ไม่ได้แย่กว่ายามาตรฐานเกินขอบเขตที่ยอมรับได้) — สังเกตว่า CI <b>ไม่จำเป็นต้องคร่อม
+        หรือไม่คร่อม 0</b> เหมือน superiority trial เลย เกณฑ์ตัดสินคือเทียบกับ −Δ เท่านั้น — ถ้าอยากพิสูจน์ <b>Equivalence</b>
+        (ไม่ต่างกันทั้งสองทาง ไม่ใช่แค่ไม่แย่กว่า) ต้องใช้ margin สองด้าน (−Δ ถึง +Δ) และ CI ทั้งเส้นต้องอยู่ในช่วงนี้ทั้งหมด — ตัวอย่างจริง
+        คือ<b>ยาสามัญ (generic bioequivalence)</b>: มาตรฐาน FDA ใช้ 90% CI ของอัตราส่วน AUC/Cmax ระหว่างยาสามัญกับยาต้นแบบ ต้องอยู่ใน
+        ช่วง <b>80%–125%</b> ทั้งเส้นถึงจะถือว่า bioequivalent
+      </div>
+      <div class="warn-box" style="margin-top:8px">
+        <b>ทำไม Δ (margin) ถึงสำคัญมาก และต้องกำหนดไว้<u>ก่อน</u>เห็นข้อมูลเสมอ:</b> Δ ต้องมาจาก<b>ผู้เชี่ยวชาญ + วรรณกรรม</b> (เหมือน
+        MCID ในการ์ด "P-value is not Everything") ไม่ใช่ค่าที่เลือกทีหลังให้ผลออกมาสวย — ตั้ง Δ กว้างเกินไปจะทำให้ยาที่แย่กว่าจริง
+        "ผ่าน" ง่ายเกินไป ตั้งแคบเกินไปจะทำให้ยาที่ดีพอแล้ว "ไม่ผ่าน" — เชื่อมกับหลักการเดียวกับ α ที่ต้องตั้งไว้ล่วงหน้า (การ์ด Alpha ด้านล่าง)
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>P-value is not Everything — Statistical ≠ Clinical Significance</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <div class="interp-box" style="text-align:center;font-size:15px">
         <b>Statistical significance ≠ Clinical significance</b>
