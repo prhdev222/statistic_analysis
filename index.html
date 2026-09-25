@@ -2438,6 +2438,21 @@
         Prev×Sens + (1−Prev)×Spec) — จึงจัดเป็น "ใช้ทั้งสองกรอบคิด" เหมือนกัน
       </div>
     </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>F1 Score <span class="tag" style="font-size:9.5px;padding:2px 7px;border-radius:999px;background:var(--line-soft);color:var(--muted);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.05em">ศัพท์ ML</span></h4><span class="fw-tag both">ใช้ทั้งคู่</span></div>
+      <div class="gloss-formula">F1 = 2 × (Precision × Recall) / (Precision + Recall) = 2×TP / (2×TP + FP + FN)</div>
+      <div class="gloss-why">
+        <b>ทำไมต้องหา:</b> คือ <b>harmonic mean</b> ของ Precision (PPV) กับ Recall (Sensitivity) — สร้างขึ้นมาเพื่อแก้ปัญหา
+        "Accuracy Paradox" ที่การ์ดด้านบนเพิ่งอธิบาย (โรค/คลาสหายาก แค่ทายว่า "ไม่เป็น" ทุกคนก็ accuracy สูงลวงตาได้) — F1 บังคับให้
+        โมเดลต้องทำได้ดีทั้ง Precision <u>และ</u> Recall พร้อมกัน ถ้าตัวใดตัวหนึ่งแย่มาก (เช่น Recall=0% หรือ Precision=0%) F1
+        จะตกลงมาต่ำทันที ต่างจาก accuracy ที่ยังหลอกตาได้เมื่อ class ไม่สมดุล (imbalanced data) — นิยมใช้ประเมินโมเดล
+        AI/ML classification โดยเฉพาะงานที่โรค/คลาส positive หายาก (เช่น screening มะเร็ง, fraud detection)<br><br>
+        <b>ทำไมต้องเป็น harmonic mean ไม่ใช่ arithmetic mean:</b> Harmonic mean ให้น้ำหนักกับ<b>ค่าที่ต่ำกว่า</b>มากกว่า — ถ้า
+        Precision=100% แต่ Recall=1% arithmetic mean จะได้ 50.5% (ดูดีเกินจริง) แต่ harmonic mean (F1) จะได้แค่ ≈2% (สะท้อนว่า
+        โมเดลนี้ใช้งานไม่ได้จริง เพราะ Recall แย่มาก) — เชื่อมกับ SnNout/SpPin ด้านบน: โมเดลที่เอียงไปทาง Sensitivity สูงมาก
+        (SnNout) แต่ Precision ต่ำมาก ก็ยังได้ F1 ต่ำอยู่ดี ไม่ได้แปลว่า "ดี" เสมอไปถ้าดูแค่ Sensitivity ตัวเดียว
+      </div>
+    </div>
   </section>
 
 
