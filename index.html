@@ -1678,6 +1678,45 @@
       เมื่อขยับ cutoff บนตัวแปร continuous เดียวกัน — นี่คือจุดเริ่มต้นของ <b>ROC Curve</b>: ลองทุก cutoff ที่เป็นไปได้ แล้ววาดกราฟ
       Sensitivity (แกน y) เทียบกับ 1−Specificity (แกน x) ที่แต่ละจุด
     </div>
+    <h3 style="margin-top:16px;font-size:15px">ฝึกก่อนสอบ: ลองหาตาราง 2×2 เอง</h3>
+    <p class="desc" style="max-width:none">ข้อมูลชุดใหม่ 10 เคส (คนละชุดกับตัวอย่างด้านบน) — <b>Cutoff: Positive ถ้า score ≥ 6</b>
+      ลองสร้างตาราง 2×2 และคำนวณ Sensitivity/Specificity/PPV/NPV เอง ก่อนกดดูเฉลย</p>
+    <div class="table-scroll">
+      <table class="gloss-table" style="min-width:200px">
+        <tr><th>Case</th><th>ML score</th><th>Disease</th></tr>
+        <tr><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td>2</td><td>2</td><td>0</td></tr>
+        <tr><td>3</td><td>3</td><td>0</td></tr>
+        <tr><td>4</td><td>4</td><td>1</td></tr>
+        <tr><td>5</td><td>5</td><td>0</td></tr>
+        <tr><td>6</td><td>6</td><td>1</td></tr>
+        <tr><td>7</td><td>6</td><td>0</td></tr>
+        <tr><td>8</td><td>8</td><td>1</td></tr>
+        <tr><td>9</td><td>9</td><td>0</td></tr>
+        <tr><td>10</td><td>9</td><td>1</td></tr>
+      </table>
+    </div>
+    <details class="dsep-quiz" style="margin-top:10px">
+      <summary>กดดูเฉลย — ตาราง 2×2 และค่าที่คำนวณได้ (Cutoff ≥ 6)</summary>
+      <div class="dsep-answer">
+        <p style="margin:0 0 8px">แยกทีละเคส (Test+ เมื่อ score≥6): เคส 1,2,3,5 score&lt;6 และ Disease=0 → <b>TN</b> ทั้งหมด (4 เคส) —
+          เคส 4 score&lt;6 แต่ Disease=1 → <b>FN</b> — เคส 6 score≥6 และ Disease=1 → <b>TP</b> — เคส 7 score≥6 แต่ Disease=0 →
+          <b>FP</b> — เคส 8,10 score≥6 และ Disease=1 → <b>TP</b> (รวม TP=3) — เคส 9 score≥6 แต่ Disease=0 → <b>FP</b> (รวม FP=2)</p>
+        <div class="table-scroll">
+          <table class="dx" style="min-width:280px">
+            <tr><td class="corner"></td><th class="colhead">Disease+</th><th class="colhead">Disease−</th></tr>
+            <tr><th class="rowhead">Test+</th><td><div class="cell good"><label>TP</label><div class="v">3</div></div></td><td><div class="cell warn"><label>FP</label><div class="v">2</div></div></td></tr>
+            <tr><th class="rowhead">Test−</th><td><div class="cell warn"><label>FN</label><div class="v">1</div></div></td><td><div class="cell good"><label>TN</label><div class="v">4</div></div></td></tr>
+          </table>
+        </div>
+        <p style="margin:8px 0 0">
+          Sensitivity = 3/(3+1) = <b>75%</b> &nbsp;|&nbsp; Specificity = 4/(4+2) ≈ <b>66.7%</b><br>
+          PPV = 3/(3+2) = <b>60%</b> &nbsp;|&nbsp; NPV = 4/(4+1) = <b>80%</b><br><br>
+          เทียบกับตัวอย่าง cutoff ≥2 และ ≥5 ด้านบน: cutoff ≥6 นี้เข้มงวดกว่า ≥5 อีกขั้น (Specificity สูงขึ้นอีก แต่ Sensitivity
+          ก็ลดลงอีก) — สอดคล้องกับหลัก trade-off เดิม ยิ่ง cutoff สูงขึ้นเรื่อยๆ Sensitivity ยิ่งลด Specificity ยิ่งเพิ่ม
+        </p>
+      </div>
+    </details>
   </section>
 
   <section class="card">
