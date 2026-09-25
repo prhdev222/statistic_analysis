@@ -3279,6 +3279,49 @@ P-value = 0.042</pre>
         ถึง 8.63), P = 0.042" ไม่ใช่แค่ "P = 0.042 นัยสำคัญ" เฉยๆ — ตัวอย่างเต็มดูได้ที่การ์ด "ผลจริง — ทำไมเลือก Test ผิดถึงเปลี่ยนคำตอบ
         ทั้งหมด" ด้านบน ที่ทั้ง mean และ CI ถูกรายงานคู่กับ P-value ทุกครั้ง
       </div>
+      <p class="desc" style="max-width:none;margin:12px 0 4px"><b>กฎการรายงาน P-value ที่ถูกต้อง (Reporting P-value):</b></p>
+      <ol class="dsep-steps">
+        <li>รายงานค่า P-value จริงเป็นตัวเลข ไม่ใช่แค่ "P &lt; 0.05" เฉยๆ — นิยมรายงานถึง<b>ทศนิยม 3 ตำแหน่ง</b> เสมอ (เช่น 0.641,
+          0.434, 0.554) ไม่ว่าผลจะ significant หรือไม่ก็ตาม</li>
+        <li>ห้ามรายงาน P-value = 0 เด็ดขาด — ไม่มี "ความน่าจะเป็นเท่ากับศูนย์พอดี" จริงในทางสถิติ ถ้าค่าน้อยมากจนปัดเป็น 0.000
+          ให้เขียนเป็น <b>&lt; 0.001</b> หรือ <b>&lt; 0.01</b> แทน</li>
+        <li>อาจใส่เครื่องหมาย <b>*</b> แทนระดับนัยสำคัญในตาราง (เช่น *P&lt;0.05, **P&lt;0.01, ***P&lt;0.001) เพื่อให้อ่านตารางที่มีหลายแถวเร็วขึ้น</li>
+        <li>ห้ามรายงาน P-value เดี่ยวๆ (กฎเดียวกับกล่องด้านบน) — เช่น "Drug A vs Drug B, p-value = 0.002" เพียงอย่างเดียว
+          <u>ไม่พอ</u> ต้องเขียนเป็น <b>"OR = 1.03 (95% CI 1.001 to 1.300), P = 0.002"</b></li>
+      </ol>
+      <div class="table-scroll">
+        <table class="gloss-table" style="min-width:280px">
+          <tr><th>Factor</th><th>P-value</th></tr>
+          <tr><td>Smoking</td><td>0.641</td></tr>
+          <tr><td>Alcohol</td><td>0.434</td></tr>
+          <tr><td>Exercise</td><td>0.554</td></tr>
+        </table>
+      </div>
+      <div class="gloss-why">
+        <b>ทำไมต้อง 3 ตำแหน่ง แม้ค่าจะไม่ significant:</b> ตารางนี้ไม่มีตัวไหน significant เลย (ทุกค่า &gt; 0.05) แต่ยังรายงานทศนิยม
+        3 ตำแหน่งครบทุกแถว — เพราะเป้าหมายของการรายงานคือให้ผู้อ่าน<b>ตรวจสอบ/เปรียบเทียบ/ทำ meta-analysis ต่อได้เอง</b>ในอนาคต
+        ไม่ใช่แค่บอกว่า "significant หรือไม่" การปัดเหลือแค่ "P&lt;0.05" หรือ "NS" ทำให้ข้อมูลตัวเลขจริงหายไป
+      </div>
+      <div class="warn-box" style="margin-top:10px">
+        <b>สรุปสั้นๆ ว่า P-value "บอกอะไรได้บ้าง":</b> P-value บอกแค่ว่า <b>มี association</b> จริงหรือไม่ (statistically
+        detectable หรือเปล่า) เท่านั้น — <b>ไม่ได้บอก correlation</b> (ความสัมพันธ์เป็นเส้นตรงแค่ไหน แข็งแรงแค่ไหน วัดด้วย r/r² ต่างหาก)
+        และ<b>ไม่ได้บอก effect size</b> (ขนาดผลต่างจริงเป็นเท่าไหร่ วัดด้วย mean diff/OR/RR ต่างหาก) — ทั้งสามคำถาม
+        (มี association ไหม / สัมพันธ์กันแรงแค่ไหน / ขนาดผลต่างเท่าไหร่) เป็น<b>คนละคำถามกัน</b> ต้องดูค่าคนละตัว ไม่ใช่ P-value
+        ตอบได้หมดในตัวเดียว
+      </div>
+      <p class="desc" style="max-width:none;margin:10px 0 4px"><b>ตัวอย่างต่อจากตาราง Smoking/Alcohol/Exercise ด้านบน — Association ≠ Correlation:</b></p>
+      <div class="interp-box">
+        ผล Chi-squared test บอกได้แค่ <b>"มี association ระหว่างแต่ละปัจจัยกับการเป็น CKD หรือไม่"</b> (คำถาม yes/no — จากตาราง
+        ด้านบน คือ<b>ไม่มี</b>ทั้ง 3 ปัจจัย เพราะ P-value ทุกตัว &gt; 0.05) — <b>แต่</b>ผลนี้<u>ไม่ได้บอก</u>ว่า Smoking เป็นปัจจัยที่
+        "สำคัญน้อยที่สุด" ในสามตัว แม้ P-value ของ Smoking (0.641) จะสูงที่สุดก็ตาม — <b>เทียบ P-value ข้ามปัจจัยแบบนี้ไม่ใช่การวัด
+        strength of association</b>
+      </div>
+      <div class="gloss-why">
+        <b>ถ้าอยากรู้ "ความแรง" ของความสัมพันธ์จริงๆ ต้องใช้ค่าอื่น ไม่ใช่ P-value:</b> Strength of association วัดด้วย
+        <b>RR, OR</b> (categorical predictor/outcome — การ์ด RR/OR ในกลุ่ม C), <b>Spearman's Correlation</b> (discrete/ordinal data),
+        หรือ <b>Pearson's Correlation</b> (continuous data) แยกต่างหากจาก P-value เสมอ — P-value ตอบแค่ "มีหรือไม่มี" ส่วนค่าพวกนี้
+        ตอบว่า "มากหรือน้อย"
+      </div>
       <p class="desc" style="max-width:none;margin-top:12px"><b>ตัวอย่าง (two-tailed test):</b></p>
       <div class="gloss-formula">H0: μ = 0 &nbsp;|&nbsp; H1: μ ≠ 0 &nbsp;→&nbsp; P-value = 0.017 + 0.017 = 0.034 = 3.4%</div>
       <svg viewBox="0 0 480 190" style="width:100%;height:auto;max-width:480px;display:block;margin:8px auto;background:var(--surface-2);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
