@@ -2357,6 +2357,70 @@
   </section>
 
   <section class="card">
+    <h2>ตัวอย่างที่ 3: การคำนวณจากค่า Likelihood Ratio และความชุก</h2>
+    <p class="desc" style="max-width:none">
+      <b>โจทย์:</b> ทราบค่า LR+ = 4.5, LR− = 0.125 และ Prevalence = 10% สามารถหาค่าอื่นๆ ได้หรือไม่? — เทคนิคใหม่: หา
+      Sensitivity/Specificity ได้จาก <b>LR+ และ LR− เพียงสองค่า</b> โดยไม่ต้องมีตาราง 2×2 มาก่อนเลย เพราะเป็นสมการ 2 ตัวแปร
+      2 สมการ ลองแก้เองก่อนกดดูเฉลย</p>
+    <details class="dsep-quiz" style="margin-top:10px">
+      <summary>กดดูเฉลย — แก้สมการหา Sensitivity/Specificity จาก LR+/LR−</summary>
+      <div class="dsep-answer">
+        <p style="margin:0 0 8px">
+          <b>ตั้งสมการจากนิยาม LR ทั้งสองตัว:</b><br>
+          1) LR+ = Se/(1−Sp) → 4.5 = Se/(1−Sp) → <b>Se = 4.5 − 4.5(Sp)</b><br>
+          2) LR− = (1−Se)/Sp → 0.125 = (1−Se)/Sp → <b>Se = 1 − 0.125(Sp)</b>
+        </p>
+        <p style="margin:0 0 8px">
+          <b>จับสองสมการมาเท่ากัน (แก้หา Sp):</b> 4.5 − 4.5(Sp) = 1 − 0.125(Sp) → 3.5 = 4.375(Sp) → <b>Sp = 3.5/4.375 = 0.80
+          (80%)</b><br>
+          แทนกลับสมการ (2): Se = 1 − 0.125×0.80 = 1 − 0.10 = <b>0.90 (90%)</b>
+        </p>
+        <p style="margin:0 0 8px">
+          <b>ตรวจคำตอบ:</b> LR+ = 0.90/(1−0.80) = 0.90/0.20 = 4.5 ✓ &nbsp;|&nbsp; LR− = (1−0.90)/0.80 = 0.10/0.80 = 0.125 ✓
+        </p>
+        <p style="margin:0 0 8px"><b>ต่อยอด — ใส่ Prevalence เข้าไป สร้างตาราง 2×2 เต็มได้เลย</b> (สมมติ N=1,000):
+          Disease+ = 1,000×10% = 100, Disease− = 900</p>
+        <div class="table-scroll">
+          <table class="dx" style="min-width:280px">
+            <tr>
+              <td class="corner"></td>
+              <th class="colhead">Positive (Disease)</th>
+              <th class="colhead">Negative (No disease)</th>
+              <td class="corner">Total</td>
+            </tr>
+            <tr>
+              <th class="rowhead">Test: Positive</th>
+              <td><div class="cell good"><label>TP</label><div class="v">90</div></div></td>
+              <td><div class="cell warn"><label>FP</label><div class="v">180</div></div></td>
+              <td><div class="total-cell"><label>Total+</label><div class="v">270</div></div></td>
+            </tr>
+            <tr>
+              <th class="rowhead">Test: Negative</th>
+              <td><div class="cell warn"><label>FN</label><div class="v">10</div></div></td>
+              <td><div class="cell good"><label>TN</label><div class="v">720</div></div></td>
+              <td><div class="total-cell"><label>Total−</label><div class="v">730</div></div></td>
+            </tr>
+            <tr>
+              <td class="corner">Total</td>
+              <td class="total-cell"><div class="v">100</div></td>
+              <td class="total-cell"><div class="v">900</div></td>
+              <td class="total-cell"><div class="v">1,000</div></td>
+            </tr>
+          </table>
+        </div>
+        <p style="margin:10px 0 0">
+          PPV = 90/270 ≈ <b>33.3%</b> &nbsp;|&nbsp; NPV = 720/730 ≈ <b>98.6%</b>
+        </p>
+      </div>
+    </details>
+    <div class="gloss-why">
+      <b>ทำไมทำแบบนี้ได้:</b> LR+ กับ LR− ต่างก็เป็นสมการที่มี Se กับ Sp เป็นตัวแปรทั้งคู่ — 2 สมการ 2 ตัวไม่ทราบค่า ย่อมแก้หา
+      คำตอบเดียวได้เสมอ (ถ้าไม่ใช่สมการซ้ำกัน) — เทคนิคนี้มีประโยชน์มากเวลาอ่าน paper ที่รายงานแค่ LR+/LR− แต่ไม่ได้แจก Se/Sp
+      ตรงๆ มาให้ ก็ยังย้อนกลับไปหา Se/Sp ได้เอง แล้วต่อยอดสร้างตาราง 2×2 เต็มได้ด้วย ถ้ารู้ Prevalence ประกอบ
+    </div>
+  </section>
+
+  <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
     <div class="mode-toggle">
