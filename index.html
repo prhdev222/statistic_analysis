@@ -5793,6 +5793,43 @@ P-value = 0.042</pre>
       (ไม่ผ่านการดื่มชาร้อนเลย) — ถ้าไม่ควบคุมการสูบบุหรี่ อาจสรุปผิดว่าการดื่มชาร้อนอันตรายกว่าความเป็นจริง (หรือน้อยกว่าความเป็นจริง
       ขึ้นอยู่กับทิศทางความสัมพันธ์) — ตรงกับโครงสร้าง Fork ที่อธิบายไว้แล้ว เพียงแค่เปลี่ยนตัวอย่างจากนิ่วไต/อายุ มาเป็นชาร้อน/บุหรี่
     </div>
+    <p class="desc" style="max-width:none;margin:10px 0 4px"><b>ตัวอย่างตัวเลขจริง — Cohort study: Hot tea drinking กับ Gastric
+      cancer แบ่งชั้นตาม Smoking (Stratification):</b></p>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>Non-Smoker</h3>
+        <div class="table-scroll">
+          <table class="gloss-table" style="min-width:220px">
+            <tr><th></th><th>Tea+</th><th>Tea−</th><th>Total</th></tr>
+            <tr><td>CA Stomach</td><td>1</td><td>2</td><td>3</td></tr>
+            <tr><td>No CA</td><td>24</td><td>48</td><td>72</td></tr>
+            <tr><td>Total</td><td>25</td><td>50</td><td>75</td></tr>
+          </table>
+        </div>
+        <div class="compare-point"><b>RR = (1/25)/(2/50) = 1.0</b><span>→ <b>No association</b> ระหว่าง Tea กับ CA ในกลุ่มที่ไม่สูบบุหรี่</span></div>
+      </div>
+      <div class="compare-col">
+        <h3>Smoker</h3>
+        <div class="table-scroll">
+          <table class="gloss-table" style="min-width:220px">
+            <tr><th></th><th>Tea+</th><th>Tea−</th><th>Total</th></tr>
+            <tr><td>CA Stomach</td><td>26</td><td>12</td><td>38</td></tr>
+            <tr><td>No CA</td><td>24</td><td>19</td><td>43</td></tr>
+            <tr><td>Total</td><td>50</td><td>31</td><td>81</td></tr>
+          </table>
+        </div>
+        <div class="compare-point"><b>RR ≈ 1.23</b><span>→ ในกลุ่มที่สูบบุหรี่ ดูเหมือนมี association ระหว่าง Tea กับ CA
+          (<b>Confounder</b>)</span></div>
+      </div>
+    </div>
+    <div class="gloss-why">
+      <b>อ่านผลลัพธ์นี้ยังไง:</b> เมื่อแบ่งชั้น (stratify) ตาม Smoking แล้ว — กลุ่ม<b>ไม่สูบบุหรี่</b> RR=1.0 (ไม่มีความสัมพันธ์
+      ระหว่างชาร้อนกับมะเร็งกระเพาะเลย) แต่กลุ่ม<b>สูบบุหรี่</b> RR≈1.23 (ดูเหมือนมีความสัมพันธ์) — ผลที่ต่างกันชัดเจนระหว่างสอง
+      ชั้นแบบนี้ คือสัญญาณของ <b>Confounding โดย Smoking</b> ตรงตามโครงสร้าง Fork (ชาร้อน ← สูบบุหรี่ → มะเร็ง) ด้านบน — ถ้าเอา
+      ข้อมูลทั้งหมดมารวมกัน (crude, ไม่แบ่งชั้น) โดยไม่ควบคุม smoking จะได้ตัวเลข RR ที่<b>บิดเบือน</b>ไปจากทั้งสองชั้นนี้ เพราะปนเปื้อน
+      ด้วยผลของ confounder — วิธีแก้คือ<b>stratification</b> (แบบตัวอย่างนี้) หรือ multivariable regression เพื่อแยกผลของ Tea
+      ออกจากผลของ Smoking ให้ชัดเจน (ตรงกับวิธีควบคุม confounding แบบ "Analysis-stage" ในการ์ด Confounding ด้านบน)
+    </div>
     <div class="interp-box">
       <b>เชื่อมกับการ์ดอื่นในเว็บนี้:</b> Systematic error/Bias ตรงนี้คือแนวคิดเดียวกับ Confounding ที่อธิบายละเอียดในการ์ด
       "Confounding" ด้านบน — ส่วน Internal Validity ตรงกับสิ่งที่ Target Trial Emulation และเช็คลิสต์ "ก่อนจะเชื่อ RWE" (ในการ์ด RWD→RWE)
