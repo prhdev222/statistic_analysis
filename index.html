@@ -3095,11 +3095,17 @@
       <div class="table-scroll">
         <table class="gloss-table" style="min-width:360px;text-align:center">
           <tr><th>LR+</th><th>Interpretation</th><th>LR−</th></tr>
-          <tr><td><b style="color:var(--good)">&gt;10</b></td><td>Large changes</td><td>&lt;0.1</td></tr>
-          <tr><td>5–10</td><td>Moderate changes</td><td>0.1–0.2</td></tr>
-          <tr><td>2–5</td><td>Small changes</td><td><b style="color:var(--warn)">0.2–0.5</b></td></tr>
-          <tr><td>&lt;2</td><td>Little or No change</td><td>&gt;0.5</td></tr>
+          <tr><td><b style="color:var(--good)">&gt;10</b></td><td>Large / Strong effect</td><td>&lt;0.1</td></tr>
+          <tr><td>5–10</td><td>Moderate effect</td><td>0.1–0.2</td></tr>
+          <tr><td>2–5</td><td>Small effect</td><td><b style="color:var(--warn)">0.2–0.5</b></td></tr>
+          <tr><td>1–2</td><td>Minimal effect</td><td>0.5–1.0</td></tr>
+          <tr><td>1</td><td>No effect</td><td>1</td></tr>
         </table>
+      </div>
+      <div class="interp-box">
+        <b>ตัวช่วยจำ: "10 = 5 × 2"</b> — จุดตัดสำคัญของสเกลนี้มีแค่ 3 ตัวเลข: <b>2, 5, 10</b> (และ 5×2=10 ช่วยจำว่าตัวเลขทั้งสาม
+        สัมพันธ์กัน) — ฝั่ง LR− ก็ใช้ตัวเลขชุดเดียวกันแค่<b>กลับเป็นเศษส่วน</b>: <b>1/10=0.1, 1/5=0.2, 1/2=0.5</b> — จำแค่ 2,5,10
+        ตัวเดียว ก็ได้ทั้ง LR+ และ LR− ครบทั้งสเกล
       </div>
       <div class="gloss-why">
         <b>LR+ = 10 หมายถึงอะไรกันแน่:</b> LR+ = P(ผลบวก | ป่วยจริง) / P(ผลบวก | ไม่ป่วยจริง) — ดังนั้น <b>LR+ = 10 แปลว่า
