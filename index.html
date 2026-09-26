@@ -2214,6 +2214,74 @@
   </section>
 
   <section class="card">
+    <h2>ตัวอย่างที่ 1: การกำหนดความชุกและตัวแปรในตาราง 2×2</h2>
+    <p class="desc" style="max-width:none">กำหนดให้ประชากร <b>1,000 คน</b> มี Prevalence = <b>20%</b> — ดังนั้นมีผู้เป็นโรคจริง 200 คน
+      และไม่เป็นโรค 800 คน — ผลจากการตรวจพบว่า: TP=160, FN=40, FP=80, TN=720 — ลองสร้างตาราง 2×2 และคำนวณ Se, Sp, PPV, NPV,
+      LR+, LR− เอง ก่อนกดดูเฉลย</p>
+    <div class="table-scroll">
+      <table class="dx" style="min-width:280px">
+        <tr>
+          <td class="corner"></td>
+          <th class="colhead">Positive<br>(Disease)</th>
+          <th class="colhead">Negative<br>(No disease)</th>
+          <td class="corner">Total</td>
+        </tr>
+        <tr>
+          <th class="rowhead">Diagnostic<br>test: Positive</th>
+          <td><div class="cell good"><label>?</label></div></td>
+          <td><div class="cell warn"><label>?</label></div></td>
+          <td><div class="total-cell"><label>?</label></div></td>
+        </tr>
+        <tr>
+          <th class="rowhead">Diagnostic<br>test: Negative</th>
+          <td><div class="cell warn"><label>?</label></div></td>
+          <td><div class="cell good"><label>?</label></div></td>
+          <td><div class="total-cell"><label>?</label></div></td>
+        </tr>
+      </table>
+    </div>
+    <details class="dsep-quiz" style="margin-top:10px">
+      <summary>กดดูเฉลย — ตาราง 2×2 เต็ม + Se/Sp/PPV/NPV/LR</summary>
+      <div class="dsep-answer">
+        <div class="table-scroll">
+          <table class="dx" style="min-width:280px">
+            <tr>
+              <td class="corner"></td>
+              <th class="colhead">Positive (Disease)</th>
+              <th class="colhead">Negative (No disease)</th>
+              <td class="corner">Total</td>
+            </tr>
+            <tr>
+              <th class="rowhead">Test: Positive</th>
+              <td><div class="cell good"><label>TP</label><div class="v">160</div></div></td>
+              <td><div class="cell warn"><label>FP</label><div class="v">80</div></div></td>
+              <td><div class="total-cell"><label>Total+</label><div class="v">240</div></div></td>
+            </tr>
+            <tr>
+              <th class="rowhead">Test: Negative</th>
+              <td><div class="cell warn"><label>FN</label><div class="v">40</div></div></td>
+              <td><div class="cell good"><label>TN</label><div class="v">720</div></div></td>
+              <td><div class="total-cell"><label>Total−</label><div class="v">760</div></div></td>
+            </tr>
+            <tr>
+              <td class="corner">Total</td>
+              <td class="total-cell"><div class="v">200</div></td>
+              <td class="total-cell"><div class="v">800</div></td>
+              <td class="total-cell"><div class="v">1,000</div></td>
+            </tr>
+          </table>
+        </div>
+        <p style="margin:10px 0 0">
+          Sensitivity = 160/200 = <b>80%</b> &nbsp;|&nbsp; Specificity = 720/800 = <b>90%</b><br>
+          PPV = 160/240 ≈ <b>66.7%</b> &nbsp;|&nbsp; NPV = 720/760 ≈ <b>94.7%</b><br>
+          LR+ = 0.8/0.1 = <b>8</b> (อยู่ในช่วง 5-10 = Moderate effect) &nbsp;|&nbsp; LR− = 0.2/0.9 ≈ <b>0.22</b> (อยู่ในช่วง
+          0.2-0.5 = Small effect)
+        </p>
+      </div>
+    </details>
+  </section>
+
+  <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
     <div class="mode-toggle">
