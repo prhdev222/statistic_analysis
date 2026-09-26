@@ -2421,6 +2421,70 @@
   </section>
 
   <section class="card">
+    <h2>ตัวอย่างที่ 4: การคำนวณจากค่า Predictive Values และความชุก</h2>
+    <p class="desc" style="max-width:none">
+      <b>โจทย์:</b> ทราบค่า PPV = 60%, NPV = 90% และ Prevalence = 30% จะสามารถหาค่าในตาราง 2×2 ได้หรือไม่? — เทคนิคคล้ายตัวอย่าง
+      ที่ 3 แต่ตั้งสมการจาก <b>PPV/NPV</b> แทน LR — ลองแก้เองก่อนกดดูเฉลย</p>
+    <details class="dsep-quiz" style="margin-top:10px">
+      <summary>กดดูเฉลย — ตั้งระบบสมการจำลองตัวเลข แก้หา TP/TN</summary>
+      <div class="dsep-answer">
+        <p style="margin:0 0 8px">
+          <b>สมมติประชากร 1,000 คน</b> (Prevalence 30% → เป็นโรค 300 คน, ไม่เป็นโรค 700 คน) — ให้ <b>TP = x, TN = y</b>
+          จะได้ <b>FN = 300−x, FP = 700−y</b>
+        </p>
+        <p style="margin:0 0 8px">
+          <b>ตั้งสมการจาก PPV และ NPV:</b><br>
+          1) PPV = x/(x+700−y) = 0.6 → x = 0.6x+420−0.6y → 0.4x+0.6y=420 → <b>2x+3y = 2100</b><br>
+          2) NPV = y/(y+300−x) = 0.9 → y = 0.9y+270−0.9x → 0.9x+0.1y=270 → 9x+y=2700 → <b>y = 2700−9x</b>
+        </p>
+        <p style="margin:0 0 8px">
+          <b>แทนสมการ (2) ลงใน (1):</b> 2x+3(2700−9x)=2100 → 2x+8100−27x=2100 → −25x=−6000 → <b>x = 240 (TP)</b><br>
+          แทนกลับ: y = 2700−9(240) = 2700−2160 = <b>540 (TN)</b><br>
+          ดังนั้น FN = 300−240 = <b>60</b>, FP = 700−540 = <b>160</b>
+        </p>
+        <div class="table-scroll">
+          <table class="dx" style="min-width:280px">
+            <tr>
+              <td class="corner"></td>
+              <th class="colhead">Positive (Disease)</th>
+              <th class="colhead">Negative (No disease)</th>
+              <td class="corner">Total</td>
+            </tr>
+            <tr>
+              <th class="rowhead">Test: Positive</th>
+              <td><div class="cell good"><label>TP</label><div class="v">240</div></div></td>
+              <td><div class="cell warn"><label>FP</label><div class="v">160</div></div></td>
+              <td><div class="total-cell"><label>Total+</label><div class="v">400</div></div></td>
+            </tr>
+            <tr>
+              <th class="rowhead">Test: Negative</th>
+              <td><div class="cell warn"><label>FN</label><div class="v">60</div></div></td>
+              <td><div class="cell good"><label>TN</label><div class="v">540</div></div></td>
+              <td><div class="total-cell"><label>Total−</label><div class="v">600</div></div></td>
+            </tr>
+            <tr>
+              <td class="corner">Total</td>
+              <td class="total-cell"><div class="v">300</div></td>
+              <td class="total-cell"><div class="v">700</div></td>
+              <td class="total-cell"><div class="v">1,000</div></td>
+            </tr>
+          </table>
+        </div>
+        <p style="margin:10px 0 0">
+          <b>ตรวจคำตอบ:</b> PPV = 240/400 = 0.6 ✓ &nbsp;|&nbsp; NPV = 540/600 = 0.9 ✓<br>
+          <b>ต่อยอด:</b> Sensitivity = 240/300 = <b>80%</b> &nbsp;|&nbsp; Specificity = 540/700 ≈ <b>77.1%</b>
+        </p>
+      </div>
+    </details>
+    <div class="gloss-why">
+      <b>ทำไมต้องสมมติจำนวนประชากรก่อน:</b> PPV และ NPV เป็นสัดส่วน (proportion) ไม่ใช่สมการเชิงเส้นตรงแบบ LR ที่ใช้ได้กับทุก
+      ขนาดประชากร — การสมมติ N (เช่น 1,000 คน) ช่วยแปลง Prevalence ให้เป็นจำนวนคนจริง (Disease+/Disease−) ก่อน แล้วตั้ง TP/TN
+      เป็นตัวแปร x/y เพื่อแก้สมการหาจำนวนจริงได้ — เทคนิคเดียวกับตัวอย่างที่ 1-2 ด้านบน เพียงแต่คราวนี้ต้องแก้ระบบสมการ 2 ตัวแปร
+      แทนที่จะแทนค่าตรงๆ ได้เลย เพราะ PPV/NPV ผูก TP กับ TN ไว้ด้วยกันในสมการเดียวกัน (ผ่าน FP=700−y และ FN=300−x)
+    </div>
+  </section>
+
+  <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
     <div class="mode-toggle">
