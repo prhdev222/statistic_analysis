@@ -2282,6 +2282,81 @@
   </section>
 
   <section class="card">
+    <h2>ตัวอย่างที่ 2: การคำนวณจากค่าความไว ความจำเพาะ และความชุก</h2>
+    <p class="desc" style="max-width:none">กำหนดให้การทดสอบมี <b>Sensitivity = 95%, Specificity = 62.5%, Prevalence = 20%</b> —
+      สมมติให้ประชากรทั้งหมด = <b>500 คน</b> — ทิศทางตรงข้ามกับตัวอย่างที่ 1: ครั้งนี้รู้<b>อัตรา (rate)</b> ก่อน ต้องคำนวณย้อน
+      กลับเป็น<b>จำนวนคน</b>ในตาราง 2×2 — ลองทำเองก่อนกดดูเฉลย</p>
+    <div class="table-scroll">
+      <table class="dx" style="min-width:280px">
+        <tr>
+          <td class="corner"></td>
+          <th class="colhead">Positive<br>(Disease)</th>
+          <th class="colhead">Negative<br>(No disease)</th>
+          <td class="corner">Total</td>
+        </tr>
+        <tr>
+          <th class="rowhead">Diagnostic<br>test: Positive</th>
+          <td><div class="cell good"><label>?</label></div></td>
+          <td><div class="cell warn"><label>?</label></div></td>
+          <td><div class="total-cell"><label>?</label></div></td>
+        </tr>
+        <tr>
+          <th class="rowhead">Diagnostic<br>test: Negative</th>
+          <td><div class="cell warn"><label>?</label></div></td>
+          <td><div class="cell good"><label>?</label></div></td>
+          <td><div class="total-cell"><label>?</label></div></td>
+        </tr>
+      </table>
+    </div>
+    <details class="dsep-quiz" style="margin-top:10px">
+      <summary>กดดูเฉลย — วิธีคำนวณย้อนกลับจาก rate เป็นจำนวนคน</summary>
+      <div class="dsep-answer">
+        <p style="margin:0 0 8px">
+          <b>ขั้นที่ 1 — หาจำนวน Disease+/Disease− จาก Prevalence:</b> N=500, Prevalence=20% → Disease+ = 500×0.20 =
+          <b>100 คน</b>, Disease− = 500−100 = <b>400 คน</b><br>
+          <b>ขั้นที่ 2 — หา TP/FN จาก Sensitivity:</b> TP = Disease+ × Se = 100×0.95 = <b>95</b>, FN = 100−95 = <b>5</b><br>
+          <b>ขั้นที่ 3 — หา TN/FP จาก Specificity:</b> TN = Disease− × Sp = 400×0.625 = <b>250</b>, FP = 400−250 = <b>150</b>
+        </p>
+        <div class="table-scroll">
+          <table class="dx" style="min-width:280px">
+            <tr>
+              <td class="corner"></td>
+              <th class="colhead">Positive (Disease)</th>
+              <th class="colhead">Negative (No disease)</th>
+              <td class="corner">Total</td>
+            </tr>
+            <tr>
+              <th class="rowhead">Test: Positive</th>
+              <td><div class="cell good"><label>TP</label><div class="v">95</div></div></td>
+              <td><div class="cell warn"><label>FP</label><div class="v">150</div></div></td>
+              <td><div class="total-cell"><label>Total+</label><div class="v">245</div></div></td>
+            </tr>
+            <tr>
+              <th class="rowhead">Test: Negative</th>
+              <td><div class="cell warn"><label>FN</label><div class="v">5</div></div></td>
+              <td><div class="cell good"><label>TN</label><div class="v">250</div></div></td>
+              <td><div class="total-cell"><label>Total−</label><div class="v">255</div></div></td>
+            </tr>
+            <tr>
+              <td class="corner">Total</td>
+              <td class="total-cell"><div class="v">100</div></td>
+              <td class="total-cell"><div class="v">400</div></td>
+              <td class="total-cell"><div class="v">500</div></td>
+            </tr>
+          </table>
+        </div>
+        <p style="margin:10px 0 0">
+          PPV = 95/245 ≈ <b>38.8%</b> &nbsp;|&nbsp; NPV = 250/255 ≈ <b>98.0%</b><br>
+          LR+ = 0.95/0.375 ≈ <b>2.53</b> (ช่วง 2-5 = Small effect) &nbsp;|&nbsp; LR− = 0.05/0.625 = <b>0.08</b> (ช่วง &lt;0.1
+          = Large/Strong effect)<br><br>
+          <b>สังเกต:</b> Sensitivity สูงมาก (95%) แต่ PPV กลับต่ำ (38.8%) เพราะ Prevalence แค่ 20% และ Specificity ไม่สูงพอ
+          (62.5%) ทำให้ FP เยอะ (150 คน) เทียบกับ TP (95 คน) — ตรงกับกลไก prevalence/PPV ที่อธิบายไว้ในการ์ดกลุ่ม B
+        </p>
+      </div>
+    </details>
+  </section>
+
+  <section class="card">
     <h2><span class="n">0</span> ค่าตั้งต้น</h2>
     <p class="desc">มี 2 วิธีกรอกข้อมูลแล้วแต่ว่าตอนนี้คุณมีอะไรอยู่ในมือ — ถ้ากำลังอ่าน paper ที่รายงานแค่ sensitivity/specificity (rate) ใช้โหมดแรก ถ้ามีข้อมูลจริงจากการศึกษาที่นับจำนวนคนไว้แล้ว (เช่นตาราง 2×2 ใน paper) ใช้โหมดที่สอง — ทั้งสองโหมดคำนวณด้วยสูตรเดียวกัน ให้ผลตรงกันเสมอ</p>
     <div class="mode-toggle">
