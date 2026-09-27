@@ -515,6 +515,7 @@
     <button class="topic-btn" data-tab="groupf">งานวิจัย + สถิติ</button>
     <button class="topic-btn" data-tab="examcram">สรุปก่อนสอบ</button>
     <button class="topic-btn" data-tab="media">Media</button>
+    <button class="topic-btn" data-tab="exercises">📝 แบบฝึกหัด (15 ข้อ)</button>
   </nav>
 
   <div class="tab-panel" data-tab="foundations">
@@ -6673,6 +6674,194 @@ P-value = 0.042</pre>
       อยากดูเพิ่ม? ลองค้นชื่อช่อง <b>3Blue1Brown</b> (visual math), <b>StatQuest with Josh Starmer</b> (สถิติ/ML อธิบายง่าย),
       และ <b>minutephysics</b> ใน YouTube โดยตรง — ทั้งสามช่องมีคลิปหัวข้อสถิติ/ความน่าจะเป็นอีกจำนวนมากที่ไม่ได้ใส่ไว้ที่นี่
     </div>
+  </section>
+  </div>
+
+  <div class="tab-panel" data-tab="exercises" hidden>
+  <section class="card">
+    <h2>สรุปสูตร + ตัวช่วยจำ (Quick Reference)</h2>
+    <p class="desc" style="max-width:none">รวมสูตรและมนีมอนิกทั้งหมดที่ใช้ในเว็บนี้ไว้หน้าเดียว ก่อนลงมือทำโจทย์ 15 ข้อด้านล่าง</p>
+    <div class="table-scroll">
+      <table class="gloss-table" style="min-width:640px">
+        <tr><th>ค่า</th><th>สูตร</th><th>ตัวช่วยจำ / จุดสำคัญ</th></tr>
+        <tr><td>Prevalence</td><td>(TP+FN)/(TP+TN+FN+FP)</td><td>= ทั้งคอลัมน์ Disease+ ÷ ประชากรทั้งหมด (คือ Prior)</td></tr>
+        <tr><td>Sensitivity</td><td>TP/(TP+FN)</td><td><b>SnNout</b>: Sens สูง + ผลลบ → rule <u>out</u> ได้มั่นใจ (คำนวณตามคอลัมน์ Disease+)</td></tr>
+        <tr><td>Specificity</td><td>TN/(TN+FP)</td><td><b>SpPin</b>: Spec สูง + ผลบวก → rule <u>in</u> ได้มั่นใจ (คำนวณตามคอลัมน์ Disease−)</td></tr>
+        <tr><td>PPV</td><td>TP/(TP+FP)</td><td>คำนวณตาม<u>แถว</u> Test+ — Spec สูง → PPV สูงตาม</td></tr>
+        <tr><td>NPV</td><td>TN/(TN+FN)</td><td>คำนวณตาม<u>แถว</u> Test− — Sens สูง → NPV สูงตาม</td></tr>
+        <tr><td>LR+</td><td>Sens/(1−Spec)</td><td rowspan="2"><b>"10 = 5×2"</b>: จุดตัด 2,5,10 — LR− ใช้เลขชุดเดียวกันกลับเป็นเศษส่วน
+          (1/10, 1/5, 1/2)</td></tr>
+        <tr><td>LR−</td><td>(1−Sens)/Spec</td></tr>
+        <tr><td>Posterior Odds</td><td>Prior Odds × LR</td><td>Odds = P/(1−P) — แปลงกลับ P=Odds/(1+Odds) (Fagan's Nomogram)</td></tr>
+        <tr><td>RR</td><td>Risk(exp)/Risk(unexp)</td><td>ใช้ได้เฉพาะ Cohort/RCT (สุ่มตาม exposure)</td></tr>
+        <tr><td>OR</td><td>(a×d)/(b×c)</td><td>ใช้แทน RR เมื่อ Case-control (สุ่มตาม outcome คำนวณ risk ตรงๆ ไม่ได้)</td></tr>
+        <tr><td>AR / ARR</td><td>Risk(exp)−Risk(unexp)<br>Risk(control)−Risk(treatment)</td><td>หน่วยเดียวกับ risk (pp) ไม่ใช่สัดส่วนแบบ RR</td></tr>
+        <tr><td>NNT</td><td>1/ARR</td><td>ปัดขึ้นเสมอในทางปฏิบัติ (รักษาคนไม่ได้เป็นเศษส่วนคน)</td></tr>
+        <tr><td>AR%</td><td>AR/Risk(exp)</td><td>มองแค่<u>ในกลุ่มสัมผัส</u> — ไม่ต้องใช้ Pe</td></tr>
+        <tr><td>PAR%</td><td>[Pe×(RR−1)]/[Pe×(RR−1)+1]</td><td>มองทั้ง<u>ประชากร</u> — ต้องใช้ Pe เสมอ; Pe→100% แล้ว PAR%→AR%</td></tr>
+        <tr><td>Incidence Proportion</td><td>เคสใหม่/กลุ่มเสี่ยงต้นช่วง</td><td>= Cumulative Incidence — เป็น Proportion (ไม่มี person-time)</td></tr>
+        <tr><td>Incidence Rate</td><td>เคสใหม่/person-time รวม</td><td>เป็น Rate แท้ (มี person-time) — เสมอ ≥ Incidence Proportion เล็กน้อย</td></tr>
+        <tr><td>Accuracy</td><td>(TP+TN)/N</td><td>หลอกตาได้ง่ายเมื่อ imbalanced (Accuracy Paradox)</td></tr>
+        <tr><td>F1 Score</td><td>2TP/(2TP+FP+FN)</td><td>ไม่มี TN ในสูตร — ใช้แทน Accuracy เมื่อ imbalanced</td></tr>
+        <tr><td>Youden's J</td><td>Sens+Spec−1</td><td>เลือก cutoff ที่ J สูงสุด (อาจเสมอกันได้หลาย cutoff)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>โจทย์ฝึกก่อนสอบ — 15 ข้อ (คำนวณล้วน)</h2>
+    <p class="desc" style="max-width:none">ทำเองก่อนกดดูเฉลยทุกข้อ — เฉลยแสดงแค่สูตร+แทนค่า+คำตอบ ไม่มีคำอธิบายยาว (รายละเอียด/เหตุผล
+      ดูได้จากการ์ดเรื่องนั้นๆ ในแท็บอื่น)</p>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 1.</b> จากตาราง 2×2: TP=170, FP=30, FN=30, TN=770 — หา Sensitivity, Specificity, PPV, NPV</summary>
+      <div class="dsep-answer">
+        Se = 170/200 = <b>85%</b> &nbsp;|&nbsp; Sp = 770/800 = <b>96.25%</b><br>
+        PPV = 170/200 = <b>85%</b> &nbsp;|&nbsp; NPV = 770/800 = <b>96.25%</b>
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 2.</b> Sensitivity=85%, Specificity=95%, Prevalence=15%, N=2,000 — สร้างตาราง 2×2 แล้วหา PPV, NPV</summary>
+      <div class="dsep-answer">
+        Disease+ = 2,000×0.15=300, Disease−=1,700<br>
+        TP=300×0.85=255, FN=45 &nbsp;|&nbsp; TN=1,700×0.95=1,615, FP=85<br>
+        PPV = 255/(255+85) = <b>75%</b> &nbsp;|&nbsp; NPV = 1,615/(1,615+45) ≈ <b>97.3%</b>
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 3.</b> จากตาราง 2×2: TP=80, FP=20, FN=20, TN=180 — หา LR+, LR− และแปลผลระดับ effect size</summary>
+      <div class="dsep-answer">
+        Se=80/100=80%, Sp=180/200=90%<br>
+        LR+ = 0.8/(1−0.9) = <b>8</b> (ช่วง 5–10 = Moderate effect)<br>
+        LR− = (1−0.8)/0.9 ≈ <b>0.22</b> (ช่วง 0.2–0.5 = Small effect)
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 4.</b> ทราบ LR+ = 8, LR− = 0.2 — หา Sensitivity และ Specificity (แก้ระบบสมการ)</summary>
+      <div class="dsep-answer">
+        Se=8(1−Sp) และ Se=1−0.2(Sp) → 8−8Sp=1−0.2Sp → 7=7.8Sp → <b>Sp=7/7.8≈89.7%</b><br>
+        แทนกลับ: Se=1−0.2×0.897 ≈ <b>82.1%</b><br>
+        ตรวจ: LR+=0.821/(1−0.897)=8.0 ✓ &nbsp;LR−=(1−0.821)/0.897=0.2 ✓
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 5.</b> PPV=80%, NPV=95%, Prevalence=20%, N=1,000 — หา TP, FP, FN, TN (ตั้งสมการ 2 ตัวแปร)</summary>
+      <div class="dsep-answer">
+        Disease+=200, Disease−=800, ให้ TP=x, TN=y, FN=200−x, FP=800−y<br>
+        PPV: x/(x+800−y)=0.8 → x+4y=3200<br>
+        NPV: y/(y+200−x)=0.95 → y=3800−19x<br>
+        แก้ระบบ: x=<b>160 (TP)</b>, y=<b>760 (TN)</b> → FN=<b>40</b>, FP=<b>40</b><br>
+        ตรวจ: PPV=160/200=0.8 ✓ &nbsp;NPV=760/800=0.95 ✓
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 6.</b> Cohort study: กลุ่มสัมผัส a=45 เป็นโรค, b=155 ไม่เป็นโรค (total 200); กลุ่มไม่สัมผัส c=20 เป็นโรค,
+        d=180 ไม่เป็นโรค (total 200) — หา RR</summary>
+      <div class="dsep-answer">
+        Risk(exposed) = 45/200 = 22.5% &nbsp;|&nbsp; Risk(unexposed) = 20/200 = 10%<br>
+        <b>RR = 22.5%/10% = 2.25</b>
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 7.</b> Case-control study: กลุ่มป่วย (case) มีคนสัมผัสปัจจัยเสี่ยง 60 คน ไม่สัมผัส 40 คน; กลุ่มควบคุม
+        (control) มีคนสัมผัส 30 คน ไม่สัมผัส 70 คน — หา OR (ทำไมใช้ RR ตรงๆ ไม่ได้)</summary>
+      <div class="dsep-answer">
+        a=60 (case+exposed), b=40 (case+unexposed), c=30 (control+exposed), d=70 (control+unexposed)<br>
+        <b>OR = (a×d)/(b×c) = (60×70)/(40×30) = 4200/1200 = 3.5</b><br>
+        ใช้ RR ตรงๆ ไม่ได้ เพราะ case-control สุ่มตัวอย่างตาม<u>ผลลัพธ์</u> (จำนวน case/control ถูกกำหนดโดยนักวิจัย)
+        ไม่ใช่ตาม exposure จึงคำนวณ "risk" จริงไม่ได้
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 8.</b> RCT: risk ของกลุ่มควบคุม = 25%, risk ของกลุ่มรักษา = 15% — หา ARR, RRR, NNT</summary>
+      <div class="dsep-answer">
+        <b>ARR = 25%−15% = 10 pp</b><br>
+        <b>RRR = 10%/25% = 40%</b><br>
+        <b>NNT = 1/0.10 = 10 คน</b> (ต้องรักษา 10 คน ถึงจะได้ผลดีเพิ่มขึ้น 1 คน)
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 9.</b> Risk ในกลุ่มสัมผัสปัจจัยเสี่ยง = 4%, กลุ่มไม่สัมผัส = 1%, Prevalence ของ exposure ในประชากร (Pe) = 25%
+        — หา AR%, PAR%</summary>
+      <div class="dsep-answer">
+        AR = 4%−1% = 3% &nbsp;|&nbsp; <b>AR% = 3%/4% = 75%</b><br>
+        I(population) = 4%×0.25 + 1%×0.75 = 1.75%<br>
+        PAR = 1.75%−1% = 0.75% &nbsp;|&nbsp; <b>PAR% = 0.75%/1.75% ≈ 42.9%</b> (= 3/7)<br>
+        ตรวจด้วยสูตร RR+Pe: RR=4, PAR%=[0.25×3]/[0.25×3+1]=0.75/1.75≈42.9% ✓
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 10.</b> ชุมชนมีประชากร 2,000 คน มีผู้ป่วยเดิม 100 คน ณ ต้นปี ติดตาม 1 ปีพบผู้ป่วยใหม่ 150 คน (จากกลุ่มเสี่ยง
+        1,900 คน) person-time รวม = 1,830 person-years — หา Point Prevalence (ต้นปี), Incidence Proportion, Incidence Rate</summary>
+      <div class="dsep-answer">
+        <b>Point Prevalence (ต้นปี)</b> = 100/2,000 = <b>5%</b><br>
+        <b>Incidence Proportion</b> = 150/1,900 ≈ <b>7.9%</b><br>
+        <b>Incidence Rate</b> = 150/1,830 person-years ≈ <b>0.082/PY</b> หรือ <b>≈ 82 ต่อ 1,000 person-years</b>
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 11.</b> การศึกษาหนึ่งรายงาน OR=1.8 (95% CI 1.1 ถึง 2.9), P-value=0.023, ตั้ง α=0.05 ไว้ล่วงหน้า — สรุปผล
+        และเขียนรายงานผลที่ถูกต้อง</summary>
+      <div class="dsep-answer">
+        P (0.023) &lt; α (0.05) → <b>ปฏิเสธ H0</b> → มีนัยสำคัญทางสถิติ — และ 95% CI ไม่คร่อมเลข 1 (ค่าว่าง OR) → สอดคล้องกัน<br>
+        <b>เขียนรายงานที่ถูกต้อง:</b> "OR = 1.8 (95% CI 1.1–2.9), P = 0.023" — ห้ามรายงาน P-value เดี่ยวๆ หรือแค่ "P&lt;0.05"
+        โดยไม่มี OR/CI กำกับ
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 12.</b> ผู้ป่วยมี Pretest probability = 25% ตรวจแล้วได้ผลบวก จาก Index test ที่มี LR+ = 6 — หา Post-test
+        probability (ใช้ odds form)</summary>
+      <div class="dsep-answer">
+        Prior Odds = 0.25/0.75 = 1/3<br>
+        Posterior Odds = (1/3) × 6 = 2<br>
+        <b>Post-test probability = 2/(1+2) = 2/3 ≈ 66.7%</b>
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 13.</b> ML score กับ Disease จริงของ 8 เคส: (2,0) (3,0) (4,0) (5,1) (6,0) (7,1) (8,1) (9,1) — ถ้าใช้
+        Cutoff: Positive เมื่อ score ≥ 5 จงหาตาราง 2×2 และ Se/Sp</summary>
+      <div class="dsep-answer">
+        Test+ (score≥5): เคส 5(dis1)=TP, 6(dis0)=FP, 7(dis1)=TP, 8(dis1)=TP, 9(dis1)=TP → <b>TP=4, FP=1</b><br>
+        Test− (score&lt;5): เคส 2,3,4 ทั้งหมด dis0 → <b>TN=3, FN=0</b><br>
+        <b>Sensitivity = 4/4 = 100%</b> &nbsp;|&nbsp; <b>Specificity = 3/4 = 75%</b>
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 14.</b> ข้อมูลชุดเดียวกับข้อ 13 — ลองคำนวณ Youden's J ที่ cutoff ≥4, ≥5, ≥6, ≥7 แล้วบอกว่า cutoff ไหนดีที่สุด</summary>
+      <div class="dsep-answer">
+        cutoff≥4: Se=100%,Sp=50% → J=0.50<br>
+        cutoff≥5: Se=100%,Sp=75% → <b>J=0.75</b><br>
+        cutoff≥6: Se=75%,Sp=75% → J=0.50<br>
+        cutoff≥7: Se=75%,Sp=100% → <b>J=0.75</b><br>
+        <b>J สูงสุด (0.75) เสมอกันที่ cutoff≥5 และ ≥7</b> — เป็นตัวอย่าง tie อีกครั้ง ต้องใช้เกณฑ์อื่น (เช่น Least Distance
+        Method หรือบริบทคลินิก) ช่วยตัดสินเพิ่ม
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 15.</b> Confusion matrix ของโมเดลตรวจโรคหายาก: TP=45, FP=15, FN=5, TN=935 — หา Accuracy, Precision,
+        Recall, F1 Score แล้ววิจารณ์ว่า Accuracy หลอกตาไหม</summary>
+      <div class="dsep-answer">
+        N=1,000 — <b>Accuracy = (45+935)/1,000 = 98%</b> (ดูดีมาก)<br>
+        Precision (PPV) = 45/60 = <b>75%</b> &nbsp;|&nbsp; Recall (Sensitivity) = 45/50 = <b>90%</b><br>
+        <b>F1 = 2×45/(2×45+15+5) = 90/110 ≈ 81.8%</b><br>
+        Accuracy 98% ดูดีมาก แต่ไม่ได้หลอกตารุนแรงในเคสนี้เพราะ F1 (81.8%) ก็ยังถือว่าใช้ได้ — <b>แต่ยังต้องดู F1 ควบคู่เสมอ</b>
+        เมื่อข้อมูล imbalanced (โรคหายาก 50/1,000=5% เท่านั้น) ไม่ควรดู Accuracy ตัวเดียว
+      </div>
+    </details>
   </section>
   </div>
 
