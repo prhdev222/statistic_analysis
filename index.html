@@ -1271,6 +1271,44 @@
       </div>
     </details>
 
+    <p class="desc" style="margin-top:18px">
+      <b>ต่อยอดจากโจทย์ข้างบน — แล้วถ้าไม่ adjust S ตรงๆ แต่ไป adjust "ลูกหลาน" ของ S แทนล่ะ?</b> นี่คือตัวอย่างของ
+      <b>descendant of collider</b>
+    </p>
+    <svg class="dag-svg" viewBox="0 0 340 230" width="100%" height="230" style="max-width:380px;display:block;margin:0 auto 12px">
+      <defs>
+        <marker id="arrowhead-bmi2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="var(--muted)"/>
+        </marker>
+      </defs>
+      <line x1="88" y1="58" x2="152" y2="98" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-bmi2)"/>
+      <line x1="252" y1="58" x2="188" y2="98" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-bmi2)"/>
+      <line x1="170" y1="162" x2="170" y2="187" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-bmi2)"/>
+      <circle cx="65" cy="38" r="32" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="65" y="34" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">BMI สูง</text>
+      <text x="65" y="48" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">(X)</text>
+      <circle cx="275" cy="38" r="32" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="275" y="34" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">ความดันสูง</text>
+      <text x="275" y="48" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">(Y)</text>
+      <circle cx="170" cy="128" r="34" fill="var(--warn-soft)" stroke="var(--warn)" stroke-width="1.5"/>
+      <text x="170" y="124" font-size="11.5" fill="var(--warn)" text-anchor="middle" font-weight="700">มาตรวจที่ รพ.</text>
+      <text x="170" y="138" font-size="11.5" fill="var(--warn)" text-anchor="middle" font-weight="700">(S, collider)</text>
+      <circle cx="170" cy="215" r="30" fill="var(--surface-2)" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="170" y="211" font-size="10.5" fill="var(--ink)" text-anchor="middle" font-weight="700">มีชื่อในทะเบียน</text>
+      <text x="170" y="223" font-size="10.5" fill="var(--ink)" text-anchor="middle" font-weight="700">ผู้ป่วยนอก (D)</text>
+    </svg>
+    <div class="warn-box">
+      <div class="wt">⚠️ Descendant ของ Collider — adjust "ลูกหลาน" ก็เปิดทางลัดปลอมได้เหมือนกัน (แค่บางส่วน)</div>
+      สมมติมีตัวแปร <b>D = "มีชื่ออยู่ในทะเบียนผู้ป่วยนอก (Outpatient Registry)"</b> ซึ่งเกิดขึ้น<b>เพราะ</b> S (คนต้องมาตรวจก่อน
+      ถึงจะมีชื่อในทะเบียน) กราฟจึงเป็น: BMI สูง (X) → มาตรวจที่ รพ. (S, collider) ← ความดันสูง (Y) และ S → D<br><br>
+      D <b>ไม่ใช่ collider ตัวจริง</b> (ไม่มีลูกศรจาก X หรือ Y พุ่งเข้า D โดยตรง) แต่เป็นแค่ <b>"ลูกหลาน" (descendant) ของ S</b> —
+      ถ้านักวิจัยเผลอไป adjust/stratify ตาม D (เช่น วิเคราะห์แยกเฉพาะกลุ่มที่ "มีชื่อในทะเบียนผู้ป่วยนอก") ก็เท่ากับ<b>บอกข้อมูล
+      บางส่วนเกี่ยวกับ S ไปด้วยโดยอ้อม</b> (รู้ค่า D ก็รู้ค่า S บางส่วนตามไปด้วย เพราะ D ถูกกำหนดมาจาก S) → เปิดเส้นทางปลอม X-Y
+      ขึ้นมา<b>บางส่วน</b>เหมือนกัน แม้จะไม่เต็มเท่า adjust S ตรงๆ ก็ตาม<br><br>
+      <b>กฎปฏิบัติ:</b> เจอตัวแปรไหนที่ "เกิดขึ้นเพราะ" collider (อยู่บนกราฟ<b>หลัง</b> S) ให้ปฏิบัติเหมือน collider ทันที —
+      ห้าม adjust/stratify และห้ามเลือกศึกษาเฉพาะกลุ่มที่ D เกิดขึ้นเช่นกัน
+    </div>
+
     <div class="warn-box" style="margin-top:16px">
       <div class="wt">⚠️ ข้อจำกัดสำคัญ: d-separation เชื่อกราฟที่วาด 100%</div>
       กฎทั้งหมดนี้ถูกต้องทางคณิตศาสตร์ <b>ก็ต่อเมื่อ DAG ที่วาดสะท้อนความจริงถูกต้อง</b> — ถ้าลืมวาดลูกศรบางเส้น (มี confounder
