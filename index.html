@@ -7110,6 +7110,172 @@ P-value = 0.042</pre>
         กลุ่มตัวอย่างที่ศึกษา — ไม่มีความหมายให้พูดถึงเลย ถ้า Internal Validity ยังไม่ผ่านก่อน (ผลที่ผิดตั้งแต่ในกลุ่มศึกษาเอง
         ก็ไม่มีทางนำไปใช้ที่อื่นได้ถูกต้อง)</div>
     </details>
+
+    <details class="dsep-quiz">
+      <summary><b>16. Relative Risk (RR)</b> คืออะไร?</summary>
+      <div class="dsep-answer">อัตราส่วนของ<b>ความเสี่ยง (risk)</b> ที่จะเกิด outcome ระหว่างกลุ่มที่สัมผัสปัจจัยกับกลุ่มที่ไม่
+        สัมผัส = Risk(exposed)/Risk(unexposed) — ใช้ได้เฉพาะ study design ที่คำนวณ risk ตรงๆ ได้ (Cohort, RCT) เท่านั้น</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>17. Odds Ratio (OR)</b> คืออะไร?</summary>
+      <div class="dsep-answer">อัตราส่วนของ<b>odds</b> (ไม่ใช่ risk ตรงๆ) ระหว่างกลุ่มที่สัมผัสกับไม่สัมผัส = (a×d)/(b×c) —
+        ใช้แทน RR เมื่อ study design เป็น Case-control (สุ่มตัวอย่างตาม outcome ทำให้คำนวณ risk ตรงๆ ไม่ได้) — เมื่อโรคหายากมาก
+        OR จะมีค่าใกล้เคียงกับ RR</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>18. Hazard Ratio (HR)</b> คืออะไร?</summary>
+      <div class="dsep-answer">คล้าย RR แต่ใช้กับข้อมูล<b>time-to-event/survival analysis</b> — วัด<b>อัตราการเกิดเหตุการณ์ต่อ
+        หน่วยเวลา (instantaneous rate)</b> ตลอดช่วงการติดตาม ไม่ใช่แค่ ณ จุดเวลาเดียวแบบ RR — มาจาก Cox proportional hazards
+        model</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>19. Attributable Risk (AR)</b> คืออะไร?</summary>
+      <div class="dsep-answer">ความเสี่ยง<b>ส่วนเกินสัมบูรณ์ (absolute)</b> ที่เกิดจากปัจจัยเสี่ยง<b>ในกลุ่มที่สัมผัสปัจจัยนั้น
+        เท่านั้น</b> = Risk(exposed)−Risk(unexposed) — หน่วยเดียวกับ risk (percentage point) ไม่ใช่สัดส่วนแบบ RR/OR</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>20. Population Attributable Risk (PAR / PAR%)</b> คืออะไร?</summary>
+      <div class="dsep-answer">ขยาย AR จากระดับบุคคล/กลุ่มสัมผัส ไปเป็น<b>ระดับประชากรทั้งหมด</b> — บอกว่า "ถ้ากำจัดปัจจัยเสี่ยง
+        นี้ออกจากประชากรทั้งหมดได้จริง จะลดอุบัติการณ์ของโรคลงได้เท่าไร/กี่ %" — ต้องใช้ prevalence ของ exposure ในประชากร (Pe)
+        ร่วมด้วยเสมอ ต่างจาก AR ที่ไม่ต้องใช้ Pe</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>21. P-value</b> คืออะไร?</summary>
+      <div class="dsep-answer">ความน่าจะเป็นที่จะเห็นข้อมูล<b>สุดขั้วเท่านี้หรือมากกว่า</b> ถ้าสมมติว่า<b>H0 เป็นจริง</b> —
+        P(ข้อมูลนี้ | H0 จริง) — <u>ไม่ใช่</u>ความน่าจะเป็นที่ H0 เป็นจริง และไม่ใช่ความน่าจะเป็นที่ผลเกิดจากบังเอิญ</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>22. Prevalence</b> คืออะไร?</summary>
+      <div class="dsep-answer">สัดส่วนของคนที่<b>"มีโรคอยู่" ณ จุดเวลาหนึ่ง</b> เทียบกับประชากรทั้งหมด = ผู้ป่วยทั้งหมด (เก่า+ใหม่)
+        / ประชากรทั้งหมด — วัด "การมีอยู่" (existing) ไม่ใช่ "การเกิดใหม่" — เท่ากับ Prior probability ระดับประชากร</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>23. Cumulative Incidence (Incidence Proportion)</b> คืออะไร?</summary>
+      <div class="dsep-answer">สัดส่วนของคน<b>"ป่วยรายใหม่"</b>ในช่วงเวลาที่กำหนด เทียบกับกลุ่มเสี่ยง (ยังไม่ป่วย) ณ ต้นช่วง
+        = ผู้ป่วยรายใหม่ / ประชากรกลุ่มเสี่ยงต้นช่วง — เป็น Proportion ล้วนๆ ไม่มี person-time ในตัวส่วน</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>24. Incidence Rate (Incidence Density)</b> คืออะไร?</summary>
+      <div class="dsep-answer">"ความเร็ว" ที่เกิดเคสใหม่ ต่อหน่วยเวลา = ผู้ป่วยรายใหม่ / ผลรวม person-time ที่กลุ่มเสี่ยงอยู่ใน
+        ภาวะเสี่ยงจริง (เช่น "ต่อ 1,000 person-years") — เป็น Rate แท้ (มี person-time ในตัวส่วน) เหมาะกับ cohort ที่คนเข้า-ออก
+        ไม่พร้อมกัน</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>25. Survival Rate</b> คืออะไร?</summary>
+      <div class="dsep-answer">สัดส่วนของผู้ป่วยที่<b>ยังมีชีวิตอยู่</b> ณ จุดเวลาที่กำหนด (เช่น 5-year survival rate) หลังจาก
+        การวินิจฉัย/เริ่มการรักษา — มักแสดงเป็นเส้นโค้ง Kaplan-Meier พร้อม Risk Table (จำนวนคนที่ยัง "at risk" ณ แต่ละจุดเวลา)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>26. Alpha (α) / Type I Error</b> คืออะไร?</summary>
+      <div class="dsep-answer">เกณฑ์ความน่าจะเป็นสูงสุดที่ยอมรับได้ ที่จะ<b>ปฏิเสธ H0 ทั้งที่ H0 เป็นจริง</b> (false positive
+        ทางสถิติ) — ต้อง<b>ตั้งไว้ล่วงหน้าก่อนเห็นข้อมูล</b> เสมอ (ธรรมเนียมทั่วไป = 0.05)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>27. Beta (β) / Power / Type II Error</b> คืออะไร?</summary>
+      <div class="dsep-answer">β คือความน่าจะเป็นที่จะ<b>ไม่ปฏิเสธ H0 ทั้งที่ H0 ผิด</b> (พลาดเจอ effect ที่มีอยู่จริง —
+        false negative ทางสถิติ) — Power = 1−β คือความสามารถของการศึกษาที่จะตรวจพบ effect จริงได้ (ธรรมเนียมทั่วไป Power≥80%)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>28. Confidence Interval (CI)</b> คืออะไร?</summary>
+      <div class="dsep-answer">ช่วงค่าที่<b>คาดว่าจะครอบคลุมค่าจริงของประชากร</b>ด้วยระดับความเชื่อมั่นที่กำหนด (เช่น 95%) —
+        95% CI แปลว่า ถ้าสุ่มตัวอย่างซ้ำแบบเดียวกันหลายรอบ ประมาณ 95% ของช่วงที่คำนวณได้จะครอบคลุมค่าจริง — ถ้า CI ของค่าอัตราส่วน
+        (RR/OR/HR) ไม่คร่อมเลข 1 ถือว่ามีนัยสำคัญทางสถิติ</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>29. Odds</b> คืออะไร? ต่างจาก Probability อย่างไร?</summary>
+      <div class="dsep-answer">อัตราส่วนของ "โอกาสเกิด" ต่อ "โอกาสไม่เกิด" = P/(1−P) — ต่างจาก Probability (P) ที่มีค่าอยู่
+        ระหว่าง 0-1 เสมอ ในขณะที่ Odds มีค่าตั้งแต่ 0 ถึงอนันต์ — เป็นหน่วยที่ OR, LR, และ Posterior Odds = Prior Odds × LR ใช้
+        คำนวณ</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>30. Accuracy</b> คืออะไร?</summary>
+      <div class="dsep-answer">สัดส่วนที่ตรวจ "ถูกต้อง" ทั้งหมด (ทายบวกถูก+ทายลบถูก) เทียบกับผู้ถูกตรวจทั้งหมด =
+        (TP+TN)/N — ต้องระวัง "Accuracy Paradox": หลอกตาได้ง่ายเมื่อข้อมูล imbalanced</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>31. F1 Score</b> คืออะไร?</summary>
+      <div class="dsep-answer">Harmonic mean ของ Precision (PPV) กับ Recall (Sensitivity) = 2TP/(2TP+FP+FN) — ไม่มี TN
+        อยู่ในสูตรเลย จึงไม่ถูกหลอกด้วย class ที่มีจำนวนมากแบบ Accuracy — นิยมใช้เมื่อข้อมูล imbalanced</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>32. AUROC (Area Under ROC Curve)</b> คืออะไร?</summary>
+      <div class="dsep-answer">พื้นที่ใต้เส้น ROC curve (Sensitivity เทียบกับ 1−Specificity ทุก cutoff) — สรุปความสามารถ
+        "แยกแยะ" โรค/ไม่โรคของตัวตรวจเป็นตัวเลขเดียว โดยไม่ต้องเลือก cutoff ก่อน — เท่ากับความน่าจะเป็นที่โมเดลจัดอันดับคนป่วย
+        จริงให้ score สูงกว่าคนไม่ป่วยจริง — โมเดลเดาสุ่มได้ AUROC=0.5 เสมอ</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>33. AUPRC (Area Under Precision-Recall Curve)</b> คืออะไร?</summary>
+      <div class="dsep-answer">พื้นที่ใต้เส้น Precision-Recall curve (Precision เทียบกับ Recall ทุก cutoff) — ใช้แทน AUROC
+        เมื่อข้อมูล imbalanced เพราะไวต่อ imbalance โดยตั้งใจ — โมเดลเดาสุ่มจะได้ AUPRC เท่ากับ prevalence ของ class positive
+        เอง ไม่ใช่ 0.5 คงที่แบบ AUROC</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>34. Youden's Index (J)</b> คืออะไร?</summary>
+      <div class="dsep-answer">J = Sensitivity + Specificity − 1 — ใช้เลือก cutoff ที่ "ดีที่สุด" ทางสถิติล้วนๆ (ให้น้ำหนัก
+        Se/Sp เท่ากัน) โดยเลือก cutoff ที่ J สูงสุด — อาจเสมอกันได้หลาย cutoff ไม่ได้การันตีคำตอบเดียวเสมอไป</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>35. Diagnostic Odds Ratio (DOR)</b> คืออะไร?</summary>
+      <div class="dsep-answer">DOR = LR+/LR− = (TP×TN)/(FP×FN) — เป็น "odds ratio" ตรงตัวจริงๆ (odds ของผลตรวจเป็นบวกใน
+        กลุ่มป่วย หารด้วย odds ของผลตรวจเป็นบวกในกลุ่มไม่ป่วย) สรุปความสามารถแยกแยะของตัวตรวจเป็นค่าเดียว</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>36. Mediator</b> คืออะไร?</summary>
+      <div class="dsep-answer">ตัวแปรที่อยู่<b>บนเส้นทางเชิงเหตุระหว่าง exposure กับ outcome</b> (X→M→Y) — เกิด<u>หลัง</u>
+        exposure เสมอ — ห้าม adjust ถ้าต้องการวัด total effect ของ exposure (การ adjust mediator จะตัด "ทาง" ที่ exposure
+        ส่งผลผ่านมันออกไป)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>37. Collider</b> คืออะไร?</summary>
+      <div class="dsep-answer">ตัวแปรที่เป็น<b>"ผลลัพธ์ร่วม"</b>ของทั้ง exposure และ outcome (X→C←Y) — ห้าม adjust หรือ
+        select ตามตัวนี้เด็ดขาด เพราะจะสร้างความสัมพันธ์ปลอมระหว่าง X กับ Y ขึ้นมาเอง (Collider bias / Berkson's paradox)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>38. Cohort Study</b> คืออะไร?</summary>
+      <div class="dsep-answer">Study design ที่แบ่งกลุ่มตาม<b>exposure</b>ก่อน (สัมผัสปัจจัยเสี่ยงหรือไม่) แล้วติดตามไปข้างหน้า
+        ดูว่าใครเกิด outcome — คำนวณ Risk/RR ได้ตรงๆ เพราะรู้ประชากรกลุ่มเสี่ยงตั้งต้นชัดเจน</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>39. Case-Control Study</b> คืออะไร?</summary>
+      <div class="dsep-answer">Study design ที่แบ่งกลุ่มตาม<b>outcome</b>ก่อน (เป็นโรค=case, ไม่เป็น=control) แล้วย้อนกลับไปดู
+        ประวัติ exposure — คำนวณ Risk/RR ตรงๆ ไม่ได้ (เพราะสัดส่วน case/control ถูกกำหนดโดยนักวิจัย) ต้องใช้ OR แทน</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>40. Randomized Controlled Trial (RCT)</b> คืออะไร?</summary>
+      <div class="dsep-answer">Study design ที่<b>สุ่ม (randomize)</b> ผู้เข้าร่วมให้ได้รับ intervention หรือ control —
+        เป็นวิธีเดียวที่ควบคุม confounder ได้ทั้งตัวที่รู้จักและไม่รู้จักพร้อมกัน (ทำให้กระจายเท่ากันทั้งสองกลุ่มโดยอัตโนมัติ)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>41. Non-inferiority Margin (Δ)</b> คืออะไร?</summary>
+      <div class="dsep-answer">ขอบเขตความแตกต่างสูงสุดที่ยัง<b>ยอมรับได้</b>ว่ายาใหม่ "ไม่ได้แย่กว่า" ยามาตรฐานอย่างมีนัยสำคัญ
+        ในการทดลอง non-inferiority trial — ต้องกำหนดไว้ล่วงหน้าจาก expert opinion + literature review เสมอ ไม่ใช่ตัวเลข
+        สากลตายตัว</div>
+    </details>
   </section>
   </div>
 
