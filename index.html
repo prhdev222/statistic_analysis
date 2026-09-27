@@ -5950,6 +5950,38 @@ P-value = 0.042</pre>
       AR% มากขึ้นเรื่อยๆ (ลองแทน Pe=100% ในสูตร PAR% จะได้ผลเท่ากับ AR% พอดี เพราะเท่ากับทั้งประชากรเป็นกลุ่มสัมผัสหมด)
     </div>
 
+    <h3 style="margin-top:18px;font-size:15px">สูตรทางการ — Attributable Risk Fraction</h3>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>AR% <span class="tag">ในกลุ่มสัมผัส</span></h3>
+        <div class="gloss-formula" style="margin:0">AR% = (I<sub>exposed</sub> − I<sub>unexposed</sub>) / I<sub>exposed</sub></div>
+        <div class="compare-point"><span>ค่าน้อยกว่า 100% เสมอ — สัดส่วนความเสี่ยง<b>ในกลุ่มที่สัมผัสปัจจัยเสี่ยง</b>ที่มาจาก
+          ปัจจัยนั้นจริงๆ (เทียบกับ exposure เอง)</span></div>
+      </div>
+      <div class="compare-col">
+        <h3>PAR% <span class="tag">ทั้งประชากร</span></h3>
+        <div class="gloss-formula" style="margin:0">PAR% = (I<sub>population</sub> − I<sub>unexposed</sub>) / I<sub>population</sub></div>
+        <div class="compare-point"><span>ค่าน้อยกว่า 100% เสมอ — I<sub>population</sub> คำนวณจาก risk ถ่วงน้ำหนักด้วย
+          prevalence ของ exposure ในประชากร (Pe)</span></div>
+      </div>
+    </div>
+    <p class="desc" style="max-width:none;margin:10px 0 4px"><b>โจทย์ฝึกเพิ่มเติม (ตัวเลขชุดใหม่):</b> Risk ของมะเร็งปอดในคนสูบบุหรี่
+      = <b>0.5%</b>, ในคนไม่สูบบุหรี่ = <b>0.1%</b>, สัดส่วนคนสูบบุหรี่ในประชากร (Pe) = <b>20%</b> — ลองหา AR% และ PAR% เอง
+      ก่อนกดดูเฉลย</p>
+    <details class="dsep-quiz">
+      <summary>กดดูเฉลย</summary>
+      <div class="dsep-answer">
+        <b>AR%</b> = (0.5% − 0.1%) / 0.5% = 0.4/0.5 = <b>80%</b><br><br>
+        <b>หา I<sub>population</sub> ก่อน:</b> = Risk(smoke)×Pe(smoke) + Risk(nonsmoke)×Pe(nonsmoke) = (0.5%×20%) +
+        (0.1%×80%) = 0.10% + 0.08% = <b>0.18%</b><br><br>
+        <b>PAR%</b> = (0.18% − 0.1%) / 0.18% = 0.08/0.18 = 4/9 ≈ <b>44.5%</b><br><br>
+        <b>ตรวจคำตอบด้วยสูตร RR+Pe:</b> RR = 0.5/0.1 = 5 → PAR% = [Pe×(RR−1)]/[Pe×(RR−1)+1] = [0.2×4]/[0.2×4+1] = 0.8/1.8
+        = 4/9 ≈ <b>44.5%</b> ✓ ตรงกัน<br><br>
+        <b>สังเกต:</b> โจทย์นี้ Pe(smoke) แค่ 20% (น้อยกว่าตัวอย่างก่อนหน้าที่ 30%) ทำให้ PAR% (44.5%) ต่างจาก AR% (80%) มากขึ้น
+        กว่าตัวอย่างก่อนหน้า — ยิ่ง Pe ต่ำ ยิ่งห่างจาก AR% มาก ตรงกับหลักการที่อธิบายไว้ด้านบน
+      </div>
+    </details>
+
     <h3 style="margin-top:18px;font-size:15px">Concept of Statistics — ภาพรวมก่อนแยก Descriptive กับ Inferential</h3>
     <svg viewBox="0 0 460 170" style="width:100%;height:auto;max-width:420px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
       <rect x="160" y="10" width="140" height="40" rx="6" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="1.5"/>
