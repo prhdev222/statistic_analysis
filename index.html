@@ -7010,6 +7010,107 @@ P-value = 0.042</pre>
       </div>
     </details>
   </section>
+
+  <section class="card">
+    <h2>โจทย์ Definition — 15 คำศัพท์สำคัญ</h2>
+    <p class="desc" style="max-width:none">ลองนิยามคำเหล่านี้เป็นคำพูดของตัวเองก่อนกดดูเฉลย — เน้น "คำนี้หมายถึงอะไร" ไม่ใช่เหตุผล/
+      ตัวอย่างเชิงลึก (ดูเหตุผล/ตัวอย่างได้จากการ์ดเรื่องนั้นๆ หรือชุดโจทย์ Concept ด้านบน)</p>
+
+    <details class="dsep-quiz">
+      <summary><b>1. Index Test</b> คืออะไร?</summary>
+      <div class="dsep-answer">ตัวตรวจ/โมเดล/วิธีการที่กำลังถูก<b>ประเมินความแม่นยำ</b>ในการศึกษานั้น — เทียบกับ Reference
+        Standard เพื่อดูว่าแม่นแค่ไหน</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>2. Pretest Probability</b> คืออะไร?</summary>
+      <div class="dsep-answer">ความน่าจะเป็นที่ผู้ป่วยจะเป็นโรค<b>ก่อน</b>ได้ผลตรวจ (Index test) — เท่ากับ Prior probability
+        ในกรอบ Bayesian, ไม่จำเป็นต้องเท่ากับ prevalence ของประชากรทั่วไปเสมอไป (ขึ้นกับปัจจัยเสี่ยงส่วนตัวของผู้ป่วยรายนั้น)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>3. Posttest Probability</b> คืออะไร?</summary>
+      <div class="dsep-answer">ความน่าจะเป็นที่ผู้ป่วยจะเป็นโรค<b>หลัง</b>ทราบผลตรวจแล้ว — เท่ากับ Posterior probability,
+        คำนวณจาก Pretest probability คูณด้วย Likelihood Ratio ของผลตรวจนั้น (ในรูป odds)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>4. Sensitivity</b> คืออะไร?</summary>
+      <div class="dsep-answer">สัดส่วนของคนที่<b>เป็นโรคจริง</b>ที่ตรวจแล้วให้ผล<b>บวก</b> = TP/(TP+FN) — เป็นคุณสมบัติของ
+        ตัวตรวจเอง ไม่ขึ้นกับ prevalence</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>5. Specificity</b> คืออะไร?</summary>
+      <div class="dsep-answer">สัดส่วนของคนที่<b>ไม่เป็นโรคจริง</b>ที่ตรวจแล้วให้ผล<b>ลบ</b> = TN/(TN+FP) — เป็นคุณสมบัติ
+        ของตัวตรวจเอง ไม่ขึ้นกับ prevalence เช่นกัน</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>6. Positive Predictive Value (PPV)</b> คืออะไร?</summary>
+      <div class="dsep-answer">ความน่าจะเป็นที่คนไข้จะ<b>เป็นโรคจริง</b> เมื่อผลตรวจออกมาเป็น<b>บวก</b> = TP/(TP+FP) —
+        ขึ้นกับ prevalence ของประชากรที่ใช้ตรวจด้วยเสมอ</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>7. Negative Predictive Value (NPV)</b> คืออะไร?</summary>
+      <div class="dsep-answer">ความน่าจะเป็นที่คนไข้จะ<b>ไม่เป็นโรคจริง</b> เมื่อผลตรวจออกมาเป็น<b>ลบ</b> = TN/(TN+FN) —
+        ขึ้นกับ prevalence ของประชากรที่ใช้ตรวจด้วยเช่นกัน</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>8. Likelihood Ratio (LR+/LR−)</b> คืออะไร?</summary>
+      <div class="dsep-answer">ตัวเลขที่บอกว่าผลตรวจแบบนั้น (บวกหรือลบ) <b>พบได้บ่อยกว่ากันกี่เท่า</b>ระหว่างคนที่ป่วยจริง
+        กับคนที่ไม่ป่วยจริง — LR+ = Se/(1−Sp), LR− = (1−Se)/Sp — ใช้เป็นตัวคูณแปลง pretest odds เป็น posttest odds โดยตรง</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>9. Number Needed to Treat (NNT)</b> คืออะไร?</summary>
+      <div class="dsep-answer">จำนวนผู้ป่วยที่ต้อง<b>ให้การรักษา</b>เพื่อให้เกิดผลลัพธ์ที่ดีเพิ่มขึ้น<b>1 ราย</b> เมื่อเทียบกับ
+        ไม่รักษา = 1/ARR — ยิ่งน้อยยิ่งดี (การรักษาได้ผลคุ้มค่า)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>10. Number Needed to Harm (NNH)</b> คืออะไร?</summary>
+      <div class="dsep-answer">จำนวนคนที่ต้อง<b>สัมผัสปัจจัยเสี่ยง/ได้รับการรักษา</b>เพื่อให้เกิดผลข้างเคียง/อันตราย
+        เพิ่มขึ้น<b>1 ราย</b> = 1/AR (ของผลลัพธ์ไม่พึงประสงค์) — ยิ่งมากยิ่งดี (อันตรายเกิดยาก)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>11. Confounder</b> คืออะไร?</summary>
+      <div class="dsep-answer">ตัวแปรที่<b>สัมพันธ์กับทั้ง exposure และ outcome</b> โดยตัวมันเอง<b>ไม่ได้อยู่บนเส้นทางเชิงเหตุ
+        ระหว่าง exposure กับ outcome</b> (ไม่ใช่ mediator) — เกิดขึ้นก่อน exposure เสมอ ถ้าไม่ควบคุมจะทำให้ประเมิน effect ของ
+        exposure ผิดพลาด (พองขึ้นหรือกลับทิศ)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>12. Effect Modifier (Interaction)</b> คืออะไร? ต่างจาก Confounder อย่างไร?</summary>
+      <div class="dsep-answer">ตัวแปรที่ทำให้<b>ความแรง/ทิศทางของความสัมพันธ์</b>ระหว่าง exposure กับ outcome<b>เปลี่ยนไป
+        ตามระดับของตัวแปรนั้น</b> (เช่น ยาได้ผลดีในผู้ชายแต่ไม่ได้ผลในผู้หญิง) — ต่างจาก Confounder ตรงที่ Effect Modifier
+        <u>ไม่ใช่ตัวที่ต้อง "ควบคุม/ปรับออก"</u> แต่เป็นสิ่งที่ต้อง<b>รายงานแยกตามชั้น (stratify)</b> เพื่อให้เห็นว่า effect
+        ต่างกันจริงในแต่ละกลุ่มย่อย</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>13. Blinding (Masking)</b> คืออะไร?</summary>
+      <div class="dsep-answer">การ<b>ปกปิดข้อมูล</b>ว่าผู้ป่วย/ผู้ประเมินอยู่ในกลุ่มไหน หรือรู้ผลตรวจฝั่งใดฝั่งหนึ่งมาก่อนหรือไม่
+        เพื่อป้องกันความคาดหวัง/อคติของผู้วัดหรือผู้ป่วยเองไม่ให้กลายเป็นตัวกวนผลการศึกษา (เช่น Blind assessment ในการ์ด
+        Reference Standard, Randomization & Blinding ในการ์ด Confounding)</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>14. Internal Validity</b> คืออะไร?</summary>
+      <div class="dsep-answer">ความถูกต้องของผลการศึกษา<b>เฉพาะภายในกลุ่มตัวอย่างที่ศึกษานั้นเอง</b> — ปราศจาก bias/confounding
+        ที่บิดเบือนความสัมพันธ์ที่แท้จริงระหว่าง exposure กับ outcome — ต้องมีก่อนเสมอ ก่อนจะพูดถึง External Validity</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>15. External Validity</b> คืออะไร?</summary>
+      <div class="dsep-answer">ความสามารถของผลการศึกษาที่จะ<b>นำไปใช้ทั่วไป (generalize)</b> กับประชากร/บริบทอื่นนอกเหนือจาก
+        กลุ่มตัวอย่างที่ศึกษา — ไม่มีความหมายให้พูดถึงเลย ถ้า Internal Validity ยังไม่ผ่านก่อน (ผลที่ผิดตั้งแต่ในกลุ่มศึกษาเอง
+        ก็ไม่มีทางนำไปใช้ที่อื่นได้ถูกต้อง)</div>
+    </details>
+  </section>
   </div>
 
   <footer class="links">
