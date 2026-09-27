@@ -1668,6 +1668,21 @@
       ส่วน FP/TN คือกลุ่มที่ Gold Standard บอกว่าไม่เป็นโรคจริง — ถ้าไม่มี Gold Standard ที่เชื่อถือได้ จะไม่มีทาง "รู้ความจริง" มา
       คำนวณ Sensitivity/Specificity ได้เลย (ดูตาราง 2×2 หลักที่การ์ด Group A ในแท็บ "สรุปสูตรสถิติ" ประกอบ)
     </div>
+    <h3 style="margin-top:16px;font-size:15px">Index Test ≠ Reference Test — สรุปเป็นตาราง</h3>
+    <p class="desc" style="max-width:none">
+      <b>Index Test</b> เป็นอีกชื่อหนึ่งของ <b>Study Test</b> ด้านบน (คำเดียวกัน คนละคำเรียก มักเจอในบริบท AI/ML และ paper
+      diagnostic accuracy สมัยใหม่) ส่วน <b>Reference Test</b> คือ Gold Standard/Reference Standard — สองตัวนี้<b>ไม่ใช่ตัวเดียวกัน
+      เด็ดขาด</b>:
+    </p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th></th><th>Index Test <span class="muted-note">(= Study Test)</span></th><th>Reference Test <span class="muted-note">(= Gold Standard)</span></th></tr>
+        <tr><td>คืออะไร</td><td>ตัวที่กำลัง<b>ประเมิน</b>ว่าแม่นแค่ไหน</td><td>ตัว<b>มาตรฐาน</b>ที่ใช้เทียบ (เชื่อว่าบอกความจริงได้)</td></tr>
+        <tr><td>ตัวอย่าง</td><td>เจาะเลือด, X-ray, ตรวจร่างกาย, AI</td><td>Biopsy, MRI/PET, Cardiac catheterization</td></tr>
+        <tr><td>อยู่ตรงไหนในตาราง 2×2</td><td>แถว (Predicted/Test Result)</td><td>คอลัมน์ (Actual Result)</td></tr>
+        <tr><td>ข้อจำกัด</td><td>ทำง่าย ไม่ invasive แต่แม่นน้อยกว่า</td><td>มักแม่นกว่าแต่ invasive/แพง/เข้าถึงยาก — จึงต้องมี Index Test มาทดแทนในทางปฏิบัติ</td></tr>
+      </table>
+    </div>
     <h3 style="margin-top:16px;font-size:15px">Gold Standard vs Reference Standard — ไม่เหมือนกันเป๊ะเสมอไป</h3>
     <p class="desc" style="max-width:none">
       สองคำนี้มักใช้แทนกันได้ แต่บางครั้ง <b>"Gold Standard"</b> หมายถึงตัวที่แม่นที่สุดในทางทฤษฎี (อาจทำไม่ได้จริงในทางปฏิบัติ)
