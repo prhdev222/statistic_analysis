@@ -74,6 +74,25 @@
     padding: 7px 10px; width: 100%;
   }
   input.n-input:disabled { opacity: .5; cursor: not-allowed; }
+  .search-box { position: relative; }
+  #siteSearch {
+    width: 100%; font-family: var(--font-body); font-size: 14px; padding: 11px 16px; border-radius: 12px;
+    border: 1.5px solid var(--line-soft); background: var(--surface); color: var(--ink); outline: none;
+  }
+  #siteSearch:focus { border-color: var(--accent); }
+  .search-results {
+    position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30; max-height: 340px; overflow-y: auto;
+    background: var(--surface); border: 1px solid var(--line-soft); border-radius: 12px; box-shadow: var(--shadow);
+  }
+  .search-result-item {
+    display: block; width: 100%; text-align: left; padding: 10px 14px; border: none; background: none;
+    border-bottom: 1px solid var(--line-soft); cursor: pointer; font-family: var(--font-body); color: var(--ink);
+  }
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover { background: var(--surface-2); }
+  .search-result-item .srt-tab { display: block; font-family: var(--font-mono); font-size: 10.5px; color: var(--accent); margin-bottom: 2px; }
+  .search-result-item .srt-text { font-size: 13.5px; }
+  .search-result-empty { padding: 14px; font-size: 13px; color: var(--muted); text-align: center; }
   .topic-nav {
     position: sticky; top: 0; z-index: 20; display: flex; gap: 6px; overflow-x: auto;
     padding: 10px 2px; margin: 0 -2px 2px; background: var(--bg); border-bottom: 1px solid var(--line-soft);
@@ -509,6 +528,11 @@
     <p class="sub">ป้อน prevalence, sensitivity, specificity ครั้งเดียว แล้วดูเหตุผลของคำตอบพร้อมกัน 5 มุมมอง พร้อมเรียนรู้ Causal Inference —
       DAG, Confounding, Simpson's Paradox ตั้งแต่พื้นฐานถึงใช้งานจริง</p>
   </header>
+
+  <div class="search-box">
+    <input type="text" id="siteSearch" placeholder="🔍 ค้นหาเนื้อหาในเว็บนี้ (เช่น PPV, confounding, LR, spectrum bias...)" autocomplete="off">
+    <div class="search-results" id="searchResults" hidden></div>
+  </div>
 
   <nav class="topic-nav" id="topicNav">
     <button class="topic-btn active" data-tab="foundations">แนวคิดพื้นฐาน</button>
@@ -8379,6 +8403,62 @@ P-value = 0.042</pre>
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 60);
   });
+
+  // ---- site search ----
+  const searchIndex = [];
+  document.querySelectorAll('.tab-panel[data-tab]').forEach(panel => {
+    const tab = panel.dataset.tab;
+    panel.querySelectorAll('h2, h3, h4').forEach((el, i) => {
+      const text = el.textContent.replace(/\s+/g, ' ').trim();
+      if (!text) return;
+      if (!el.id) el.id = `srch-${tab}-${i}`;
+      searchIndex.push({ tab, id: el.id, text });
+    });
+  });
+  const searchTabLabels = {};
+  document.querySelectorAll('.topic-btn[data-tab]').forEach(b => { searchTabLabels[b.dataset.tab] = b.textContent.trim(); });
+
+  const searchInput = document.getElementById('siteSearch');
+  const searchResults = document.getElementById('searchResults');
+
+  function renderSearchResults(query) {
+    const q = query.trim().toLowerCase();
+    if (!q) { searchResults.hidden = true; searchResults.innerHTML = ''; return; }
+    const matches = searchIndex.filter(item => item.text.toLowerCase().includes(q)).slice(0, 30);
+    searchResults.innerHTML = matches.length
+      ? matches.map(item =>
+          `<button type="button" class="search-result-item" data-tab="${item.tab}" data-target="${item.id}"><span class="srt-tab">${searchTabLabels[item.tab] || item.tab}</span><span class="srt-text">${item.text}</span></button>`
+        ).join('')
+      : `<div class="search-result-empty">ไม่พบเนื้อหาที่ตรงกับ "${query}"</div>`;
+    searchResults.hidden = false;
+  }
+
+  if (searchInput && searchResults) {
+    searchInput.addEventListener('input', () => renderSearchResults(searchInput.value));
+    searchInput.addEventListener('focus', () => { if (searchInput.value.trim()) renderSearchResults(searchInput.value); });
+
+    searchResults.addEventListener('click', e => {
+      const item = e.target.closest('.search-result-item');
+      if (!item) return;
+      const tab = item.dataset.tab;
+      const targetId = item.dataset.target;
+      showTab(tab);
+      document.querySelectorAll('.topic-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      searchResults.hidden = true;
+      searchInput.value = '';
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.search-box')) searchResults.hidden = true;
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { searchResults.hidden = true; searchInput.blur(); }
+    });
+  }
 
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { recompute(); computeRx(); });
 })();
