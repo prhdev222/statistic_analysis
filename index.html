@@ -2099,6 +2099,57 @@
     <h3 style="margin-top:16px;font-size:15px">AUPRC — พื้นที่ใต้เส้น PR Curve</h3>
     <p class="desc" style="max-width:none">เหมือน AUC (ROC) แต่คำนวณพื้นที่ใต้เส้น <b>Precision-Recall</b> แทน — สรุป
       ความสามารถของโมเดลบน imbalanced data เป็นตัวเลขเดียว ยิ่งใกล้ 1 ยิ่งดี</p>
+    <p class="desc" style="max-width:none;margin-top:8px">ใช้ข้อมูล 10 เคสชุดเดียวกับที่พล็อต ROC curve ด้านบน (prevalence 50%)
+      ไล่ cutoff ทุกค่าเดิม แต่พล็อต <b>Recall (แกน x) vs Precision (แกน y)</b> แทน:</p>
+    <svg viewBox="0 0 480 460" width="100%" height="420" style="display:block;margin:12px auto;max-width:460px;background:var(--surface-2);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+      <line x1="60" y1="20" x2="60" y2="400" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="60" y1="400" x2="440" y2="400" stroke="var(--muted)" stroke-width="1.5"/>
+      <text x="10" y="24" font-size="11" fill="var(--muted)">1.00</text>
+      <text x="10" y="115" font-size="11" fill="var(--muted)">0.75</text>
+      <text x="10" y="210" font-size="11" fill="var(--muted)">0.50</text>
+      <text x="10" y="305" font-size="11" fill="var(--muted)">0.25</text>
+      <text x="10" y="404" font-size="11" fill="var(--muted)">0.00</text>
+      <text x="55" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">0.00</text>
+      <text x="150" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">0.25</text>
+      <text x="250" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">0.50</text>
+      <text x="345" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">0.75</text>
+      <text x="440" y="418" font-size="11" fill="var(--muted)" text-anchor="middle">1.00</text>
+      <text x="250" y="440" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">Recall (Sensitivity)</text>
+      <text x="-210" y="18" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700" transform="rotate(-90)">Precision (PPV)</text>
+      <line x1="60" y1="210" x2="440" y2="210" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="255" y="206" font-size="10.5" fill="var(--muted)">baseline = prevalence (50%)</text>
+      <path d="M 60,400 L 60,20 L 136,20 L 212,147 L 288,115 L 364,96 L 440,129 L 440,400 Z"
+        fill="var(--accent)" opacity="0.18" stroke="none"/>
+      <path d="M60,20 L136,20 L212,147 L288,115 L364,96 L440,129 L440,189 L440,210"
+        fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+      <circle cx="440" cy="210" r="4" fill="var(--accent)"/>
+      <circle cx="440" cy="189" r="4" fill="var(--accent)"/>
+      <circle cx="440" cy="129" r="4" fill="var(--accent)"/>
+      <circle cx="364" cy="96" r="4" fill="var(--accent)"/>
+      <circle cx="288" cy="115" r="4" fill="var(--accent)"/>
+      <circle cx="212" cy="147" r="4" fill="var(--accent)"/>
+      <circle cx="136" cy="20" r="4" fill="var(--accent)"/>
+      <circle cx="60" cy="20" r="4" fill="var(--accent)"/>
+      <text x="434" y="224" font-size="10.5" fill="var(--accent)" text-anchor="end" font-weight="700">≥0</text>
+      <text x="434" y="185" font-size="10.5" fill="var(--accent)" text-anchor="end" font-weight="700">≥1</text>
+      <text x="434" y="125" font-size="10.5" fill="var(--accent)" text-anchor="end" font-weight="700">≥3</text>
+      <text x="370" y="90" font-size="10.5" fill="var(--accent)" font-weight="700">≥4</text>
+      <text x="294" y="111" font-size="10.5" fill="var(--accent)" font-weight="700">≥6</text>
+      <text x="218" y="143" font-size="10.5" fill="var(--accent)" font-weight="700">≥7</text>
+      <text x="142" y="16" font-size="10.5" fill="var(--accent)" font-weight="700">≥10</text>
+      <text x="66" y="16" font-size="10.5" fill="var(--accent)" font-weight="700">&gt;10</text>
+    </svg>
+    <div class="interp-box" style="text-align:center">
+      <b style="font-size:15px">Area under PR curve (AUPRC) ≈ 0.81</b>
+    </div>
+    <div class="gloss-why">
+      <b>อ่านกราฟนี้ยังไง:</b> แต่ละจุดคือ cutoff เดียวกับกราฟ ROC ด้านบนเป๊ะ — สังเกตว่าที่ Recall=100% (cutoff ≥0, ≥1, ≥3)
+      มีจุดซ้อนกันเป็น<b>เส้นตั้งฉาก</b>ที่ Recall=1.0: ยิ่ง cutoff เข้มขึ้น (จาก ≥0→≥3) Precision ยิ่งดีขึ้น (0.50→0.556→0.714)
+      โดย Recall ไม่ลดเลย เพราะยังจับ TP ได้ครบ 5 คนเหมือนเดิม แค่ FP ลดลง — <b>นี่คือสิ่งที่ ROC curve มองไม่เห็น</b> (ROC ใช้
+      1−Specificity ไม่ใช่ Precision) ต่อจากนั้น Precision <b>ไม่ได้ไล่ขึ้นทางเดียว</b>ตาม cutoff เหมือน Sensitivity/Specificity —
+      จาก ≥4→≥6→≥7 Precision กลับ<b>ลดลง</b>ก่อน (0.80→0.75→0.667) แล้วค่อยดีดขึ้นเป็น 1.00 ที่ ≥10 — PR curve จึง<b>ไม่เรียบ/
+      ไม่นูนเหมือน ROC เสมอไป</b> เป็นเส้นหยักได้ตามธรรมชาติของ Precision
+    </div>
     <div class="warn-box">
       <div class="wt">⚠️ ข้อแตกต่างสำคัญจาก AUC(ROC): Baseline ของ AUPRC ไม่ใช่ 0.5</div>
       AUC(ROC) ของโมเดลที่ "เดาสุ่มล้วนๆ" (ไม่มีความสามารถแยกแยะเลย) จะได้ <b>0.5 เสมอ</b> ไม่ว่า prevalence จะเป็นเท่าไหร่
