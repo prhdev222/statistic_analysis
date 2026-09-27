@@ -495,6 +495,7 @@
       <button class="ts-btn small" id="tsDown" aria-label="ลดขนาดตัวอักษร">A</button>
       <button class="ts-btn ts-reset" id="tsReset" aria-label="ขนาดปกติ">100%</button>
       <button class="ts-btn big" id="tsUp" aria-label="เพิ่มขนาดตัวอักษร">A</button>
+      <button class="ts-btn" id="themeToggle" aria-label="สลับโหมดสี">🌙 Dark</button>
       <button class="ts-btn print-btn" id="printBtn" aria-label="พิมพ์หรือบันทึกเป็น PDF">🖨️ บันทึก PDF</button>
     </div>
     <span class="eyebrow">Bayesian Clinical Tutor · ภาษาไทย</span>
@@ -6626,6 +6627,28 @@ P-value = 0.042</pre>
   $('tsUp').addEventListener('click', () => { tsIdx = Math.min(TS_STEPS.length - 1, tsIdx + 1); applyTsIndex(tsIdx); });
   $('tsReset').addEventListener('click', () => { tsIdx = 1; applyTsIndex(tsIdx); });
   $('printBtn').addEventListener('click', () => { window.print(); });
+
+  // ---- dark/light theme toggle (persists per-browser via localStorage) ----
+  const THEME_ORDER = ['auto', 'light', 'dark'];
+  const THEME_LABEL = { auto: '🌓 Auto', light: '☀️ Light', dark: '🌙 Dark' };
+  function readTheme() {
+    try {
+      const saved = localStorage.getItem('bct_theme');
+      return THEME_ORDER.includes(saved) ? saved : 'auto';
+    } catch { return 'auto'; }
+  }
+  function applyTheme(theme) {
+    if (theme === 'auto') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', theme);
+    $('themeToggle').textContent = THEME_LABEL[theme];
+    try { localStorage.setItem('bct_theme', theme); } catch {}
+  }
+  let themeIdx = THEME_ORDER.indexOf(readTheme());
+  applyTheme(THEME_ORDER[themeIdx]);
+  $('themeToggle').addEventListener('click', () => {
+    themeIdx = (themeIdx + 1) % THEME_ORDER.length;
+    applyTheme(THEME_ORDER[themeIdx]);
+  });
 
   // ---- media tab: click-to-play YouTube embeds ----
   document.querySelectorAll('#mediaGrid .media-thumb-wrap').forEach(wrap => {
