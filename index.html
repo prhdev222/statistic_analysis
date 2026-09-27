@@ -648,6 +648,32 @@
       ของทุกเครื่องมือที่อธิบายไปด้านบน (Fork, d-separation, backdoor criterion) ล้วนมีไว้เพื่องานนี้งานเดียว
     </div>
 
+    <div class="gloss-item" style="margin-top:16px">
+      <div class="gloss-item-head"><h4>Confounding คือ "ความสัมพันธ์ปลอม" (Spurious Relation) ไม่ใช่ตัวเลขสถิติ</h4></div>
+      <p class="desc" style="max-width:none">
+        <b>ตัวอย่างคลาสสิก — ยอดขายไอศกรีมกับการจมน้ำ:</b> ข้อมูลจริงพบว่า "ยอดขายไอศกรีม" กับ "จำนวนคนจมน้ำ" มีความสัมพันธ์กันสูงมาก
+        (correlation สูง) แต่ไม่มีใครเชื่อว่า<b>กินไอศกรีมทำให้จมน้ำ</b> — เพราะทั้งสองตัวถูกขับเคลื่อนโดยตัวแปรกวนร่วมกันคือ
+        <b>"อุณหภูมิ/ฤดูกาล" (Temperature)</b>: อากาศร้อน → คนซื้อไอศกรีมเยอะขึ้น <b>และ</b> อากาศร้อน → คนไปว่ายน้ำเยอะขึ้น →
+        มีโอกาสจมน้ำเยอะขึ้น (Ice Cream ← Temperature → Drowning) ความสัมพันธ์ Ice Cream–Drowning ที่วัดได้จึงเป็น
+        <b>"เงา" ของ Temperature</b> ทั้งหมด ไม่ใช่ความสัมพันธ์เชิงเหตุ-ผลจริง
+      </p>
+      <div class="warn-box">
+        <div class="wt">⚠️ Confounding เป็นแนวคิดเชิงสาเหตุ (Causal) ล้วนๆ — นิยามด้วยภาษาสถิติอย่างเดียวไม่ได้</div>
+        ตัวเลข correlation, p-value, หรือ regression coefficient <b>บอกไม่ได้เองว่า</b>ความสัมพันธ์ที่เห็นเป็นของจริงหรือเป็นเงาของ
+        confounder — ต้องอาศัย<b>ความรู้เชิงเนื้อหา (domain knowledge)</b> มาวาด conceptual framework/DAG ก่อนเสมอ (ตามการ์ด
+        ด้านบนทั้งหมด) ถึงจะ "นิยาม" ได้ว่าตัวแปรไหนเป็นตัวแปรกวนที่ต้องควบคุม — นี่คือเหตุผลที่ Frequentist/สถิติเพียวๆ
+        (ที่ไม่มีกรอบเชิงเหตุ-ผลกำกับ) แก้ปัญหา confounding ให้ครบถ้วนเองไม่ได้
+      </div>
+      <div class="warn-box" style="margin-top:8px">
+        <div class="wt">⚠️ ML Trap — โมเดลทำนาย (Predictive Model) ก็ไม่รอดจาก Confounding</div>
+        การเพิ่ม feature เข้าไปใน predictive model แบบ "ใส่ทุกตัวที่มี" (throw in every available variable) อาจทำให้ค่าความแม่นยำ
+        ในการทำนาย (predictive power) <b>ดูดีขึ้น</b> ได้จริง แต่ถ้า feature นั้นเปิด <b>non-causal path</b> (เช่น เป็น collider หรือ
+        descendant ที่ไม่ควร adjust — ดูการ์ด d-separation ด้านบน) โมเดลจะ<b>ทำนายแม่นบนข้อมูลเดิม แต่ให้ค่าประมาณเชิงสาเหตุที่
+        เอนเอียง (causally biased estimate)</b> — ใช้ทำนาย (prediction) ได้ แต่เอาไปตีความเชิงสาเหตุ ("ตัวแปรนี้เป็นสาเหตุ") หรือ
+        เอาไปใช้ตัดสินใจเชิงนโยบาย/การรักษาไม่ได้ ต้องแยกให้ชัดว่ากำลังสร้างโมเดลเพื่อ<b>ทำนาย</b>หรือเพื่อ<b>อธิบายเชิงสาเหตุ</b>
+      </div>
+    </div>
+
     <h3 style="margin-top:18px;font-size:15px">รูปแบบสามเหลี่ยม Confounding (Confounding Triangle)</h3>
     <p class="desc" style="max-width:none">
       Confounding มักวาดเป็นรูปสามเหลี่ยม: ตัวแปรกวนอยู่ด้านบน มีลูกศรพุ่งลงไปหาทั้ง exposure และ outcome ด้านล่าง
