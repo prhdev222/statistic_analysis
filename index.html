@@ -1177,6 +1177,10 @@
     <div class="junction-formula" style="margin:8px auto;text-align:center;font-size:13px">
       P(Y | do(X=x)) = Σ<sub>z</sub> P(Y | X=x, Z=z) · P(Z=z)
     </div>
+    <p class="desc" style="max-width:none;text-align:center">
+      แมปกับตัวอย่างนิ่วไต: <b>X</b> = วิธีผ่าตัด/วิธีรักษา (A หรือ B), <b>Y</b> = ผลการรักษา (หายหรือไม่),
+      <b>Z</b> = ขนาดนิ่ว (confounder — เล็ก/ใหญ่)
+    </p>
     <p class="desc" style="max-width:none">
       แต่ตัวเลขในแต่ละ stratum เพียงอย่างเดียวยังตอบ "effect รวมของทั้งประชากร" ไม่ได้ (แต่ละ stratum มีขนาดไม่เท่ากัน และ
       สัดส่วนที่ได้ X=A vs X=B ในแต่ละ stratum ก็ไม่เท่ากันด้วย ตามที่เห็นในตาราง Simpson's Paradox) — ขั้นตอนที่ 2 คือเอา
