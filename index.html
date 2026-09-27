@@ -6863,6 +6863,153 @@ P-value = 0.042</pre>
       </div>
     </details>
   </section>
+
+  <section class="card">
+    <h2>โจทย์ Concept — 15 ข้อ (ไม่มีคำนวณ)</h2>
+    <p class="desc" style="max-width:none">ลองตอบเป็นคำพูดของตัวเองก่อนกดดูเฉลย — เฉลยตอบสั้นกระชับ ถ้าอยากอ่านละเอียด/ตัวอย่างเต็ม
+      ดูได้จากการ์ดเรื่องนั้นๆ ในแท็บอื่น</p>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 1.</b> ทำไมชุดตรวจที่มี Sensitivity 99% และ Specificity 99% ถึงยังมี PPV ต่ำได้ถ้าใช้คัดกรองโรคหายาก?</summary>
+      <div class="dsep-answer">
+        เพราะ PPV ขึ้นกับ prevalence ด้วย ไม่ใช่แค่ Se/Sp — เมื่อโรคหายากมาก (prevalence ต่ำ) คนไม่ป่วยมีจำนวนมากกว่าคนป่วยมหาศาล
+        แม้ Specificity สูงถึง 99% ก็ยังเกิด False Positive จำนวนมากในทางสัมบูรณ์ (1% ของคนจำนวนมาก) จนท่วมจำนวน True Positive
+        ที่แท้จริง (99% ของคนป่วยจำนวนน้อย) ทำให้ PPV ต่ำ
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 2.</b> Sensitivity/Specificity กับ PPV/NPV ต่างกันตรงไหน ในแง่ว่า "ขึ้นกับอะไร" และ "ตอบคำถามของใคร"?</summary>
+      <div class="dsep-answer">
+        Sensitivity/Specificity เป็นคุณสมบัติคงที่ของ<b>ตัวตรวจเอง</b> ไม่ขึ้นกับ prevalence — ใช้ตอนทำ validation study
+        ส่วน PPV/NPV ขึ้นกับ prevalence ของประชากรที่ใช้ตรวจด้วย — เป็นคำถามที่<b>คนไข้หน้างานจริง</b>ถามจริงๆ ("ผลบวกแล้วป่วยจริง
+        แค่ไหน") เพราะแพทย์รู้แค่ผลตรวจ ไม่รู้ว่าใครป่วยจริงล่วงหน้า
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 3.</b> ทำไมในกรอบ Frequentist เราจึง "ไม่มีวันยอมรับ H0" ได้จริง มีแต่ "ไม่ปฏิเสธ H0"?</summary>
+      <div class="dsep-answer">
+        เพราะถ้าเพิ่มขนาดตัวอย่าง (n) ไปเรื่อยๆ ไม่ว่าผลต่างจริงจะเล็กแค่ไหน (ตราบใดที่ไม่ใช่ศูนย์เป๊ะ) P-value ก็จะ significant
+        ได้เสมอในที่สุด — "ไม่ significant" ที่ n ปัจจุบันจึงแปลว่า "ยังไม่มีหลักฐานพอจะปฏิเสธ H0" เท่านั้น ไม่ใช่ "H0 เป็นจริงแน่นอน"
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 4.</b> Statistical significance กับ Clinical significance ต่างกันอย่างไร? ยกตัวอย่างประกอบ</summary>
+      <div class="dsep-answer">
+        Statistical significance (P&lt;0.05) บอกแค่ว่าผลต่างไม่น่าจะเกิดจากบังเอิญ — ไม่ได้บอกว่าผลต่างนั้น<b>ใหญ่พอจะเปลี่ยนการ
+        รักษาจริงหรือไม่</b> (Clinical significance) — ตัวอย่าง: trial ยามะเร็งตับอ่อนที่ทำให้ median survival ต่างกันแค่ ~10 วัน
+        แต่ P=0.038 (significant ทางสถิติ เพราะ n มากพอ) ก็ยังไม่ถือว่ามี clinical significance ในทางปฏิบัติ
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 5.</b> ทำไม Case-control design ถึงถือเป็นสัญญาณเตือน Spectrum Bias ในการศึกษาความแม่นยำของการวินิจฉัย/AI?</summary>
+      <div class="dsep-answer">
+        เพราะ case-control เลือก "case" (ยืนยันเป็นโรคแล้ว มักเป็นเคสรุนแรง/ชัดเจน) กับ "control" (ยืนยันปกติแล้ว มักสุขภาพดีมาก)
+        มาเปรียบเทียบ — ไม่ได้เอาผู้ป่วยที่มี "diagnostic dilemma" จริง (เคสกำกวม borderline) มาทดสอบเลย ทำให้ Se/Sp/AUC ที่รายงาน
+        ได้สูงเกินจริงเมื่อเทียบกับการใช้งานจริงในคลินิกที่มีเคสกำกวมปนอยู่เสมอ
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 6.</b> Verification Bias (Work-up Bias) คืออะไร และ Partial Verification ต่างจาก Differential Verification
+        อย่างไร?</summary>
+      <div class="dsep-answer">
+        Verification Bias เกิดเมื่อผลของ Index test มีอิทธิพลต่อการตัดสินใจว่าใครจะได้ตรวจ Reference Standard ต่อ —
+        <b>Partial Verification</b>: มีแค่บางส่วน (มักเฉพาะฝั่งผลบวก) ได้ verify ต่อ ส่วนที่เหลือไม่ได้ verify เลย (เช่น PIOPED
+        study) — <b>Differential Verification</b>: คนละกลุ่มได้ verify ด้วย Reference Standard คนละตัวกัน ไม่ใช่มาตรฐานเดียวกัน
+        ทุกคน
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 7.</b> ทำไม Randomization ถึงควบคุม confounder ได้ทั้งตัวที่รู้จักและไม่รู้จัก ในขณะที่การปรับด้วยสถิติ
+        (stratification/regression) ทำได้แค่ตัวที่รู้จักเท่านั้น?</summary>
+      <div class="dsep-answer">
+        Randomization สุ่มแจกจ่าย exposure ให้แต่ละกลุ่ม ทำให้ confounder (ไม่ว่าจะรู้จักหรือไม่) กระจายตัวเท่าๆ กันในทั้งสองกลุ่ม
+        โดยอัตโนมัติ — ส่วนการปรับด้วยสถิติ (Analysis-stage) ต้อง<b>ใส่ตัวแปรนั้นเข้าไปในโมเดล/ตารางจริงๆ</b> ซึ่งทำได้เฉพาะตัวแปร
+        ที่<b>วัดไว้แล้ว</b>เท่านั้น — ตัวแปรที่ไม่รู้จัก/ไม่ได้วัด ไม่มีทางใส่เข้าไปปรับได้เลย
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 8.</b> Confounder, Mediator, และ Collider ต่างกันตรงไหนในโครงสร้าง DAG? ทำไมห้าม adjust ตัวที่เป็น Collider?</summary>
+      <div class="dsep-answer">
+        <b>Confounder</b> (Fork, C←X, C→Y): เกิด<u>ก่อน</u> exposure ต้อง adjust — <b>Mediator</b> (Chain, X→M→Y): เกิด<u>หลัง</u>
+        exposure ห้าม adjust ถ้าอยากได้ total effect — <b>Collider</b> (X→C←Y): เป็น<u>ผลลัพธ์ร่วม</u>ของทั้งสองตัว ห้าม adjust
+        เพราะการ adjust (หรือ selection ตาม) collider จะ<b>สร้างความสัมพันธ์ปลอมขึ้นมาเอง</b>ระหว่าง X กับ Y (Berkson's bias)
+        ทั้งที่จริงๆ ไม่มีความสัมพันธ์กันเลย
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 9.</b> ทำไม Accuracy ถึงหลอกตาได้ง่ายเมื่อข้อมูล imbalanced (Accuracy Paradox) และทำไม F1-score ถึงช่วยแก้ปัญหานี้?</summary>
+      <div class="dsep-answer">
+        เมื่อ class negative มีเยอะกว่า class positive มาก โมเดลที่ทาย "negative" ทุกเคส (ไม่เรียนรู้อะไรเลย) ก็ยังได้ TN สูงมาก
+        จน Accuracy สูงลวงตาได้ — F1 แก้ปัญหานี้เพราะ<b>ไม่มี TN อยู่ในสูตรเลย</b> (F1=2TP/(2TP+FP+FN)) โมเดลขี้เกียจแบบนี้จะได้
+        F1=0% ทันที เพราะ TP=0
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 10.</b> AUROC กับ AUPRC ต่างกันตรงไหน โดยเฉพาะเรื่อง "โมเดลเดาสุ่ม" ควรได้คะแนนเท่าไหร่?</summary>
+      <div class="dsep-answer">
+        โมเดลเดาสุ่มล้วนๆ จะได้ <b>AUROC = 0.5 เสมอ</b> ไม่ว่า prevalence จะเป็นเท่าไหร่ (baseline คือเส้นทแยงมุมคงที่) แต่จะได้
+        <b>AUPRC = Prevalence ของ class positive เอง</b> ไม่ใช่ 0.5 — ดังนั้นห้ามเทียบ AUPRC ข้ามชุดข้อมูลที่ prevalence ต่างกัน
+        โดยตรง ต่างจาก AUROC ที่เทียบข้ามชุดข้อมูลได้ตรงไปตรงมากว่า
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 11.</b> Gold Standard กับ Reference Standard ต่างกันอย่างไร? ยกตัวอย่างที่สองอย่างนี้ไม่ใช่ตัวเดียวกัน</summary>
+      <div class="dsep-answer">
+        Gold Standard คือตัวที่แม่นที่สุดในทางทฤษฎี (อาจทำไม่ได้จริงในทางปฏิบัติ) Reference Standard คือตัวที่ดีที่สุดเท่าที่
+        <b>ทำได้จริง</b>ในการศึกษานั้น — ตัวอย่าง Alzheimer's: Gold standard ทางทฤษฎีคือ brain biopsy ดู amyloid deposition
+        (แทบไม่ทำจริงในผู้ป่วยที่ยังมีชีวิต) จึงใช้ Cognitive decline + Imaging เป็น Reference Standard แทน
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 12.</b> Likelihood Ratio (LR) บอกอะไรที่ Sensitivity/Specificity เพียงลำพังบอกไม่ได้?</summary>
+      <div class="dsep-answer">
+        LR บอก "impact" ของการตรวจโดยตรง — เป็นตัวคูณที่แปลง Pretest probability ของผู้ป่วยแต่ละคนไปเป็น Posttest probability
+        ได้ทันที (Posterior Odds = Prior Odds × LR) ส่วน Se/Sp บอกแค่ "คุณภาพ/performance" ของตัวตรวจโดยรวม ไม่ได้บอกตรงๆ ว่า
+        ถ้าเอาไปใช้กับคนไข้ตรงหน้า ความเชื่อจะเปลี่ยนไปเท่าไหร่
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 13.</b> ทำไม LR ถึง "ไม่ขึ้นกับ prevalence" ในขณะที่ PPV/NPV ขึ้นกับ prevalence?</summary>
+      <div class="dsep-answer">
+        LR+ = Se/(1−Sp) และ LR− = (1−Se)/Sp คำนวณจาก Sensitivity และ Specificity ล้วนๆ ซึ่งเป็นคุณสมบัติของตัวตรวจที่ไม่เปลี่ยน
+        ตาม prevalence — ส่วน PPV/NPV คำนวณจาก TP/FP หรือ TN/FN ที่ผสมทั้งคอลัมน์ Disease+ และ Disease− เข้าด้วยกัน ซึ่งสัดส่วน
+        ระหว่างสองคอลัมน์นี้เปลี่ยนไปตาม prevalence โดยตรง
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 14.</b> Test Threshold และ Treatment Threshold คืออะไร? ถ้า pretest probability ของผู้ป่วยอยู่ระหว่างสองเส้น
+        นี้ แปลว่าอะไร?</summary>
+      <div class="dsep-answer">
+        Test Threshold = จุดต่ำสุดที่ยังคุ้มค่าจะส่งตรวจเพิ่ม (ต่ำกว่านี้มั่นใจพอว่าไม่เป็นโรคแล้ว ไม่ต้องตรวจ) Treatment
+        Threshold = จุดสูงสุดที่ยังต้องตรวจเพิ่ม (สูงกว่านี้มั่นใจพอว่าเป็นโรคแล้ว รักษาได้เลยไม่ต้องตรวจเพิ่ม) — ถ้า pretest
+        probability อยู่<b>ระหว่าง</b>สองเส้นนี้ แปลว่าผู้ป่วยมี "diagnostic dilemma" จริง (ยังไม่แน่ใจพอจะหยุดหรือรักษา)
+        จำเป็นต้องตรวจเพิ่มเพื่อขยับความน่าจะเป็นให้ข้ามเส้นใดเส้นหนึ่ง
+      </div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>ข้อ 15.</b> ทำไมการยืนยันด้วย Reference Standard ต้อง "independent" และ "blind" จาก Index test เสมอ?
+        ถ้าไม่เป็นแบบนั้น เกิดอะไรขึ้น (เรียกว่า bias อะไร)</summary>
+      <div class="dsep-answer">
+        ถ้าคนอ่าน Reference Standard รู้ผล Index test มาก่อน อาจถูก "ชักจูง" ให้ตัดสินคล้อยตาม (<b>Review Bias</b>) ทำให้ agreement
+        ดูดีเกินจริงทั้งที่ไม่ใช่ความแม่นยำที่แท้จริง — และถ้า Reference Standard มี Index test เป็นส่วนประกอบอยู่ด้วย จะเกิด
+        <b>Circularity</b> (เอาคำตอบไปเทียบกับคำตอบตัวเองบางส่วน) ทำให้ performance ที่รายงานสูงเกินจริงเสมอ ไม่ว่ากรณีใด
+      </div>
+    </details>
+  </section>
   </div>
 
   <footer class="links">
