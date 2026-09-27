@@ -5922,6 +5922,34 @@ P-value = 0.042</pre>
       </div>
     </div>
 
+    <h3 style="margin-top:18px;font-size:15px">โจทย์ตัวอย่าง: คำนวณ AR, AR%, PAR และ PAR% จากข้อมูลชุดเดียวกัน</h3>
+    <p class="desc" style="max-width:none">Cohort study การสูบบุหรี่กับมะเร็งปอด: <b>Incidence ในกลุ่มสูบบุหรี่ = 150 ต่อ 100,000
+      person-years</b>, <b>Incidence ในกลุ่มไม่สูบบุหรี่ = 10 ต่อ 100,000 person-years</b>, <b>Prevalence ของการสูบบุหรี่ใน
+      ประชากร = 30%</b> — ลองคำนวณ RR, AR, AR%, PAR, PAR% เอง ก่อนกดดูเฉลย</p>
+    <details class="dsep-quiz">
+      <summary>กดดูเฉลย — คำนวณครบทั้ง 5 ค่า</summary>
+      <div class="dsep-answer">
+        <b>RR</b> = Risk(exposed)/Risk(unexposed) = 150/10 = <b>15</b> (คนสูบบุหรี่เสี่ยงมะเร็งปอดมากกว่าคนไม่สูบ 15 เท่า)<br><br>
+        <b>AR (Attributable Risk)</b> = Risk(exposed) − Risk(unexposed) = 150−10 = <b>140 ต่อ 100,000 person-years</b>
+        (ความเสี่ยงส่วนเกินที่เกิดจากบุหรี่ล้วนๆ <u>ในกลุ่มคนสูบบุหรี่</u>)<br><br>
+        <b>AR% (Attributable Fraction ในกลุ่มสัมผัส)</b> = AR / Risk(exposed) × 100% = 140/150 × 100% ≈ <b>93.3%</b> —
+        ในบรรดาคนสูบบุหรี่ที่เป็นมะเร็งปอด <b>93.3% ของเคสเกิดจากการสูบบุหรี่</b> (อีก 6.7% จะเป็นมะเร็งปอดอยู่แล้วแม้ไม่สูบ)<br><br>
+        <b>หา Incidence รวมทั้งประชากรก่อน (ต้องใช้ Pe):</b> Incidence(total) = Pe×Risk(exposed) + (1−Pe)×Risk(unexposed)
+        = 0.3×150 + 0.7×10 = 45+7 = <b>52 ต่อ 100,000 person-years</b><br><br>
+        <b>PAR (Population Attributable Risk)</b> = Incidence(total) − Incidence(unexposed) = 52−10 = <b>42 ต่อ 100,000
+        person-years</b> (ความเสี่ยงส่วนเกินที่เกิดจากบุหรี่ <u>ในระดับประชากรทั้งหมด</u> ไม่ใช่แค่กลุ่มคนสูบ)<br><br>
+        <b>PAR%</b> = PAR / Incidence(total) × 100% = 42/52 × 100% ≈ <b>80.8%</b><br>
+        <b>ตรวจคำตอบด้วยสูตรทางเลือก</b> (จาก RR และ Pe โดยตรง ไม่ต้องผ่าน Incidence(total)): PAR% = [Pe×(RR−1)] /
+        [Pe×(RR−1)+1] × 100% = [0.3×14] / [0.3×14+1] × 100% = 4.2/5.2 × 100% ≈ <b>80.8%</b> ✓ ตรงกัน
+      </div>
+    </details>
+    <div class="gloss-why">
+      <b>เทียบ AR% กับ PAR% ให้เห็นความต่างชัดๆ:</b> AR%=93.3% (สูงกว่ามาก) เพราะมองแค่<b>ในกลุ่มคนสูบบุหรี่เอง</b> — ถ้าเป็นคนสูบบุหรี่
+      แล้วเป็นมะเร็งปอด ส่วนใหญ่มาจากบุหรี่จริง — แต่ PAR%=80.8% (ต่ำกว่า) เพราะต้องคำนึงว่า<b>ไม่ใช่ทุกคนในประชากรสูบบุหรี่</b>
+      (Pe=30% เท่านั้น) ทำให้สัดส่วนที่กำจัดได้จริงในระดับประชากรลดลงมาบ้าง — ถ้า Pe สูงขึ้น (คนสูบบุหรี่เยอะขึ้น) PAR% จะขยับเข้าใกล้
+      AR% มากขึ้นเรื่อยๆ (ลองแทน Pe=100% ในสูตร PAR% จะได้ผลเท่ากับ AR% พอดี เพราะเท่ากับทั้งประชากรเป็นกลุ่มสัมผัสหมด)
+    </div>
+
     <h3 style="margin-top:18px;font-size:15px">Concept of Statistics — ภาพรวมก่อนแยก Descriptive กับ Inferential</h3>
     <svg viewBox="0 0 460 170" style="width:100%;height:auto;max-width:420px;display:block;margin:8px auto" xmlns="http://www.w3.org/2000/svg">
       <rect x="160" y="10" width="140" height="40" rx="6" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="1.5"/>
