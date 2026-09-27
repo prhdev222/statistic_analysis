@@ -2836,6 +2836,21 @@
         <svg viewBox="0 0 320 240" width="100%" height="240" id="treeSvg"></svg>
       </div>
     </div>
+    <div class="gloss-why">
+      <b>อ่านต้นไม้นี้ยังไง — เลข % แต่ละชั้น<u>ไม่ใช่</u> PPV/NPV โดยตรง:</b><br><br>
+      <b>ชั้นที่ 1 (จาก N ไป D+/D−):</b> คือ <b>Prevalence</b> ล้วนๆ — ไม่เกี่ยวกับความแม่นของชุดตรวจเลย<br>
+      <b>ชั้นที่ 2 (ใต้กิ่ง D+):</b> T+ = <b>Sensitivity</b>, T− = 1−Sensitivity<br>
+      <b>ชั้นที่ 2 (ใต้กิ่ง D−):</b> T+ = <b>1−Specificity</b> (false positive rate), T− = <b>Specificity</b><br><br>
+      <b>กล่องปลายกิ่งล่างสุด (TP/FN/FP/TN)</b> คือผลคูณสะสมตามเส้นทางที่เดินผ่านมา — เช่น กล่อง TP = Prevalence × Sensitivity —
+      นี่คือ<b>สัดส่วนเทียบกับประชากรทั้งหมด N</b> (ตรงกับสูตร Sens×Prev ในการ์ด "Bayes' Theorem" กลุ่ม E แท็บ "สรุปสูตรสถิติ")
+      ไม่ใช่ Sensitivity หรือ PPV ตรงๆ
+    </div>
+    <div class="interp-box">
+      <b>แล้วได้ PPV/NPV ตอนไหน:</b> ต้องหารกล่องปลายกิ่ง<b>ข้ามกิ่ง</b>อีกที (ไม่ใช่แค่อ่านตัวเลขบนต้นไม้ตรงๆ) —
+      <b>PPV = TP/(TP+FP)</b> (เอากล่อง TP หารด้วยผลรวม TP+FP ของทั้งสองกิ่ง T+) และ <b>NPV = TN/(TN+FN)</b> — พูดง่ายๆ:
+      ต้นไม้นี้ตอบคำถาม "รู้โรคแล้ว ทายผลตรวจได้ไหม" (Sensitivity/Specificity ทิศทางเดียว) แต่ PPV/NPV ตอบคำถาม<b>กลับทิศ</b>
+      "รู้ผลตรวจแล้ว ทายโรคได้ไหม" — ต้องผ่าน Bayes' Theorem (หารข้ามกิ่ง) เสมอ ไม่มีทางอ่านจากกิ่งเดียวตรงๆ ได้
+    </div>
   </section>
 
   <section class="card">
