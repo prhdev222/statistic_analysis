@@ -3197,6 +3197,29 @@
         โดยไม่ต้องมี alpha-spending function แบบที่ RCT ขนาดใหญ่ต้องใช้
       </div>
     </div>
+
+    <h3 style="margin-top:18px;font-size:15px">เครื่องมือ Opensource สำหรับคำนวณ Bayesian จริง (นอกเว็บนี้)</h3>
+    <p class="desc" style="max-width:none">
+      เครื่องคิดเลขในเว็บนี้ใช้สอนแนวคิดเท่านั้น — งานวิจัยจริงที่ต้องการ Bayes Factor แบบ composite hypothesis (การ์ด "Advanced"
+      ด้านบน) หรือ Bayesian model ที่ซับซ้อนกว่านั้น ต้องใช้ซอฟต์แวร์เฉพาะทาง ทั้งหมดนี้<b>ฟรีและ opensource</b>:
+    </p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>เครื่องมือ</th><th>ประเภท</th><th>ใช้ทำอะไร</th><th>เหมาะกับใคร</th></tr>
+        <tr><td><b>JASP</b></td><td>GUI (ไม่ต้องเขียนโค้ด)</td><td>Bayesian t-test/ANOVA/regression/contingency table — คำนวณ BF ให้ตรงๆ พร้อมกราฟ prior/posterior</td><td>คลินิกที่ไม่อยากเขียนโค้ด อยากได้ผลเร็ว — จุดเริ่มต้นที่แนะนำที่สุด</td></tr>
+        <tr><td><b>jamovi</b></td><td>GUI (ไม่ต้องเขียนโค้ด)</td><td>คล้าย JASP หน้าตาใกล้เคียง SPSS มี module Bayesian เสริมได้</td><td>ทางเลือกแทน JASP</td></tr>
+        <tr><td><b>R — BayesFactor</b></td><td>R package</td><td>คำนวณ BF สำหรับ t-test/ANOVA/regression/contingency table ตรงๆ (แพ็กเกจที่ JASP ใช้เป็นเครื่องยนต์เบื้องหลัง)</td><td>นักวิจัยที่ใช้ R อยู่แล้ว</td></tr>
+        <tr><td><b>R — brms / rstanarm</b></td><td>R package (ครอบ Stan)</td><td>Full Bayesian regression model ที่ซับซ้อนกว่า เช่น hierarchical/multilevel model, mixed model</td><td>โมเดลซับซ้อนเกินกว่า t-test/ANOVA ธรรมดา</td></tr>
+        <tr><td><b>Python — PyMC</b></td><td>Python library</td><td>Probabilistic programming เต็มรูปแบบ (MCMC/variational inference) สร้างโมเดล Bayesian อะไรก็ได้</td><td>Data scientist สาย Python ที่ต้องการความยืดหยุ่นสูงสุด</td></tr>
+        <tr><td><b>Python — Bambi</b></td><td>Python library (ครอบ PyMC)</td><td>เหมือน brms แต่อยู่ฝั่ง Python — syntax แบบสูตร (formula) เขียนโมเดลง่ายกว่า raw PyMC</td><td>ทางเลือกของ Python สำหรับ regression model แบบไม่ซับซ้อนเกินไป</td></tr>
+        <tr><td><b>Stan</b></td><td>Probabilistic programming language</td><td>เครื่องยนต์คำนวณเบื้องหลัง (HMC/NUTS sampler) ที่ brms/rstanarm/Bambi ใช้จริง — เขียนโมเดลเองได้ละเอียดสุด</td><td>ต้องการควบคุมโมเดลเองแบบเจาะลึก ไม่พึ่ง wrapper</td></tr>
+      </table>
+    </div>
+    <div class="interp-box">
+      <b>ลำดับแนะนำสำหรับคนเริ่มต้น:</b> เริ่มที่ <b>JASP</b> ก่อน (โหลดฟรี ไม่ต้องเขียนโค้ด ลองกด "Bayesian t-test" กับข้อมูล
+      ของตัวเองได้ทันที) — พอต้องการโมเดลซับซ้อนขึ้น (เช่น multilevel model สำหรับข้อมูล multi-center) ค่อยขยับไปเรียน R
+      (brms) หรือ Python (PyMC/Bambi) ตามภาษาที่ถนัดอยู่แล้ว
+    </div>
   </section>
 
   <section class="card">
