@@ -5807,6 +5807,41 @@ P-value = 0.042</pre>
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Common Misconception — "95% CI นี้ มีโอกาส 95% ที่ค่าจริงอยู่ในช่วงนี้" ผิด!</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <div class="warn-box">
+        <div class="wt">⚠️ ประโยคที่คนพูดผิดบ่อยที่สุด แม้แต่นักวิจัยมืออาชีพก็ยังพลาด (มี paper สำรวจยืนยันแล้ว)</div>
+        <b>"มีโอกาส 95% ที่ค่าพารามิเตอร์จริงจะอยู่ในช่วง CI นี้"</b> — ประโยคนี้ฟังดูเป็นธรรมชาติที่สุด แต่<b>ผิดหลักการ Frequentist</b>
+        โดยสิ้นเชิง — เหตุผล: Frequentist มองว่าค่าพารามิเตอร์จริง (เช่น μ) เป็น<b>ค่าคงที่ตายตัว (fixed)</b> ไม่ใช่ตัวแปรสุ่ม
+        (การ์ด "Frequentist vs Bayesian" ต้นแท็บนี้) — พอคำนวณ CI ออกมาเป็นช่วงตัวเลขหนึ่งแล้ว (เช่น 47-62) ค่าจริง<b>อยู่ในช่วงนี้
+        หรือไม่อยู่</b> ก็แค่นั้น ไม่มี "โอกาส/ความน่าจะเป็น" อะไรให้พูดถึงอีก เพราะความน่าจะเป็นแบบ Frequentist ใช้ได้กับ
+        <b>เหตุการณ์ที่ยังแปรผันได้เท่านั้น</b> — ค่าคงที่ตัวเดียวไม่มีทาง "แปรผัน" ได้
+      </div>
+      <div class="interp-box">
+        <b>คำอธิบายที่ถูกต้อง — ความมั่นใจ 95% อยู่ที่ "วิธีการ" ไม่ใช่ "ช่วงที่คำนวณได้ช่วงเดียว":</b> ถ้าสุ่มตัวอย่างซ้ำๆ กันเป็น
+        100 ครั้ง แล้วคำนวณ CI ใหม่ทุกครั้ง จะได้ CI ทั้งหมด 100 ช่วงที่ตัวเลขไม่เหมือนกันเลย — <b>ประมาณ 95 ช่วงจาก 100 ช่วงนี้
+        จะครอบคลุมค่าจริง</b> (อีก 5 ช่วงพลาด) — นี่คือคุณสมบัติ<b>ระยะยาวของวิธีการคำนวณ (long-run performance of the method)</b>
+        ไม่ใช่คุณสมบัติของ "ช่วงใดช่วงหนึ่ง" ที่คำนวณได้จากข้อมูลชุดเดียวที่มืออยู่ในมือ — พอคำนวณ CI ออกมาแล้ว 1 ช่วง มันได้"ตายตัว"
+        ไปแล้ว ไม่ใช่ 95% หรือ 5% อะไรทั้งนั้น (มันคือ 100% "ใช่" หรือ 100% "ไม่ใช่" ที่เราแค่ไม่รู้คำตอบ)
+      </div>
+      <h3 style="margin-top:14px;font-size:15px">เทียบกับ Bayesian — ทำไม Credible Interval พูดแบบนั้นได้จริง</h3>
+      <div class="table-scroll">
+        <table class="gloss-table">
+          <tr><th></th><th>Confidence Interval (Frequentist)</th><th>Credible Interval (Bayesian)</th></tr>
+          <tr><td>มองค่าพารามิเตอร์เป็น</td><td>ค่าคงที่ตายตัว (fixed) — ไม่มี distribution</td><td>ตัวแปรสุ่มที่มี distribution ของตัวเอง (posterior)</td></tr>
+          <tr><td>พูดว่า "95% probability ที่ค่าจริงอยู่ในช่วงนี้" ได้ไหม</td><td><b style="color:var(--warn)">ไม่ได้</b> — ผิดหลักการ</td><td><b style="color:var(--good)">ได้จริง</b> — ตรงตามนิยาม posterior probability</td></tr>
+          <tr><td>ความมั่นใจ 95% อยู่ที่ไหน</td><td>ที่ "วิธีการ" ถ้าทำซ้ำหลายครั้ง</td><td>ที่ "ช่วงนี้ช่วงเดียว" ให้ข้อมูลที่มีอยู่ตอนนี้ได้เลย</td></tr>
+          <tr><td>ข้อวิจารณ์</td><td>ตีความยาก/ขัดสามัญสำนึก จนคนพูดผิดกันเป็นปกติ</td><td>ขึ้นกับการเลือก prior distribution — ไม่ objective 100%</td></tr>
+        </table>
+      </div>
+      <div class="gloss-why">
+        <b>สรุปสั้นๆ:</b> ถ้าอยากพูดว่า "มีโอกาส X% ที่ค่าจริงอยู่ในช่วงนี้" ได้อย่างถูกต้องตามหลักคณิตศาสตร์ ต้องใช้ <b>Credible
+        Interval แบบ Bayesian</b> (การ์ด Prior→Posterior ในแท็บ Prior→Posterior) ไม่ใช่ Confidence Interval แบบ Frequentist —
+        สองอย่างนี้มักมีค่าตัวเลขใกล้เคียงกันในทางปฏิบัติ (โดยเฉพาะเมื่อใช้ prior แบบ non-informative) แต่<b>ความหมายทางปรัชญา
+        เบื้องหลังต่างกันโดยสิ้นเชิง</b> — Credible Interval แลกความชัดเจนในการตีความ กับการต้องเลือก prior distribution
+        ที่อาจไม่ objective เต็มร้อย (จุดที่ Frequentist วิจารณ์ Bayesian มาตลอด — การ์ด "Frequentist vs Bayesian" ต้นแท็บนี้)
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>Margin of Error — สูตรคำนวณ CI จริงๆ</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <div class="gloss-formula">Margin of Error = Reliability Coefficient × Standard Error<br>Interval Estimate = Point Estimate ± Margin of Error</div>
       <div class="gloss-why">
