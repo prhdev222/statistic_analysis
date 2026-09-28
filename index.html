@@ -6782,14 +6782,39 @@ P-value = 0.042</pre>
 
     <h3 style="margin-top:18px;font-size:15px">0.6) Measures of Disease Frequency — คำนวณเป็นตัวเลขแบบไหน (Count / Ratio / Proportion / Rate)</h3>
     <p class="desc" style="max-width:none">ก่อนจะพูดถึง Prevalence/Incidence ต้องรู้ก่อนว่าตัวเลขทางระบาดวิทยาทุกตัวจัดอยู่ใน 4 รูปแบบทางคณิตศาสตร์นี้ — สับสนกันบ่อยเพราะทุกแบบ "หน้าตา" เป็นเศษส่วนเหมือนกัน แต่ความหมายของตัวเศษ/ตัวส่วนต่างกันโดยสิ้นเชิง</p>
-    <div class="table-scroll">
-      <table class="gloss-table dsep-examples">
-        <tr><th>ประเภท</th><th>นิยาม</th><th>ตัวเศษเป็นส่วนหนึ่งของตัวส่วนไหม</th><th>ตัวอย่าง</th></tr>
-        <tr><td><b>Count</b></td><td>จำนวนนับดิบ ไม่มีตัวส่วนเลย</td><td>—</td><td>จำนวนผู้ป่วยมะเร็งปอดที่วินิจฉัยใหม่ปีนี้ = 120 คน</td></tr>
-        <tr><td><b>Ratio</b></td><td>เปรียบเทียบ 2 จำนวนที่อาจไม่เกี่ยวข้องกันเลยก็ได้</td><td>❌ ไม่ใช่ — ตัวเศษกับตัวส่วนเป็นคนละกลุ่มแยกจากกัน</td><td>สัดส่วนเพศชาย:หญิง = 3:2, Odds (a/b ในตาราง 2×2)</td></tr>
-        <tr><td><b>Proportion</b></td><td>ตัวเศษเป็นสมาชิกส่วนหนึ่งของตัวส่วน (part/whole) แสดงเป็นเศษส่วนหรือ % ค่าอยู่ระหว่าง 0-1 ไม่มีมิติเวลา</td><td>✅ ใช่ — ตัวเศษ ⊆ ตัวส่วน</td><td>Prevalence = ผู้ป่วยทั้งหมด / ประชากรทั้งหมด</td></tr>
-        <tr><td><b>Rate</b></td><td>คล้าย proportion แต่มี<b>มิติเวลา</b>เข้ามาเกี่ยวข้องเสมอ วัด "ความเร็ว" ที่เหตุการณ์เกิดขึ้นต่อหน่วยเวลา ตัวส่วนมักเป็น person-time</td><td>✅ ใช่ (แต่ตัวส่วนคือ person-<b>time</b> ไม่ใช่แค่จำนวนคนเฉยๆ)</td><td>Incidence Rate = ผู้ป่วยรายใหม่ / person-time ที่มีความเสี่ยง</td></tr>
-      </table>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>Count</h4><span class="block-badge maybe">ไม่มีตัวส่วน</span></div>
+      <div class="gloss-why">
+        <b>นิยาม:</b> จำนวนนับดิบ ไม่มีตัวส่วนเลย — ตัวเลขเดี่ยวๆ ล้วนๆ<br>
+        <b>ตัวอย่าง:</b> จำนวนผู้ป่วยมะเร็งปอดที่วินิจฉัยใหม่ปีนี้ = 120 คน
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Ratio</h4><span class="block-badge no">❌ ตัวเศษไม่ใช่ส่วนหนึ่งของตัวส่วน</span></div>
+      <div class="gloss-why">
+        <b>นิยาม:</b> เปรียบเทียบ 2 จำนวนที่อาจไม่เกี่ยวข้องกันเลยก็ได้ — ตัวเศษกับตัวส่วนเป็น<b>คนละกลุ่มแยกจากกัน</b><br>
+        <b>ตัวอย่าง:</b> สัดส่วนเพศชาย:หญิง = 3:2, Odds (a/b ในตาราง 2×2)
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Proportion</h4><span class="block-badge yes">✅ ตัวเศษ ⊆ ตัวส่วน</span></div>
+      <div class="gloss-why">
+        <b>นิยาม:</b> ตัวเศษเป็นสมาชิกส่วนหนึ่งของตัวส่วน (part/whole) แสดงเป็นเศษส่วนหรือ % ค่าอยู่ระหว่าง 0-1 <b>ไม่มีมิติเวลา</b><br>
+        <b>ตัวอย่าง:</b> Prevalence = ผู้ป่วยทั้งหมด / ประชากรทั้งหมด
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Rate</h4><span class="block-badge yes">✅ (ตัวส่วนคือ person-time)</span></div>
+      <div class="gloss-why">
+        <b>นิยาม:</b> คล้าย proportion แต่มี<b>มิติเวลา</b>เข้ามาเกี่ยวข้องเสมอ วัด "ความเร็ว" ที่เหตุการณ์เกิดขึ้นต่อหน่วยเวลา —
+        ตัวส่วนมักเป็น person-time ไม่ใช่แค่จำนวนคนเฉยๆ<br>
+        <b>ตัวอย่าง:</b> Incidence Rate = ผู้ป่วยรายใหม่ / person-time ที่มีความเสี่ยง
+      </div>
+    </div>
+    <div class="interp-box" style="margin-top:10px">
+      <b>สรุปเรียงลำดับความซับซ้อน:</b> Count (ตัวเลขดิบ) → Ratio (เทียบ 2 จำนวนที่แยกกัน) → Proportion (ตัวเศษเป็นส่วนหนึ่งของ
+      ตัวส่วน) → Rate (เหมือน Proportion แต่เพิ่มมิติเวลา) — Prevalence/Cumulative Incidence เป็น <b>Proportion</b>
+      ส่วน Incidence Rate เป็น <b>Rate</b> แท้ๆ (การ์ดด้านล่างอธิบายความแตกต่างนี้ต่อ)
     </div>
     <div class="interp-box">
       <b>เชื่อมกับการ์ดที่มีอยู่แล้ว:</b> <b>Prevalence</b> (กลุ่ม G ด้านบน) คือตัวอย่างของ
