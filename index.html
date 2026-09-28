@@ -6181,12 +6181,19 @@ P-value = 0.042</pre>
     </div>
 
     <h3 style="margin-top:18px;font-size:15px">Prevalence มี 2 แบบย่อย — Point Prevalence vs Period Prevalence</h3>
-    <div class="table-scroll">
-      <table class="gloss-table dsep-examples">
-        <tr><th>ประเภท</th><th>นิยาม</th><th>สูตร</th><th>ตัวอย่าง</th></tr>
-        <tr><td><b>Point Prevalence</b></td><td>สัดส่วนผู้ป่วย ณ <b>จุดเวลาเดียว</b> (snapshot) — นี่คือค่า "Prevalence" ที่ใช้ในสูตร PPV/NPV ของเครื่องคิดเลขวินิจฉัยในเว็บนี้ทั้งหมด</td><td>ผู้ป่วยทั้งหมด ณ เวลา t / ประชากรทั้งหมด ณ เวลา t</td><td>สัดส่วนผู้ป่วยเบาหวาน ณ วันที่ 1 มกราคม</td></tr>
-        <tr><td><b>Period Prevalence</b></td><td>สัดส่วนคนที่ "เคยป่วย" ในช่วงเวลาหนึ่ง — รวมทั้งเคสเก่าที่ยังป่วยต่อเนื่อง + เคสใหม่ที่เกิดระหว่างช่วง (แม้จะหายไปแล้วก่อนสิ้นช่วงก็นับ)</td><td>(Point Prevalence ต้นช่วง + Cumulative Incidence ระหว่างช่วง) / ประชากรกลุ่มเสี่ยงเฉลี่ยในช่วงนั้น</td><td>สัดส่วนคนที่ "เคยเป็นไข้หวัดใหญ่" ในช่วงเดือน ต.ค.-ธ.ค.</td></tr>
-      </table>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>Point Prevalence</h3>
+        <div class="compare-point"><b>นิยาม</b><span>สัดส่วนผู้ป่วย ณ <b>จุดเวลาเดียว</b> (snapshot) — นี่คือค่า "Prevalence" ที่ใช้ในสูตร PPV/NPV ของเครื่องคิดเลขวินิจฉัยในเว็บนี้ทั้งหมด</span></div>
+        <div class="compare-point"><b>สูตร</b><span>ผู้ป่วยทั้งหมด ณ เวลา t / ประชากรทั้งหมด ณ เวลา t</span></div>
+        <div class="compare-point"><b>ตัวอย่าง</b><span>สัดส่วนผู้ป่วยเบาหวาน ณ วันที่ 1 มกราคม</span></div>
+      </div>
+      <div class="compare-col bayes">
+        <h3>Period Prevalence</h3>
+        <div class="compare-point"><b>นิยาม</b><span>สัดส่วนคนที่ "เคยป่วย" ในช่วงเวลาหนึ่ง — รวมทั้งเคสเก่าที่ยังป่วยต่อเนื่อง + เคสใหม่ที่เกิดระหว่างช่วง (แม้จะหายไปแล้วก่อนสิ้นช่วงก็นับ)</span></div>
+        <div class="compare-point"><b>สูตร</b><span>(Point Prevalence ต้นช่วง + Cumulative Incidence ระหว่างช่วง) / ประชากรกลุ่มเสี่ยงเฉลี่ยในช่วงนั้น</span></div>
+        <div class="compare-point"><b>ตัวอย่าง</b><span>สัดส่วนคนที่ "เคยเป็นไข้หวัดใหญ่" ในช่วงเดือน ต.ค.-ธ.ค.</span></div>
+      </div>
     </div>
     <div class="interp-box">
       <b>เชื่อมกับโจทย์ตัวอย่างด้านล่าง:</b> ค่า "Prevalence ณ ต้นปี" และ "Prevalence ณ ปลายปี" ในโจทย์ด้านล่างทั้งคู่เป็น
