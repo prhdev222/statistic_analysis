@@ -7114,6 +7114,31 @@ P-value = 0.042</pre>
     </div>
     <p class="compare-note" style="text-align:center">Sensitivity/Specificity เป็นของ <b>TEST</b> — PPV/NPV/Accuracy เป็นของ <b>POPULATION</b></p>
 
+    <h3 style="margin-top:16px;font-size:14px">2b. สูตรแบบเดียวกัน แต่เขียนจาก Sens/Spec/Prev ล้วนๆ (ไม่ต้องมีตาราง 2×2)</h3>
+    <p class="desc" style="max-width:none">
+      บางโจทย์ให้แค่ Sensitivity, Specificity, Prevalence มา ไม่มีตัวเลข TP/FP/FN/TN ให้ — ใช้สูตรชุดนี้แทนได้เลย (P = Prevalence)
+    </p>
+    <div class="table-scroll">
+      <table class="gloss-table dsep-examples">
+        <tr><th>ค่า</th><th>สูตรจาก Sens/Spec/Prev</th></tr>
+        <tr><td>PPV</td><td>(Sens×P) / [Sens×P + (1−Spec)×(1−P)]</td></tr>
+        <tr><td>NPV</td><td>[Spec×(1−P)] / [Spec×(1−P) + (1−Sens)×P]</td></tr>
+        <tr><td>LR+</td><td>Sens / (1−Spec)</td></tr>
+        <tr><td>LR−</td><td>(1−Sens) / Spec</td></tr>
+        <tr><td>Accuracy</td><td>Sens×P + Spec×(1−P)</td></tr>
+        <tr><td>Prior Odds</td><td>P / (1−P)</td></tr>
+        <tr><td>Posterior Odds</td><td>Prior Odds × LR (ใช้ LR+ ถ้าผลบวก, LR− ถ้าผลลบ)</td></tr>
+        <tr><td>Posttest Probability</td><td>Posterior Odds / (1 + Posterior Odds)</td></tr>
+        <tr><td>DOR</td><td>(Sens×Spec) / [(1−Sens)×(1−Spec)] = LR+/LR−</td></tr>
+        <tr><td>Youden's J</td><td>Sens + Spec − 1</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>วิธีจำที่มาของ PPV/NPV:</b> ตัวเศษคือ "สัดส่วนที่ถูกต้องตรงตามผลตรวจ" (Sens×P สำหรับ PPV เพราะเป็นฝั่ง test บวก, Spec×(1−P)
+      สำหรับ NPV เพราะเป็นฝั่ง test ลบ) ส่วนตัวส่วนคือ<b>ผลรวมของทั้งสองทางที่จะได้ผลตรวจแบบนั้น</b> (ถูกจริง + ผิดพลาด) — ตรงกับ
+      Bayes' Theorem ฉบับเต็มในการ์ด "Bayes' Theorem" กลุ่ม E ทุกประการ (ดูที่มาแบบละเอียดพร้อมตัวอย่างตัวเลข 10,000 คนได้ที่นั่น)
+    </div>
+
     <h3 style="margin-top:16px;font-size:14px">3. ค่าวัดผลการรักษา/ปัจจัยเสี่ยง</h3>
     <div class="table-scroll">
       <table class="gloss-table dsep-examples">
