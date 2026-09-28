@@ -6257,6 +6257,70 @@ P-value = 0.042</pre>
         <tr style="font-weight:700"><td colspan="2">รวม Person-time ทั้งหมด</td><td>25.0 person-years</td></tr>
       </table>
     </div>
+    <p class="desc" style="max-width:none;margin-top:10px">
+      <b>ตารางเดียวกันข้างบน วาดเป็นกราฟเส้น person-time แบบคลาสสิก (แบบที่ตำราระบาดวิทยาใช้สอน) ได้แบบนี้</b> — แต่ละเส้นแทน
+      1 คน ความยาวเส้น = person-time ที่มีส่วนร่วม (ปี) จุดปลายเส้นบอกว่า "ออกจากการติดตามเพราะอะไร":
+    </p>
+    <svg viewBox="0 0 520 400" width="100%" height="380" style="display:block;margin:10px auto;max-width:520px;background:var(--surface-2);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow-censor" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--good)"/></marker>
+      </defs>
+      <g stroke="var(--line-soft)" stroke-width="1">
+        <line x1="70" y1="20" x2="70" y2="345"/><line x1="148" y1="20" x2="148" y2="345"/>
+        <line x1="226" y1="20" x2="226" y2="345"/><line x1="304" y1="20" x2="304" y2="345"/>
+        <line x1="382" y1="20" x2="382" y2="345"/><line x1="460" y1="20" x2="460" y2="345"/>
+      </g>
+      <line x1="70" y1="345" x2="460" y2="345" stroke="var(--muted)" stroke-width="1.5"/>
+      <g font-size="10.5" fill="var(--muted)" text-anchor="middle">
+        <text x="70" y="360">1990</text><text x="148" y="360">1991</text><text x="226" y="360">1992</text>
+        <text x="304" y="360">1993</text><text x="382" y="360">1994</text><text x="460" y="360">1995</text>
+      </g>
+      <g font-size="11" fill="var(--ink)" text-anchor="end" font-weight="600">
+        <text x="60" y="44">1</text><text x="60" y="70">2</text><text x="60" y="96">3</text><text x="60" y="122">4</text>
+        <text x="60" y="148">5</text><text x="60" y="174">6</text><text x="60" y="200">7</text><text x="60" y="226">8</text>
+        <text x="60" y="252">9</text><text x="60" y="278">10</text><text x="60" y="304">11</text><text x="60" y="330">12</text>
+      </g>
+      <g stroke="var(--accent)" stroke-width="2.5">
+        <line x1="70" y1="40" x2="265" y2="40"/><line x1="70" y1="66" x2="343" y2="66"/>
+        <line x1="109" y1="92" x2="226" y2="92"/><line x1="148" y1="118" x2="343" y2="118"/>
+        <line x1="148" y1="144" x2="460" y2="144"/><line x1="226" y1="170" x2="265" y2="170"/>
+        <line x1="70" y1="196" x2="109" y2="196"/><line x1="109" y1="222" x2="304" y2="222"/>
+        <line x1="187" y1="248" x2="382" y2="248"/><line x1="304" y1="274" x2="460" y2="274"/>
+        <line x1="226" y1="300" x2="343" y2="300"/><line x1="304" y1="326" x2="421" y2="326"/>
+      </g>
+      <g fill="var(--muted)">
+        <circle cx="70" cy="40" r="2.5"/><circle cx="70" cy="66" r="2.5"/><circle cx="109" cy="92" r="2.5"/>
+        <circle cx="148" cy="118" r="2.5"/><circle cx="148" cy="144" r="2.5"/><circle cx="226" cy="170" r="2.5"/>
+        <circle cx="70" cy="196" r="2.5"/><circle cx="109" cy="222" r="2.5"/><circle cx="187" cy="248" r="2.5"/>
+        <circle cx="304" cy="274" r="2.5"/><circle cx="226" cy="300" r="2.5"/><circle cx="304" cy="326" r="2.5"/>
+      </g>
+      <g fill="var(--warn)">
+        <circle cx="265" cy="40" r="4.5"/><circle cx="343" cy="66" r="4.5"/><circle cx="265" cy="170" r="4.5"/>
+        <circle cx="382" cy="248" r="4.5"/><circle cx="343" cy="300" r="4.5"/>
+      </g>
+      <g stroke="var(--ink)" stroke-width="2">
+        <line x1="222" y1="88" x2="230" y2="96"/><line x1="222" y1="96" x2="230" y2="88"/>
+        <line x1="339" y1="114" x2="347" y2="122"/><line x1="339" y1="122" x2="347" y2="114"/>
+      </g>
+      <g fill="var(--surface)" stroke="var(--muted)" stroke-width="2">
+        <circle cx="109" cy="196" r="4.5"/><circle cx="304" cy="222" r="4.5"/><circle cx="421" cy="326" r="4.5"/>
+      </g>
+      <line x1="460" y1="144" x2="472" y2="144" stroke="var(--good)" stroke-width="2.5" marker-end="url(#arrow-censor)"/>
+      <line x1="460" y1="274" x2="472" y2="274" stroke="var(--good)" stroke-width="2.5" marker-end="url(#arrow-censor)"/>
+      <g font-size="10" font-weight="700">
+        <circle cx="90" cy="380" r="4.5" fill="var(--warn)"/><text x="100" y="384" fill="var(--warn)">ป่วย</text>
+        <line x1="180" y1="376" x2="188" y2="384" stroke="var(--ink)" stroke-width="2"/><line x1="180" y1="384" x2="188" y2="376" stroke="var(--ink)" stroke-width="2"/>
+        <text x="195" y="384" fill="var(--ink)">เสียชีวิต</text>
+        <circle cx="280" cy="380" r="4.5" fill="var(--surface)" stroke="var(--muted)" stroke-width="2"/><text x="290" y="384" fill="var(--muted)">หลุดติดตาม</text>
+        <path d="M400,377 L400,383 L408,380 Z" fill="var(--good)"/><text x="415" y="384" fill="var(--good)">ครบระยะศึกษา</text>
+      </g>
+    </svg>
+    <div class="gloss-why">
+      <b>อ่านกราฟนี้ยังไง:</b> จุดเริ่มเส้น (●เล็กสีเทา) = เวลาที่แต่ละคนเข้าร่วมศึกษา (คนที่ 1,2,7 เข้าตั้งแต่ปี 1990 ส่วนคนที่ 10,12
+      เข้าช้าปี 1993) — ความยาวเส้นแนวนอนคือ person-time ที่คนนั้นมีส่วนร่วม ตรงกับตัวเลขในตารางด้านบนเป๊ะทุกคน — สังเกตว่าเส้น
+      <b>ยาวไม่เท่ากันเลย</b> และ<b>จุดสิ้นสุดกระจายอยู่ทั่วกราฟ ไม่ได้จบพร้อมกันที่ปี 1995</b> — นี่คือภาพที่อธิบายได้ตรงที่สุดว่าทำไม
+      "นับหัวคน" (Cumulative Incidence) ถึงไม่พอ ต้อง "รวมความยาวเส้นทั้งหมด" (person-time) แทน
+    </div>
     <details class="dsep-quiz">
       <summary>จาก cohort นี้: N=12 คนตอนเริ่ม, ป่วยใหม่ (disease) รวม 5 คน, person-time รวม 25 person-years — จงหาทั้ง Cumulative Incidence และ Incidence Rate (กดดูเฉลย)</summary>
       <div class="dsep-answer">
