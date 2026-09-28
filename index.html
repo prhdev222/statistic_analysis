@@ -3152,6 +3152,51 @@
       แข่งโดยตรง — นี่คือหนึ่งในเหตุผลหลักที่นักสถิติบางกลุ่มเสนอให้รายงาน BF ควบคู่กับ p-value เสมอ โดยเฉพาะในการศึกษาขนาดใหญ่มากๆ
       (เช่น registry-based RWD studies)
     </div>
+
+    <h3 style="margin-top:18px;font-size:15px">"Advanced" Bayes Factor — ของจริงซับซ้อนกว่าเครื่องคิดเลขด้านบนแค่ไหน</h3>
+    <p class="desc" style="max-width:none">
+      เครื่องคิดเลขด้านบนคือ BF แบบง่ายที่สุด (<b>simple vs simple hypothesis</b>) — ป้อน P(D|H1) กับ P(D|H0) เป็น<b>ตัวเลขเดี่ยว
+      ตายตัว</b>โดยตรง แต่ในงานวิจัยจริง สมมติฐานอย่าง "ยาตัวนี้มีผลจริง" ไม่ใช่ตัวเลขเดียว — effect size จริงอาจเป็น 5%, 10%,
+      หรือ 20% ก็ได้ (composite hypothesis) ทำให้การคำนวณ BF จริงซับซ้อนกว่านี้มาก
+    </p>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>1) ต้องหา Marginal Likelihood — เฉลี่ยถ่วงน้ำหนักทุก effect size ที่เป็นไปได้</h4></div>
+      <div class="gloss-formula">P(D | H1) = ∫ P(D | θ) × π(θ | H1) dθ</div>
+      <div class="gloss-why">
+        แทนที่จะใช้ค่าเดียว ต้อง<b>อินทิเกรต (ถัวเฉลี่ยถ่วงน้ำหนัก)</b> likelihood ของข้อมูลข้ามทุกค่า effect size (θ) ที่เป็นไปได้
+        ภายใต้ H1 โดยถ่วงน้ำหนักด้วย <b>prior distribution ของ θ</b> (π(θ|H1)) — นี่คือความแตกต่างหลักจาก LR ธรรมดาที่ใช้แค่
+        Sensitivity ตัวเดียว (point value) เพราะ H1="มีโรค" ไม่มี "ระดับความรุนแรง" ให้ต้องเฉลี่ย แต่ H1="ยามีผล" มีระดับ effect
+        ที่ไม่รู้แน่ชัดได้หลายค่า
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>2) BF ไวต่อการเลือก Prior Distribution — ไม่ได้ "ปราศจากอคติ" อย่างที่คิด</h4></div>
+      <div class="gloss-why">
+        เลือก π(θ|H1) กว้างหรือแคบ ก็ได้ BF ต่างกันได้มาก แม้ข้อมูล (D) ชุดเดียวกันเป๊ะ — เป็นจุดที่ถูกวิจารณ์บ่อยว่า BF
+        "ไม่ objective" เท่าที่คิด (สวนทางกับความเชื่อทั่วไปว่า Bayesian มีแต่ subjectivity ตรง prior เท่านั้น แต่จริงๆ BF
+        ก็มี subjectivity แฝงอยู่ในการเลือก prior ของ effect size เช่นกัน) — วิธีแก้ที่นิยมในทางปฏิบัติคือใช้
+        <b>Default/Objective Prior</b> ที่เป็นมาตรฐานยอมรับกันทั่วไป เช่น <b>Cauchy prior (JZS prior — Jeffreys-Zellner-Siow)</b>
+        ใน Bayesian t-test ของ Rouder et al. (2009) เพื่อลดความเป็นอัตวิสัยลง
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>3) Savage–Dickey Density Ratio — วิธีลัดคำนวณ BF สำหรับ Nested Model</h4></div>
+      <div class="gloss-why">
+        เมื่อ H0 เป็นกรณีพิเศษของ H1 (เช่น H0: effect=0 ซึ่งเป็นจุดหนึ่งบน H1: effect≠0) มีทางลัดไม่ต้องอินทิเกรตเต็มรูปแบบ:
+        BF₀₁ = [ความหนาแน่นของ posterior ที่จุด effect=0] / [ความหนาแน่นของ prior ที่จุด effect=0] — ใช้กันแพร่หลายในซอฟต์แวร์
+        Bayesian (เช่น JASP, R package "BayesFactor") เพราะคำนวณเร็วกว่าการอินทิเกรตตรงๆ มาก
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>4) Sequential Bayes Factor — ดูข้อมูลระหว่างทางได้ ไม่ต้องกลัว p-hacking</h4></div>
+      <div class="gloss-why">
+        ข้อได้เปรียบเชิงปฏิบัติอีกข้อ: Frequentist ต้องกำหนด sample size ล่วงหน้า (ดูข้อมูลกลางคันแล้วหยุด/ต่อ = p-hacking
+        ตามการ์ด P-value ด้านบน) แต่ BF <b>อัปเดตได้เรื่อยๆ ตามข้อมูลที่เข้ามาโดยไม่ต้องแก้ไข α</b> เพราะ Bayes' Theorem
+        การันตีว่า "Posterior Odds ที่คำนวณจากข้อมูลทั้งหมด" เท่ากับ "คูณ BF ของแต่ละก้อนข้อมูลต่อเนื่องกันไปเรื่อยๆ" (ตรรกะเดียวกับ
+        LR chain ในการ์ด Sequential Testing) — ทำให้ตรวจสอบข้อมูลระหว่างทาง (interim monitoring) ได้อย่างถูกต้องตามหลักสถิติ
+        โดยไม่ต้องมี alpha-spending function แบบที่ RCT ขนาดใหญ่ต้องใช้
+      </div>
+    </div>
   </section>
 
   <section class="card">
