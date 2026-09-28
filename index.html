@@ -3411,6 +3411,22 @@
         <p>จากโจทย์ COVID Rapid Test เดิม (ความชุก 0.1%, sensitivity 85%) ที่ได้ PPV แค่ 7.8% — ถ้าอยากได้ PPV อย่างน้อย 50%
         โดยไม่เปลี่ยน sensitivity ชุดตรวจต้องมี specificity อย่างน้อยเท่าไร?</p>
         <button class="load-btn" data-solve="spec" data-metric="ppv" data-target="50" data-prev="0.1" data-sens="85" data-spec="90">โหลดโจทย์นี้ →</button>
+        <details class="dsep-quiz" style="margin-top:10px">
+          <summary>ดูวิธีคำนวณ (กดดูเฉลย)</summary>
+          <div class="dsep-answer">
+            ตั้งต้นจากสูตร PPV แล้วแก้สมการหา (1−Spec):
+            <div class="gloss-formula" style="display:block;margin:8px 0">0.50 = (0.85 × 0.001) / [0.85 × 0.001 + (1−Spec) × (1−0.001)]</div>
+            แทนค่า Sens×Prev = 0.85×0.001 = 0.00085 ลงไปแล้วจัดรูปใหม่ (คูณไขว้):<br>
+            0.50 × [0.00085 + (1−Spec)×0.999] = 0.00085<br>
+            0.000425 + 0.4995×(1−Spec) = 0.00085<br>
+            (1−Spec) = (0.00085 − 0.000425) / 0.4995 = 0.000425 / 0.4995 ≈ 0.00085<br><br>
+            <b>Specificity ≥ 1 − 0.00085 ≈ 99.91%</b><br><br>
+            <b>ทำไมต้องสูงขนาดนี้:</b> เพราะ prevalence ต่ำมาก (0.1%) ทำให้ตัวส่วนของ PPV ถูกครอบงำโดยกลุ่ม "ไม่มีโรค" (99.9%
+            ของประชากร) เกือบทั้งหมด — แม้ specificity จะสูงถึง 90% (baseline) ก็ยังมี FP มากกว่า TP อยู่ดี ต้องผลักดัน specificity
+            ให้ใกล้ 100% แทบสมบูรณ์แบบ (99.91%) ถึงจะลด FP ให้พอกับ TP ที่มีน้อยมากอยู่แล้ว — นี่คือเหตุผลว่าทำไมการคัดกรองโรคที่
+            ความชุกต่ำมากๆ จึงยากมากที่จะได้ PPV สูง ต่อให้ sensitivity ดีแค่ไหนก็ตาม
+          </div>
+        </details>
       </div>
       <div class="problem-card">
         <h4>โจทย์ที่ 2 · ทำไมเพิ่ม sensitivity อย่างเดียวไม่พอ</h4>
@@ -3418,12 +3434,45 @@
         โดยไม่เปลี่ยน specificity การตรวจต้องมี sensitivity อย่างน้อยเท่าไร? (ลองเปลี่ยนเป้าหมายเป็น 15% ดูว่าเกิดอะไรขึ้น —
         จะเห็นว่าบางครั้งเพิ่ม sensitivity อย่างเดียวไปไม่ถึงเป้าหมายเลย ต้องพึ่ง specificity แทน)</p>
         <button class="load-btn" data-solve="sens" data-metric="ppv" data-target="8" data-prev="1" data-sens="80" data-spec="90">โหลดโจทย์นี้ →</button>
+        <details class="dsep-quiz" style="margin-top:10px">
+          <summary>ดูวิธีคำนวณ (กดดูเฉลย)</summary>
+          <div class="dsep-answer">
+            ตั้งต้นจากสูตร PPV แล้วแก้สมการหา Sens (Prev=0.01, Spec=0.90 คงที่):
+            <div class="gloss-formula" style="display:block;margin:8px 0">0.08 = (Sens × 0.01) / [Sens × 0.01 + 0.10 × 0.99]</div>
+            0.08 × [0.01×Sens + 0.099] = 0.01×Sens<br>
+            0.0008×Sens + 0.00792 = 0.01×Sens<br>
+            0.00792 = (0.01 − 0.0008)×Sens = 0.0092×Sens<br>
+            Sens = 0.00792 / 0.0092 ≈ 0.8609<br><br>
+            <b>Sensitivity ≥ 86.1%</b> (เพิ่มจาก 80% เดิมไม่มาก ก็ถึงเป้า PPV=8% ได้แล้ว)<br><br>
+            <b>แต่ถ้าเปลี่ยนเป้าหมายเป็น PPV=15%:</b> แทนค่าแบบเดียวกัน (0.15 แทน 0.08) จะได้ Sens ≈ 1.747 (174.7%) —
+            <b style="color:var(--warn)">เกิน 100% ซึ่งเป็นไปไม่ได้ในความจริง</b> — แปลว่า<b>ต่อให้ sensitivity=100% เต็ม
+            (ตรวจพบทุกเคสที่เป็นมะเร็งจริง) ก็ยังไปไม่ถึง PPV=15% ได้</b> ตราบใดที่ specificity ยังคงที่ 90% — พิสูจน์ว่าบางครั้ง
+            "เพิ่ม sensitivity อย่างเดียว" ไม่มีทางพอ ต้องเพิ่ม specificity ควบคู่ไปด้วยเสมอ
+          </div>
+        </details>
       </div>
       <div class="problem-card">
         <h4>โจทย์ที่ 3 · ทำไมต้องตรวจเฉพาะกลุ่มเสี่ยงสูง</h4>
         <p>จากโจทย์ตรวจคัดกรองโรคหายาก (sensitivity 99%, specificity 99.9% — แม่นยำมาก) ที่ได้ PPV แค่ 9% — ต้องใช้ในประชากรที่มี
         ความชุกอย่างน้อยเท่าไร จึงจะได้ PPV ถึง 50%? คำตอบนี้คือเหตุผลที่การตรวจคัดกรองโรคหายากควรทำเฉพาะกลุ่มเสี่ยงสูงเท่านั้น</p>
         <button class="load-btn" data-solve="prev" data-metric="ppv" data-target="50" data-prev="0.01" data-sens="99" data-spec="99.9">โหลดโจทย์นี้ →</button>
+        <details class="dsep-quiz" style="margin-top:10px">
+          <summary>ดูวิธีคำนวณ (กดดูเฉลย)</summary>
+          <div class="dsep-answer">
+            ตั้งต้นจากสูตร PPV แล้วแก้สมการหา Prev (Sens=0.99, Spec=0.999 คงที่):
+            <div class="gloss-formula" style="display:block;margin:8px 0">0.50 = (0.99 × Prev) / [0.99 × Prev + 0.001 × (1 − Prev)]</div>
+            0.50 × [0.99×Prev + 0.001 − 0.001×Prev] = 0.99×Prev<br>
+            0.495×Prev + 0.0005 − 0.0005×Prev = 0.99×Prev<br>
+            0.0005 = (0.99 − 0.495 + 0.0005)×Prev = 0.4955×Prev<br>
+            Prev = 0.0005 / 0.4955 ≈ 0.00101<br><br>
+            <b>Prevalence ≥ ประมาณ 0.10%</b> (เพิ่มขึ้นจาก 0.01% เดิม ประมาณ <b>10 เท่า</b>)<br><br>
+            <b>ทำไมแค่เพิ่ม prevalence 10 เท่าถึงพอ:</b> เพราะ PPV ไวต่อการเปลี่ยนแปลง prevalence<b>มากเป็นพิเศษ</b>เมื่อ
+            prevalence ยังต่ำมากอยู่ (การ์ด "กลไกที่แท้จริง — ทำไม prevalence เพิ่ม→PPV เพิ่ม" กลุ่ม B) — ต่อให้ sensitivity/
+            specificity สูงมากแค่ไหน (99%/99.9%) การตรวจในกลุ่มประชากรทั่วไปที่ความชุกต่ำเกินไป (0.01%) ก็ยังได้ PPV แย่อยู่ดี
+            (9%) — วิธีที่ได้ผลจริงคือ<b>คัดกรองเฉพาะกลุ่มเสี่ยงสูง</b> (มีอาการ/ปัจจัยเสี่ยง/ประวัติครอบครัว) ที่ pretest
+            probability สูงกว่าประชากรทั่วไปอยู่แล้วตามธรรมชาติ แทนที่จะพยายามปรับปรุงตัวชุดตรวจเพียงอย่างเดียว
+          </div>
+        </details>
       </div>
     </div>
   </section>
