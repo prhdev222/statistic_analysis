@@ -3273,6 +3273,28 @@
   </section>
 
   <section class="card">
+    <h2>โจทย์ตัวอย่าง — เปรียบเทียบ RRR vs ARR vs NNT vs NNH</h2>
+    <p class="desc">กดโหลดโจทย์แต่ละข้อ ตาราง 2×2 และคำอธิบายทั้งหมดในการ์ดด้านบนจะอัปเดตตามชุดข้อมูลใหม่ทันที (สังเกตค่า RRR ระหว่างโจทย์ที่ 1 กับ 2 ให้ดี)</p>
+    <div class="problem-list">
+      <div class="problem-card">
+        <h4>โจทย์ที่ 1 · ยาลดไขมัน ในคนไข้ความเสี่ยงสูง (Baseline risk สูง)</h4>
+        <p>RCT ติดตาม 12 เดือน: กลุ่มรักษา 200 คน เกิด event หัวใจวาย 10 คน กลุ่มควบคุม 200 คน เกิด 20 คน</p>
+        <button class="load-btn" data-rxa="10" data-rxb="190" data-rxc="20" data-rxd="180">โหลดโจทย์นี้ไปที่ตารางด้านบน →</button>
+      </div>
+      <div class="problem-card">
+        <h4>โจทย์ที่ 2 · ยาตัวเดียวกัน ในคนไข้ความเสี่ยงต่ำ (Baseline risk ต่ำ)</h4>
+        <p>ยาสูตรเดียวกัน RRR เท่าเดิม แต่ใช้ป้องกัน (primary prevention) ในคนไข้ความเสี่ยงต่ำ: กลุ่มรักษา 1,000 คน เกิด event 10 คน กลุ่มควบคุม 1,000 คน เกิด 20 คน</p>
+        <button class="load-btn" data-rxa="10" data-rxb="990" data-rxc="20" data-rxd="980">โหลดโจทย์นี้ไปที่ตารางด้านบน →</button>
+      </div>
+      <div class="problem-card">
+        <h4>โจทย์ที่ 3 · ยาตัวใหม่เพิ่มผลข้างเคียง (กรณี NNH)</h4>
+        <p>ยาตัวใหม่ช่วยรักษาได้ดี แต่เพิ่มความเสี่ยงเลือดออก: กลุ่มรักษา 100 คน มีเลือดออก 15 คน กลุ่มควบคุม 100 คน มีเลือดออก 5 คน</p>
+        <button class="load-btn" data-rxa="15" data-rxb="85" data-rxc="5" data-rxd="95">โหลดโจทย์นี้ไปที่ตารางด้านบน →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
     <h2>นำเข้าข้อมูล CSV → สร้างตาราง 2×2 อัตโนมัติ</h2>
     <p class="desc">
       อัปโหลดไฟล์ CSV ที่มีคอลัมน์กลุ่ม (treatment/exposure) และคอลัมน์ผลลัพธ์ (binary outcome) ระบบจะนับจำนวนแต่ละช่องให้อัตโนมัติ
@@ -4597,6 +4619,15 @@
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head"><h4>RRR (Relative Risk Reduction)</h4><span class="fw-tag freq">Frequentist</span></div>
+      <div class="gloss-formula">RRR = ARR / Risk(control) = 1 − RR</div>
+      <div class="gloss-why">
+        <b>ทำไมต้องหา:</b> แปลง ARR (percentage point ซึ่งขึ้นกับ baseline risk ของแต่ละกลุ่มประชากร) ให้เป็น<b>"เปอร์เซ็นต์การลด
+        ความเสี่ยงเทียบกับความเสี่ยงเดิม"</b> — ตัวเลขนี้มักถูกใช้โฆษณา/รายงานผลเพราะดู "น่าประทับใจ" กว่า ARR เสมอ (เช่น
+        Risk(control)=10%, Risk(treatment)=5% → ARR=5 percentage point แต่ RRR=50%) <b>ทั้งที่มาจากตัวเลขชุดเดียวกัน</b>
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>NNT (Number Needed to Treat)</h4><span class="fw-tag freq">Frequentist</span></div>
       <div class="gloss-formula">NNT = 1 / ARR</div>
       <div class="gloss-why">
@@ -4613,6 +4644,28 @@
         แปลง Excess Risk เป็น <b>จำนวนคนที่ต้องสัมผัสปัจจัยนั้น</b> ถึงจะเกิดอันตรายเพิ่มขึ้น 1 ราย (เช่น NNH=50 แปลว่าทุกๆ 50 คนที่ได้รับยา
         จะเกิดผลข้างเคียงร้ายแรงเพิ่มขึ้น 1 คนเทียบกับไม่ได้รับยา) — ใช้คู่กับ NNT เสมอเวลาชั่งน้ำหนักระหว่างประโยชน์กับความเสี่ยงของการรักษา
         (เช่น NNT ต่ำ + NNH สูง = การรักษาคุ้มค่า, NNT สูง + NNH ต่ำ = ต้องคิดหนักก่อนใช้)
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>เปรียบเทียบทั้ง 4 ตัว — RRR vs ARR vs NNT vs NNH</h4></div>
+      <div class="table-scroll">
+        <table class="gloss-table">
+          <tr><th></th><th>ARR</th><th>RRR</th><th>NNT</th><th>NNH</th></tr>
+          <tr><td>ตอบคำถาม</td><td>ลดความเสี่ยงกี่ percentage point</td><td>ลดความเสี่ยงกี่ % เทียบกับเดิม</td><td>ต้องรักษากี่คนถึงช่วยได้ 1 คน</td><td>ต้องสัมผัส/รักษากี่คนถึงเกิดอันตราย 1 คน</td></tr>
+          <tr><td>ขึ้นกับ baseline risk ไหม</td><td>ขึ้นกับ (percentage point เปลี่ยนตาม baseline)</td><td><b style="color:var(--warn)">ไม่ขึ้น</b> (เป็นสัดส่วนคงที่ได้แม้ baseline ต่างกัน)</td><td>ขึ้นกับ (มาจาก 1/ARR)</td><td>ขึ้นกับ (มาจาก 1/Excess Risk)</td></tr>
+          <tr><td>ทิศทางการใช้</td><td>การรักษาลดความเสี่ยง</td><td>การรักษาลดความเสี่ยง</td><td>ผลดี/ป้องกัน</td><td>ผลเสีย/อันตราย</td></tr>
+          <tr><td>ข้อควรระวัง</td><td>ตรงไปตรงมา ตีความง่าย</td><td><b style="color:var(--warn)">ดูน่าประทับใจเกินจริงได้</b> ถ้า baseline risk ต่ำ (RRR สูงได้แม้ ARR ต่ำมาก)</td><td>ยิ่งน้อยยิ่งคุ้มค่า</td><td>ยิ่งมากยิ่งปลอดภัย (ตรงข้ามกับ NNT)</td></tr>
+        </table>
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ กับดักคลาสสิก: RRR เท่ากัน แต่ ARR/NNT ต่างกันได้มหาศาล</div>
+        สองสถานการณ์นี้มี <b>RRR = 50% เท่ากันเป๊ะ</b> แต่ความหมายทางคลินิกต่างกันสุดขั้ว:<br><br>
+        <b>สถานการณ์ A:</b> Risk(control)=10%, Risk(treatment)=5% → ARR=5% → <b>NNT=20</b><br>
+        <b>สถานการณ์ B:</b> Risk(control)=2%, Risk(treatment)=1% → ARR=1% → <b>NNT=100</b><br><br>
+        ทั้งสองกรณีพูดได้ว่า "การรักษาลดความเสี่ยงลง 50%" (RRR) เท่ากันเป๊ะ — แต่สถานการณ์ A ต้องรักษาแค่ 20 คนก็ช่วยได้ 1 คน
+        ส่วนสถานการณ์ B ต้องรักษาถึง 100 คน — นี่คือเหตุผลที่ <b>งานวิจัย/โฆษณายาชอบรายงานแค่ RRR</b> (ตัวเลขเดียวกันคือ "ลด 50%"
+        ทุกครั้ง ฟังดูน่าประทับใจเสมอไม่ว่า baseline risk จะต่ำแค่ไหน) — ต้องถาม ARR และ NNT เพิ่มเสมอ ก่อนตัดสินใจว่าการรักษา
+        "คุ้มค่าจริง" แค่ไหนสำหรับคนไข้ตรงหน้า (ลองกดโจทย์ตัวอย่างด้านล่างในแท็บ "การรักษา + นำเข้า CSV" เพื่อดูตัวเลขจริง)
       </div>
     </div>
   </section>
@@ -8362,6 +8415,19 @@ P-value = 0.042</pre>
   });
   $('rxColEventLbl').textContent = 'Event + (ไม่พึงประสงค์)';
   computeRx();
+
+  document.querySelectorAll('.load-btn[data-rxa]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      outcomeType = 'adverse';
+      $('outcomeAdverse').classList.add('active'); $('outcomeBenefit').classList.remove('active');
+      $('rxColEventLbl').textContent = 'Event + (ไม่พึงประสงค์)';
+      $('rxA').value = btn.dataset.rxa; $('rxB').value = btn.dataset.rxb;
+      $('rxC').value = btn.dataset.rxc; $('rxD').value = btn.dataset.rxd;
+      computeRx();
+      const table = document.querySelector('.rx-table');
+      if (table) table.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
   // ---- Problem tutor: answer checking, hints, full solutions ----
   const PTUTOR_PROBLEMS = {
