@@ -295,6 +295,14 @@
   .block-badge.yes { background: var(--good-soft); color: var(--good); }
   .block-badge.no { background: var(--warn-soft); color: var(--warn); }
   .block-badge.maybe { background: var(--accent-soft); color: var(--accent); }
+  /* ---- test-selection flowchart (nested tree) ---- */
+  .flow-tree { margin: 10px 0 4px; font-size: 13px; }
+  .flow-node { border-left: 2px solid var(--line-soft); padding-left: 14px; margin-left: 7px; }
+  .flow-tree > .flow-node { border-left: none; margin-left: 0; padding-left: 0; }
+  .flow-q { font-weight: 700; color: var(--ink); margin: 10px 0 6px; }
+  .flow-q:first-child { margin-top: 0; }
+  .flow-branch-label { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 2px 9px; border-radius: 999px; margin: 6px 0 4px; }
+  .flow-test { display: inline-block; font-weight: 700; color: var(--good); background: var(--good-soft); padding: 5px 12px; border-radius: 8px; font-size: 12.5px; margin: 2px 0 8px; }
 
   /* ---- Pearl's causal hierarchy (ladder) ---- */
   .ladder { display: flex; flex-direction: column; gap: 4px; margin-top: 14px; }
@@ -5068,6 +5076,64 @@
       <div class="warn-box" style="margin-top:10px">
         ลำดับ 5 ข้อนี้ต้องตอบ<b>ก่อน</b>เห็นผลข้อมูล เช่นเดียวกับ Step 2/6 ของการ์ด "Steps of Hypothesis Testing" — การเลือก test
         <u>หลัง</u>เห็นผลแล้วเปลี่ยนไปเรื่อยๆ จนได้ p-value ที่ต้องการ ถือเป็นรูปแบบหนึ่งของ p-hacking เช่นเดียวกับการเลื่อน α ทีหลัง
+      </div>
+      <p class="desc" style="max-width:none;margin-top:14px">
+        <b>ตารางเดียวกันข้างบน เขียนเป็น flowchart ไล่ตอบทีละคำถามได้แบบนี้:</b>
+      </p>
+      <div class="flow-tree">
+        <div class="flow-node">
+          <div class="flow-q">Categorical Outcome</div>
+          <div class="flow-node">
+            <span class="flow-branch-label">Independent samples</span>
+            <div class="flow-node">
+              <div class="flow-q">ทุกช่อง Expected count ≥5?</div>
+              <div class="flow-node">
+                <span class="flow-branch-label">ใช่</span><br>
+                <span class="flow-test">Pearson's χ² test</span>
+              </div>
+              <div class="flow-node">
+                <span class="flow-branch-label">ไม่ใช่</span><br>
+                <span class="flow-test">Fisher's exact test</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-node">
+            <span class="flow-branch-label">Paired samples</span><br>
+            <span class="flow-test">McNemar's test</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-tree">
+        <div class="flow-node">
+          <div class="flow-q">Continuous Outcome</div>
+          <div class="flow-node">
+            <span class="flow-branch-label">Independent samples</span>
+            <div class="flow-node">
+              <div class="flow-q">2 groups</div>
+              <div class="flow-node">
+                <div class="flow-q">Normal distribution?</div>
+                <div class="flow-node"><span class="flow-branch-label">ใช่</span><br><span class="flow-test">Student's t-test</span></div>
+                <div class="flow-node"><span class="flow-branch-label">ไม่ใช่</span><br><span class="flow-test">Mann-Whitney U test</span></div>
+              </div>
+            </div>
+            <div class="flow-node">
+              <div class="flow-q">≥3 groups</div>
+              <div class="flow-node">
+                <div class="flow-q">Normal distribution?</div>
+                <div class="flow-node"><span class="flow-branch-label">ใช่</span><br><span class="flow-test">One-way ANOVA</span></div>
+                <div class="flow-node"><span class="flow-branch-label">ไม่ใช่</span><br><span class="flow-test">Kruskal-Wallis test</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="flow-node">
+            <span class="flow-branch-label">Paired samples (2 groups)</span>
+            <div class="flow-node">
+              <div class="flow-q">Normal distribution?</div>
+              <div class="flow-node"><span class="flow-branch-label">ใช่</span><br><span class="flow-test">Paired t-test</span></div>
+              <div class="flow-node"><span class="flow-branch-label">ไม่ใช่</span><br><span class="flow-test">Wilcoxon signed-rank test</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="gloss-item">
