@@ -546,6 +546,7 @@
     <button class="topic-btn" data-tab="examcram">สรุปก่อนสอบ</button>
     <button class="topic-btn" data-tab="media">Media</button>
     <button class="topic-btn" data-tab="exercises">📝 แบบฝึกหัด (15 ข้อ)</button>
+    <button class="topic-btn" data-tab="realpapers">📚 Paper จริง 5 เคส</button>
   </nav>
 
   <div class="tab-panel" data-tab="foundations">
@@ -8237,6 +8238,188 @@ P-value = 0.042</pre>
         ในการทดลอง non-inferiority trial — ต้องกำหนดไว้ล่วงหน้าจาก expert opinion + literature review เสมอ ไม่ใช่ตัวเลข
         สากลตายตัว</div>
     </details>
+  </section>
+  </div>
+
+  <div class="tab-panel" data-tab="realpapers" hidden>
+  <section class="card">
+    <h2>Paper จริง 5 เคส — จากคนไข้จริงถึง Paper จริง</h2>
+    <p class="desc" style="max-width:none">
+      เอาแนวคิดทั้งเว็บ (PICO, EBM 5A, Critical Appraisal, Sens/Spec/PPV/NPV/LR, RR/OR/ARR/NNT) มาใช้กับ <b>paper จริงที่ตีพิมพ์
+      แล้วมีคนอ้างอิงใช้จริงทางคลินิก</b> 5 เรื่อง ครอบคลุมทั้งการตรวจ (diagnostic), การเลือกยา (drug choice), และการผ่าตัด/
+      intervention — แต่ละเคสเริ่มจาก<b>สถานการณ์คนไข้จริง</b> → ตั้งคำถาม PICO → ค้นหา paper → วิจารณ์คุณภาพ → ตัวเลขจริง →
+      นำไปใช้ตัดสินใจ ตามขั้นตอน 5A ที่อธิบายไว้ในการ์ด "Evidence-Based Medicine" ด้านบน
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>1. Diagnostic — สงสัย Pulmonary Embolism ต้องส่ง CT ทุกคนไหม</h2>
+    <div class="interp-box">
+      <b>สถานการณ์คนไข้:</b> หญิง 45 ปี เจ็บแปลบชายปอด+เหนื่อยเล็กน้อย หลังนั่งเครื่องบินไกลๆ ตรวจร่างกาย HR 95 ไม่มีโรคอื่นที่
+      อธิบายอาการได้ชัดเจน — สงสัย Pulmonary Embolism (PE) แต่ CT Pulmonary Angiogram มีทั้งรังสีและ contrast ต้องส่งตรวจทุกคน
+      ที่สงสัยจริงหรือ?
+    </div>
+    <p class="desc" style="max-width:none"><b>PICO:</b> P = ผู้ป่วยสงสัย PE (diagnostic dilemma จริง) — I(test) = Wells score + D-dimer
+      — O = วินิจฉัย PE ได้แม่นยำ เทียบกับ reference standard (CT/V-Q scan + ติดตาม 3 เดือน)</p>
+    <p class="desc" style="max-width:none"><b>วิธีค้นหา:</b> PubMed/Google Scholar: <code>"Wells score" "D-dimer" pulmonary embolism validation cohort</code></p>
+    <p class="desc" style="max-width:none"><b>Paper:</b> "Safe exclusion of pulmonary embolism using the Wells rule and qualitative
+      D-dimer testing in primary care" — prospective cohort study (PMC3464185, ดูฉบับเต็มได้ที่
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3464185/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC3464185</a>)</p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>กลยุทธ์</th><th>Sensitivity</th><th>Specificity</th></tr>
+        <tr><td>Wells score ≤4 + D-dimer ลบ</td><td>94.5% (86.6–98.5)</td><td>51.0% (46.7–55.4)</td></tr>
+        <tr><td>Wells score &lt;2 + D-dimer ลบ</td><td>97.3% (90.5–99.7)</td><td>31.6% (27.7–35.8)</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>Appraisal checkpoint (การ์ด Diagnostic Test checklist ด้านบน):</b> กลุ่มตัวอย่างเป็นผู้ป่วย primary care ที่สงสัย PE จริง
+      (diagnostic dilemma ผ่าน) เทียบกับ reference standard ที่เหมาะสม (composite: imaging + follow-up 3 เดือน) — Sensitivity
+      สูงมาก (94.5%) แต่ Specificity ปานกลาง (51.0%) เท่านั้น<br><br>
+      <b>ลองคำนวณต่อด้วยสูตรของเว็บนี้:</b> กลุ่ม "Wells ≤4" มี pretest probability ของ PE ประมาณ 12.1% (Prevalence) — แทนค่าใน
+      สูตร PPV/NPV (การ์ด Bayes' Theorem กลุ่ม E): <b>NPV ≈ 98.5%</b> (มั่นใจได้สูงมากว่าผลลบ = ไม่เป็น PE จริง) แต่
+      <b>PPV ≈ 21%</b> เท่านั้น (ผลบวกยังไม่แม่นพอจะยืนยันโรค ต้องตรวจยืนยันต่อด้วย CT)
+    </div>
+    <div class="warn-box">
+      <b>นำไปใช้ตัดสินใจ:</b> นี่คือตัวอย่าง <b>SnNout</b> ชัดเจน (Sensitivity สูง+NPV สูง → เชื่อผลลบได้) — ถ้า Wells≤4 และ
+      D-dimer ลบ สามารถ<b>ตัด PE ออกได้อย่างมั่นใจโดยไม่ต้องส่ง CT</b> (ประหยัดรังสี/contrast/ค่าใช้จ่าย) แต่ถ้า D-dimer บวก
+      หรือ Wells สูง ต้องส่ง CT ต่อเสมอ เพราะ PPV ของกลยุทธ์นี้ต่ำเกินกว่าจะ "ยืนยัน" โรคได้ (ตรงกับหลัก SpPin ที่ต้องใช้ CT
+      เป็น confirmatory test แทน)
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. Diagnostic/Prognostic — ปอดบวม รับ Admit หรือกลับบ้านดี</h2>
+    <div class="interp-box">
+      <b>สถานการณ์คนไข้:</b> ชาย 70 ปี ไข้ ไอ หายใจเหนื่อย เดินมา ER เอง (ไม่ได้มาด้วยรถพยาบาล) วินิจฉัย Community-Acquired
+      Pneumonia (CAP) จาก CXR — จะ admit ทุกคนก็สิ้นเปลืองเตียง/เสี่ยงติดเชื้อในโรงพยาบาลเพิ่ม จะให้กลับบ้านทุกคนก็เสี่ยงถ้าจริงๆ
+      แล้วอาการหนัก — ตัดสินใจอย่างไรให้เป็นระบบ ไม่ใช่ใช้ความรู้สึก?
+    </div>
+    <p class="desc" style="max-width:none"><b>PICO:</b> P = ผู้ป่วย CAP ที่มา ER — I(test) = CURB-65 score — O = ทำนาย mortality
+      เพื่อช่วยตัดสินใจ admit/outpatient</p>
+    <p class="desc" style="max-width:none"><b>วิธีค้นหา:</b> <code>CURB-65 community acquired pneumonia severity score derivation validation</code></p>
+    <p class="desc" style="max-width:none"><b>Paper:</b> Lim WS, et al. "Defining community acquired pneumonia severity on
+      presentation to hospital: an international derivation and validation study." Thorax 2003;58:377-382</p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>CURB-65 Score</th><th>30-day Mortality</th><th>ข้อเสนอแนะ</th></tr>
+        <tr><td>0–1</td><td>1.5%</td><td>รักษาแบบผู้ป่วยนอก (outpatient)</td></tr>
+        <tr><td>2</td><td>9.2%</td><td>พิจารณา admit สังเกตอาการ</td></tr>
+        <tr><td>≥3</td><td>22%</td><td>Admit พิจารณา ICU ถ้าคะแนน 4–5</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>Appraisal checkpoint (การ์ด Prognosis checklist ด้านบน):</b> เป็น international derivation + validation study
+      (ทดสอบในหลายประชากร — ตรงกับ Bradford Hill criteria ข้อ Consistency) ใช้เกณฑ์ 5 ข้อคำนวณง่าย (Confusion, Urea, Respiratory
+      rate, Blood pressure, อายุ≥65) — คะแนนยิ่งสูง ยิ่งเสี่ยงตายมากขึ้นแบบ dose-response (Biological Gradient ตาม Bradford Hill)
+    </div>
+    <div class="interp-box">
+      <b>นำไปใช้ตัดสินใจ:</b> นี่คือตัวอย่าง <b>Test threshold / Treatment threshold (Pauker-Kassirer)</b> ที่อธิบายไว้ในการ์ด
+      "Diagnostic Test in Clinical Practice" ด้านบนพอดี — คะแนน 0-1 ต่ำกว่า test/treatment threshold มากพอจะ "ไม่ต้องกังวล"
+      (กลับบ้านได้) คะแนน≥3 สูงเกิน treatment threshold ไปแล้ว (admit ได้เลยไม่ต้องตรวจเพิ่ม) มีแค่คะแนน 2 เท่านั้นที่อยู่ใน
+      "โซนไม่แน่ใจ" ต้องอาศัยวิจารณญาณทางคลินิกเพิ่มเติมประกอบ
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3. Drug Choice — Acute MI ให้ยาอะไรก่อน</h2>
+    <div class="interp-box">
+      <b>สถานการณ์คนไข้:</b> ชาย 62 ปี เจ็บแน่นหน้าอกรุนแรงเฉียบพลัน ECG พบ ST elevation วินิจฉัย Acute MI — ควรให้ aspirin
+      อย่างเดียว, streptokinase (ยาละลายลิ่มเลือด) อย่างเดียว, หรือให้ทั้งคู่พร้อมกัน?
+    </div>
+    <p class="desc" style="max-width:none"><b>PICO:</b> P = ผู้ป่วย acute MI สงสัย — I = aspirin ± streptokinase — C = placebo —
+      O = 5-week vascular mortality</p>
+    <p class="desc" style="max-width:none"><b>วิธีค้นหา:</b> <code>ISIS-2 aspirin streptokinase acute myocardial infarction randomized trial</code></p>
+    <p class="desc" style="max-width:none"><b>Paper:</b> ISIS-2 (Second International Study of Infarct Survival) Collaborative
+      Group. Lancet 1988;2:349-360 (RCT ขนาดใหญ่ N≈17,000 คน,
+      <a href="https://pubmed.ncbi.nlm.nih.gov/2899772/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/2899772</a>)</p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>กลุ่มรักษา</th><th>Vascular Mortality (5 สัปดาห์)</th><th>เทียบกับ placebo</th></tr>
+        <tr><td>Aspirin อย่างเดียว</td><td>9.4%</td><td>vs 11.8% (placebo)</td></tr>
+        <tr><td>Streptokinase อย่างเดียว</td><td>9.2%</td><td>vs 12.0% (placebo)</td></tr>
+        <tr><td><b>Aspirin + Streptokinase</b></td><td><b>8.0%</b></td><td>vs <b>13.2%</b> (ไม่ได้ทั้งคู่)</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>ลองคำนวณ ARR/RR/NNT ด้วยสูตรของเว็บนี้ (การ์ดกลุ่ม C):</b><br>
+      Aspirin อย่างเดียว: ARR = 11.8−9.4 = 2.4pp, RR = 9.4/11.8 ≈ <b>0.80</b> (ลดความเสี่ยง 20%), NNT = 1/0.024 ≈ <b>42</b><br>
+      Aspirin+Streptokinase ร่วมกัน: ARR = 13.2−8.0 = 5.2pp, RR = 8.0/13.2 ≈ <b>0.61</b> (ลดความเสี่ยง 39%), NNT = 1/0.052 ≈ <b>19</b>
+    </div>
+    <div class="warn-box">
+      <b>นำไปใช้ตัดสินใจ:</b> NNT ของการให้ทั้งสองตัวร่วมกัน (≈19) ดีกว่าให้ตัวเดียว (≈42) เกือบ 2 เท่า — เป็นตัวอย่างคลาสสิกที่
+      แสดงว่า<b>ยา 2 ตัวที่กลไกต่างกัน (antiplatelet + fibrinolytic) ให้ผลเสริมกัน (additive effect)</b> ไม่ใช่แค่เลือกตัวใด
+      ตัวหนึ่ง — เป็นเหตุผลที่ Acute MI ปัจจุบันยังให้ aspirin ร่วมกับการรักษาอื่นเสมอ (เปลี่ยนจาก streptokinase มาเป็น PCI/
+      fibrinolytic ตัวใหม่ตามยุคสมัย แต่หลักการ combination therapy ยังคงเดิม)
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4. Drug Choice — คนไข้ "แข็งแรงดี" ต้องกินยาลดไขมันไหม</h2>
+    <div class="interp-box">
+      <b>สถานการณ์คนไข้:</b> หญิง 55 ปี ตรวจสุขภาพประจำปี ไม่มีโรคหัวใจมาก่อน LDL ไม่ได้สูงมาก (อยู่ในเกณฑ์ปกติ) แต่ตรวจ
+      hs-CRP (สารบ่งชี้การอักเสบ) พบว่าสูง (&gt;2 mg/L) — ควรเริ่มยาลดไขมัน (statin) ทั้งที่ LDL ไม่ได้สูงเลยหรือไม่?
+    </div>
+    <p class="desc" style="max-width:none"><b>PICO:</b> P = คนแข็งแรง LDL ปกติ แต่ hs-CRP สูง — I = rosuvastatin 20mg/วัน —
+      C = placebo — O = first major cardiovascular event</p>
+    <p class="desc" style="max-width:none"><b>วิธีค้นหา:</b> <code>rosuvastatin primary prevention elevated CRP randomized trial JUPITER</code></p>
+    <p class="desc" style="max-width:none"><b>Paper:</b> Ridker PM, et al. "Rosuvastatin to Prevent Vascular Events in Men and
+      Women with Elevated C-Reactive Protein" (JUPITER trial). N Engl J Med 2008;359:2195-2207 (RCT N≈17,800 คน,
+      <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa0807646" target="_blank" rel="noopener">nejm.org/doi/full/10.1056/NEJMoa0807646</a>)</p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>ผลลัพธ์</th><th>ค่า</th></tr>
+        <tr><td>Event rate (rosuvastatin)</td><td>0.77 ต่อ 100 person-years</td></tr>
+        <tr><td>Event rate (placebo)</td><td>1.36 ต่อ 100 person-years</td></tr>
+        <tr><td>Hazard Ratio (HR)</td><td>0.56 (95% CI 0.46–0.69)</td></tr>
+        <tr><td>NNT (รักษา 4 ปี)</td><td>31 คน</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>เชื่อมกับการ์ด Hazard Ratio (HR) กลุ่ม F:</b> HR=0.56 ต่างจาก RR ตรงที่คำนวณจาก <b>event rate ต่อ person-time</b>
+      (ต่อ 100 person-years) ไม่ใช่แค่สัดส่วนคนที่เกิด event เหมือน RR/OR ทั่วไป — เหมาะกับ RCT ที่ผู้ป่วยแต่ละคนอยู่ในการศึกษา
+      นานไม่เท่ากัน — ตีความคร่าวๆ ได้คล้าย RR: "ลดความเสี่ยงสัมพัทธ์ประมาณ 44%"
+    </div>
+    <div class="warn-box">
+      <b>นำไปใช้ตัดสินใจ:</b> นี่คือตัวอย่างที่ hs-CRP (ไม่ใช่ LDL) เป็นตัวบ่งชี้ที่ใช้เลือกคนไข้เข้าร่วมศึกษา — แสดงว่าการอักเสบ
+      (inflammation) มีบทบาทในโรคหลอดเลือดหัวใจ แยกจาก cholesterol โดยตรง — แต่ก่อนนำไปใช้จริงต้องดู <b>Applicability</b>
+      (การ์ด Critical Appraisal ด้านบน): คนไข้ของเราคล้ายกลุ่มตัวอย่างศึกษาไหม (สุขภาพดี ไม่มีโรคหัวใจ, hs-CRP สูงจริง) และ
+      NNT=31 คุ้มกับความเสี่ยง/ค่าใช้จ่ายระยะยาวของการกินยาทุกวันหรือไม่ ต้องคุยกับคนไข้ประกอบ (Patient Preference — เสาหลักที่ 3
+      ของ EBM)
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>5. Surgery/Intervention — ไส้ติ่งอักเสบ ต้องผ่าตัดเสมอไหม</h2>
+    <div class="interp-box">
+      <b>สถานการณ์คนไข้:</b> ชาย 30 ปี ปวดท้องขวาล่างเฉียบพลัน CT ยืนยัน acute appendicitis แบบ "ไม่ซับซ้อน" (uncomplicated —
+      ไม่มีการแตก/ฝีหนอง/appendicolith) — ต้องผ่าตัดเอาไส้ติ่งออกเสมอไหม หรือให้ยาปฏิชีวนะอย่างเดียวได้ผลพอกัน?
+    </div>
+    <p class="desc" style="max-width:none"><b>PICO:</b> P = uncomplicated acute appendicitis (ยืนยันด้วย CT) — I = antibiotics
+      อย่างเดียว — C = appendectomy (ผ่าตัด) — O = treatment success / complication rate</p>
+    <p class="desc" style="max-width:none"><b>วิธีค้นหา:</b> <code>antibiotics versus appendectomy uncomplicated appendicitis randomized trial APPAC</code></p>
+    <p class="desc" style="max-width:none"><b>Paper:</b> Salminen P, et al. "Antibiotic Therapy vs Appendectomy for Treatment
+      of Uncomplicated Acute Appendicitis" (APPAC trial). JAMA 2015;313(23):2340-2348 (RCT N=530 คน,
+      <a href="https://pubmed.ncbi.nlm.nih.gov/26080338/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/26080338</a>)</p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th></th><th>Appendectomy (ผ่าตัด)</th><th>Antibiotics อย่างเดียว</th></tr>
+        <tr><td>Treatment success</td><td>99.6% (แทบทุกคนหายขาดจากการผ่าครั้งเดียว)</td><td>72.7% ไม่ต้องผ่าตัดเลยใน 1 ปี (27.3% ต้องผ่าตัดตามหลัง)</td></tr>
+        <tr><td>Complication rate</td><td>24.4%</td><td>6.5%</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>ลองคำนวณด้วยสูตรของเว็บนี้:</b> Complication rate ลดจาก 24.4%→6.5% ถ้าเลือกให้ยาปฏิชีวนะก่อน → ARR = 24.4−6.5 = 17.9pp
+      → <b>NNT ≈ 6</b> (ให้ยาปฏิชีวนะแทนผ่าตัดทุก 6 คน ช่วยลดภาวะแทรกซ้อนได้ 1 ครั้ง) — แต่ต้องแลกกับ 27.3% ที่สุดท้ายต้องผ่าตัด
+      อยู่ดี (treatment failure)
+    </div>
+    <div class="warn-box">
+      <b>นำไปใช้ตัดสินใจ — ตัวอย่างที่ "ไม่มีคำตอบถูกทางเดียว" ต้องใช้ Shared Decision Making:</b> ผ่าตัดให้ผล
+      <b>แน่นอนกว่ามาก</b> (99.6%) แต่ complication สูงกว่า (24.4%, ส่วนใหญ่เป็นแผลผ่าตัด/การติดเชื้อผิวหนังไม่รุนแรง) —
+      ยาปฏิชีวนะหลีกเลี่ยงการผ่าตัดได้ ~73% ของคนไข้ complication น้อยกว่า แต่มีโอกาส treatment failure ต้องผ่าตัดตามหลังอยู่ดี
+      ~27% — <b>นี่คือตัวอย่างที่ Applicability + Patient Preference (EBM 3 เสาหลัก) สำคัญกว่า "ตัวเลขไหนดีกว่า" อย่างเดียว</b>
+      ต้องคุยกับคนไข้ว่าให้ความสำคัญกับอะไรมากกว่า (หลีกเลี่ยงผ่าตัด vs ความแน่นอนของผล) ก่อนตัดสินใจร่วมกัน
+    </div>
   </section>
   </div>
 
