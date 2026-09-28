@@ -3117,6 +3117,41 @@
       <tr data-lo="30" data-hi="100"><td>30 – 100</td><td>Very Strong / หนักแน่นมาก</td></tr>
       <tr data-lo="100" data-hi="999999"><td>&gt; 100</td><td>Decisive / ชี้ขาด</td></tr>
     </table>
+
+    <h3 style="margin-top:18px;font-size:15px">สัญลักษณ์ BF₁₀ vs BF₀₁ — ต้องดูให้ดีว่า paper เขียนแบบไหน</h3>
+    <p class="desc" style="max-width:none">
+      ในตำรา/paper มักเขียน BF พร้อม subscript บอกทิศทางให้ชัดเจน เพราะ "BF=5" เฉยๆ ยังบอกไม่ได้ว่าหลักฐานเข้าข้างฝั่งไหน:
+    </p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>สัญลักษณ์</th><th>สูตร</th><th>ความหมาย</th></tr>
+        <tr><td>BF₁₀</td><td>P(D|H1) / P(D|H0)</td><td>หลักฐานเข้าข้าง <b>H1</b> กี่เท่า — ตัวที่เครื่องคำนวณด้านบนแสดงผล</td></tr>
+        <tr><td>BF₀₁</td><td>P(D|H0) / P(D|H1) = 1/BF₁₀</td><td>หลักฐานเข้าข้าง <b>H0</b> กี่เท่า — ตัวกลับของ BF₁₀ เป๊ะ</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>ทำไมต้องระวัง:</b> BF₁₀=0.2 กับ BF₀₁=5 คือตัวเลขคนละตัวแต่<b>ความหมายเดียวกันเป๊ะ</b> (หลักฐานเข้าข้าง H0 มากกว่า H1
+      5 เท่า) — อ่าน paper ที่ไม่บอก subscript ชัดเจนต้องเดาจากบริบท (BF สูงกว่า 1 มากๆ มักหมายถึงเข้าข้างสมมติฐานที่ผู้เขียน
+      "สนใจพิสูจน์" ซึ่งมักคือ H1 แต่ไม่เสมอไป)
+    </div>
+
+    <h3 style="margin-top:18px;font-size:15px">ข้อได้เปรียบสำคัญของ BF ที่ p-value ทำไม่ได้: "พิสูจน์ว่าไม่ต่าง" ได้จริง</h3>
+    <div class="warn-box">
+      <div class="wt">⚠️ p-value ให้หลักฐาน "ค้าน H0" ได้อย่างเดียว — ไม่มีทางให้หลักฐาน "สนับสนุน H0" ได้เลย</div>
+      p-value สูง (ไม่ significant) แปลได้แค่ <b>"ข้อมูลไม่พอจะปฏิเสธ H0"</b> — ไม่เท่ากับ <b>"พิสูจน์แล้วว่า H0 จริง"</b>
+      (ย้ำในการ์ด P-value ด้านบนแล้ว: absence of evidence ≠ evidence of absence) แต่ <b>BF₀₁ ให้ตัวเลขหลักฐาน "สนับสนุน H0"
+      ได้จริง</b> (เช่น BF₀₁=8 = "หลักฐานเข้าข้างว่าไม่มีผลต่างจริง หนักแน่น 8 เท่า" ตาม Jeffreys' Scale) — นี่คือเหตุผลที่งานวิจัย
+      สาย <b>Non-inferiority/Equivalence</b> (การ์ดด้านบนในกลุ่ม D) และงานที่ต้องการ "ยืนยันว่าไม่มีผลข้างเคียง/ไม่มี drug
+      interaction" นิยมใช้ BF แทนหรือควบคู่กับ p-value
+    </div>
+    <div class="interp-box">
+      <b>Jeffreys–Lindley Paradox — จุดที่ p-value กับ BF ให้คำตอบขัดแย้งกันได้จริง:</b> เมื่อขนาดตัวอย่าง (N) ใหญ่มากๆ
+      เป็นไปได้ที่จะได้ <b>p-value &lt; 0.05 (significant ทางสถิติ) พร้อมๆ กับ BF₀₁ ที่บ่งชี้ว่าหลักฐานเข้าข้าง H0 มากกว่า</b>
+      — เกิดขึ้นเพราะ p-value ไม่ปรับตาม "ขนาด effect ที่ตรวจพบเทียบกับความสำคัญทางคลินิก" (ตรงกับการ์ด "P-value is not
+      Everything — Statistical ≠ Clinical Significance" ด้านบน) ในขณะที่ BF เปรียบเทียบ likelihood ของข้อมูลภายใต้สมมติฐานคู่
+      แข่งโดยตรง — นี่คือหนึ่งในเหตุผลหลักที่นักสถิติบางกลุ่มเสนอให้รายงาน BF ควบคู่กับ p-value เสมอ โดยเฉพาะในการศึกษาขนาดใหญ่มากๆ
+      (เช่น registry-based RWD studies)
+    </div>
   </section>
 
   <section class="card">
