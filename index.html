@@ -3314,6 +3314,15 @@
       (ชื่อ-สกุล, HN, เลขบัตรประชาชน, วันเกิดเต็ม) แนะนำให้ลบคอลัมน์เหล่านั้นออกก่อนอัปโหลด แม้จะไม่ออกจากเครื่องก็ตาม
     </div>
     <p class="desc" style="margin-top:14px">ยังไม่มีไฟล์ของตัวเอง? ลองโจทย์จำลอง 4 แบบนี้ก่อนได้ — กด "โหลดตัวอย่างนี้" แล้วระบบจะสร้างข้อมูลจำลอง สรุปเป็นตาราง 2×2 และคำนวณให้ดูทันที เหมือนมีไฟล์จริง</p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>โจทย์</th><th>ตัวเลขที่ได้</th><th>บทเรียนที่โจทย์นี้สอน</th></tr>
+        <tr><td>1. ยาแก้ปวด (RCT)</td><td>RR=1.75, RRR=75%, NNT≈4</td><td>outcome ("หายปวด") เป็นผลลัพธ์<b>พึงประสงค์</b> — ระบบสลับปุ่ม "Event = พึงประสงค์" ให้อัตโนมัติตอนโหลด เพื่อให้ ARR/NNT อ่านตรงความหมาย ไม่ใช่กลายเป็น NNH กลับด้าน</td></tr>
+        <tr><td>2. สูบบุหรี่ (Cohort)</td><td>RR=8.0, NNH≈6</td><td>ตัวอย่างปัจจัยเสี่ยงที่ผลชัดเจนมาก (RR สูงมาก) — เตือนว่า cohort เป็น observational ไม่ใช่ RCT จึงยังต้องระวัง confounding ก่อนสรุปเชิงสาเหตุเต็มที่</td></tr>
+        <tr><td>3. เทคนิคผ่าตัดใหม่ (Adverse)</td><td>RR=0.43, RRR=57%, NNT≈13</td><td>ตาราง 2×2 ตั้งค่าเริ่มต้นเป็น "Event = ไม่พึงประสงค์" อยู่แล้วพอดีกับโจทย์นี้ (ภาวะแทรกซ้อน) — ไม่ต้องสลับ toggle เลย อ่าน ARR/NNT ได้ทันที (ตัวเลขชุดนี้ตรงกับตัวอย่าง RR&lt;1 ในการ์ด RR กลุ่ม C ด้านบนเป๊ะ)</td></tr>
+        <tr><td>4. วัคซีน (Rare event)</td><td>RR=0.20 (Vaccine efficacy=80%), OR≈0.19</td><td>ทั้งสองกลุ่มมี event เกิดขึ้นไม่บ่อย (&lt;10%) → OR≈RR ใกล้เคียงกันมาก ตามหลัก "rare disease assumption" (การ์ด OR ด้านล่าง) — RR ตีความตรงไปตรงมากว่า จึงเลือกใช้เมื่อ design เป็น cohort/RCT ที่รู้ risk จริง</td></tr>
+      </table>
+    </div>
     <div class="problem-list" id="csvSampleList"></div>
 
     <div class="field" style="margin-top:18px">
@@ -8299,7 +8308,7 @@ P-value = 0.042</pre>
     {
       id: 'analgesic', title: 'โจทย์ที่ 1 · ยาแก้ปวดชนิดใหม่ (RCT)',
       desc: 'ทดลองยาแก้ปวดชนิดใหม่เทียบกับยาหลอกในผู้ป่วย 200 คน (สุ่มแบ่งกลุ่มละ 100 คน) วัดผลว่าอาการปวดหายภายใน 24 ชั่วโมงหรือไม่ ลองทายก่อนว่า RR และ NNT จะเป็นเท่าไร',
-      group1: 'ยาใหม่', group2: 'ยาหลอก', outYes: 'หายปวด', outNo: 'ไม่หาย', a: 70, b: 30, c: 40, d: 60,
+      group1: 'ยาใหม่', group2: 'ยาหลอก', outYes: 'หายปวด', outNo: 'ไม่หาย', a: 70, b: 30, c: 40, d: 60, outcomeType: 'benefit',
     },
     {
       id: 'smoking', title: 'โจทย์ที่ 2 · สูบบุหรี่กับมะเร็งปอด (Cohort)',
@@ -8352,6 +8361,7 @@ P-value = 0.042</pre>
       $('csvRefExp').value = s.group1;
       $('csvRefOut').value = s.outYes;
       $('csvBuildBtn').click();
+      $(s.outcomeType === 'benefit' ? 'outcomeBenefit' : 'outcomeAdverse').click();
       $('csvColsPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
