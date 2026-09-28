@@ -5589,6 +5589,42 @@ P-value = 0.042</pre>
         การแยกที่เห็นอาจเป็นแค่ noise จากคนไม่กี่คน ไม่ใช่ effect จริง
       </div>
       <p class="desc" style="max-width:none;margin:10px 0 4px">
+        <b>ตัวอย่างหน้าตาจริง (ตัวเลขสมมติ n=100 ต่อกลุ่ม เพื่อสาธิตวิธีอ่าน — ไม่ใช่ risk table จริงของ trial erlotinib ที่ยกตัวอย่างไว้
+        ด้านบน เพราะ paper ไม่ได้เปิดเผยตัวเลขนี้ครบทุกจุด):</b> เส้นโค้ง KM คู่กับ Risk Table วางใต้แกน x ตำแหน่งเดียวกันเป๊ะ
+        แบบที่เจอใน paper จริง
+      </p>
+      <svg viewBox="0 0 480 300" width="100%" height="270" style="display:block;margin:10px auto;max-width:460px;background:var(--surface-2);border-radius:8px" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="260" stroke="var(--muted)" stroke-width="1.5"/>
+        <line x1="60" y1="260" x2="440" y2="260" stroke="var(--muted)" stroke-width="1.5"/>
+        <text x="10" y="24" font-size="10.5" fill="var(--muted)">100%</text>
+        <text x="10" y="144" font-size="10.5" fill="var(--muted)">50%</text>
+        <text x="16" y="264" font-size="10.5" fill="var(--muted)">0%</text>
+        <text x="-160" y="16" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700" transform="rotate(-90)">Survival probability</text>
+        <text x="250" y="285" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">Time (months)</text>
+        <g font-size="10" fill="var(--muted)" text-anchor="middle">
+          <text x="60" y="274">0</text><text x="136" y="274">3</text><text x="212" y="274">6</text>
+          <text x="288" y="274">9</text><text x="364" y="274">12</text><text x="440" y="274">15</text>
+        </g>
+        <path d="M60,20 H136 V72.8 H212 V135.2 H288 V178.4 H364 V209.6 H440 V231.2" fill="none" stroke="var(--good)" stroke-width="2.5"/>
+        <path d="M60,20 H136 V92 H212 V159.2 H288 V202.4 H364 V228.8 H440 V245.6" fill="none" stroke="var(--warn)" stroke-width="2.5"/>
+        <text x="446" y="228" font-size="10.5" fill="var(--good)" font-weight="700">ยา A</text>
+        <text x="446" y="248" font-size="10.5" fill="var(--warn)" font-weight="700">ยา B</text>
+      </svg>
+      <div class="table-scroll">
+        <table class="gloss-table dsep-examples" style="min-width:420px">
+          <tr><th>Number at Risk</th><th>0</th><th>3</th><th>6</th><th>9</th><th>12</th><th>15</th></tr>
+          <tr><td style="color:var(--good)"><b>ยา A</b></td><td>100</td><td>78</td><td>52</td><td>34</td><td>21</td><td>12</td></tr>
+          <tr><td style="color:var(--warn)"><b>ยา B</b></td><td>100</td><td>70</td><td>42</td><td>24</td><td>13</td><td>6</td></tr>
+        </table>
+      </div>
+      <div class="interp-box">
+        <b>อ่านคู่กันยังไง:</b> ที่เดือนที่ 15 เส้นโค้งทั้งสองกลุ่มดู "ห่างกันมาก" บนกราฟ (ยา A ≈31% vs ยา B ≈14%) — แต่ Risk Table
+        บอกว่าตอนนั้นเหลือแค่ <b>12 คนกับ 6 คน</b> เท่านั้น (จาก 100 คนเริ่มต้น) ส่วนหางขวาสุดของกราฟจึงมีความไม่แน่นอนสูงมาก
+        (แค่ 1-2 คนที่ event/censor ต่างกัน ก็ทำให้เส้นขยับเห็นชัดได้) — ต่างจากช่วงต้น (เดือนที่ 3) ที่ยังเหลือคนเยอะ (78 vs 70)
+        การเปรียบเทียบตรงนั้นน่าเชื่อถือกว่ามาก — นี่คือเหตุผลที่ต้องเหลือบดู n ใน Risk Table ทุกครั้งก่อนตีความ "ช่องว่าง" ระหว่าง
+        เส้นโค้งช่วงปลายกราฟ
+      </div>
+      <p class="desc" style="max-width:none;margin:10px 0 4px">
         <b>เอาจุดเวลามาวิเคราะห์ได้ไหม?</b> ได้ — เรียกว่า <b>Landmark Analysis</b>: เลือกจุดเวลาที่สนใจ (เช่น 1 เดือนแรกหลังได้ยา,
         1 ปี) แล้วเทียบ survival probability ณ จุดนั้นระหว่างกลุ่ม เช่นตัวอย่าง erlotinib ด้านบน — <b>1-year survival: 23% (Erlotinib)
         vs 17% (Placebo)</b> ตอบคำถาม "รอดถึง 1 ปีมากกว่ากันแค่ไหน" ได้ตรงกว่า median คนเดียว และเทียบช่วงต้น (1 เดือนแรก) กับ
