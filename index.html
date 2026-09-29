@@ -4213,13 +4213,38 @@
       </div>
     </div>
 
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>4) LR ก็แบ่งบทบาทแบบเดียวกัน — LR− ↔ SnNout, LR+ ↔ SpPin</h4></div>
+      <div class="gloss-why">
+        คำถามที่พบบ่อย: "LR− เหมาะกับ screening เหมือน NPV ไหม แล้ว LR+ เหมาะกับ confirmation เหมือน PPV ไหม" —
+        <b>ใช่ ถูกต้อง</b> เพราะสูตรของ LR ทั้งสองตัวถูกขับเคลื่อนด้วยคนละค่ากันตั้งแต่ต้น:
+        <ul class="warn-list" style="margin-top:8px">
+          <li><b>LR− = (1−Sens)/Spec</b> — ตัวเศษเล็กเมื่อ <b>Sensitivity สูง</b> → LR− เข้าใกล้ 0 ได้ก็ต่อเมื่อ test มี Sens สูง
+            (test แบบ SnNout) เท่านั้น</li>
+          <li><b>LR+ = Sens/(1−Spec)</b> — ตัวส่วนเล็กเมื่อ <b>Specificity สูง</b> → LR+ สูงมากได้ก็ต่อเมื่อ test มี Spec สูง
+            (test แบบ SpPin) เท่านั้น</li>
+        </ul>
+        เพราะฉะนั้น: <b>screening test (Sens สูง, SnNout)</b> → ผลลบเป็นด้านที่ "ใช้งานได้จริง" → ดู <b>LR− ต่ำๆ</b>
+        (เช่น &lt;0.1) เพื่อ rule out ได้มั่นใจ ตรงบทบาทเดียวกับ NPV สูง<br>
+        <b>confirmatory test (Spec สูง, SpPin)</b> → ผลบวกเป็นด้านที่ "ใช้งานได้จริง" → ดู <b>LR+ สูงๆ</b> (เช่น &gt;10)
+        เพื่อ rule in ได้มั่นใจ ตรงบทบาทเดียวกับ PPV สูง
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ ข้อแตกต่างสำคัญที่ PPV/NPV ทำไม่ได้: LR ไม่ขึ้นกับ prevalence</div>
+        PPV/NPV ใช้ตอบคำถามนี้ได้ "ตรงๆ" ก็ต่อเมื่อ prevalence ของคนไข้ตรงหน้า = prevalence ของ study เท่านั้น (การ์ด
+        "เลือกดูค่าไหนดี" ด้านล่าง) — ถ้าไม่ตรง ต้องใช้ <b>LR− × Prior Odds</b> หรือ <b>LR+ × Prior Odds</b> ของคนไข้รายนั้นแทน
+        แล้วค่อยแปลงกลับเป็น posttest probability — บทบาท (screening↔ผลลบ, confirmation↔ผลบวก) เหมือนกันเป๊ะ แต่ LR
+        ใช้ได้กับคนไข้ทุก prevalence ส่วน PPV/NPV ใช้ได้ตรงๆ เฉพาะเมื่อ prevalence ตรงกับ study เท่านั้น
+      </div>
+    </div>
+
     <div class="interp-box">
       <b>สรุปเป็นตาราง:</b>
       <table class="gloss-table" style="margin-top:8px">
-        <tr><th>ขั้นตอน</th><th>ค่าที่ต้องดู</th><th>เป้าหมาย</th></tr>
-        <tr><td>เลือกชุดตรวจคัดกรอง</td><td>Sensitivity สูง</td><td>ไม่พลาดเคสจริง (SnNout)</td></tr>
-        <tr><td>เลือกชุดตรวจยืนยัน</td><td>Specificity สูง</td><td>ไม่วินิจฉัยผิดคนปกติ (SpPin)</td></tr>
-        <tr><td>แปลผลให้คนไข้รายหนึ่ง</td><td>PPV (ถ้าผลบวก) / NPV (ถ้าผลลบ)</td><td>บอกความน่าจะเป็นที่แท้จริงของคนไข้รายนั้น</td></tr>
+        <tr><th>ขั้นตอน</th><th>ค่าที่ต้องดู</th><th>เป้าหมาย</th><th>LR ที่สอดคล้อง</th></tr>
+        <tr><td>เลือกชุดตรวจคัดกรอง</td><td>Sensitivity สูง</td><td>ไม่พลาดเคสจริง (SnNout)</td><td>LR− ต่ำ (&lt;0.1 ยิ่งดี)</td></tr>
+        <tr><td>เลือกชุดตรวจยืนยัน</td><td>Specificity สูง</td><td>ไม่วินิจฉัยผิดคนปกติ (SpPin)</td><td>LR+ สูง (&gt;10 ยิ่งดี)</td></tr>
+        <tr><td>แปลผลให้คนไข้รายหนึ่ง</td><td>PPV (ถ้าผลบวก) / NPV (ถ้าผลลบ)</td><td>บอกความน่าจะเป็นที่แท้จริงของคนไข้รายนั้น</td><td>หรือใช้ LR×Prior Odds ถ้า prevalence ไม่ตรง study</td></tr>
       </table>
     </div>
   </section>
@@ -8129,6 +8154,68 @@ P-value = 0.042</pre>
       <text x="495" y="296" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">ของคนไข้เอง</text>
       <text x="495" y="314" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">→ Posterior Probability</text>
     </svg>
+
+    <h3 style="margin-top:16px;font-size:14px">5b. DOR vs LR+/LR− — ใช้ตัวไหนเมื่อไหร่</h3>
+    <svg viewBox="0 0 740 500" width="100%" height="460" style="display:block;margin:10px auto;max-width:680px" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrowhead-dorlr" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,8 L4,0 L8,8 Z" fill="var(--accent)"/></marker></defs>
+      <rect x="175" y="10" width="350" height="50" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="350" y="32" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">มี Sensitivity/Specificity ของ test</text>
+      <text x="350" y="48" font-size="11" fill="var(--muted)" text-anchor="middle">อยู่ในมือแล้ว</text>
+      <line x1="350" y1="60" x2="350" y2="82" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-dorlr)"/>
+      <rect x="70" y="85" width="560" height="55" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="350" y="107" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">จะเอาตัวเลขนี้ไปทำอะไรต่อ?</text>
+      <text x="350" y="125" font-size="11" fill="var(--muted)" text-anchor="middle">(สรุปภาพรวม vs ตัดสินใจรายคนไข้)</text>
+      <line x1="350" y1="140" x2="350" y2="155" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="185" y1="155" x2="520" y2="155" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="185" y1="155" x2="185" y2="178" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-dorlr)"/>
+      <line x1="520" y1="155" x2="520" y2="178" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-dorlr)"/>
+      <text x="185" y="195" font-size="12" fill="var(--accent)" text-anchor="middle" font-weight="700">เปรียบเทียบ/สรุปภาพรวม</text>
+      <text x="185" y="210" font-size="10" fill="var(--muted)" text-anchor="middle">(ข้าม test/study, meta-analysis)</text>
+      <text x="520" y="195" font-size="12" fill="var(--accent)" text-anchor="middle" font-weight="700">ตัดสินใจกับคนไข้รายหนึ่ง</text>
+      <text x="520" y="210" font-size="10" fill="var(--muted)" text-anchor="middle">(pretest → posttest probability)</text>
+      <line x1="185" y1="218" x2="185" y2="240" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-dorlr)"/>
+      <line x1="520" y1="218" x2="520" y2="240" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-dorlr)"/>
+      <rect x="60" y="243" width="250" height="105" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="185" y="266" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">ใช้ DOR</text>
+      <text x="185" y="283" font-size="10.5" fill="var(--good)" text-anchor="middle">(Diagnostic Odds Ratio)</text>
+      <text x="185" y="299" font-size="10.5" fill="var(--good)" text-anchor="middle">สรุป Se+Sp เป็นค่าเดียว</text>
+      <text x="185" y="314" font-size="9.5" fill="var(--muted)" text-anchor="middle">เปรียบเทียบ test ข้าม study /</text>
+      <text x="185" y="327" font-size="9.5" fill="var(--muted)" text-anchor="middle">meta-analysis (SROC curve)</text>
+      <text x="185" y="341" font-size="9.5" fill="var(--warn)" text-anchor="middle" font-weight="700">ห้ามใช้ตัดสินใจรายคนไข้!</text>
+      <rect x="390" y="243" width="260" height="55" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="520" y="266" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">ผลตรวจของคนไข้รายนี้</text>
+      <text x="520" y="283" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">ออกมาเป็นบวกหรือลบ?</text>
+      <line x1="520" y1="298" x2="520" y2="313" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="420" y1="313" x2="620" y2="313" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="420" y1="313" x2="420" y2="335" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-dorlr)"/>
+      <line x1="620" y1="313" x2="620" y2="335" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-dorlr)"/>
+      <text x="420" y="352" font-size="12" fill="var(--accent)" text-anchor="middle" font-weight="700">ผลบวก</text>
+      <text x="620" y="352" font-size="12" fill="var(--accent)" text-anchor="middle" font-weight="700">ผลลบ</text>
+      <line x1="420" y1="360" x2="420" y2="382" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-dorlr)"/>
+      <line x1="620" y1="360" x2="620" y2="382" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-dorlr)"/>
+      <rect x="325" y="385" width="190" height="95" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="420" y="408" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">ใช้ LR+</text>
+      <text x="420" y="424" font-size="10" fill="var(--good)" text-anchor="middle">Sens / (1−Spec)</text>
+      <text x="420" y="440" font-size="9.5" fill="var(--muted)" text-anchor="middle">rule IN — คู่กับ Specificity</text>
+      <text x="420" y="453" font-size="9.5" fill="var(--muted)" text-anchor="middle">(SpPin, confirmatory test)</text>
+      <text x="420" y="468" font-size="9.5" fill="var(--muted)" text-anchor="middle">ยิ่งมาก ยิ่งมั่นใจ (&gt;10 ดีมาก)</text>
+      <rect x="525" y="385" width="190" height="95" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="620" y="408" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">ใช้ LR−</text>
+      <text x="620" y="424" font-size="10" fill="var(--good)" text-anchor="middle">(1−Sens) / Spec</text>
+      <text x="620" y="440" font-size="9.5" fill="var(--muted)" text-anchor="middle">rule OUT — คู่กับ Sensitivity</text>
+      <text x="620" y="453" font-size="9.5" fill="var(--muted)" text-anchor="middle">(SnNout, screening test)</text>
+      <text x="620" y="468" font-size="9.5" fill="var(--muted)" text-anchor="middle">ยิ่งน้อย ยิ่งมั่นใจ (&lt;0.1 ดีมาก)</text>
+    </svg>
+    <div class="compare-row" style="margin-top:-4px;gap:14px">
+      <div style="flex:1 1 250px;text-align:center">
+        <div style="font-size:15px;color:var(--good);line-height:1">↓</div>
+        <a href="#" class="term-link" data-tab="glossary" data-target="dorCard" style="display:inline-flex;margin-top:2px">🔗 รายละเอียด DOR + ตัวอย่างที่ DOR เท่ากันแต่ test คนละแบบ</a>
+      </div>
+      <div style="flex:1 1 300px;text-align:center">
+        <div style="font-size:15px;color:var(--good);line-height:1">↓</div>
+        <a href="#" class="term-link" data-tab="posterior" data-target="faganCard" style="display:inline-flex;margin-top:2px">🔗 คำนวณ LR×Prior จริง — Fagan's Nomogram</a>
+      </div>
+    </div>
 
     <h3 style="margin-top:16px;font-size:14px">6. Confounding &amp; DAG — Block หรือไม่ Block?</h3>
     <div class="table-scroll">
