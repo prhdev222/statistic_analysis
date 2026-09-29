@@ -554,7 +554,7 @@
     <button class="topic-btn" data-tab="examcram">สรุปก่อนสอบ</button>
     <button class="topic-btn" data-tab="media">Media</button>
     <button class="topic-btn" data-tab="exercises">📝 แบบฝึกหัด (15 ข้อ)</button>
-    <button class="topic-btn" data-tab="realpapers">📚 Paper จริง 6 เคส</button>
+    <button class="topic-btn" data-tab="realpapers">📚 Paper จริง 7 เคส</button>
     <button class="topic-btn" data-tab="dataanalytics">Healthcare Data Analytics</button>
     <button class="topic-btn" data-tab="datawrangling">Data Wrangling & Cleaning</button>
     <button class="topic-btn" data-tab="labtests">🧪 Lab Tests ที่ใช้บ่อย</button>
@@ -8935,7 +8935,7 @@ P-value = 0.042</pre>
 
   <div class="tab-panel" data-tab="realpapers" hidden>
   <section class="card">
-    <h2>Paper จริง 6 เคส — จากคนไข้จริงถึง Paper จริง</h2>
+    <h2>Paper จริง 7 เคส — จากคนไข้จริงถึง Paper จริง</h2>
     <p class="desc" style="max-width:none">
       เอาแนวคิดทั้งเว็บ (PICO, EBM 5A, Critical Appraisal, Sens/Spec/PPV/NPV/LR, RR/OR/ARR/NNT) มาใช้กับ <b>paper จริงที่ตีพิมพ์
       แล้วมีคนอ้างอิงใช้จริงทางคลินิก</b> 6 เรื่อง ครอบคลุมทั้งการตรวจ (diagnostic), การเลือกยา (drug choice), และการผ่าตัด/
@@ -9196,6 +9196,86 @@ P-value = 0.042</pre>
       Biopsy ในที่นี้ทำหน้าที่เป็น <b>confirmatory test (SpPin)</b> ตรงตามหลักการ "screening ด้วย test ที่ Sensitivity สูง
       (mammogram) แล้วยืนยันด้วย reference standard ที่แม่นที่สุด (biopsy)" — เช่นเดียวกับตัวอย่าง Wells+D-dimer→CT ในเคสที่ 1
       ของแท็บนี้ เพียงแค่เปลี่ยนอวัยวะและชุดตรวจ
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="paperCase7">7. Diagnostic — Anemia แบบไหนคือขาดธาตุเหล็กจริง ต้องเจาะ Bone Marrow ไหม</h2>
+    <div class="interp-box">
+      <b>สถานการณ์คนไข้:</b> ชาย 68 ปี เป็น CKD stage 3b + Heart Failure มาด้วยอาการเพลีย ตรวจพบ Hb 9.5 g/dL, MCV ต่ำ-ปกติ
+      แพทย์สงสัย Iron Deficiency Anemia (IDA) จึงส่ง Ferritin ได้ผล <b>150 ng/mL</b> ("ดูปกติ" ตามค่าอ้างอิงทั่วไป) —
+      จะสรุปว่าคนไข้ไม่ขาดธาตุเหล็กและตัด IDA ออกได้เลยหรือไม่ หรือควรตรวจอะไรเพิ่ม?
+    </div>
+    <p class="desc" style="max-width:none"><b>PICO:</b> P = ผู้ป่วย anemia ที่สงสัย iron deficiency — I(test) = Serum ferritin
+      (เดี่ยวๆ หรือร่วมกับ TSAT/sTfR/CHr) — O = วินิจฉัย iron deficiency ได้แม่นยำ เทียบกับ reference standard (bone marrow
+      iron stain / ผลตอบสนองต่อการให้ธาตุเหล็ก)</p>
+    <p class="desc" style="max-width:none"><b>วิธีค้นหา:</b> <code>serum ferritin sensitivity specificity iron deficiency
+      anemia elderly</code>, <code>soluble transferrin receptor diagnostic accuracy meta-analysis</code>,
+      <code>reticulocyte hemoglobin content CHr iron deficiency sensitivity specificity</code></p>
+    <p class="desc" style="max-width:none"><b>Paper:</b> Guyatt GH, et al. "Diagnosis of iron-deficiency anemia in the
+      elderly." <i>Am J Med.</i> 1990;88(3):205-209 (<a href="https://pubmed.ncbi.nlm.nih.gov/2178409/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/2178409</a>)
+      — paper คลาสสิกที่วางรากฐานเรื่องนี้ ร่วมกับการศึกษาซ้ำในผู้สูงอายุยุคหลัง (Amirkola Cohort,
+      <a href="https://www.scielo.br/j/rbhh/a/5hWWZNzhCzDw55mz664sd6J/?lang=en" target="_blank" rel="noopener">scielo.br/j/rbhh</a>,
+      2017), meta-analysis ของ soluble transferrin receptor (Infusino I, et al. <i>Am J Clin Pathol.</i> 2012;138(5):642-9,
+      <a href="https://pubmed.ncbi.nlm.nih.gov/23086764/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/23086764</a>),
+      meta-analysis ของ reticulocyte hemoglobin content (CHr/Ret-He) ปี 2022
+      (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8882014/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC8882014</a>)
+      และแนวทาง American Society of Hematology (ASH) 2026 เรื่อง threshold ของ ferritin</p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>Test / Threshold</th><th>ตัวเลขจริง</th><th>บริบทประชากร</th></tr>
+        <tr><td>Ferritin &lt; 30 μg/L</td><td>Sens 92%, Spec 98%</td><td>ผู้ใหญ่ทั่วไป <b>ไม่มี</b>ภาวะอักเสบ/โรคเรื้อรังร่วม</td></tr>
+        <tr><td>Ferritin &lt; 18 ng/mL</td><td>Sens 16%, Spec 96%, LR+ 3.71</td><td>ผู้สูงอายุ (Amirkola cohort, n=240)</td></tr>
+        <tr><td>Ferritin &lt; 100 ng/mL</td><td>Sens 60%, Spec 59%, PPV 45%, NPV 74%</td><td>ผู้สูงอายุ — คัตออฟเดียวกันแต่คนละบริบทให้ผลต่างมาก</td></tr>
+        <tr><td>Ferritin &lt; 100 + TSAT &lt; 20% (รวมกัน)</td><td>Sens 91%, Spec 70%</td><td>ASH 2026 — เมื่อสงสัยมีอักเสบร่วม</td></tr>
+        <tr><td>sTfR (Soluble Transferrin Receptor)</td><td>Sens 86%, Spec 75% (pooled)</td><td>Meta-analysis 2012 — ไม่ถูกรบกวนจากการอักเสบ</td></tr>
+        <tr><td>CHr / Ret-He (Reticulocyte Hb Content)</td><td>Sens 83.5%, Spec 91.8% (pooled), cutoff ~28-29 pg</td><td>Meta-analysis 2022 — ไม่ถูกรบกวนจากการอักเสบเช่นกัน</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>Appraisal checkpoint:</b> จุดที่น่าสนใจที่สุดคือแถว 2-3 ในตาราง — <b>Ferritin ที่ threshold ต่ำมาก (&lt;18 ng/mL)
+      ในผู้สูงอายุกลับมี Sensitivity แค่ 16%</b> (ทั้งที่ threshold ต่ำแบบนี้ในคนหนุ่มสาวควรมี Sens สูง) เพราะ Ferritin เป็น
+      <b>acute phase reactant</b> — ภาวะอักเสบเรื้อรัง (CKD, Heart Failure, มะเร็ง, การติดเชื้อเรื้อรัง) ทำให้ตับสร้าง
+      ferritin เพิ่มขึ้นโดยไม่เกี่ยวกับธาตุเหล็กในร่างกายเลย ผลคือคนไข้ที่ขาดธาตุเหล็กจริงๆ กลับมี ferritin "ดูปกติ"
+      — นี่คือตัวอย่างจริงของ <b>Spectrum Bias</b> (test ตัวเดียวกัน คัตออฟเดียวกัน แต่ Sensitivity เปลี่ยนไปมากเมื่อ
+      population เปลี่ยน) ที่อธิบายไว้ในแท็บ Glossary
+    </div>
+    <p class="desc" style="max-width:none">
+      <b>เลือกดูค่าไหนดี — แผนผังแบบเดียวกับการเลือก Test:</b>
+    </p>
+    <svg viewBox="0 0 620 310" width="100%" height="290" style="display:block;margin:10px auto;max-width:600px" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrowhead-ida" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,8 L4,0 L8,8 Z" fill="var(--accent)"/></marker></defs>
+      <rect x="110" y="10" width="400" height="46" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="310" y="29" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">สงสัย Iron Deficiency Anemia</text>
+      <text x="310" y="45" font-size="11" fill="var(--muted)" text-anchor="middle">(Anemia + Ferritin ต่ำ/borderline)</text>
+      <line x1="310" y1="56" x2="310" y2="78" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-ida)"/>
+      <rect x="55" y="81" width="510" height="56" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="310" y="103" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">มีภาวะอักเสบ/โรคเรื้อรังร่วมไหม?</text>
+      <text x="310" y="121" font-size="11" fill="var(--muted)" text-anchor="middle">(CKD, RA, Heart Failure, มะเร็ง, ติดเชื้อเรื้อรัง)</text>
+      <line x1="310" y1="137" x2="310" y2="152" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="140" y1="152" x2="480" y2="152" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="140" y1="152" x2="140" y2="176" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-ida)"/>
+      <line x1="480" y1="152" x2="480" y2="176" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-ida)"/>
+      <text x="140" y="193" font-size="12.5" fill="var(--accent)" text-anchor="middle" font-weight="700">ไม่มี</text>
+      <text x="480" y="193" font-size="12.5" fill="var(--accent)" text-anchor="middle" font-weight="700">มี</text>
+      <line x1="140" y1="200" x2="140" y2="222" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-ida)"/>
+      <line x1="480" y1="200" x2="480" y2="222" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-ida)"/>
+      <rect x="15" y="225" width="250" height="70" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="140" y="252" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">Ferritin &lt; 30 μg/L</text>
+      <text x="140" y="270" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">เพียงพอ (SpPin)</text>
+      <text x="140" y="286" font-size="10.5" fill="var(--good)" text-anchor="middle">Spec 98%</text>
+      <rect x="345" y="225" width="270" height="80" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="480" y="248" font-size="11.5" fill="var(--good)" text-anchor="middle" font-weight="700">Ferritin&lt;100+TSAT&lt;20%</text>
+      <text x="480" y="265" font-size="11.5" fill="var(--good)" text-anchor="middle" font-weight="700">หรือ sTfR หรือ CHr/Ret-He</text>
+      <text x="480" y="281" font-size="10.5" fill="var(--good)" text-anchor="middle">(ไม่ถูกรบกวนจากการอักเสบ)</text>
+      <text x="480" y="297" font-size="9.5" fill="var(--muted)" text-anchor="middle">sTfR: Sens86/Spec75, CHr: Sens83.5/Spec91.8</text>
+    </svg>
+    <div class="warn-box">
+      <div class="wt">⚠️ กลับมาที่เคสคนไข้: Ferritin 150 ng/mL "ดูปกติ" ไม่ได้แปลว่าตัด IDA ออกได้</div>
+      คนไข้รายนี้มี CKD + Heart Failure (ภาวะอักเสบเรื้อรัง) — Ferritin ที่ถูกดันขึ้นจากการอักเสบอาจบัง iron deficiency
+      ที่แท้จริงไว้ (false reassurance) ตามหลักฐานข้างต้น ควรส่ง <b>TSAT ร่วมด้วย</b> (Ferritin&lt;100+TSAT&lt;20% → Sens 91%)
+      หรือส่ง <b>sTfR/CHr</b> ที่ไม่ถูกรบกวนจากการอักเสบ แทนที่จะเชื่อ Ferritin เดี่ยวๆ — Bone marrow iron stain (Prussian
+      blue) ยังเป็น gold standard แต่แทบไม่จำเป็นต้องทำจริงในทางคลินิกแล้ว เพราะมี noninvasive test ที่แม่นยำพอทดแทนได้
     </div>
   </section>
   </div>
