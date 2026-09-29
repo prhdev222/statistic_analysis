@@ -7914,13 +7914,48 @@ P-value = 0.042</pre>
     <div class="table-scroll">
       <table class="gloss-table dsep-examples">
         <tr><th>ค่า</th><th>สูตร</th><th>ใช้เมื่อไร</th></tr>
-        <tr><td>RR</td><td>Risk(exp)/Risk(unexp)</td><td>Cohort / RCT (สุ่มตาม exposure)</td></tr>
+        <tr><td>RR</td><td>Risk(exp)/Risk(unexp)</td><td>Cohort / RCT, follow-up เท่ากัน ไม่มี censoring</td></tr>
         <tr><td>OR</td><td>(a×d)/(b×c)</td><td>Case-control (สุ่มตาม outcome)</td></tr>
+        <tr><td>HR / IRR</td><td>จาก Cox model / person-time</td><td>Cohort/RCT ที่ follow-up ไม่เท่ากัน/มี censoring</td></tr>
         <tr><td>AR</td><td>Risk(exp)−Risk(unexp)</td><td>ภาระโรคจากปัจจัยเสี่ยง</td></tr>
         <tr><td>ARR</td><td>Risk(control)−Risk(tx)</td><td>ผลการรักษาที่เพิ่มขึ้นจริง</td></tr>
         <tr><td>NNT</td><td>1/ARR</td><td>ต้องรักษากี่คนถึงได้ผล 1 คน</td></tr>
       </table>
     </div>
+    <svg viewBox="0 0 680 360" width="100%" height="300" style="display:block;margin:10px auto;max-width:560px" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrowhead-rrhr-b" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,8 L4,0 L8,8 Z" fill="var(--accent)"/></marker></defs>
+      <rect x="132" y="15" width="260" height="50" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="262" y="35" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">Study Design?</text>
+      <text x="262" y="52" font-size="10.5" fill="var(--muted)" text-anchor="middle">(รู้ population at risk จริงไหม)</text>
+      <line x1="262" y1="65" x2="262" y2="80" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="105" y1="80" x2="420" y2="80" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="105" y1="80" x2="105" y2="102" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-rrhr-b)"/>
+      <line x1="420" y1="80" x2="420" y2="102" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-rrhr-b)"/>
+      <text x="105" y="117" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">Case-control</text>
+      <text x="420" y="117" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">Cohort study / RCT</text>
+      <line x1="105" y1="124" x2="105" y2="148" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-rrhr-b)"/>
+      <line x1="420" y1="124" x2="420" y2="148" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-rrhr-b)"/>
+      <rect x="20" y="150" width="170" height="50" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="105" y="180" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">OR (Odds Ratio)</text>
+      <rect x="300" y="150" width="240" height="58" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="420" y="173" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">Follow-up time เท่ากันทุกคน</text>
+      <text x="420" y="191" font-size="12" fill="var(--ink)" text-anchor="middle" font-weight="700">ไม่มี censoring ไหม?</text>
+      <line x1="420" y1="208" x2="420" y2="222" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="305" y1="222" x2="535" y2="222" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="305" y1="222" x2="305" y2="244" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-rrhr-b)"/>
+      <line x1="535" y1="222" x2="535" y2="244" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-rrhr-b)"/>
+      <text x="305" y="259" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">ใช่</text>
+      <text x="535" y="259" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">ไม่ใช่ (มี censoring/</text>
+      <text x="535" y="273" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">staggered entry)</text>
+      <line x1="305" y1="266" x2="305" y2="290" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-rrhr-b)"/>
+      <line x1="535" y1="280" x2="535" y2="290" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-rrhr-b)"/>
+      <rect x="220" y="292" width="170" height="50" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="305" y="322" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">RR (Risk Ratio)</text>
+      <rect x="420" y="292" width="230" height="50" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="535" y="315" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">HR (Hazard Ratio) /</text>
+      <text x="535" y="332" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">Incidence Rate Ratio</text>
+    </svg>
+    <p class="compare-note" style="text-align:center">ไม่ว่าได้ RR/OR/HR ตัวไหน → คำนวณ AR/ARR เพิ่มเสมอเพื่อดู NNT/NNH (ผลกระทบจริง)</p>
 
     <h3 style="margin-top:16px;font-size:14px">4. Hypothesis Testing (Frequentist เท่านั้น)</h3>
     <div class="table-scroll">
