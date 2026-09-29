@@ -558,6 +558,7 @@
     <button class="topic-btn" data-tab="dataanalytics">Healthcare Data Analytics</button>
     <button class="topic-btn" data-tab="datawrangling">Data Wrangling & Cleaning</button>
     <button class="topic-btn" data-tab="labtests">🧪 Lab Tests ที่ใช้บ่อย</button>
+    <button class="topic-btn" data-tab="mcqexam">🎯 English MCQ Practice (30 ข้อ)</button>
   </nav>
 
   <div class="tab-panel" data-tab="foundations">
@@ -10037,6 +10038,205 @@ P-value = 0.042</pre>
         สถิติ") — ถามผิดประเภทคำถาม จะหาตัวเลข Se/Sp มาตอบไม่ได้เลยเพราะมันไม่มีอยู่จริงสำหรับการใช้งานแบบนี้
       </div>
     </div>
+  </section>
+  </div>
+
+  <div class="tab-panel" data-tab="mcqexam" hidden>
+  <section class="card">
+    <h2>English MCQ Practice — 30 Questions</h2>
+    <p class="desc" style="max-width:none">
+      Try each question yourself first, then click to reveal the answer and explanation. Covers diagnostic test theory,
+      Bayes' theorem, epidemiologic measures, causal diagrams, hypothesis testing, and common biases — the same content
+      as the rest of this site, in English exam format.
+    </p>
+
+    <details class="dsep-quiz">
+      <summary><b>Q1.</b> Sensitivity is best defined as:<br>
+        A) P(disease | positive test) &nbsp; B) P(positive test | disease) &nbsp; C) P(negative test | no disease) &nbsp; D) P(no disease | negative test)</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — Sensitivity = P(positive test | disease present), calculated down the "Disease+" column of a 2×2 table. Option A describes PPV instead.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q2.</b> Specificity is best defined as:<br>
+        A) P(positive test | disease) &nbsp; B) P(disease | positive test) &nbsp; C) P(negative test | no disease) &nbsp; D) P(no disease | negative test)</summary>
+      <div class="dsep-answer"><b>Answer: C</b> — Specificity = P(negative test | disease absent), calculated down the "Disease−" column. Option D describes NPV instead.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q3.</b> A screening test has Sensitivity 90% and Specificity 95%. If the same test is used in a much LOWER-prevalence population, which value is most likely to drop?<br>
+        A) Sensitivity &nbsp; B) Specificity &nbsp; C) Positive Predictive Value &nbsp; D) LR+</summary>
+      <div class="dsep-answer"><b>Answer: C</b> — PPV depends on prevalence and falls sharply as prevalence falls, even with the same Sens/Spec. Sensitivity, Specificity, and LR are intrinsic properties of the test and stay constant across populations.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q4.</b> Which mnemonic correctly describes a highly SENSITIVE test?<br>
+        A) SpPin — a Positive result rules IN disease &nbsp; B) SnNout — a Negative result rules OUT disease<br>
+        C) SnPout — a Positive result rules OUT disease &nbsp; D) SpNin — a Negative result rules IN disease</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — SnNout: high <u>Sen</u>sitivity + <u>N</u>egative result → rule <u>out</u> disease with confidence. SpPin (high Specificity + Positive result → rule in) is the mirror-image mnemonic for confirmatory tests.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q5.</b> A test has Sensitivity 80% and Specificity 60%. What is LR+?<br>
+        A) 0.80/0.60 = 1.33 &nbsp; B) 0.80/(1−0.60) = 2.0 &nbsp; C) (1−0.80)/0.60 = 0.33 &nbsp; D) 0.60/(1−0.80) = 3.0</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — LR+ = Sensitivity / (1 − Specificity) = 0.80/0.40 = <b>2.0</b>. Option C is actually the formula for LR−.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q6.</b> A test has LR− = 0.05. What does this suggest?<br>
+        A) A negative result essentially rules the disease IN &nbsp; B) A negative result strongly rules the disease OUT<br>
+        C) A positive result strongly rules the disease IN &nbsp; D) The test performs no better than chance</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — LR− &lt; 0.1 produces a large, conclusive shift toward "no disease" when the result is negative. LR− close to 1 (not near 0) would suggest the test performs no better than chance.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q7.</b> Diagnostic Odds Ratio (DOR) is calculated as:<br>
+        A) Sensitivity × Specificity &nbsp; B) LR+ / LR− &nbsp; C) LR+ × LR− &nbsp; D) Sensitivity / Specificity</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — DOR = LR+/LR− = (TP×TN)/(FP×FN). It is a true odds ratio (odds of a positive result in diseased vs. non-diseased people), often used as a single summary accuracy measure in meta-analyses (SROC curves).</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q8.</b> Test A has LR+=20, LR−=0.5 (DOR=40). Test B has LR+=6.3, LR−=0.16 (DOR≈40). Which statement is correct?<br>
+        A) Both tests are equally suitable for both screening and confirmation &nbsp; B) Test A suits confirmation (rule-in); Test B suits screening (rule-out)<br>
+        C) DOR alone tells you which test has higher sensitivity &nbsp; D) DOR is not a valid accuracy metric</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — Equal DOR does not mean equal clinical usefulness. Test A's very high LR+ makes it better as a SpPin confirmatory test; Test B's very low LR− makes it better as a SnNout screening test. DOR alone can't distinguish this.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q9.</b> In the odds form of Bayes' theorem, which equation is correct?<br>
+        A) Posterior Odds = Prior Odds + LR &nbsp; B) Posterior Odds = Prior Odds × LR &nbsp; C) Posterior Odds = Prior Odds / LR &nbsp; D) Posterior Odds = LR / Prior Odds</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — Posterior Odds = Prior Odds × Likelihood Ratio (the Bayes Factor). Use LR+ if the test result is positive, LR− if negative.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q10.</b> In clinical terms, "pretest probability" is equivalent to which Bayesian term?<br>
+        A) Posterior &nbsp; B) Likelihood &nbsp; C) Prior &nbsp; D) Marginal probability</summary>
+      <div class="dsep-answer"><b>Answer: C</b> — Pretest probability = Prior; Posttest probability = Posterior. Sensitivity/Specificity supply the Likelihood.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q11.</b> Which study design allows Relative Risk (RR) to be calculated directly?<br>
+        A) Case-control study &nbsp; B) Cross-sectional study &nbsp; C) Cohort study or RCT &nbsp; D) Case series</summary>
+      <div class="dsep-answer"><b>Answer: C</b> — Cohort studies and RCTs enroll/randomize by exposure status and follow subjects forward, so true incidence (and therefore RR) can be measured directly.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q12.</b> Why can't relative risk be calculated directly from a case-control study?<br>
+        A) Case-control studies are always too small &nbsp; B) Subjects are sampled by outcome status, not exposure status, so true incidence/risk can't be estimated<br>
+        C) Case-control studies never have a control group &nbsp; D) Odds ratio is always larger than relative risk</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — Because cases and controls are selected first (by outcome), the proportion of exposed people in the sample doesn't reflect true population risk — so an Odds Ratio is used instead as an approximation of RR.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q13.</b> Hazard Ratio (HR) differs from Relative Risk (RR) mainly because HR:<br>
+        A) Is always smaller than RR &nbsp; B) Accounts for the timing of events and censoring across follow-up &nbsp; C) Can only be used in case-control studies &nbsp; D) Does not require a comparison group</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — HR is a ratio of instantaneous event rates over time (survival analysis) and properly handles censoring/staggered entry, unlike RR which needs a fixed cohort followed for a fixed period with no loss to follow-up.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q14.</b> Absolute Risk Reduction (ARR) is best described as:<br>
+        A) Risk(exposed) / Risk(unexposed) &nbsp; B) Risk(control) − Risk(treatment) &nbsp; C) (Risk difference) / Risk(unexposed) &nbsp; D) 1 / Risk(exposed)</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — ARR is a risk difference, expressed in percentage points (pp), typically comparing the control group's risk to the treatment group's risk. Option A is RR; option C is AR%.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q15.</b> If ARR = 8% (0.08), what is the Number Needed to Treat (NNT)?<br>
+        A) 0.08 &nbsp; B) 8 &nbsp; C) 12.5, rounded up to 13 &nbsp; D) 80</summary>
+      <div class="dsep-answer"><b>Answer: C</b> — NNT = 1/ARR = 1/0.08 = 12.5. In practice NNT is always rounded <u>up</u> to the next whole number (13), since you can't treat a fraction of a person.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q16.</b> Population Attributable Risk Percent (PAR%) requires which extra piece of information that Attributable Risk Percent (AR%) does not?<br>
+        A) Relative Risk &nbsp; B) Prevalence of exposure in the whole population (Pe) &nbsp; C) Incidence in the exposed group &nbsp; D) Sample size</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — AR% only describes the exposed subgroup. PAR% extrapolates the impact to the entire population, which requires knowing how common the exposure is population-wide (Pe). As Pe→100%, PAR%→AR%.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q17.</b> Which statement correctly distinguishes Cumulative Incidence from Incidence Rate?<br>
+        A) Cumulative Incidence uses person-time in the denominator; Incidence Rate is a simple proportion &nbsp; B) Cumulative Incidence is a proportion (fixed cohort, no time unit); Incidence Rate uses person-time in the denominator<br>
+        C) They are always numerically identical &nbsp; D) Incidence Rate can only be used in case-control studies</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — Cumulative Incidence = new cases / at-risk population at baseline (a plain proportion, 0–1). Incidence Rate = new cases / total person-time at risk (a true rate, can exceed 1, unit = per person-time).</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q18.</b> In a DAG, a confounder has which causal structure relative to exposure (X) and outcome (Y)?<br>
+        A) X → M → Y (chain) &nbsp; B) X → C ← Y (collider) &nbsp; C) X ← C → Y (fork) &nbsp; D) X → Y → C (reverse chain)</summary>
+      <div class="dsep-answer"><b>Answer: C</b> — A confounder is a common cause of both exposure and outcome (a "fork"): X←C→Y. It must be adjusted for to remove confounding bias.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q19.</b> If a variable lies on the causal pathway between exposure and outcome (a mediator), and you want the TOTAL effect of exposure on outcome, you should:<br>
+        A) Always adjust for it &nbsp; B) Not adjust for it, since adjusting would block part of the causal pathway &nbsp; C) Adjust for it only if p&lt;0.05 &nbsp; D) Remove all mediators from the dataset first</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — Adjusting for a mediator (X→M→Y) blocks the very pathway you're trying to measure, biasing the total effect toward the null. Only adjust for a mediator if you specifically want the direct effect.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q20.</b> Adjusting for (conditioning on) a collider variable can introduce which problem?<br>
+        A) It always removes confounding completely &nbsp; B) It can create a spurious association between two otherwise independent variables &nbsp; C) It increases statistical power &nbsp; D) It has no effect on the analysis</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — A collider (X→C←Y) is a common effect, not a common cause. Conditioning on it "opens" a non-causal path and can create a fake correlation between X and Y — the opposite of what adjusting for a confounder does.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q21.</b> A Type I error occurs when:<br>
+        A) A true null hypothesis is incorrectly rejected (false positive) &nbsp; B) A false null hypothesis is not rejected (false negative) &nbsp; C) The sample size is too small &nbsp; D) The confidence interval is too wide</summary>
+      <div class="dsep-answer"><b>Answer: A</b> — Type I error (α) = false positive = rejecting H0 when H0 is actually true. Type II error (β) is the false negative described in option B.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q22.</b> Statistical power is defined as:<br>
+        A) α, the probability of Type I error &nbsp; B) 1 − β, the probability of correctly rejecting a false null hypothesis &nbsp; C) The p-value threshold used in the study &nbsp; D) The width of the 95% confidence interval</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — Power = 1 − β = the probability of detecting a true effect when one truly exists. Used to calculate required sample size before a study begins.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q23.</b> The correct interpretation of a p-value of 0.03 is:<br>
+        A) There is a 3% probability that the null hypothesis is true &nbsp; B) There is a 97% probability that the alternative hypothesis is true<br>
+        C) Assuming H0 is true, there is a 3% probability of observing data this extreme or more extreme &nbsp; D) The result is automatically clinically important</summary>
+      <div class="dsep-answer"><b>Answer: C</b> — A p-value is a conditional probability about the <u>data</u> given H0, P(data|H0) — not a probability about the hypothesis itself, P(H0|data). Options A/B are the classic misinterpretation.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q24.</b> In the frequentist framework, a 95% confidence interval means:<br>
+        A) There is a 95% probability the true parameter lies within this specific interval &nbsp; B) If the study were repeated many times, about 95% of such calculated intervals would contain the true parameter<br>
+        C) 95% of the raw data falls within this range &nbsp; D) The result is statistically significant at α=0.05</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — This is the correct long-run frequency interpretation. Option A is the common misconception — a Bayesian <u>Credible</u> Interval is the one that can correctly be interpreted as "95% probability the true value is in here."</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q25.</b> An AUC (Area Under the ROC Curve) of 0.5 indicates that the test:<br>
+        A) Perfectly discriminates diseased from non-diseased individuals &nbsp; B) Performs no better than random chance at discrimination &nbsp; C) Has 100% sensitivity &nbsp; D) Is only valid in case-control studies</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — AUC=0.5 is the diagonal line on a ROC curve, equivalent to a coin flip. AUC=1.0 would be perfect discrimination.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q26.</b> Youden's Index (J) is calculated as:<br>
+        A) Sensitivity × Specificity &nbsp; B) Sensitivity + Specificity − 1 &nbsp; C) PPV + NPV − 1 &nbsp; D) LR+ − LR−</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — J = Sens + Spec − 1, ranges from 0 (no discrimination) to 1 (perfect). Commonly used to pick the "optimal" cutoff point on a ROC curve, though ties are possible and clinical context should still guide the final choice.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q27.</b> A ferritin cutoff shows Sens 92%/Spec 98% in healthy young adults, but only Sens 16%/Spec 96% in elderly patients with chronic inflammatory disease, using the exact same cutoff. This phenomenon is best described as:<br>
+        A) Verification bias &nbsp; B) Spectrum bias &nbsp; C) Lead-time bias &nbsp; D) Recall bias</summary>
+      <div class="dsep-answer"><b>Answer: B</b> — Spectrum bias: a test's sensitivity/specificity can shift dramatically depending on the case-mix/population tested, even at a fixed cutoff — here because ferritin is an acute-phase reactant confounded by inflammation in the elderly cohort.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q28.</b> Verification bias (work-up bias) occurs when:<br>
+        A) Only patients with a certain index-test result go on to receive the reference standard, distorting estimated Sens/Spec &nbsp; B) Patients are recalled to repeat the same test twice<br>
+        C) The reference standard is applied before the index test &nbsp; D) The sample size is too small to detect a difference</summary>
+      <div class="dsep-answer"><b>Answer: A</b> — Classic example: PIOPED — patients with a positive/abnormal V/Q scan were more likely to be sent for the reference standard (pulmonary angiogram) than those with a negative scan, inflating apparent sensitivity.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q29.</b> Missing data that depends on the value of the missing variable itself, even after accounting for all observed variables, is classified as:<br>
+        A) MCAR (Missing Completely At Random) &nbsp; B) MAR (Missing At Random) &nbsp; C) MNAR (Missing Not At Random) &nbsp; D) None of the above</summary>
+      <div class="dsep-answer"><b>Answer: C</b> — MNAR: missingness depends on the unobserved value itself (e.g., patients with the highest pain scores are the ones who drop out of the study). This is the hardest pattern to handle and cannot be fixed by standard multiple imputation (MICE) alone.</div>
+    </details>
+
+    <details class="dsep-quiz">
+      <summary><b>Q30.</b> Among the Bradford Hill criteria for causation, which single criterion is considered NECESSARY (not just supportive) for establishing causality?<br>
+        A) Strength of association &nbsp; B) Biological gradient (dose-response) &nbsp; C) Temporality (cause must precede effect) &nbsp; D) Analogy</summary>
+      <div class="dsep-answer"><b>Answer: C</b> — Temporality is the only criterion that is logically required — a cause must precede its effect in time. The other eight criteria (strength, dose-response, consistency, plausibility, etc.) strengthen the case for causation but are not strictly mandatory.</div>
+    </details>
   </section>
   </div>
 
