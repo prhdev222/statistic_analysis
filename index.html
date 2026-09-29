@@ -554,7 +554,7 @@
     <button class="topic-btn" data-tab="examcram">สรุปก่อนสอบ</button>
     <button class="topic-btn" data-tab="media">Media</button>
     <button class="topic-btn" data-tab="exercises">📝 แบบฝึกหัด (15 ข้อ)</button>
-    <button class="topic-btn" data-tab="realpapers">📚 Paper จริง 5 เคส</button>
+    <button class="topic-btn" data-tab="realpapers">📚 Paper จริง 6 เคส</button>
     <button class="topic-btn" data-tab="dataanalytics">Healthcare Data Analytics</button>
     <button class="topic-btn" data-tab="datawrangling">Data Wrangling & Cleaning</button>
     <button class="topic-btn" data-tab="labtests">🧪 Lab Tests ที่ใช้บ่อย</button>
@@ -8592,10 +8592,10 @@ P-value = 0.042</pre>
 
   <div class="tab-panel" data-tab="realpapers" hidden>
   <section class="card">
-    <h2>Paper จริง 5 เคส — จากคนไข้จริงถึง Paper จริง</h2>
+    <h2>Paper จริง 6 เคส — จากคนไข้จริงถึง Paper จริง</h2>
     <p class="desc" style="max-width:none">
       เอาแนวคิดทั้งเว็บ (PICO, EBM 5A, Critical Appraisal, Sens/Spec/PPV/NPV/LR, RR/OR/ARR/NNT) มาใช้กับ <b>paper จริงที่ตีพิมพ์
-      แล้วมีคนอ้างอิงใช้จริงทางคลินิก</b> 5 เรื่อง ครอบคลุมทั้งการตรวจ (diagnostic), การเลือกยา (drug choice), และการผ่าตัด/
+      แล้วมีคนอ้างอิงใช้จริงทางคลินิก</b> 6 เรื่อง ครอบคลุมทั้งการตรวจ (diagnostic), การเลือกยา (drug choice), และการผ่าตัด/
       intervention — แต่ละเคสเริ่มจาก<b>สถานการณ์คนไข้จริง</b> → ตั้งคำถาม PICO → ค้นหา paper → วิจารณ์คุณภาพ → ตัวเลขจริง →
       นำไปใช้ตัดสินใจ ตามขั้นตอน 5A ที่อธิบายไว้ในการ์ด "Evidence-Based Medicine" ด้านบน
     </p>
@@ -8806,6 +8806,53 @@ P-value = 0.042</pre>
       ยาปฏิชีวนะหลีกเลี่ยงการผ่าตัดได้ ~73% ของคนไข้ complication น้อยกว่า แต่มีโอกาส treatment failure ต้องผ่าตัดตามหลังอยู่ดี
       ~27% — <b>นี่คือตัวอย่างที่ Applicability + Patient Preference (EBM 3 เสาหลัก) สำคัญกว่า "ตัวเลขไหนดีกว่า" อย่างเดียว</b>
       ต้องคุยกับคนไข้ว่าให้ความสำคัญกับอะไรมากกว่า (หลีกเลี่ยงผ่าตัด vs ความแน่นอนของผล) ก่อนตัดสินใจร่วมกัน
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>6. Diagnostic — Mammogram คัดกรองพบก้อนสงสัย ต้อง Biopsy ทุกคนไหม</h2>
+    <div class="interp-box">
+      <b>สถานการณ์คนไข้:</b> หญิง 55 ปี มาตรวจคัดกรอง mammogram ประจำปีตามปกติ (ไม่มีอาการ) ผลออกมาเป็น <b>BI-RADS 4</b>
+      ("suspicious abnormality") รังสีแพทย์แนะนำให้ทำ biopsy — คนไข้ตกใจมาก คิดว่าตัวเองเป็นมะเร็งแน่นอนแล้ว จะอธิบายให้เข้าใจ
+      ถูกต้องอย่างไร และต้อง biopsy จริงหรือไม่?
+    </div>
+    <p class="desc" style="max-width:none"><b>PICO:</b> P = สตรีที่มาตรวจคัดกรอง mammography — I(test) = Screening mammography
+      + จัดหมวด BI-RADS — O = ตรวจพบมะเร็งเต้านมได้แม่นยำ เทียบกับ reference standard (Biopsy/พยาธิวิทยา)</p>
+    <p class="desc" style="max-width:none"><b>วิธีค้นหา:</b> <code>screening mammography sensitivity specificity Breast Cancer Surveillance Consortium</code>
+      และ <code>BI-RADS positive predictive value biopsy</code></p>
+    <p class="desc" style="max-width:none"><b>Paper:</b> Breast Cancer Surveillance Consortium (BCSC) — National Performance
+      Benchmarks for Screening Mammography (ข้อมูลระดับประเทศสหรัฐฯ ถึงปี 2013,
+      <a href="https://www.bcsc-research.org/index.php/statistics/screening-performance-benchmarks-archive/screening-sens-spec-false-negative-archive" target="_blank" rel="noopener">bcsc-research.org</a>)
+      ร่วมกับการศึกษา PPV ของ BI-RADS ("The Positive Predictive Values of the Breast Imaging Reporting and Data System",
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7960818/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC7960818</a>)</p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>ค่า</th><th>ตัวเลขจริง</th></tr>
+        <tr><td>Sensitivity ของ screening mammography</td><td>86.9%</td></tr>
+        <tr><td>Specificity ของ screening mammography</td><td>88.9%</td></tr>
+        <tr><td>PPV ของ BI-RADS 4 ("suspicious") ที่นำไปสู่ biopsy</td><td>20.5%</td></tr>
+        <tr><td>PPV รวม BI-RADS 4+5</td><td>27.8%</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>Appraisal checkpoint:</b> BCSC เป็น registry ระดับประเทศ ขนาดตัวอย่างมหาศาล (national benchmark) — Sens/Spec ของ
+      mammography เองสูงพอสมควร (86.9%/88.9%) แต่ที่น่าสนใจคือ <b>PPV ของ BI-RADS 4 ("สงสัยผิดปกติ") มีแค่ ~20.5%
+      เท่านั้น</b> — หมายความว่าในคนที่ได้รับคำแนะนำให้ biopsy เพราะผล BI-RADS 4 มีเพียง 1 ใน 5 คนเท่านั้นที่เป็นมะเร็งจริง
+      อีก 4 ใน 5 คนเป็น<b>ผลบวกลวง (benign finding)</b>
+    </div>
+    <div class="interp-box">
+      <b>เชื่อมกับ Test/Treatment Threshold (Pauker-Kassirer) ที่มีอยู่แล้วในเว็บนี้:</b> BI-RADS 4 ถูกนิยามอย่างเป็นทางการ
+      ว่า "โอกาสเป็นมะเร็ง (likelihood of malignancy) มากกว่า <b>2%</b> ขึ้นไป" — ตัวเลข 2% นี้คือ <b>Test Threshold</b>
+      ที่วงการรังสีวิทยากำหนดไว้ล่วงหน้าเป็นทางการ (ไม่ใช่ตัวเลขที่เดาเอาเอง) — สูงกว่าเกณฑ์นี้ = ต้องตรวจเพิ่ม (biopsy)
+      แม้ probability จะยังต่ำกว่า 50% มากก็ตาม เพราะมะเร็งเต้านมเป็นโรคที่ผลเสียจากการพลาดวินิจฉัย (false negative)
+      ร้ายแรงกว่าผลเสียจาก biopsy ที่ไม่จำเป็น (ตรงกับหลักการเลือก threshold ที่อธิบายไว้ในแท็บ "เครื่องคิดเลขวินิจฉัย")
+    </div>
+    <div class="warn-box">
+      <b>นำไปใช้อธิบายให้คนไข้เข้าใจ:</b> BI-RADS 4 ไม่ได้แปลว่า "เป็นมะเร็งแน่นอน" — แปลว่า "โอกาสเป็นมะเร็งสูงพอ (&gt;2%)
+      ที่ต้องตรวจยืนยันเพิ่ม" ด้วย PPV จริงเพียง ~20% คนไข้ 4 ใน 5 คนที่ได้รับคำแนะนำ biopsy จะพบว่า<b>ไม่เป็นมะเร็ง</b> —
+      Biopsy ในที่นี้ทำหน้าที่เป็น <b>confirmatory test (SpPin)</b> ตรงตามหลักการ "screening ด้วย test ที่ Sensitivity สูง
+      (mammogram) แล้วยืนยันด้วย reference standard ที่แม่นที่สุด (biopsy)" — เช่นเดียวกับตัวอย่าง Wells+D-dimer→CT ในเคสที่ 1
+      ของแท็บนี้ เพียงแค่เปลี่ยนอวัยวะและชุดตรวจ
     </div>
   </section>
   </div>
