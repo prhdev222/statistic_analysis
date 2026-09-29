@@ -8635,6 +8635,44 @@ P-value = 0.042</pre>
       หรือ Wells สูง ต้องส่ง CT ต่อเสมอ เพราะ PPV ของกลยุทธ์นี้ต่ำเกินกว่าจะ "ยืนยัน" โรคได้ (ตรงกับหลัก SpPin ที่ต้องใช้ CT
       เป็น confirmatory test แทน)
     </div>
+    <h3 style="margin-top:16px;font-size:15px">ขั้นตอนใช้จริงในโรงพยาบาล — ทำไมดู Se/Sp ก่อน แล้วค่อยดู PPV/NPV</h3>
+    <p class="desc" style="max-width:none">
+      คำถามที่พบบ่อย: "รพ. เอา D-dimer มา screen ก่อน โดยดู Sens/Spec ก่อน แล้วค่อยดู PPV/NPV หรืออย่างไร" — คำตอบคือ
+      <b>2 ขั้นตอนนี้ตอบคนละคำถาม ต้องทำตามลำดับเสมอ</b>:
+    </p>
+    <ol class="dsep-steps">
+      <li><b>ขั้นที่ 1 — เลือก "ตัว test" จาก Sens/Spec</b> (คุณสมบัติคงที่ของตัว test เอง ไม่ขึ้นกับว่าเอาไปใช้กับใคร):
+        D-dimer มี Sensitivity สูงมาก (94.5%) แต่ Specificity ปานกลาง (51.0%) — คุณสมบัตินี้ทำให้ D-dimer เหมาะเป็น
+        "screening/rule-out test" ตามหลัก <b>SnNout</b> เท่านั้น (การ์ด "เลือกใช้เมื่อไหร่" แท็บ "เครื่องคิดเลขวินิจฉัย") —
+        ขั้นนี้ตัดสินใจ<b>ก่อนเจอผู้ป่วยจริงด้วยซ้ำ</b> เพราะ Se/Sp เป็นค่าที่ผ่านการวิจัยมาแล้ว ไม่เปลี่ยนไปตามผู้ป่วยแต่ละคน</li>
+      <li><b>ขั้นที่ 2 — แปลผลสำหรับผู้ป่วยรายนี้ ต้องใช้ PPV/NPV ที่คำนวณจาก pretest probability ของผู้ป่วยคนนั้นโดยเฉพาะ</b>
+        (มักประเมินด้วย Wells score) — ผู้ป่วยแต่ละคน pretest probability ไม่เท่ากัน ทำให้ PPV/NPV ต่างกันมาก แม้ใช้
+        D-dimer ตัวเดียวกัน (Se/Sp เดิม) ก็ตาม</li>
+    </ol>
+    <p class="desc" style="max-width:none"><b>ตัวอย่างตัวเลขจริง — ใช้ D-dimer ตัวเดียวกัน (Sens=94.5%, Spec=51.0%) กับผู้ป่วย 2 ราย
+      ที่ pretest probability ต่างกัน:</b></p>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>ผู้ป่วย A — Wells score ต่ำ (Pretest 5%)</h3>
+        <div class="compare-point"><b>NPV</b><span>Spec×(1−P) / [Spec×(1−P)+(1−Sens)×P] = (0.51×0.95)/[(0.51×0.95)+(0.055×0.05)] ≈ <b>99.4%</b></span></div>
+        <div class="compare-point"><b>PPV</b><span>Sens×P / [Sens×P+(1−Spec)×(1−P)] = (0.945×0.05)/[(0.945×0.05)+(0.49×0.95)] ≈ <b>9.2%</b></span></div>
+        <div class="compare-q">D-dimer ลบ → มั่นใจสูงมาก (99.4%) ตัด PE ออกได้เลย ไม่ต้องส่ง CT</div>
+      </div>
+      <div class="compare-col bayes">
+        <h3>ผู้ป่วย B — Wells score สูง/"PE likely" (Pretest 30%)</h3>
+        <div class="compare-point"><b>NPV</b><span>(0.51×0.70)/[(0.51×0.70)+(0.055×0.30)] ≈ <b>95.6%</b></span></div>
+        <div class="compare-point"><b>PPV</b><span>(0.945×0.30)/[(0.945×0.30)+(0.49×0.70)] ≈ <b>45.3%</b></span></div>
+        <div class="compare-q">D-dimer ลบ ยังพอเชื่อได้ (95.6%) แต่ต่ำกว่าเคส A ชัดเจน — D-dimer บวก ยิ่งน่าเชื่อกว่าเคส A ถึง 5 เท่า (45.3% vs 9.2%) แต่ก็ยังไม่พอฟันธง ต้องส่ง CT ยืนยันเสมอ</div>
+      </div>
+    </div>
+    <div class="gloss-why">
+      <b>สรุปหลักการ:</b> Se/Sp ของ D-dimer<b>เท่ากันทั้งสองเคส</b> (94.5%/51.0% — เป็นคุณสมบัติของตัว test) แต่ PPV/NPV
+      <b>ต่างกันมาก</b> เพราะขึ้นกับ pretest probability ของผู้ป่วยแต่ละคน — นี่คือเหตุผลที่ลำดับการทำงานจริงในโรงพยาบาลคือ:
+      <b>(1) ประเมิน pretest probability ด้วย clinical score ก่อน (Wells) → (2) เลือก test ที่มี Se/Sp เหมาะสมกับสิ่งที่
+      ต้องการ (rule-out → D-dimer) → (3) ตรวจ → (4) แปลผลด้วย PPV/NPV เฉพาะของผู้ป่วยรายนั้น</b> ไม่ใช่ใช้ PPV/NPV ตัวเลข
+      เดียวกันกับทุกคน (ตรงกับหลักการเดียวกับการ์ด LR/Fagan's Nomogram แท็บ Prior→Posterior — เพราะ PPV คือ posterior
+      probability แบบหนึ่งที่ต้องคำนวณจาก prior ของคนไข้แต่ละคนเสมอ)
+    </div>
   </section>
 
   <section class="card">
