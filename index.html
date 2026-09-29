@@ -9126,6 +9126,82 @@ P-value = 0.042</pre>
   </section>
 
   <section class="card">
+    <h2>เครื่องมือใช้จริง — Excel XLOOKUP และ SQL</h2>
+    <p class="desc" style="max-width:none">
+      4 Verbs (Filter/Transform/Aggregate/Sort) ที่อธิบายไว้ด้านบน ไม่ใช่แค่ทฤษฎี — Excel และ SQL ก็ทำสิ่งเดียวกันนี้
+      แค่คนละเครื่องมือ รู้จักไว้ใช้ประกอบงาน wrangling จริงได้เลย
+    </p>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>XLOOKUP — จุดที่ต่างจาก VLOOKUP</h4></div>
+      <div class="gloss-formula">XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])</div>
+      <div class="gloss-why">
+        <b>1) หาซ้ายได้</b> — VLOOKUP หาได้แค่ขวาของคอลัมน์ค้นหาเท่านั้น XLOOKUP หาทิศไหนก็ได้<br>
+        <b>2) ไม่ต้องนับ column index</b> — ระบุ return_array ตรงๆ ไม่ต้องนับว่าคอลัมน์ที่เท่าไร<br>
+        <b>3) Exact match เป็นค่าเริ่มต้น</b> — ต่างจาก VLOOKUP ที่ default เป็น approximate match (จุดบั๊กที่พบบ่อยที่สุด —
+        ลืมใส่ FALSE แล้วได้ค่าผิดแบบไม่รู้ตัว)<br>
+        <b>4) มี <code>if_not_found</code> ในตัว</b> — ไม่ต้องครอบด้วย IFERROR อีกชั้น<br>
+        <b>5) <code>match_mode</code></b>: 0=exact (default), −1=exact หรือถัดลงมาที่เล็กกว่า, 1=exact หรือถัดขึ้นไปที่ใหญ่กว่า,
+        2=wildcard (*, ?)<br>
+        <b>6) <code>search_mode</code></b>: 1=ค้นบนลงล่าง (default), −1=ค้นล่างขึ้นบน (หา match ล่าสุด), 2/−2=binary search
+        (เร็วขึ้นมากถ้าข้อมูลเรียงแล้ว แต่ถ้าไม่เรียงจะได้ผลผิด)<br>
+        <b>7) Return ได้ทั้ง array</b> — เลือก return_array เป็นหลายคอลัมน์พร้อมกัน ผล spill ออกมาหลายคอลัมน์อัตโนมัติ ทำ
+        two-way lookup (nest 2 ชั้น) ได้ในสูตรเดียว แทนการซ้อน INDEX/MATCH แบบเดิม
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ ข้อจำกัด</div>
+        ใช้ได้เฉพาะ Excel 365 / 2021 ขึ้นไป — ถ้าไฟล์ต้องส่งให้คนที่ใช้ Excel เก่ากว่านั้น (2019 ลงมา) สูตรจะพัง ต้องใช้
+        INDEX/MATCH แทน
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>SQL — จำเป็นไหมสำหรับงาน data wrangling</h4></div>
+      <p class="desc" style="max-width:none">
+        <b>ควรรู้</b> — เพราะ 4 Verbs ที่เพิ่งอธิบายไปคือเรื่องเดียวกับ SQL แค่ทำบนฐานข้อมูลแทน Excel:
+      </p>
+      <div class="table-scroll">
+        <table class="gloss-table">
+          <tr><th>แนวคิดที่รู้แล้ว (4 Verbs ด้านบน)</th><th>เทียบเป็น SQL</th></tr>
+          <tr><td>Filter</td><td><code>WHERE</code></td></tr>
+          <tr><td>Transform</td><td><code>SELECT</code> คอลัมน์คำนวณ</td></tr>
+          <tr><td>Aggregate + Join</td><td><code>GROUP BY</code> + <code>JOIN</code> (Inner/Left/Right/Full — ชื่อเดียวกับที่อธิบายไปเป๊ะ)</td></tr>
+          <tr><td>Sort</td><td><code>ORDER BY</code></td></tr>
+        </table>
+      </div>
+      <div class="gloss-why">
+        <b>ทำไมจำเป็นกว่า Excel ในงานจริง:</b> ข้อมูล EHR/โรงพยาบาลมักอยู่ในฐานข้อมูล ไม่ใช่ไฟล์ Excel — ข้อมูลใหญ่เกินกว่า
+        Excel จะรับไหว (Excel จำกัดที่ประมาณ 1 ล้านแถว) และ SQL ทำงานซ้ำๆ ได้แม่นยำ/ตรวจสอบย้อนหลังได้ดีกว่า
+        (ตรงกับเรื่อง reproducibility ที่เน้นไว้ในการ์ด Data Wrangling Fundamentals ด้านบน)<br><br>
+        <b>ลำดับที่ควรเรียน:</b> <code>SELECT</code> → <code>WHERE</code> → <code>JOIN</code> (เข้าใจ Inner/Left ที่รู้แล้ว
+        จาก Excel/การ์ดด้านบน) → <code>GROUP BY</code> + aggregate function (<code>COUNT</code>, <code>SUM</code>,
+        <code>AVG</code>) → <code>ORDER BY</code> → subquery/CTE
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>ลองเลือกสูตรดู — จำลองผลลัพธ์ต่างกันตามสูตรที่เลือก</h2>
+    <p class="desc" style="max-width:none">
+      ใช้ตารางสินค้าชุดเดียวกัน กดเลือกสูตรด้านล่าง แล้วดูว่าเขียนสูตรแบบไหน และได้ผลต่างกันยังไงใน 3 สถานการณ์ (หาปกติ,
+      หาไม่เจอ, หาย้อนไปทางซ้าย)
+    </p>
+    <div class="table-scroll">
+      <table class="gloss-table dsep-examples" style="min-width:280px">
+        <tr><th>ID</th><th>สินค้า</th><th>ราคา</th></tr>
+        <tr><td>100</td><td>ปากกา</td><td>15</td></tr>
+        <tr><td>101</td><td>ดินสอ</td><td>8</td></tr>
+        <tr><td>102</td><td>ยางลบ</td><td>5</td></tr>
+        <tr><td>103</td><td>ไม้บรรทัด</td><td>12</td></tr>
+      </table>
+    </div>
+    <div class="mode-toggle" id="xlkModeToggle">
+      <button class="mode-btn active" data-formula="xlookup">XLOOKUP</button>
+      <button class="mode-btn" data-formula="vlookup">VLOOKUP</button>
+      <button class="mode-btn" data-formula="indexmatch">INDEX+MATCH</button>
+    </div>
+    <div class="eq-list" id="xlkOutput" style="margin-top:12px"></div>
+  </section>
+
+  <section class="card">
     <h2>Data Visualization — ทำไมสมองคนถึง "อ่านกราฟ" ได้เร็ว</h2>
     <p class="desc" style="max-width:none">
       Visualization ใช้ความสามารถพิเศษของสมองมนุษย์ (Pre-Attentive Attributes) ที่ตรวจจับความแตกต่างของตำแหน่ง ความยาวเส้น
@@ -10344,6 +10420,43 @@ P-value = 0.042</pre>
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') { searchResults.hidden = true; searchInput.blur(); }
     });
+  }
+
+  // ---- XLOOKUP/VLOOKUP/INDEX+MATCH formula-picker simulator ----
+  const XLK_SCENARIOS = {
+    xlookup: [
+      { lbl: 'หาปกติ — ราคาของ ID 102', formula: '=XLOOKUP(102, A2:A5, C2:C5)', result: '5' },
+      { lbl: 'หาไม่เจอ — ID 999 ไม่มีในตาราง', formula: '=XLOOKUP(999, A2:A5, C2:C5, "ไม่พบสินค้า")', result: '"ไม่พบสินค้า" (ไม่ error เลย)' },
+      { lbl: 'หาย้อนซ้าย — ใส่ชื่อสินค้า หา ID', formula: '=XLOOKUP("ยางลบ", B2:B5, A2:A5)', result: '102 (ตรงไปตรงมา หาซ้ายได้เลย)' },
+    ],
+    vlookup: [
+      { lbl: 'หาปกติ — ราคาของ ID 102', formula: '=VLOOKUP(102, A2:C5, 3, FALSE)', result: '5 (ต้องนับเองว่าราคาคือคอลัมน์ที่ 3)' },
+      { lbl: 'หาไม่เจอ — ID 999 ไม่มีในตาราง', formula: '=VLOOKUP(999, A2:C5, 3, FALSE)', result: '#N/A (ต้องครอบ IFERROR เอง)' },
+      { lbl: 'หาย้อนซ้าย — ใส่ชื่อสินค้า หา ID', formula: '(ทำตรงๆ ไม่ได้)', result: '❌ VLOOKUP หาซ้ายไม่ได้ — ต้องสลับคอลัมน์ก่อน หรือใช้ CHOOSE({1,2},...) เสริม' },
+    ],
+    indexmatch: [
+      { lbl: 'หาปกติ — ราคาของ ID 102', formula: '=INDEX(C2:C5, MATCH(102, A2:A5, 0))', result: '5' },
+      { lbl: 'หาไม่เจอ — ID 999 ไม่มีในตาราง', formula: '=INDEX(C2:C5, MATCH(999, A2:A5, 0))', result: '#N/A (ต้องครอบ IFERROR เอง)' },
+      { lbl: 'หาย้อนซ้าย — ใส่ชื่อสินค้า หา ID', formula: '=INDEX(A2:A5, MATCH("ยางลบ", B2:B5, 0))', result: '102 (ทำได้เหมือน XLOOKUP)' },
+    ],
+  };
+  function renderXlk(formula) {
+    const out = $('xlkOutput');
+    if (!out) return;
+    out.innerHTML = XLK_SCENARIOS[formula].map(s => `
+      <div class="eq-step"><span class="lbl">${esc(s.lbl)}</span>${esc(s.formula)}<br>→ <b>${esc(s.result)}</b></div>
+    `).join('');
+  }
+  const xlkToggle = $('xlkModeToggle');
+  if (xlkToggle) {
+    xlkToggle.querySelectorAll('.mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        xlkToggle.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderXlk(btn.dataset.formula);
+      });
+    });
+    renderXlk('xlookup');
   }
 
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { recompute(); computeRx(); });
