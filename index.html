@@ -6121,6 +6121,36 @@ P-value = 0.042</pre>
     </div>
 
     <div class="gloss-item">
+      <div class="gloss-item-head" id="alphaBetaVsDxCard"><h4>α/β/Power เทียบกับ Diagnostic Test — จับคู่ให้เห็นชัด</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
+      <p class="desc" style="max-width:none">
+        คำถามที่พบบ่อย: "α = FP, β = FN, Power = TP ใช่ไหม" — <b>ใกล้เคียงแต่ไม่เป๊ะ</b> ต้องเติมคำว่า <b>"rate"</b> เข้าไป เพราะ
+        α/β/Power เป็น<b>ความน่าจะเป็นแบบมีเงื่อนไข</b> (ตั้งไว้ล่วงหน้า ไม่ผูกกับจำนวนคนใน study ใดๆ) ไม่ใช่ตัวเลขนับดิบในตาราง 2×2
+        แบบ TP/FP/FN/TN
+      </p>
+      <div class="table-scroll">
+        <table class="gloss-table">
+          <tr><th>Hypothesis Testing</th><th>สูตร</th><th>Diagnostic Test</th><th>สูตร</th></tr>
+          <tr><td><b>α</b></td><td>P(Reject H0 | H0 จริง)</td><td><b>FPR = 1−Specificity</b></td><td>FP/(FP+TN)</td></tr>
+          <tr><td><b>1−α</b></td><td>P(ไม่ Reject H0 | H0 จริง)</td><td><b>Specificity</b></td><td>TN/(FP+TN)</td></tr>
+          <tr><td><b>β</b></td><td>P(ไม่ Reject H0 | H0 เท็จ)</td><td><b>FNR = 1−Sensitivity</b></td><td>FN/(TP+FN)</td></tr>
+          <tr><td><b>Power (1−β)</b></td><td>P(Reject H0 | H0 เท็จ)</td><td><b>Sensitivity (TPR)</b></td><td>TP/(TP+FN)</td></tr>
+        </table>
+      </div>
+      <div class="interp-box">
+        <b>Analogy ที่ใช้:</b> Reject H0 (บอกว่ามี effect) ≈ Test+ (บอกว่ามีโรค) &nbsp;|&nbsp; H0 เท็จ (มี effect จริง) ≈ Disease+
+        (มีโรคจริง) — จับคู่แล้วตาราง Decision×Truth ของ hypothesis testing (การ์ด "Type I vs Type II Error — Decision Table"
+        ด้านบน) มีโครงสร้างเดียวกับตาราง 2×2 ของ diagnostic test เป๊ะ
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ ทำไมต้องเป็น "rate" ไม่ใช่ "count"</div>
+        α, β, Power ถูก<b>ตั้งไว้ล่วงหน้าก่อนเก็บข้อมูล</b> (α มักตั้ง 0.05, Power มักตั้ง 80%) ไม่ได้ผูกกับจำนวนคนใน study
+        ใดๆ เลย — ส่วน TP/FP/FN/TN เป็นแค่ตัวเลขนับในตาราง 2×2 ของ study หนึ่งที่ทำเสร็จแล้ว เอาไปเทียบเป็นตัวเลขนับตรงๆ ไม่ได้
+        ต้องเทียบเป็น <b>rate ภายในคอลัมน์เดียวกัน</b> เท่านั้น (α/Power มาจากคอลัมน์เดียวกับ FPR/Sensitivity ตามลำดับ — สังเกตว่า
+        ไม่ใช่การคำนวณตามแถวแบบ PPV/NPV)
+      </div>
+    </div>
+
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>Point Estimate vs Interval Estimate</h4><span class="fw-tag freq">Frequentist เท่านั้น</span></div>
       <div class="gloss-why">
         <b>Point Estimate</b> คือการรายงานค่าประมาณเป็น<b>ตัวเลขเดียว</b> (single value) เช่น x̄ = 25 — ปัญหาคือ ถ้าสุ่มตัวอย่าง
