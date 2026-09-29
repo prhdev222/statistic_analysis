@@ -4116,6 +4116,37 @@
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head" id="parallelSerialCard"><h4>Parallel vs Serial Testing — ตรวจร่วมกัน 2 ชุด</h4><span class="fw-tag freq">Frequentist</span></div>
+      <div class="gloss-why">
+        เมื่อใช้ 2 ชุดตรวจร่วมกัน คำถามคือจะ<b>ตีความ "บวก"</b> อย่างไร — มี 2 แบบที่ให้ผลตรงข้ามกัน:<br><br>
+        <b>Parallel (ตรวจพร้อมกัน)</b> — ทำทั้ง 2 ชุดพร้อมกัน ถือว่า "บวก" ถ้า<b>ตัวใดตัวหนึ่งบวกก็พอ</b> (OR logic)<br>
+        <b>Serial (ตรวจต่อเนื่อง)</b> — ตรวจตัวแรกก่อน ถ้าบวกค่อยตรวจตัวที่สองต่อ ถือว่า "บวก" จริง <b>ต้องบวกทั้งคู่</b> (AND logic)
+      </div>
+      <div class="gloss-formula">Se(parallel) = 1 − (1−Se₁)(1−Se₂) &nbsp;|&nbsp; Sp(parallel) = Sp₁ × Sp₂</div>
+      <div class="gloss-formula">Se(serial) = Se₁ × Se₂ &nbsp;|&nbsp; Sp(serial) = 1 − (1−Sp₁)(1−Sp₂)</div>
+      <div class="gloss-why">
+        (สมมติผลตรวจทั้งสองเป็นอิสระต่อกันแบบมีเงื่อนไข — conditional independence เหมือนตัวอย่าง PSA→mpMRI ในการ์ด LR chain
+        แท็บ "Prior → Posterior")<br><br>
+        <b>ทำไม Parallel → Sensitivity เพิ่ม:</b> "บวกถ้าตัวใดตัวหนึ่งบวก" ทำให้คนที่เป็นโรคจริงมี 2 โอกาสถูกจับได้ (ความน่าจะเป็น
+        พลาดทั้งคู่ (1−Se₁)(1−Se₂) ยิ่งน้อย) — เหมาะเป็น <b>screening/rule-out (SnNout)</b><br>
+        <b>ทำไม Serial → Specificity เพิ่ม:</b> "บวกจริงต้องบวกทั้งคู่" ทำให้คนปกติต้องผ่านด่านตรวจ 2 ชั้นกว่าจะถูกเรียกว่าบวก
+        (โอกาสบวกลวงทั้งคู่ (1−Sp₁)(1−Sp₂) ยิ่งน้อย) — เหมาะเป็น <b>confirmatory/rule-in (SpPin)</b>
+      </div>
+      <div class="table-scroll">
+        <table class="gloss-table">
+          <tr><th>ตัวอย่าง: Test A (Se80/Sp90) + Test B (Se70/Sp95)</th><th>Combined Se</th><th>Combined Sp</th></tr>
+          <tr><td>Parallel (บวกถ้าตัวใดตัวหนึ่งบวก)</td><td>1−(0.20)(0.30) = <b>94%</b> ↑</td><td>0.90×0.95 = 85.5% ↓</td></tr>
+          <tr><td>Serial (บวกต้องบวกทั้งคู่)</td><td>0.80×0.70 = 56% ↓</td><td>1−(0.10)(0.05) = <b>99.5%</b> ↑</td></tr>
+        </table>
+      </div>
+      <div class="interp-box">
+        <b>ใช้จริงเมื่อไหร่:</b> <b>Parallel</b> — ห้องฉุกเฉินที่ต้องรีบตัดสินใจและพลาดเคสไม่ได้ (เช่น ตรวจ ECG+Troponin+ประวัติ
+        พร้อมกันในคนไข้เจ็บหน้าอก) ยอมรับ false positive มากขึ้นแลกกับไม่พลาดเคสจริง<br>
+        <b>Serial</b> — คัดกรองแล้วยืนยันต่อ ประหยัดค่าใช้จ่าย (เช่น ELISA คัดกรอง HIV ก่อน แล้วยืนยันด้วย Western Blot เฉพาะคนที่
+        ELISA บวก) ไม่ต้องตรวจ confirmatory test ที่แพงกว่ากับทุกคน
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>Accuracy (ความแม่นยำโดยรวม)</h4><span class="fw-tag both">ใช้ทั้งคู่</span></div>
       <div class="gloss-formula">Accuracy = (TP + TN) / Total screened pts</div>
       <div class="gloss-why">
