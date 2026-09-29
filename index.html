@@ -556,6 +556,7 @@
     <button class="topic-btn" data-tab="exercises">📝 แบบฝึกหัด (15 ข้อ)</button>
     <button class="topic-btn" data-tab="realpapers">📚 Paper จริง 5 เคส</button>
     <button class="topic-btn" data-tab="dataanalytics">Healthcare Data Analytics</button>
+    <button class="topic-btn" data-tab="datawrangling">Data Wrangling & Cleaning</button>
   </nav>
 
   <div class="tab-panel" data-tab="foundations">
@@ -8896,6 +8897,268 @@ P-value = 0.042</pre>
       <div class="wt">⚠️ Algorithmic Bias ใน Risk Prediction Model</div>
       ถ้าข้อมูลฝึกโมเดล (training data) ขาดความหลากหลาย หรือสะท้อนความเหลื่อมล้ำในอดีต — โมเดลจะ<b>ทำนายผิดพลาดอย่างเป็นระบบ</b>
       สำหรับกลุ่มประชากรบางกลุ่ม (เชื้อชาติ, สถานะทางเศรษฐกิจ) ซ้ำเติมความเหลื่อมล้ำด้านสุขภาพที่มีอยู่แล้วให้แย่ลงไปอีก
+    </div>
+  </section>
+  </div>
+
+  <div class="tab-panel" data-tab="datawrangling" hidden>
+  <section class="card">
+    <h2>Data Preparation: Wrangling, Cleaning, and Visualization</h2>
+    <p class="desc" style="max-width:none">
+      สรุปจากบรรยาย "Data Preparation: Wrangling, Cleaning, and Visualization Principles" — <b>Data Wrangling</b>
+      (data munging/preprocessing) คือการแปลงข้อมูลดิบที่ไม่เป็นระเบียบจากหลายแหล่ง (database, sensor, spreadsheet — มักสกปรก)
+      ให้กลายเป็นรูปแบบที่สะอาด มีโครงสร้าง พร้อมวิเคราะห์
+    </p>
+    <div class="warn-box">
+      <div class="wt">⚠️ 80% ของเวลาทำ data analysis หมดไปกับการทำความสะอาด/เตรียมข้อมูล</div>
+      ข้อมูลในโลกจริง ถ้าไม่มีข้อจำกัด (constraint) มักถูกจัดโครงสร้างแบบ "แปลกประหลาด" ต่างกันไปในแต่ละแหล่ง — Wrangling ที่ดี
+      (เลือก subset ที่เกี่ยวข้อง, จัดข้อมูลจากหลายแหล่งให้ตรงกัน, จัดรูปร่างใหม่) ช่วยให้เห็นความสัมพันธ์ในข้อมูลชัดขึ้น ลดความผิดพลาด
+      และเพิ่ม reproducibility ของผลวิเคราะห์
+    </div>
+    <h3 style="margin-top:16px;font-size:15px">Tidy Data — นิยาม Variable vs Observation</h3>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>Variable <span class="tag">= คอลัมน์</span></h3>
+        <div class="compare-point"><span>ชุดของค่าทั้งหมดที่วัด<b>คุณลักษณะเดียวกัน</b> (เช่น ส่วนสูง, อุณหภูมิ, ระยะเวลา) ข้ามทุกหน่วยตัวอย่าง</span></div>
+      </div>
+      <div class="compare-col bayes">
+        <h3>Observation <span class="tag">= แถว</span></h3>
+        <div class="compare-point"><span>ชุดของค่าทั้งหมดที่วัดจาก<b>หน่วยเดียวกัน</b> (เช่น คนคนหนึ่ง, วันหนึ่ง, การมาตรวจครั้งหนึ่ง) ข้ามทุกคุณลักษณะ (n = จำนวนหน่วยตัวอย่าง)</span></div>
+      </div>
+    </div>
+    <div class="interp-box">
+      <b>Aesthetic Ordering (แนวปฏิบัติที่ดี):</b> แม้ลำดับคอลัมน์จะไม่กระทบผลวิเคราะห์ แต่จัดให้อ่านง่ายขึ้นได้ — วาง
+      <b>Fixed Variables</b> (ตัวแปรที่กำหนด design การทดลอง เช่น รหัสผู้ป่วย) ไว้ก่อน ตามด้วย <b>Measured Variables</b>
+      (สิ่งที่วัดผลจริง) และเรียงแถวตามลำดับชั้นของ fixed variable
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>5 รูปแบบของข้อมูลรก (Messy Data) + วิธีแก้</h2>
+    <p class="desc" style="max-width:none">ตาม Hadley Wickham's Tidy Data paper — ข้อมูลรกมี 5 แบบหลัก:</p>
+    <ol class="dsep-steps">
+      <li><b>Column headers เป็นค่า ไม่ใช่ชื่อตัวแปร</b> — รูปแบบ wide ที่ออกแบบมาเพื่อ "นำเสนอ" ไม่ใช่เพื่อวิเคราะห์ → แก้ด้วย
+        <b>Melting (Wide→Long)</b>: หมุนคอลัมน์ค่าลงมาเป็นแถว สร้าง 2 ตัวแปรใหม่ (ชื่อคอลัมน์เดิม + ค่าข้อมูล)</li>
+      <li><b>หลายตัวแปรถูกอัดในคอลัมน์เดียว</b> (เช่น "male, age 0-14" ในคอลัมน์เดียว) — มักเกิดหลัง melt รอบแรก → แก้ด้วย
+        String Processing/Splitting แยกออกเป็นหลายตัวแปร</li>
+      <li><b>ตัวแปรกระจายอยู่ทั้งในแถวและคอลัมน์</b> — ซับซ้อนที่สุด ต้องใช้ทั้ง melt และ <b>Casting (Long→Wide/Unstacking)</b> ร่วมกัน</li>
+      <li><b>หลายหน่วยสังเกตอยู่ในตารางเดียวกัน</b> (เช่น ข้อมูลผู้ป่วยกับข้อมูลการมา visit ปนกัน) — ผิดหลัก normalization
+        ทำให้ข้อมูลซ้ำซ้อน → แก้ด้วย <b>Normalization (แยกตาราง)</b></li>
+      <li><b>หน่วยสังเกตเดียวกระจายอยู่หลายตาราง</b> (เช่น ไฟล์แยกตามปี/สถานที่) → แก้ด้วย <b>Combining/Stacking</b>: อ่านทุกตารางเข้า
+        list → เพิ่มคอลัมน์บันทึกชื่อไฟล์เดิม (มักมีตัวแปรสำคัญซ่อนอยู่ เช่น ปี/สถานที่) → รวมเป็นตารางเดียว</li>
+    </ol>
+    <div class="warn-box">
+      งานยากขึ้นไปอีกถ้าโครงสร้าง/ชื่อตัวแปร/รูปแบบ missing value ไม่ตรงกันระหว่างไฟล์ต้นทางที่จะเอามารวมกัน (ข้อ 5) — ต้องเช็ค
+      ให้ตรงกันก่อนเสมอ
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4 Verbs ของการจัดการข้อมูล — Filter / Transform / Aggregate / Sort</h2>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>Verb</th><th>ทำอะไร</th><th>ข้อควรระวัง</th></tr>
+        <tr><td><b>1. Filter</b></td><td>เลือก/ตัดแถวออกตามเงื่อนไข</td><td>ห้าม filter ทิ้งข้อมูลที่มีความหมายไปพร้อม noise — เช่น ค่า sensor ที่ดู "ผิดปกติ" อาจเป็นเหตุการณ์จริงที่หายากก็ได้ ไม่ใช่ error เสมอไป</td></tr>
+        <tr><td><b>2. Transform</b></td><td>เพิ่ม/แก้ไขคอลัมน์ (log-transform ตัวแปรเดียว หรือคำนวณข้ามตัวแปร เช่น density จาก weight/volume) รวมถึง<b>Pivoting</b> (long→wide) และ <b>Melting</b> (wide→long)</td><td>—</td></tr>
+        <tr><td><b>3. Aggregate</b></td><td>รวมหลายค่าเป็นค่าสรุปเดียว (sum, mean) รวมถึง <b>Joining/Merging</b> ตารางด้วย key ร่วม</td><td>เลือก join key/type ผิด อาจทำให้ผู้ป่วยที่ไม่มี event หายไปจากข้อมูลโดยไม่ได้ตั้งใจ</td></tr>
+        <tr><td><b>4. Sort</b></td><td>เรียงลำดับข้อมูลตาม key หนึ่งตัวหรือมากกว่า — ไม่เปลี่ยนค่าข้อมูล แค่เปลี่ยนลำดับแสดงผล</td><td>ช่วยหา top values (เช่น ค่าใช้จ่ายสูงสุด, นอนโรงพยาบาลนานสุด)</td></tr>
+      </table>
+    </div>
+    <h3 style="margin-top:16px;font-size:15px">Types of Joining — เลือกผิดชนิด ข้อมูลหายได้โดยไม่รู้ตัว</h3>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>ชนิด Join</th><th>เก็บอะไรไว้</th></tr>
+        <tr><td>Inner Join</td><td>เฉพาะ record ที่ match กันทั้งสองตาราง (เช่น เฉพาะผู้ป่วยที่มา visit จริง)</td></tr>
+        <tr><td>Left Join</td><td>ทุก record จากตารางซ้าย เติมข้อมูลจากตารางขวาเท่าที่มี (ผู้ป่วยที่ไม่มี visit จะได้ค่าว่าง/NA แทนที่จะหายไป)</td></tr>
+        <tr><td>Right Join</td><td>ตรงข้ามกับ Left Join — เก็บทุก record จากตารางขวา</td></tr>
+        <tr><td>Full Outer Join</td><td>เก็บทุก record จากทั้งสองตาราง จับคู่ที่ตรงกัน ที่ไม่ตรงกันเติมค่าว่าง</td></tr>
+      </table>
+    </div>
+    <div class="warn-box">
+      <div class="wt">⚠️ จุดที่ต้องเช็คเสมอ</div>
+      ตัวอย่างคลาสสิก: join ตาราง Patient Demographics (Patient ID, ชื่อ, อายุ) กับ Visit Records (Patient ID, วันที่มา,
+      การวินิจฉัย) ด้วย Patient ID — ถ้าใช้ <b>Inner Join</b> โดยไม่ตั้งใจ ผู้ป่วยที่ยังไม่เคยมา visit เลยจะ<b>หายไปจากผลลัพธ์
+      ทั้งหมด</b> ทั้งที่อาจต้องการเก็บไว้วิเคราะห์ด้วย (เช่น วิเคราะห์อัตราไม่มา follow-up) — ต้องเลือก join type ให้ตรงกับ
+      คำถามวิจัยเสมอ
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Data Cleaning — 6 มิติของคุณภาพข้อมูล</h2>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>มิติ</th><th>นิยาม</th><th>ตัวอย่างปัญหา</th></tr>
+        <tr><td><b>Completeness</b></td><td>มีข้อมูลที่จำเป็นครบไหม ค่าหายไปน้อยแค่ไหน (วัดเป็น % non-missing)</td><td>คอลัมน์ "สูบบุหรี่หรือไม่" กรอกครบแค่ 25%</td></tr>
+        <tr><td><b>Accuracy</b></td><td>ข้อมูลตรงกับความจริงแค่ไหน ต้อง cross-verify กับแหล่งที่เชื่อถือได้</td><td>ค่า SBP ที่บันทึกผิดจากเครื่องวัดจริง</td></tr>
+        <tr><td><b>Consistency</b></td><td>ไม่มีข้อมูลขัดแย้งกันเองระหว่างระบบ/ภายในระเบียนเดียวกัน</td><td>Blood type บันทึกเป็น "A" ในตารางหนึ่ง แต่ "B" อีกตาราง, วันจำหน่ายมาก่อนวันรับเข้า, หน่วยองศา °C ปนกับ °F</td></tr>
+        <tr><td><b>Timeliness</b></td><td>ข้อมูลทันสมัย/พร้อมใช้ทันเวลาที่ต้องการหรือไม่ (freshness)</td><td>ข้อมูล Q3 ที่ต้องใช้ 1 ต.ค. แต่เพิ่งกรอกเสร็จเดือน พ.ย. — ในสถานการณ์วิกฤต เช่น COVID-19 การรายงานช้าทำให้ตอบสนองช้าตาม</td></tr>
+        <tr><td><b>Validity</b></td><td>ค่าต้องอยู่ในช่วง/รูปแบบที่กำหนดตามกฎธุรกิจ/โดเมน (format, range, enumeration)</td><td>วันที่ "30 กุมภาพันธ์", รหัส ICD-10 ที่ไม่ตรง pattern มาตรฐาน, ส่วนสูงติดลบ</td></tr>
+        <tr><td><b>Uniqueness</b></td><td>ไม่มี record ซ้ำซ้อน แต่ละหน่วยจริงถูกบันทึกครั้งเดียว</td><td>ผู้ป่วยคนเดียวถูกบันทึกซ้ำ 2 HN ทำให้นับจำนวนคน/คำนวณ cost เฉลี่ยผิด</td></tr>
+      </table>
+    </div>
+    <div class="interp-box">
+      <b>Data Profiling</b> คือขั้นตอนก่อนทำความสะอาดจริง — คำนวณสถิติสรุปเช็คแต่ละมิติ: นับ missing รายคอลัมน์ (completeness),
+      เช็ค min/max เทียบช่วงที่เป็นไปได้จริงหรือความถี่ของแต่ละหมวดหมู่ (validity), หา record ซ้ำหรือยืนยัน unique key
+      (uniqueness) — ทำก่อนเริ่ม clean เสมอเพื่อรู้ขอบเขตปัญหาก่อนแก้
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Missing Data — แยก MCAR vs MAR vs MNAR ให้ชัดเจน</h2>
+    <p class="desc" style="max-width:none">
+      จุดที่สับสนที่สุดของเรื่อง missing data — <b>คำถามหลักที่ต้องถามคือ "อะไรเป็นสาเหตุที่ทำให้ค่านี้หายไป"</b> ไม่ใช่แค่
+      "หายไปเยอะแค่ไหน" — สาเหตุต่างกันทำให้วิธีแก้ที่ถูกต้องต่างกันโดยสิ้นเชิง ใช้ตัวแปร <b>R</b> (missingness indicator:
+      R=1 คือค่านั้นหายไป, R=0 คือสังเกตได้) แทนความสัมพันธ์ในแต่ละแบบ
+    </p>
+    <div class="diagram-row">
+      <div class="diagram-col" style="text-align:center">
+        <svg viewBox="0 0 180 160" width="100%" height="150" style="max-width:180px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="90" r="30" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="90" y="86" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">R</text>
+          <text x="90" y="102" font-size="9.5" fill="var(--good)" text-anchor="middle">(missingness)</text>
+        </svg>
+        <b style="color:var(--good)">MCAR</b>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:4px">ไม่มีอะไรชี้เข้า R เลย<br>R เป็นอิสระจากทุกตัวแปร</div>
+      </div>
+      <div class="diagram-col" style="text-align:center">
+        <svg viewBox="0 0 180 160" width="100%" height="150" style="max-width:180px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="arrowhead-mar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--muted)"/></marker></defs>
+          <circle cx="90" cy="35" r="30" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+          <text x="90" y="31" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">X (อายุ)</text>
+          <text x="90" y="44" font-size="9" fill="var(--muted)" text-anchor="middle">สังเกตได้</text>
+          <line x1="90" y1="65" x2="90" y2="90" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-mar)"/>
+          <circle cx="90" cy="115" r="28" fill="var(--warn-soft)" stroke="var(--warn)" stroke-width="1.5"/>
+          <text x="90" y="111" font-size="13" fill="var(--warn)" text-anchor="middle" font-weight="700">R</text>
+          <text x="90" y="127" font-size="9.5" fill="var(--warn)" text-anchor="middle">(missingness)</text>
+        </svg>
+        <b style="color:var(--warn)">MAR</b>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:4px">ตัวแปร<b>สังเกตได้</b>ชี้เข้า R<br>(ไม่ใช่ค่าที่หายไปเอง)</div>
+      </div>
+      <div class="diagram-col" style="text-align:center">
+        <svg viewBox="0 0 180 160" width="100%" height="150" style="max-width:180px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="arrowhead-mnar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="var(--muted)"/></marker></defs>
+          <circle cx="90" cy="35" r="30" fill="var(--surface-2)" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="90" y="31" font-size="11.5" fill="var(--ink)" text-anchor="middle" font-weight="700">Y (เงินเดือน)</text>
+          <text x="90" y="44" font-size="9" fill="var(--muted)" text-anchor="middle">ค่าที่หายไปเอง</text>
+          <line x1="90" y1="65" x2="90" y2="90" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-mnar)"/>
+          <circle cx="90" cy="115" r="28" fill="var(--warn-soft)" stroke="var(--warn)" stroke-width="1.5"/>
+          <text x="90" y="111" font-size="13" fill="var(--warn)" text-anchor="middle" font-weight="700">R</text>
+          <text x="90" y="127" font-size="9.5" fill="var(--warn)" text-anchor="middle">(missingness)</text>
+        </svg>
+        <b style="color:var(--warn)">MNAR</b>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:4px">ตัวแปรที่<b>หายไปเอง</b>ชี้เข้า R<br>(รู้ค่าไม่ได้ว่ามันคืออะไร)</div>
+      </div>
+    </div>
+    <div class="table-scroll" style="margin-top:12px">
+      <table class="gloss-table">
+        <tr><th></th><th>MCAR</th><th>MAR</th><th>MNAR</th></tr>
+        <tr><td><b>สาเหตุการหาย</b></td><td>ไม่เกี่ยวกับข้อมูลใดๆ เลย (สุ่มล้วนๆ)</td><td>เกี่ยวกับตัวแปรอื่นที่<b>สังเกตได้</b> ในข้อมูล</td><td>เกี่ยวกับ<b>ค่าที่หายไปเอง</b>โดยตรง</td></tr>
+        <tr><td><b>ตัวอย่าง</b></td><td>เจ้าหน้าที่แล็บทำตัวอย่างเลือดหล่นโดยบังเอิญ — lab หายแบบสุ่ม ไม่เกี่ยวกับคนไข้เลย</td><td>ผู้ป่วยสูงอายุมักไม่ได้วัดความดันตอน follow-up (อายุ=ตัวแปรสังเกตได้ ทำนายการหายของค่าความดันได้)</td><td>คนรายได้สูงมักปฏิเสธตอบคำถามเรื่องเงินเดือน — การหายไปเกี่ยวกับค่าเงินเดือนเอง; หรือคนไข้อาการหนักขึ้นจนถอนตัวจากการทดลอง</td></tr>
+        <tr><td><b>ผลถ้าใช้ Complete Case Analysis</b></td><td><b style="color:var(--good)">ไม่ bias</b> — แค่ลด n (CI กว้างขึ้น, power ลด)</td><td><b style="color:var(--warn)">Bias ได้</b> — sample ที่เหลือไม่เป็นตัวแทนประชากรอีกต่อไป</td><td><b style="color:var(--warn)">Bias ได้มากที่สุด</b> แก้ยากที่สุด</td></tr>
+        <tr><td><b>วิธีแก้ที่เหมาะสม</b></td><td>Complete case analysis ใช้ได้เลย</td><td>ต้องทำ Imputation (เช่น MICE)</td><td>ต้องใช้ modeling เฉพาะทาง (selection model/pattern-mixture model) — บางกรณีแก้ให้หายขาดไม่ได้เต็มที่</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>วิธีจำเร็วที่สุด:</b> ถามว่า "รู้ไหมว่าทำไมค่านี้หาย" — ไม่รู้เลย/สุ่มล้วนๆ = MCAR — รู้ได้จากตัวแปรอื่นที่<b>ยังมีข้อมูล
+      อยู่</b> = MAR — รู้ได้ก็ต่อเมื่อรู้<b>ค่าที่หายไปเอง</b>ก่อน (ซึ่งเรารู้ไม่ได้) = MNAR — ยิ่งลงมาล่าง (MCAR→MAR→MNAR)
+      ยิ่งแก้ไขยากขึ้น เพราะข้อมูลที่มีอยู่ไม่พอจะ "ชดเชย" ความไม่สมบูรณ์ได้เต็มที่
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>วิธีจัดการ Missing Data — เปรียบเทียบ Imputation แต่ละแบบ</h2>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>วิธี</th><th>ข้อดี/ข้อเสีย</th></tr>
+        <tr><td>Complete Case (Listwise deletion)</td><td>ง่ายที่สุด — แต่เสีย precision (CI กว้างขึ้น, power ลด) และถ้าไม่ใช่ MCAR ตัวอย่างที่เหลืออาจไม่เป็นตัวแทนประชากร (bias)</td></tr>
+        <tr><td>Available Case (Pairwise deletion)</td><td>ใช้ข้อมูลได้มากกว่า complete case ในระดับ bivariate — <b>หลีกเลี่ยง</b>ถ้าต้องทำทั้ง bivariate และ multivariable analysis ในชุดเดียวกัน (n ไม่เท่ากันในแต่ละคู่ตัวแปร)</td></tr>
+        <tr><td>Mean/Median Imputation</td><td><b style="color:var(--warn)">ไม่แนะนำ</b> — ลด variance เทียม, บิดเบือนความสัมพันธ์ระหว่างตัวแปร (regression coefficient ผิด), ทำให้ CI แคบเกินจริง (invalid hypothesis test), ใช้ไม่ได้กับข้อมูล skewed/categorical</td></tr>
+        <tr><td>Random Simple Imputation</td><td>รักษา distribution ของข้อมูลไว้ได้ ทำง่าย เร็ว — ใช้ได้ดีถ้าเป็น MCAR แต่แย่กว่าวิธีอื่นถ้าเป็น MAR/MNAR</td></tr>
+        <tr><td>LOCF / BOCF <span class="muted-note">(Last/Baseline Observation Carried Forward)</span></td><td>ใช้บ่อยใน clinical trial (FDA เคยนิยม) แต่ <b style="color:var(--warn)">ไม่แนะนำแล้ว</b> — เกิด bias ได้ทั้งสองทิศทาง แม้ในกรณี MCAR</td></tr>
+        <tr><td>Single Regression Imputation</td><td>ทำนายค่าจากตัวแปรอื่น (Xa = β0+βbXb+βcXc+…) — แต่เป็น deterministic (ค่าเดิมซ้ำทุกครั้ง) ทำให้ underestimate noise, SD ลดลงเหมือนปัญหา mean imputation</td></tr>
+        <tr><td><b>Multiple Imputation (MICE)</b></td><td><b style="color:var(--good)">แนะนำที่สุด</b> — สร้างหลาย dataset สมมติ (แต่ละชุดเติมค่าต่างกันเล็กน้อยตามความไม่แน่นอน) วิเคราะห์แยกแล้ว "pool" ผลกลับมารวมกัน — แก้ bias จาก MAR ได้ดี และลด bias จาก MNAR ได้บางส่วน (Multiple Imputation with Chained Equations — วนซ้ำจนลู่เข้า)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Outliers และ Duplicates</h2>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>Outliers (ค่าผิดปกติ)</h4></div>
+      <div class="gloss-why">
+        <b>ตรวจจับ:</b> กฎ 1.5×IQR (box plot) หรือค่าที่ห่างจาก mean เกิน 3SD หรือดูจาก visualization<br>
+        <b>วิธีจัดการ (เลือกตามบริบท ไม่มีสูตรตายตัว):</b> ตรวจสอบแล้วแก้ (ถ้ามั่นใจว่าเป็น error เช่น จุดทศนิยมผิดที่),
+        ตัดทิ้ง (ถ้ามั่นใจว่าผิดจริง/นอกขอบเขตที่สนใจ — ต้องมีเหตุผลรองรับ), Transform (log หรือใช้ median แทน mean),
+        Cap/Floor (Winsorize — แทนที่ค่าเกิน percentile ด้วยค่า percentile นั้น ลดอิทธิพลแต่ยังเก็บจุดข้อมูลไว้), หรือ
+        Flag (เก็บไว้แต่เพิ่มตัวแปรบอกว่าเป็น outlier ไว้ใช้ตอน modeling)<br>
+        <b>ระวัง:</b> ค่าที่ดู "สุดขั้ว" อาจเป็นเหตุการณ์จริงที่หายากได้ ไม่ใช่ error เสมอไป — ตัดทิ้งอย่างไม่ระมัดระวังอาจเสีย
+        ข้อมูลที่มีความหมายไป
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Duplicates (ข้อมูลซ้ำ)</h4></div>
+      <div class="gloss-why">
+        <b>2 ชนิด:</b> Exact duplicate (เหมือนกันทุกฟิลด์ — ลบง่าย) vs Partial duplicate (หน่วยเดียวกันแต่ข้อมูลไม่ตรงกันเป๊ะ
+        — ต้องหาด้วย unique key หรือผสมฟิลด์ เช่น ชื่อ+วันเกิด)<br>
+        <b>วิธีแก้:</b> Consolidate/Merge (รวมฟิลด์ที่ขัดแย้ง เลือกฟิลด์ที่สมบูรณ์ที่สุดมาใช้) หรือ Survival Rule
+        (ใช้ record ล่าสุดสุด สมมติว่าอัปเดตล่าสุด)<br>
+        <b>ระวัง:</b> อย่าลบผิดพลาดกรณีคนละคนที่ชื่อซ้ำกันโดยบังเอิญ (false duplicate)
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Data Visualization — ทำไมสมองคนถึง "อ่านกราฟ" ได้เร็ว</h2>
+    <p class="desc" style="max-width:none">
+      Visualization ใช้ความสามารถพิเศษของสมองมนุษย์ (Pre-Attentive Attributes) ที่ตรวจจับความแตกต่างของตำแหน่ง ความยาวเส้น
+      ความเข้มสี และรูปร่างได้เร็วมากโดยไม่ต้องตั้งใจ — มี 2 จุดประสงค์ต่างกัน: <b>Exploration (EDA)</b> หา pattern/outlier/
+      สร้างสมมติฐานสำหรับตัวนักวิเคราะห์เอง (มักเป็นกราฟหยาบๆ เร็วๆ) กับ <b>Communication</b> เล่าเรื่องให้ผู้ตัดสินใจ/สาธารณะ
+      เข้าใจง่ายและน่าเชื่อถือ (ต้องแม่นยำ+สวยงามกว่า)
+    </p>
+    <h3 style="margin-top:14px;font-size:15px">Graphical Perception Hierarchy (Cleveland &amp; McGill)</h3>
+    <p class="desc" style="max-width:none">มนุษย์ "ถอดรหัส" คุณสมบัติภาพแต่ละแบบแม่นยำไม่เท่ากัน เรียงจากแม่นสุดไปแย่สุด:</p>
+    <ol class="dsep-steps">
+      <li><b>ดีที่สุด:</b> ตำแหน่งบนแกนมาตรฐานเดียวกัน (เช่น ยอดแท่งกราฟบนแกนร่วม)</li>
+      <li><b>ดีรองลงมา:</b> เทียบตำแหน่งบนแกนที่เหมือนกันแต่แยกกัน (small multiples)</li>
+      <li><b>ดี:</b> ตัดสินความยาว, ทิศทาง (ความชันของเส้น)</li>
+      <li><b>แย่กว่า:</b> ตัดสินมุม (pie chart) หรือพื้นที่ (bubble size)</li>
+      <li><b>แย่ที่สุด:</b> ปริมาตร/มุมมอง 3 มิติ หรือความเข้มของสี</li>
+    </ol>
+    <div class="interp-box">
+      <b>คำแนะนำเชิงปฏิบัติ:</b> ใช้ตำแหน่ง/ความยาว (bar chart, dot plot) แทน พื้นที่/มุม (pie chart) เมื่อต้องการให้ผู้อ่าน
+      เปรียบเทียบปริมาณเชิงตัวเลขได้แม่นยำที่สุด
+    </div>
+    <h3 style="margin-top:16px;font-size:15px">7 ประเภทกราฟหลัก — ใช้เมื่อไหร่</h3>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>ประเภทกราฟ</th><th>ใช้เมื่อไหร่</th><th>ข้อควรระวัง</th></tr>
+        <tr><td>Bar Chart</td><td>เทียบหมวดหมู่ไม่ต่อเนื่อง (จำนวนผู้ป่วยแต่ละ ward)</td><td>ต้องมี baseline ที่ 0 เสมอ (ตัด axis ทำให้ดูต่างเกินจริง) — มี Grouped และ Stacked variant</td></tr>
+        <tr><td>Line Chart</td><td>แนวโน้มตามเวลา/ข้อมูลต่อเนื่องที่มีลำดับธรรมชาติ (เตียง ICU ที่ใช้ต่อวันตลอดปี)</td><td>เน้นความต่อเนื่องและแนวโน้ม</td></tr>
+        <tr><td>Scatter Plot</td><td>ความสัมพันธ์ระหว่าง 2 ตัวแปรต่อเนื่อง (น้ำหนัก vs ส่วนสูง)</td><td>ใช้สี/รูปทรงเพิ่มตัวแปรที่ 3 ได้ (categorical) หรือขนาดจุด (Bubble Chart, ตัวแปรที่ 3 เป็นตัวเลข)</td></tr>
+        <tr><td>Histogram</td><td>ดูการกระจายตัวของตัวแปรต่อเนื่องตัวเดียว</td><td>เครื่องมือสำคัญตอน cleaning เพื่อดู skewness/bin ที่ผิดปกติ</td></tr>
+        <tr><td>Box Plot</td><td>เทียบการกระจายตัวข้ามหลายหมวดหมู่</td><td>แสดง 5-number summary กะทัดรัด — Violin Plot คือ variant ที่โชว์รูปร่าง density ละเอียดกว่า</td></tr>
+        <tr><td>Heatmap</td><td>ข้อมูลรูปแบบเมทริกซ์ ใช้สีแทนค่า (gene expression, correlation matrix)</td><td>เลือก color scale ให้เหมาะ (diverging scale เมื่อข้อมูลมีจุดกึ่งกลางที่มีความหมาย เช่น correlation=0)</td></tr>
+        <tr><td>Geographical Map</td><td>ข้อมูลผูกกับตำแหน่งพื้นที่ (choropleth map)</td><td>ใช้ <b>อัตรา</b> (เช่น เคสต่อประชากรแสน) ไม่ใช่ตัวเลขดิบ — ไม่งั้นพื้นที่ใหญ่จะดูเด่นเกินจริงทั้งที่อัตราอาจต่ำ</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Avoiding Misleading Graphs — กราฟที่บิดเบือนความจริงได้อย่างไรบ้าง</h2>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>เทคนิคที่ทำให้เข้าใจผิด</th><th>ปัญหา</th></tr>
+        <tr><td>Truncated Y-Axis</td><td>เริ่มแกน Y ไม่ที่ศูนย์ทำให้ความต่างเล็กน้อยดู "ใหญ่เกินจริง" อย่างมาก</td></tr>
+        <tr><td>Dual Y-Axes</td><td>ใช้ 2 แกน Y คนละสเกลจับคู่กัน อาจทำให้ดูเหมือนสองเส้นมีความสัมพันธ์กันทั้งที่จริงไม่เกี่ยวข้องกันเลย — ควรเลี่ยงยกเว้นจำเป็นเรื่องหน่วยต่างกันจริงๆ</td></tr>
+        <tr><td>Cherry-Picking Data</td><td>โชว์แค่บางช่วงที่เข้าเรื่องที่อยากเล่า แต่ตัดบริบทระยะยาวออก (เช่น โชว์แนวโน้มคงที่ ทั้งที่จริงมี cyclical pattern ระยะยาว)</td></tr>
+        <tr><td>Inappropriate Aggregation/Scaling</td><td>ใช้ตัวเลขดิบแทนอัตรา (เทียบเมืองขนาดต่างกันด้วยจำนวนอาชญากรรมดิบ), ใช้ cumulative count ทำให้ดูเหมือนเพิ่มขึ้นตลอด แม้ค่ารายวันจริงจะคงที่</td></tr>
+        <tr><td>Omitting Uncertainty</td><td>โชว์แค่ค่าเฉลี่ย/point estimate โดยไม่มี error bar/CI ทำให้เข้าใจผิดว่าความต่างมีนัยสำคัญทางสถิติ ทั้งที่อาจไม่ใช่</td></tr>
+        <tr><td>Misuse of Area/Volume (3D)</td><td>ปรับขนาดวัตถุ 3 มิติ (แท่ง 3D, pictogram) ตามค่า — ค่าเพิ่ม 2 เท่า แต่ปริมาตรอาจเพิ่มถึง 8 เท่า (Lie Factor สูงมาก) บิดเบือนการรับรู้รุนแรง</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>เชื่อมกับทั้งเว็บ:</b> "Omitting Uncertainty" ตรงกับความสำคัญของ CI ที่อธิบายไว้ทั้งเว็บนี้ (แท็บ "งานวิจัย + สถิติ") —
+      กราฟที่ดีต้องแสดง uncertainty เสมอ ไม่ใช่แค่ point estimate เดี่ยวๆ
     </div>
   </section>
   </div>
