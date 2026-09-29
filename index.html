@@ -8077,10 +8077,18 @@ P-value = 0.042</pre>
         <tr><th></th><th>Screening Test (SnNout)</th><th>Confirmation Test (SpPin)</th></tr>
         <tr><td>ค่าที่ดูจากตัว test</td><td><b>Se</b>nsitivity สูง</td><td><b>Sp</b>ecificity สูง</td></tr>
         <tr><td>ค่าที่เชื่อได้ (posterior)</td><td><b>N</b>PV สูง — เชื่อผล<b>ลบ</b>ได้ (rule <b>out</b>)</td><td><b>P</b>PV สูง — เชื่อผล<b>บวก</b>ได้ (rule <b>in</b>)</td></tr>
+        <tr><td>LR ที่สอดคล้อง</td><td>LR<b>−</b> ต่ำ (&lt;0.1 ยิ่งดี)</td><td>LR<b>+</b> สูง (&gt;10 ยิ่งดี)</td></tr>
+        <tr><td>กลยุทธ์ตรวจร่วมกัน</td><td><b>Parallel</b> (ตรวจพร้อมกัน, บวกถ้าตัวใดตัวหนึ่งบวก) — เพิ่ม Sensitivity รวม</td><td><b>Serial/Sequential</b> (ตรวจต่อเนื่อง, บวกต้องบวกทั้งคู่) — เพิ่ม Specificity รวม</td></tr>
         <tr><td>เป้าหมาย</td><td>ไม่พลาดคนป่วย (false negative อันตราย)</td><td>ไม่วินิจฉัยผิดคนปกติ (false positive อันตราย)</td></tr>
       </table>
     </div>
-    <p class="compare-note" style="text-align:center">จำ: <b>Sn↔N</b> (SnNout — Sens คู่กับ NPV) &nbsp;|&nbsp; <b>Sp↔P</b> (SpPin — Spec คู่กับ PPV)</p>
+    <p class="compare-note" style="text-align:center">จำ: <b>Sn↔N</b> (SnNout — Sens คู่กับ NPV) &nbsp;|&nbsp; <b>Sp↔P</b> (SpPin — Spec คู่กับ PPV) &nbsp;|&nbsp;
+      screening→LR<b>−</b>ต่ำ+Parallel, confirmation→LR<b>+</b>สูง+Serial</p>
+    <p class="compare-note" style="text-align:center">
+      <a href="#" class="term-link" data-tab="glossary" data-target="parallelSerialCard">🔗 รายละเอียด Parallel/Serial + ตัวอย่างตัวเลข</a>
+      &nbsp;|&nbsp;
+      <a href="#" class="term-link" data-tab="glossary" data-target="metricMentalModelCard">🔗 Mental Model เลือก Metric ฉบับเต็ม</a>
+    </p>
 
     <h3 style="margin-top:16px;font-size:14px">2b. สูตรแบบเดียวกัน แต่เขียนจาก Sens/Spec/Prev ล้วนๆ (ไม่ต้องมีตาราง 2×2)</h3>
     <p class="desc" style="max-width:none">
