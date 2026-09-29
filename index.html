@@ -4057,6 +4057,30 @@
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head" id="dorCard"><h4>DOR (Diagnostic Odds Ratio)</h4><span class="fw-tag freq">Frequentist</span></div>
+      <div class="gloss-formula">DOR = LR+ / LR− = (TP × TN) / (FP × FN) = [Sens × Spec] / [(1−Sens) × (1−Spec)]</div>
+      <div class="gloss-why">
+        <b>ทำไมต้องหา:</b> เป็น "odds ratio" ตรงตัวจริงๆ (ต่างจาก LR ที่แค่ "มีพฤติกรรมคล้าย odds" — การ์ด LR ด้านบน) คือ
+        odds ของผลตรวจเป็นบวก<b>ในกลุ่มป่วย</b> หารด้วย odds ของผลตรวจเป็นบวก<b>ในกลุ่มไม่ป่วย</b> — โครงสร้างเดียวกับ OR
+        ในการ์ดกลุ่ม C ทุกประการ แค่เปลี่ยนบริบทจาก exposure/outcome เป็น test/disease — สรุป<b>ความสามารถแยกแยะโรค/ไม่โรค
+        โดยรวมของ test เป็นตัวเลขเดียว</b> (คล้าย AUC) นิยมใช้เป็น summary effect size ใน meta-analysis ของ diagnostic
+        accuracy studies (เช่น SROC — Summary ROC curve)
+      </div>
+      <div class="interp-box">
+        <b>ตีความ:</b> <b>DOR = 1</b> หมายถึง test ไม่มีความสามารถแยกแยะเลย (พอๆ กับเดาสุ่ม) — ยิ่ง DOR สูง ยิ่งแยกแยะโรค/
+        ไม่โรคได้ดี ไม่มีขอบเขตบนตายตัว (ต่างจาก AUC ที่จำกัดอยู่ 0-1) — <b>ไม่ขึ้นกับ prevalence</b> เพราะมาจาก LR+/LR−
+        ล้วนๆ (การ์ด "ต้องมี Prevalence ไหม" แท็บ "สรุปก่อนสอบ")
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ ข้อจำกัดสำคัญ: DOR ตัวเดียวไม่บอกว่า test เก่งด้านไหน</div>
+        DOR คือการ<b>ยุบ LR+ กับ LR− เป็นตัวเลขเดียว</b> — ทำให้<b>เสียข้อมูลเรื่อง trade-off ระหว่าง Sensitivity กับ
+        Specificity ไปหมด</b> — ตัวอย่าง: test A มี LR+=20, LR−=0.5 (DOR=40) กับ test B มี LR+=6.3, LR−=0.16 (DOR≈40 เท่ากัน)
+        DOR เท่ากันเป๊ะ แต่ test A เหมาะเป็น confirmatory test (SpPin, LR+สูงมาก) ส่วน test B เหมาะเป็น screening test
+        (SnNout, LR−ต่ำมาก) — <b>ใช้งานจริงคนละแบบแม้ DOR เท่ากัน</b> — จึงควรดู LR+/LR− แยกกันเสมอ ไม่ใช่ดู DOR ตัวเดียวแล้วสรุปว่า
+        "test ไหนดีกว่ากัน" โดยไม่รู้บริบทการใช้งาน
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>Accuracy (ความแม่นยำโดยรวม)</h4><span class="fw-tag both">ใช้ทั้งคู่</span></div>
       <div class="gloss-formula">Accuracy = (TP + TN) / Total screened pts</div>
       <div class="gloss-why">
@@ -8864,7 +8888,7 @@ P-value = 0.042</pre>
     </details>
 
     <details class="dsep-quiz">
-      <summary><b>35. Diagnostic Odds Ratio (DOR)</b> คืออะไร?<a href="#" class="term-link" data-tab="glossary" data-target="groupB">🔗 ดูเนื้อหา</a></summary>
+      <summary><b>35. Diagnostic Odds Ratio (DOR)</b> คืออะไร?<a href="#" class="term-link" data-tab="glossary" data-target="dorCard">🔗 ดูเนื้อหา</a></summary>
       <div class="dsep-answer">DOR = LR+/LR− = (TP×TN)/(FP×FN) — เป็น "odds ratio" ตรงตัวจริงๆ (odds ของผลตรวจเป็นบวกใน
         กลุ่มป่วย หารด้วย odds ของผลตรวจเป็นบวกในกลุ่มไม่ป่วย) สรุปความสามารถแยกแยะของตัวตรวจเป็นค่าเดียว</div>
     </details>
