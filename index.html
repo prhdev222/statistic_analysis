@@ -557,6 +557,7 @@
     <button class="topic-btn" data-tab="realpapers">📚 Paper จริง 5 เคส</button>
     <button class="topic-btn" data-tab="dataanalytics">Healthcare Data Analytics</button>
     <button class="topic-btn" data-tab="datawrangling">Data Wrangling & Cleaning</button>
+    <button class="topic-btn" data-tab="labtests">🧪 Lab Tests ที่ใช้บ่อย</button>
   </nav>
 
   <div class="tab-panel" data-tab="foundations">
@@ -9306,6 +9307,130 @@ P-value = 0.042</pre>
     <div class="gloss-why">
       <b>เชื่อมกับทั้งเว็บ:</b> "Omitting Uncertainty" ตรงกับความสำคัญของ CI ที่อธิบายไว้ทั้งเว็บนี้ (แท็บ "งานวิจัย + สถิติ") —
       กราฟที่ดีต้องแสดง uncertainty เสมอ ไม่ใช่แค่ point estimate เดี่ยวๆ
+    </div>
+  </section>
+  </div>
+
+  <div class="tab-panel" data-tab="labtests" hidden>
+  <section class="card">
+    <h2>Lab Tests ที่ใช้บ่อย — ตัวเลขจริงจากงานวิจัย</h2>
+    <p class="desc" style="max-width:none">
+      เอาแนวคิด Sensitivity/Specificity/LR ทั้งเว็บนี้มาจับกับ lab test ที่เจอบ่อยในคลินิกจริง — ตัวเลขทั้งหมดดึงจาก
+      meta-analysis/systematic review ที่ตีพิมพ์แล้ว (PubMed) แต่<b>จุดสำคัญที่สุดของหน้านี้</b>คือ lab test แต่ละตัวมี
+      "บทบาท" ต่างกัน ไม่ใช่ diagnostic test แบบเดียวกันหมด — ตรงกับ 5 ประเภทคำถามทางคลินิก (การ์ด PICO/PECO แท็บ
+      "งานวิจัย + สถิติ"): บางตัวใช้ <b>วินิจฉัย (Diagnosis)</b>, บางตัวใช้ <b>ติดตามผล (Monitoring)</b>, บางตัวใช้
+      <b>บอกพยากรณ์โรค (Prognosis)</b> เท่านั้น — สับสนบทบาทกันจะตีความผิดทันที
+    </p>
+    <div class="interp-box" style="text-align:center">
+      <b>Diagnosis</b> (มี Sens/Spec/cutoff จริง) &nbsp;≠&nbsp; <b>Monitoring</b> (ติดตามแนวโน้มหลังรักษา) &nbsp;≠&nbsp;
+      <b>Prognosis</b> (บอกความเสี่ยง ไม่ใช่วินิจฉัย)
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>กลุ่ม Diagnosis — มี Sensitivity/Specificity/Cutoff ชัดเจน</h2>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>CRP (C-Reactive Protein)</h4></div>
+      <div class="gloss-why">
+        <b>ใช้แยก:</b> bacterial vs non-bacterial infection (เป็น marker การอักเสบทั่วไป ไม่จำเพาะกับแบคทีเรีย)<br>
+        <b>ตัวเลข:</b> Sensitivity/Specificity แกว่งกว้างมาก<b>ตามประชากรและ cutoff ที่ใช้</b> — เช่น ผู้ป่วยนอกสูงอายุ
+        Sens≈72%, Spec≈42% (สำหรับ bacterial infection) แต่บาง setting เฉพาะทาง (เด็ก, cutoff 10 mg/L) ได้ Sens/Spec
+        สูงถึง 87-98%<br>
+        <b>ทำไมต่างกันมาก:</b> ตรงกับการ์ด "Spectrum Bias" (แท็บ "เครื่องคิดเลขวินิจฉัย") — ประชากรที่ศึกษา (เด็ก vs
+        ผู้สูงอายุ), นิยาม "bacterial infection" ที่ใช้เป็น reference standard, และ cutoff ที่เลือก ล้วนเปลี่ยนค่า Se/Sp
+        ที่รายงานได้มาก — CRP เดี่ยวๆ<b>ไม่ควรใช้ตัดสินใจคนเดียว</b> ต้องดูร่วมกับอาการทางคลินิก
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Procalcitonin (PCT)</h4></div>
+      <div class="gloss-why">
+        <b>ใช้แยก:</b> bacterial infection/sepsis จาก non-bacterial (จำเพาะกว่า CRP มากขึ้น เพราะ PCT ขึ้นเฉพาะเมื่อมี
+        systemic bacterial infection เป็นหลัก)<br>
+        <b>ตัวเลข (cutoff 0.5 ng/mL — ที่นิยมใช้ที่สุด):</b> Sensitivity ≈ 76%, Specificity ≈ 69% (สำหรับ bacteremia)<br>
+        <b>Cutoff สูงขึ้น (&gt;1.5 ng/mL) ใช้ตัดสินใจให้ยาปฏิชีวนะ:</b> Sens≈43%, Spec≈83%, LR+≈2.5, LR−≈0.4 — Spec สูงขึ้น
+        แต่ Sens ลดลง (trade-off แบบเดียวกับการเลื่อน cutoff ที่อธิบายไว้ในการ์ด ROC ด้านบน)
+      </div>
+      <div class="interp-box">
+        <b>PCT vs CRP:</b> Meta-analysis ส่วนใหญ่พบ PCT จำเพาะกว่า CRP สำหรับแยกแบคทีเรียจากไวรัส (โดยเฉพาะ sepsis) แต่ทั้งคู่
+        <b>ไม่มีตัวไหนแม่นยำพอจะใช้เดี่ยวๆ แทนการตัดสินใจทางคลินิกได้</b> — ใช้เป็น "หลักฐานเสริม" ประกอบภาพรวมเสมอ
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>ESR (Erythrocyte Sedimentation Rate) — ตัวอย่าง SnNout ในทางปฏิบัติ</h4></div>
+      <div class="gloss-why">
+        <b>ใช้บ่อยที่สุดใน:</b> Giant Cell Arteritis (GCA/Temporal Arteritis) — ESR มักสูงเกิน 50 mm/hr<br>
+        <b>ตัวเลข:</b> Sensitivity สูงมาก (ESR ปกติพบได้แค่ 7-20% ของผู้ป่วย GCA จริง คือ Sens≈80-93%) แต่ Specificity
+        ต่ำมาก (ESR ขึ้นได้จากการอักเสบ/การติดเชื้อ/มะเร็งแทบทุกชนิด — ไม่จำเพาะเลย)<br>
+        <b>สรุปการใช้งานจริง:</b> "ผล ESR ปกติ แทบตัดโรค GCA ออกได้เลย" — นี่คือตัวอย่าง <b>SnNout</b> (Sensitivity สูง →
+        NPV สูง → เชื่อผลลบได้) ที่ใช้จริงในเวชปฏิบัติ ตรงกับหลักที่อธิบายไว้ในแท็บ "เครื่องคิดเลขวินิจฉัย" ทุกประการ —
+        แต่ผล ESR สูงเพียงอย่างเดียว<b>ยืนยันโรคไม่ได้</b> (Specificity ต่ำ) ต้องพึ่ง temporal artery biopsy (gold standard)
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>PSA (Prostate-Specific Antigen)</h4></div>
+      <div class="gloss-why">
+        <b>ใช้คัดกรอง:</b> มะเร็งต่อมลูกหมาก คนไข้ชายอายุ 50 ปีขึ้นไป (cutoff มาตรฐาน 4.0 ng/mL)<br>
+        <b>ตัวเลข:</b> Sensitivity ≈ 67.5-80%, Specificity ≈ 60-70% ที่ cutoff 4.0 ng/mL — บางการศึกษารายงาน sensitivity
+        ต่ำถึง ~20% (นิยาม/ประชากรต่างกันมาก แม้แต่ระหว่าง paper ก็ยังไม่ตรงกัน)
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ ทำไมตัวเลข Sensitivity ของ PSA ถึงแกว่งกว้างขนาดนี้ (20% ถึง 80%)</div>
+        เพราะ "โรคจริง" ของมะเร็งต่อมลูกหมากต้องยืนยันด้วย biopsy — แต่<b>ไม่มีใครทำ biopsy ในคนที่ PSA ปกติ</b> (ยกเว้นใน
+        research setting บางแห่งอย่าง PCPT trial ที่ biopsy ทุกคนแม้ PSA ต่ำ แล้วพบว่ามะเร็งซ่อนอยู่เยอะกว่าที่คิด — ทำให้
+        sensitivity ที่คำนวณได้ต่ำลงฮวบฮาบ) — นี่คือตัวอย่าง <b>Verification Bias / Partial Verification</b> ตัวจริงในโลก
+        คลินิก (การ์ด "แนวคิดพื้นฐาน — Study Test" แท็บ "เครื่องคิดเลขวินิจฉัย") — PSA จึงเป็นตัวอย่างคลาสสิกที่ใช้สอนว่าทำไม
+        การคัดกรองมะเร็งต่อมลูกหมากด้วย PSA ยังเป็นที่ถกเถียงกันอยู่จนถึงปัจจุบัน
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>CA 19-9</h4></div>
+      <div class="gloss-why">
+        <b>ใช้คัดกรอง/ช่วยวินิจฉัย:</b> มะเร็งตับอ่อน (cutoff มาตรฐาน 37 U/mL)<br>
+        <b>ตัวเลข:</b> Sensitivity ≈ 81% (68-93%), Specificity ≈ 90% (76-100%), PPV≈72%, NPV≈96% — ยิ่งค่าสูงมาก
+        ยิ่งจำเพาะขึ้น (PPV/Specificity เพิ่มตามระดับ CA19-9 ที่สูงขึ้น)<br>
+        <b>ข้อจำกัดสำคัญ:</b> ไม่เหมาะเป็นเครื่องมือคัดกรองประชากรทั่วไป (prevalence มะเร็งตับอ่อนต่ำมาก → PPV ต่ำมากในทางปฏิบัติ
+        ตามกลไก prevalence→PPV ที่อธิบายไว้ในการ์ดกลุ่ม B) — ใช้เมื่อสงสัยจริง (diagnostic dilemma) เท่านั้น ไม่ใช่คัดกรอง
+        คนทั่วไป
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>กลุ่ม Monitoring — ไม่ใช่เครื่องมือวินิจฉัย แต่ใช้ติดตามแนวโน้ม</h2>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>CEA (Carcinoembryonic Antigen)</h4></div>
+      <div class="gloss-why">
+        <b>ใช้ผิดบ่อยที่สุด:</b> หลายคนเข้าใจผิดว่า CEA ใช้ "วินิจฉัย/คัดกรอง" มะเร็งลำไส้ใหญ่ได้ — <b>ผิด</b> เพราะ Sensitivity
+        ต่ำมากในระยะแรก (มะเร็งระยะต้นจำนวนมากมี CEA ปกติ) และ Specificity ต่ำ (สูบบุหรี่, การอักเสบ, มะเร็งชนิดอื่นก็ทำให้
+        CEA สูงได้)<br>
+        <b>บทบาทจริง:</b> (1) <b>Prognosis</b> — ค่า CEA ก่อนผ่าตัดสูง สัมพันธ์กับพยากรณ์โรคที่แย่กว่า (2) <b>Monitoring/
+        Surveillance</b> — วัด CEA เป็นระยะหลังผ่าตัดมะเร็งลำไส้ใหญ่ ถ้าค่าที่เคยลดลงกลับ<b>สูงขึ้นใหม่</b> เป็นสัญญาณเตือน
+        การกลับเป็นซ้ำ (recurrence) ต้องตามด้วยการตรวจภาพยืนยันต่อ<br>
+        <b>คำเตือน:</b> อย่าใช้ CEA ตัวเดียวเป็นเกณฑ์วินิจฉัย/คัดกรองมะเร็งลำไส้ใหญ่ในคนที่ไม่มีประวัติเป็นมะเร็งมาก่อนเด็ดขาด
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>กลุ่ม Prognosis — ไม่ใช่เครื่องมือวินิจฉัยเลย</h2>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>LDH (Lactate Dehydrogenase) ใน Lymphoma</h4></div>
+      <div class="gloss-why">
+        <b>ไม่ใช่เครื่องมือวินิจฉัย lymphoma</b> — LDH สูงได้จากสาเหตุอื่นมากมาย (กล้ามเนื้อสลาย, hemolysis, ตับ, หัวใจ)
+        ไม่มี Sensitivity/Specificity สำหรับวินิจฉัยมะเร็งต่อมน้ำเหลืองแบบที่ PSA/CA19-9 มี<br>
+        <b>บทบาทจริง — Prognostic Marker:</b> LDH สูงพบได้ 54-71% ของผู้ป่วย Diffuse Large B-Cell Lymphoma (DLBCL) ณ
+        วันวินิจฉัย สะท้อน<b>ปริมาณเนื้องอก (tumor burden)</b> และอัตราการแบ่งตัวของเซลล์มะเร็ง — เป็นหนึ่งใน 5 ปัจจัยของ
+        <b>International Prognostic Index (IPI)</b> ที่ใช้ทำนายพยากรณ์โรคของ lymphoma (ร่วมกับอายุ, stage, ECOG
+        performance status, จำนวนตำแหน่งนอกต่อมน้ำเหลือง)<br>
+        <b>ทำไมสูง = พยากรณ์โรคแย่กว่า:</b> LDH สูงมาก มักบ่งชี้เนื้องอกโตเร็ว/ปริมาณมาก ซึ่งสัมพันธ์กับการตอบสนองต่อการรักษา
+        ที่แย่กว่าและ overall survival ที่สั้นกว่า
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ ข้อควรระวัง: LDH ไม่ใช่ diagnostic test — อย่าถาม "Sensitivity/Specificity ของ LDH" ในบริบทนี้</div>
+        คำถามที่ถูกต้องคือ "LDH สูงสัมพันธ์กับพยากรณ์โรคอย่างไร" (Prognosis question) <b>ไม่ใช่</b> "LDH สูงบอกได้ไหมว่าเป็น
+        lymphoma" (Diagnosis question) — ตรงกับ 5 ประเภทคำถามทางคลินิกที่แยกไว้ชัดเจนในการ์ด PICO/PECO (แท็บ "งานวิจัย +
+        สถิติ") — ถามผิดประเภทคำถาม จะหาตัวเลข Se/Sp มาตอบไม่ได้เลยเพราะมันไม่มีอยู่จริงสำหรับการใช้งานแบบนี้
+      </div>
     </div>
   </section>
   </div>
