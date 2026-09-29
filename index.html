@@ -6404,6 +6404,35 @@ P-value = 0.042</pre>
       </div>
     </details>
 
+    <h3 style="margin-top:18px;font-size:15px">เลือกใช้ Cumulative Incidence หรือ Incidence Rate — แผนผังตัดสินใจ</h3>
+    <svg viewBox="0 0 620 260" width="100%" height="240" style="display:block;margin:10px auto;max-width:560px" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrowhead-parci-b" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,8 L4,0 L8,8 Z" fill="var(--accent)"/></marker></defs>
+      <rect x="80" y="15" width="460" height="55" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="310" y="37" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">ทุกคนติดตามได้ครบเวลาเท่ากันทุกคน</text>
+      <text x="310" y="55" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">ไม่มีใครเข้า-ออกไม่พร้อมกันไหม?</text>
+      <line x1="310" y1="70" x2="310" y2="85" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="150" y1="85" x2="470" y2="85" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="150" y1="85" x2="150" y2="107" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-parci-b)"/>
+      <line x1="470" y1="85" x2="470" y2="107" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-parci-b)"/>
+      <text x="150" y="122" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">ใช่ (fixed cohort,</text>
+      <text x="150" y="137" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">fixed period, ไม่มี loss)</text>
+      <text x="470" y="122" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">ไม่ใช่ (มี censoring/</text>
+      <text x="470" y="137" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">staggered entry)</text>
+      <line x1="150" y1="144" x2="150" y2="168" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-parci-b)"/>
+      <line x1="470" y1="144" x2="470" y2="168" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-parci-b)"/>
+      <rect x="40" y="170" width="220" height="55" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="150" y="193" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">Cumulative Incidence</text>
+      <text x="150" y="211" font-size="10.5" fill="var(--good)" text-anchor="middle">(Risk / Proportion)</text>
+      <rect x="360" y="170" width="220" height="55" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="470" y="193" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">Incidence Rate</text>
+      <text x="470" y="211" font-size="10.5" fill="var(--good)" text-anchor="middle">(person-time)</text>
+    </svg>
+    <div class="gloss-why">
+      <b>เชื่อมกับ RR vs HR ด้านบน:</b> ตรรกะเดียวกันเป๊ะ — Cumulative Incidence คือ "Risk" แบบง่าย ใช้ได้เมื่อทุกคนมีเวลาติดตาม
+      เท่ากัน (เอามาเทียบสองกลุ่มก็ได้ RR) ส่วน Incidence Rate ใช้ person-time (เอามาเทียบสองกลุ่มก็ได้ HR/Incidence Rate
+      Ratio) — โจทย์ด้านล่างเป็นตัวอย่างที่คนเข้า-ออกไม่พร้อมกัน จึงต้องใช้ person-time
+    </div>
+
     <h3 style="margin-top:18px;font-size:15px">ตัวอย่างเปรียบเทียบ Cumulative Incidence vs Incidence Rate จาก Cohort เดียวกัน (person-time)</h3>
     <p class="desc" style="max-width:none">
       นี่คือตัวอย่างคลาสสิกที่ใช้สอน person-time — cohort สมมติ 12 คน ที่ไม่มีโรคตั้งแต่ต้น ติดตามช่วงปี 1990-1995 (5 ปี) แต่ละคน
@@ -7020,6 +7049,35 @@ P-value = 0.042</pre>
     </div>
 
     <h3 style="margin-top:18px;font-size:15px">PAR / PAR% (Population Attributable Risk) — ขยาย AR จากระดับบุคคลสู่ระดับประชากร</h3>
+    <p class="desc" style="max-width:none">เลือกใช้ AR หรือ PAR ก็เป็นแผนผังตัดสินใจแบบเดียวกับ RR/OR/HR ด้านบน — ขึ้นกับว่า
+      "อยากรู้ผลกระทบของใคร":</p>
+    <svg viewBox="0 0 620 270" width="100%" height="250" style="display:block;margin:10px auto;max-width:560px" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrowhead-parci-a" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,8 L4,0 L8,8 Z" fill="var(--accent)"/></marker></defs>
+      <rect x="100" y="15" width="420" height="55" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="310" y="37" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">ต้องการรู้ผลกระทบของปัจจัยเสี่ยง</text>
+      <text x="310" y="55" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">ในระดับไหน?</text>
+      <line x1="310" y1="70" x2="310" y2="85" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="150" y1="85" x2="470" y2="85" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="150" y1="85" x2="150" y2="107" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-parci-a)"/>
+      <line x1="470" y1="85" x2="470" y2="107" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-parci-a)"/>
+      <text x="150" y="122" font-size="11" fill="var(--accent)" text-anchor="middle" font-weight="700">เฉพาะกลุ่มที่สัมผัสปัจจัย</text>
+      <text x="150" y="137" font-size="11" fill="var(--accent)" text-anchor="middle" font-weight="700">(บุคคล/คลินิก)</text>
+      <text x="470" y="122" font-size="11" fill="var(--accent)" text-anchor="middle" font-weight="700">ทั้งประชากร รวมคนไม่สัมผัส</text>
+      <text x="470" y="137" font-size="11" fill="var(--accent)" text-anchor="middle" font-weight="700">(นโยบายสาธารณสุข)</text>
+      <line x1="150" y1="144" x2="150" y2="168" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-parci-a)"/>
+      <line x1="470" y1="144" x2="470" y2="168" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-parci-a)"/>
+      <rect x="40" y="170" width="220" height="55" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="150" y="193" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">AR / AR%</text>
+      <text x="150" y="211" font-size="10.5" fill="var(--good)" text-anchor="middle">(Attributable Risk)</text>
+      <rect x="360" y="170" width="220" height="55" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="470" y="193" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">PAR / PAR%</text>
+      <text x="470" y="211" font-size="10.5" fill="var(--good)" text-anchor="middle">(ต้องรู้ Pe เพิ่ม)</text>
+    </svg>
+    <div class="gloss-why">
+      <b>ทำไมต้องแยก:</b> AR ตอบคำถามระดับ<b>บุคคล</b> ("ในคนที่สัมผัสปัจจัยนี้ ความเสี่ยงส่วนเกินคือเท่าไร") เหมาะกับให้คำแนะนำ
+      คนไข้รายคน — PAR ตอบคำถามระดับ<b>ประชากร</b> ("ถ้ากำจัดปัจจัยนี้ออกจากทั้งประเทศ จะลดผู้ป่วยได้เท่าไร") เหมาะกับตัดสินใจ
+      เชิงนโยบายสาธารณสุข — PAR ต้องใช้ <b>Pe (สัดส่วนคนสัมผัสปัจจัยในประชากร)</b> เพิ่มเข้ามาในสูตรเสมอ ซึ่ง AR ไม่ต้องใช้
+    </div>
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>PAR% (Population Attributable Risk Percent)</h4><span class="fw-tag freq">Frequentist</span></div>
       <div class="gloss-formula">PAR% = [Incidence(ประชากรทั้งหมด) − Incidence(กลุ่มไม่มีปัจจัยเสี่ยง)] / Incidence(ประชากรทั้งหมด) × 100%</div>
