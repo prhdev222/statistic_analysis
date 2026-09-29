@@ -7856,6 +7856,16 @@ P-value = 0.042</pre>
         <tr><td>ในบริบทวินิจฉัย</td><td>Prior=Prevalence, Likelihood=Sensitivity, Posterior=PPV</td></tr>
       </table>
     </div>
+    <div class="flow-tree">
+      <div class="flow-node">
+        <div class="flow-q">Sens/Spec (คุณสมบัติคงที่ของ test)</div>
+        <div class="flow-node">
+          <div class="flow-q">Prevalence ของคนไข้ตรงกับ study population ไหม?</div>
+          <div class="flow-node"><span class="flow-branch-label">ใช่</span><br><span class="flow-test">ใช้ PPV/NPV ตรงๆ ได้เลย</span></div>
+          <div class="flow-node"><span class="flow-branch-label">ไม่ใช่ (ส่วนใหญ่ในคลินิกจริง)</span><br><span class="flow-test">ใช้ LR × Prior Odds ของคนไข้เอง → Posterior Probability</span></div>
+        </div>
+      </div>
+    </div>
 
     <h3 style="margin-top:16px;font-size:14px">6. Confounding &amp; DAG — Block หรือไม่ Block?</h3>
     <div class="table-scroll">
