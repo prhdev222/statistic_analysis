@@ -9083,6 +9083,20 @@ P-value = 0.042</pre>
         <tr><td><b>Multiple Imputation (MICE)</b></td><td><b style="color:var(--good)">แนะนำที่สุด</b> — สร้างหลาย dataset สมมติ (แต่ละชุดเติมค่าต่างกันเล็กน้อยตามความไม่แน่นอน) วิเคราะห์แยกแล้ว "pool" ผลกลับมารวมกัน — แก้ bias จาก MAR ได้ดี และลด bias จาก MNAR ได้บางส่วน (Multiple Imputation with Chained Equations — วนซ้ำจนลู่เข้า)</td></tr>
       </table>
     </div>
+    <div class="interp-box">
+      <b>มีโปรแกรมช่วยทำ MICE จริงไหม — มีค่ะ:</b> R (<b>mice</b> package — ตัวต้นตำรับ), Python
+      (<b>sklearn.IterativeImputer</b> หรือ <b>miceforest</b> — เร็วกว่า จัดการข้อมูลผสมตัวเลข/หมวดหมู่ได้ดี), Stata
+      (คำสั่งในตัว <b>mi impute chained</b>), SPSS (เมนู Analyze → Multiple Imputation — ไม่ต้องเขียนโค้ด)
+      <div class="gloss-formula" style="display:block;margin-top:8px;font-size:12px">
+        library(mice)<br>
+        imp &lt;- mice(data, m = 5, method = "pmm")&nbsp;&nbsp;# 1. สร้าง 5 dataset สมมติ<br>
+        fit &lt;- with(imp, lm(y ~ x1 + x2))&nbsp;&nbsp;# 2. วิเคราะห์แยกแต่ละชุด<br>
+        pooled &lt;- pool(fit)&nbsp;&nbsp;# 3. pool รวมผลด้วย Rubin's rules<br>
+        summary(pooled)
+      </div>
+      <b>method="pmm"</b> (Predictive Mean Matching) คือค่า default ที่นิยมที่สุด เพราะเติมค่าจาก<b>ค่าจริงที่เคยสังเกตได้</b>
+      ไม่ใช่ค่าที่โมเดลคำนวณขึ้นมาลอยๆ — <b>m=5</b> คือจำนวน dataset สมมติ (มาตรฐานทั่วไป 5-20 ชุด)
+    </div>
   </section>
 
   <section class="card">
