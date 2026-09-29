@@ -558,6 +558,7 @@
     <button class="topic-btn" data-tab="dataanalytics">Healthcare Data Analytics</button>
     <button class="topic-btn" data-tab="datawrangling">Data Wrangling & Cleaning</button>
     <button class="topic-btn" data-tab="labtests">🧪 Lab Tests ที่ใช้บ่อย</button>
+    <button class="topic-btn" data-tab="exceldata">🖥️ Data Collection + Excel + Power BI</button>
     <button class="topic-btn" data-tab="mcqexam">🎯 English MCQ Practice (30 ข้อ)</button>
   </nav>
 
@@ -8302,6 +8303,24 @@ P-value = 0.042</pre>
         <tr><td>จุดเปลี่ยนสำคัญ</td><td>HITECH Act (2009) → EHR แพร่หลายในสหรัฐฯ</td></tr>
       </table>
     </div>
+
+    <h3 style="margin-top:16px;font-size:14px">12. Data Collection + Excel + Power BI — สรุปย่อ (แท็บ "Data Collection + Excel + Power BI")</h3>
+    <div class="table-scroll">
+      <table class="gloss-table dsep-examples">
+        <tr><th>หัวข้อ</th><th>จำสั้นๆ</th></tr>
+        <tr><td>Categorical data 2 แบบ</td><td>Nominal=ไม่มีลำดับ (เพศ, หมู่เลือด) vs Ordinal=มีลำดับ (ระยะมะเร็ง, ระดับการศึกษา)</td></tr>
+        <tr><td>Structured vs Unstructured</td><td>Structured ~20% ของข้อมูลองค์กร (ตาราง/DB ได้) vs Unstructured ~80% (รูป/เสียง/วิดีโอ/เอกสาร)</td></tr>
+        <tr><td>Data Collection Form 4 ข้อห้าม</td><td>(1) หัวตาราง 2 ชั้น (2) เว้นแถวว่าง/merge ID (3) มีแถวสรุปปน (4) แยก 2 คอลัมน์แทน 1 ตัวแปร — ตรงหลัก Tidy Data</td></tr>
+        <tr><td>Excel Date System</td><td>เก็บเป็น Serial Number นับจาก 01/01/1900 — เช็ค Calendar Type (ค.ศ./พ.ศ.) เสมอ</td></tr>
+        <tr><td>Fix Cell Reference (F4)</td><td>วน A1→$A$1→A$1→$A1→A1 — $ หน้าตัวใด = ล็อกตัวนั้น</td></tr>
+        <tr><td>Complete Case Analysis</td><td>ตัด record ที่ missing/ผิดปกติทิ้งได้ไม่เกิน &lt;5% ของทั้งหมด</td></tr>
+        <tr><td>Imputation 4 วิธี (Excel level)</td><td>Replace 0, Forward/Backward fill, Mean/Mode/Median fill, Interpolation — ถ้าซับซ้อนกว่านี้ (MAR/MNAR) ต้องใช้ MICE แทน</td></tr>
+        <tr><td>BI Workflow 4 ขั้น</td><td>Data Prep(ETL)→EDA→Visualization→Dashboard</td></tr>
+        <tr><td>Four Stages of Self-Service BI</td><td>Acquisition(Power Query)→Modelling(Power Pivot)→Visualisation(PBI Visuals)→Sharing(PowerBI.com)</td></tr>
+        <tr><td>Power BI 3 Components</td><td>Desktop(สร้าง report, ฟรี) / Service(cloud, แชร์ได้ต้องมี license) / Mobile apps(ดูอย่างเดียว)</td></tr>
+        <tr><td>Power BI Pricing</td><td>Free(สร้างเองใช้เอง) &lt; Pro $14/user/mo(แชร์ได้) &lt; Premium Per User $24/user/mo(AI+dataflow ขั้นสูง)</td></tr>
+      </table>
+    </div>
   </section>
   </div>
 
@@ -10037,6 +10056,306 @@ P-value = 0.042</pre>
         lymphoma" (Diagnosis question) — ตรงกับ 5 ประเภทคำถามทางคลินิกที่แยกไว้ชัดเจนในการ์ด PICO/PECO (แท็บ "งานวิจัย +
         สถิติ") — ถามผิดประเภทคำถาม จะหาตัวเลข Se/Sp มาตอบไม่ได้เลยเพราะมันไม่มีอยู่จริงสำหรับการใช้งานแบบนี้
       </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="tab-panel" data-tab="exceldata" hidden>
+  <section class="card">
+    <h2>Data Collection, Cleaning, and Preparation for Healthcare Analysis by Excel</h2>
+    <p class="desc" style="max-width:none">
+      สรุปจาก handout "Data Collection, Cleaning, and Preparation for Healthcare Analysis by Excel" (Chaiyawat Suppasilp) —
+      เนื้อหาเชิงปฏิบัติ (practical) ต่างจากแท็บ "Data Wrangling & Cleaning" ที่เน้นทฤษฎี (MCAR/MAR/MNAR ฯลฯ) — เว็บนี้จับเฉพาะ
+      ส่วนที่ใช้ทำงานจริงด้วย Excel + แนะนำ Power BI เบื้องต้น
+    </p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>หัวข้อหลัก</th><th>เนื้อหา</th></tr>
+        <tr><td>Data Sources</td><td>ข้อมูลทางการแพทย์มาจากไหนบ้าง (HIS/Billing/LIS/PACS, ICD-10/9CM, ข้อมูลรัฐบาล)</td></tr>
+        <tr><td>Prospective Data Collection (Excel)</td><td>ออกแบบฟอร์มเก็บข้อมูล, ใช้ Excel เก็บ/จัดการข้อมูลอย่างถูกวิธี</td></tr>
+        <tr><td>Data Preparation (Excel)</td><td>ตรวจสอบ/ทำความสะอาดข้อมูลก่อนวิเคราะห์ (missing value, outlier, imputation)</td></tr>
+        <tr><td>Introduction to Power BI</td><td>เครื่องมือ Business Intelligence ต่อยอดจาก Excel สำหรับสร้าง dashboard</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>1. Data Sources in Medicine</h2>
+    <p class="desc" style="max-width:none">ข้อมูลทางการแพทย์มาจาก 4 กลุ่มหลัก:</p>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>แหล่งข้อมูล</th><th>ตัวอย่าง</th></tr>
+        <tr><td><b>Prospective data collection</b></td><td>เก็บข้อมูลเองตามแบบฟอร์มวิจัย (Case Record Form)</td></tr>
+        <tr><td><b>EHR (Electronic Health Record)</b></td><td>HIS/EMR data, Lab, Medication, Billing, Operation note, Reports, Images (Radiology/Pathology), Signal (EEG/ECG)</td></tr>
+        <tr><td><b>Data warehouse</b></td><td>ข้อมูลรวมจากหลายระบบผ่าน ETL (Extract-Transform-Load) → ใช้ทำ Dashboard/BI/Ad-hoc Report</td></tr>
+        <tr><td><b>Secondary data</b></td><td>ข้อมูลจากภายนอก เช่น Administrative claim data, ข้อมูลรัฐบาล/สาธารณะ</td></tr>
+      </table>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>ระบบรหัสโรค/หัตถการที่ต้องรู้จัก</h4></div>
+      <div class="gloss-why">
+        <b>ICD-10</b> (International Classification of Diseases) — รหัสการวินิจฉัยโรค เช่น J00 = ไข้หวัด, J189 = ปอดบวม<br>
+        <b>ICD-9CM</b> — รหัสหัตถการ/การผ่าตัด (procedure code) เช่น 97.xx = การเปลี่ยน/ถอดอุปกรณ์รักษา
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Administrative Claim Data ในไทย (ตัวอย่างจาก handout)</h4></div>
+      <div class="gloss-why">
+        <b>สิทธิหลักประกันสุขภาพถ้วนหน้า (UHC)</b> — National Health Security Office (NHSO/สปสช.)<br>
+        <b>สิทธิข้าราชการ</b> — Comptroller General's Department (กรมบัญชีกลาง, CSMBS)<br>
+        <b>สิทธิประกันสังคม</b> — Social Security Office<br>
+        <b>43-file</b> — มาตรฐานข้อมูลกลางของกระทรวงสาธารณสุข (Strategy and Planning Division)<br>
+        <b>อื่นๆ</b> — GISTDA (ข้อมูลภูมิสารสนเทศ), Public Data (ข้อมูลเปิดภาครัฐ)
+      </div>
+    </div>
+    <div class="interp-box">
+      <b>Real World Data (RWD) ต่างจาก Data Collection (งานวิจัยแบบวางแผนไว้ล่วงหน้า) อย่างไร:</b>
+      <div class="table-scroll" style="margin-top:8px">
+        <table class="gloss-table">
+          <tr><th>มิติ</th><th>Data Collection (RCT/planned)</th><th>Real-World Data</th></tr>
+          <tr><td>Goals</td><td>ทำในสภาวะควบคุม, วัด efficacy (สิ่งที่ "ทำได้" ในทางทฤษฎี)</td><td>ทำในเวชปฏิบัติจริง, วัด effectiveness (สิ่งที่ "เกิดขึ้นจริง")</td></tr>
+          <tr><td>Treatment</td><td>โปรโตคอลมาตรฐาน คงที่ตลอดการศึกษา</td><td>ตามเวชปฏิบัติจริง เปลี่ยนแปลงได้ตลอดเวลา</td></tr>
+          <tr><td>Outcome Measures</td><td>กำหนดไว้ชัดเจนล่วงหน้า มีตารางเวลาวัดผลแน่นอน</td><td>ไม่แน่นอน/แตกต่างกันไปตามเวชระเบียน</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. Structured vs Unstructured Data</h2>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>Structured Data</h3>
+        <div class="compare-point"><b>ลักษณะ</b><span>แสดงในตาราง/แถว/คอลัมน์/relational database ได้ — ตัวเลข วันที่ ข้อความสั้น</span></div>
+        <div class="compare-point"><b>สัดส่วน</b><span>~20% ของข้อมูลองค์กรทั้งหมด (Gartner)</span></div>
+        <div class="compare-point"><b>Storage/จัดการ</b><span>ใช้พื้นที่น้อยกว่า จัดการ/ป้องกันง่ายกว่า</span></div>
+      </div>
+      <div class="compare-col bayes">
+        <h3>Unstructured Data</h3>
+        <div class="compare-point"><b>ลักษณะ</b><span>ใส่ตาราง/relational database ตรงๆ ไม่ได้ — รูปภาพ, เสียง, วิดีโอ, เอกสาร, อีเมล</span></div>
+        <div class="compare-point"><b>สัดส่วน</b><span>~80% ของข้อมูลองค์กรทั้งหมด (Gartner) และเติบโตเร็วกว่ามาก</span></div>
+        <div class="compare-point"><b>Storage/จัดการ</b><span>ใช้พื้นที่มากกว่า จัดการ/ป้องกันยากกว่า</span></div>
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>ประเภทของ Structured Data</h4></div>
+      <div class="gloss-why">
+        <b>Types of data:</b> Categorical, Numeric, Boolean, Date time<br><br>
+        <b>Categorical data แบ่งเป็น 2 แบบ (จุดที่ออกข้อสอบบ่อย):</b><br>
+        • <b>Nominal</b> — หมวดหมู่ไม่มีลำดับ เช่น เพศ, หมู่เลือด (Gender, Blood group)<br>
+        • <b>Ordinal</b> — หมวดหมู่มีลำดับ เช่น ระยะมะเร็ง, ระดับการศึกษา (Tumor staging, Education level)
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>Format</th><th>ใช้กับ</th><th>จุดเด่น</th></tr>
+        <tr><td>Excel (.xls/.xlsx)</td><td rowspan="3">Structured data</td><td>อ่านง่ายที่สุด (Human Readability สูง), รองรับ metadata/formula/chart, หลาย sheet</td></tr>
+        <tr><td>CSV (.csv)</td><td>Plain text, flat table เดียว, ไฟล์เล็กที่สุด, แลกเปลี่ยนข้อมูลง่ายทุกภาษาโปรแกรม</td></tr>
+        <tr><td>JSON (.json)</td><td>โครงสร้างซ้อนกันได้ (hierarchical/array), เหมาะกับ API/web app/config file</td></tr>
+        <tr><td>PDF, Signal (ECG/EEG/Voice)</td><td rowspan="2">Unstructured data</td><td>เก็บเอกสาร/สัญญาณดิบ</td></tr>
+        <tr><td>DICOM (Digital Imaging and Communications in Medicine)</td><td>ไฟล์ภาพทางการแพทย์ (CT/MRI/X-ray) — มี metadata header แนบมาด้วย (StudyDate, Modality, PatientID ฯลฯ)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3. Data Collection Form — 4 ข้อที่ห้ามทำ (Design Rules)</h2>
+    <p class="desc" style="max-width:none">
+      หลักการออกแบบตาราง/ฟอร์มเก็บข้อมูลใน Excel ให้พร้อมนำไปวิเคราะห์ทันที (ตรงกับหลัก "Tidy Data" — 1 แถว = 1 record, 1 คอลัมน์ = 1 ตัวแปร)
+    </p>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>❌ 1) Header with two rows (หัวตารางซ้อน 2 ชั้น)</h4></div>
+      <div class="gloss-why">ห้ามทำหัวตารางแบบ merge cell ซ้อนกัน 2 แถว (เช่น "Gender" คร่อม "Male"/"Female") — โปรแกรมวิเคราะห์ข้อมูล/pivot table อ่านหัวตารางแบบนี้ไม่ได้ ต้องใช้หัวตาราง 1 แถวแบนราบ (flat header) เท่านั้น</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>❌ 2) No empty row, merging (ห้ามเว้นแถวว่าง/merge cell ID ซ้ำ)</h4></div>
+      <div class="gloss-why">ห้าม merge cell คอลัมน์ ID ให้โชว์แค่แถวแรกของผู้ป่วยแต่ละคนแล้วเว้นว่างแถวถัดไป (เช่น ผู้ป่วย ID=1 มี 4 นัด แต่โชว์เลข 1 แค่แถวเดียว) — ต้องใส่ ID ซ้ำทุกแถวให้ครบ เพื่อให้ filter/group by ได้ถูกต้อง</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>❌ 3) Summary row (ห้ามใส่แถวสรุปปนกับข้อมูลดิบ)</h4></div>
+      <div class="gloss-why">ห้ามใส่แถวสรุป/ค่าเฉลี่ย/ผลรวม (เช่น "2 pts, 82.5 days...") ปนอยู่ในตารางข้อมูลดิบแถวสุดท้าย — จะทำให้โปรแกรมนับแถวสรุปนั้นเป็น 1 record ปลอมที่ทำให้ผลวิเคราะห์ผิดเพี้ยน ควรแยกสรุปไว้อีกที่หนึ่งต่างหาก</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>❌ 4) 2 Columns for 1 information/variable (ห้ามแยก 2 คอลัมน์แทนตัวแปรเดียว)</h4></div>
+      <div class="gloss-why">ห้ามแยกคอลัมน์ "Male" กับ "Female" เป็นคนละคอลัมน์เพื่อแทนตัวแปร "เพศ" ตัวเดียว (หรือแยก Weight/Height ไว้ใต้หัวข้อ "For BMI calculation" ซ้อนกันแบบนี้ก็ผิดหลักเดียวกัน) — 1 ตัวแปรต้องมีแค่ 1 คอลัมน์เสมอ ตรงกับหลัก Tidy Data</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4. Excel Fundamentals</h2>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>ส่วนประกอบ</th><th>หน้าที่</th></tr>
+        <tr><td>Ribbon / Tabs / Groups / Commands</td><td>แถบเครื่องมือด้านบน แบ่งเป็นแท็บ (Home, Insert, ...) → กลุ่มคำสั่ง → ปุ่มคำสั่งย่อย</td></tr>
+        <tr><td>Sheet</td><td>พื้นที่ตารางหลักสำหรับกรอกข้อมูล</td></tr>
+        <tr><td>Name Box / Formula Bar</td><td>Name Box บอกตำแหน่ง cell ปัจจุบัน (เช่น C4) — Formula Bar แสดงสูตร/ค่าจริงของ cell นั้น</td></tr>
+        <tr><td>Status Bar</td><td>แถบล่างสุด แสดงโหมดคำนวณ/สรุปย่อ (sum/average) ของ cell ที่เลือก</td></tr>
+      </table>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Cell = Value + Format</h4></div>
+      <div class="gloss-why">
+        <b>Value (ค่าข้อมูล):</b> Number หรือ Formula<br>
+        <b>Format (การแสดงผล):</b> Number Format (Percentage, Decimal/Whole number, Date/Time) และ Cell Format (สี, Protection)<br>
+        — Value กับ Format เป็นคนละส่วนกัน: cell เดียวกันเปลี่ยน Format ได้โดยไม่กระทบ Value ที่แท้จริงข้างใน
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>แปลง Data Type ไปมา (Tip ที่ใช้บ่อย)</h4></div>
+      <div class="gloss-why">
+        <b>เช็ค data type:</b> ใช้ฟังก์ชัน ISNUMBER, ISTEXT, ISBLANK, ISERROR, ISNONTEXT<br>
+        <b>Number → Text:</b> พิมพ์ ' นำหน้า หรือใช้ &<span>""</span><br>
+        <b>Text → Number:</b> คูณ 1 (<code>*1</code>), บวก 0 (<code>+0</code>), หาร 1 (<code>/1</code>), หรือใช้ double negative (<code>--</code>)<br>
+        <b>Logic (TRUE/FALSE) → Number:</b> <code>*1</code> หรือ <code>--</code> (TRUE→1, FALSE→0)
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Date System — จุดที่คนเข้าใจผิดบ่อย</h4></div>
+      <div class="gloss-why">
+        Excel เก็บวันที่เป็น <b>Serial Number</b> (ตัวเลขจำนวนเต็ม) นับจาก <b>Reference Date = 01/01/1900</b> เสมอ —
+        การแสดงผลเป็นวันที่ที่มนุษย์อ่านได้ (dd/mm/yyyy) เป็นแค่ "Format" ที่ครอบไว้ ค่าจริงข้างในยังเป็นตัวเลข<br><br>
+        <b>ปัญหาที่พบบ่อยในไทย:</b> ต้องเช็ค Calendar Type ใน Control Panel &gt; Region ว่าเป็น ค.ศ. หรือ พ.ศ. (Thai Buddhist)
+        ก่อนเสมอ ไม่งั้นวันที่จะเพี้ยนไป 543 ปี (เช่น 01/03/2027 ที่จริงอาจหมายถึง 29 Feb 2560 พ.ศ. ถ้าตั้งค่าผิด)
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Date Functions ที่ใช้บ่อย</h4></div>
+      <div class="gloss-why">
+        <code>DATE()</code>, <code>TODAY()</code>, <code>NOW()</code> — สร้าง/ดึงวันที่ปัจจุบัน<br>
+        <code>DAY()</code>, <code>MONTH()</code>, <code>YEAR()</code>, <code>WEEKDAY()</code>, <code>HOUR()</code>, <code>MINUTE()</code>, <code>SECOND()</code> — แยกส่วนประกอบจาก serial number<br>
+        <code>DATEDIF()</code>, <code>DAYS()</code>, <code>NETWORKDAYS()</code>, <code>WORKDAY()</code> — คำนวณระยะห่างระหว่างวันที่ (เช่น หาอายุ, หาจำนวนวันนอนโรงพยาบาล)<br>
+        <code>EDATE()</code>, <code>EOMONTH()</code>, <code>YEARFRAC()</code> — เลื่อนวันที่ไปข้างหน้า/หาสัดส่วนปี
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>5. Excel Data Tools</h2>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>Fix Cell Reference ($ + F4)</h4></div>
+      <div class="gloss-why">
+        เครื่องหมาย <b>$</b> หน้าตัวอักษร/ตัวเลขใดในสูตร = ล็อกตำแหน่งนั้นไม่ให้เลื่อนเมื่อลากสูตรไปยัง cell อื่น
+        (เหมือน "เอาเงินฝาดหัว") — กด <b>F4</b> วนสลับได้ 4 แบบตามลำดับ:<br>
+        <code>A1</code> (ไม่ fix ทั้งคอลัมน์และแถว) → <code>$A$1</code> (fix ทั้งคอลัมน์ A และแถว 1) →
+        <code>A$1</code> (fix แค่แถว 1) → <code>$A1</code> (fix แค่คอลัมน์ A) → วนกลับ <code>A1</code>
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Conditional Formatting</h4></div>
+      <div class="gloss-why">
+        เน้นสี/ไอคอนตามเงื่อนไขค่าใน cell อัตโนมัติ — 3 แบบหลัก: <b>Color scale</b> (ไล่สีตามค่ามาก-น้อย),
+        <b>Data bars</b> (แท่งสีในเซลล์แสดงสัดส่วน), <b>Icon set</b> (ไอคอน เช่น ธงสี/ลูกศร ตามเกณฑ์ที่ตั้ง)
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Sort &amp; Filter</h4></div>
+      <div class="gloss-why">
+        <b>Sort</b> เรียงข้อมูลตามคอลัมน์ที่เลือก (A→Z, Z→A, หรือตามสี) — ข้อควรระวัง: ถ้าเลือกแค่บางคอลัมน์ก่อน Sort
+        Excel จะเตือน "Sort Warning" ให้เลือก "Expand the selection" เสมอ ไม่งั้นข้อมูลแถวอื่นจะไม่ขยับตาม ทำให้ข้อมูลสลับแถวผิดคน<br>
+        <b>Filter</b> กรองแสดงเฉพาะแถวที่ตรงเงื่อนไข (ไม่ลบข้อมูล แค่ซ่อนแถวที่ไม่ตรง)
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Flash Fill (Ctrl+E)</h4></div>
+      <div class="gloss-why">
+        Excel เดารูปแบบจากตัวอย่างที่พิมพ์ไว้ 1-2 แถวแรก แล้วเติมให้อัตโนมัติทั้งคอลัมน์ (เช่น แยกชื่อ-นามสกุล หรือรวม First+Last
+        Name เป็น Full Name) — กด <b>Ctrl+E</b> เพื่อสั่งเติมทันทีหลังพิมพ์ตัวอย่างไว้
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>6. Data Preparation Workflow (Structured Data)</h2>
+    <ol class="dsep-steps">
+      <li><b>Data Verification</b> — ตรวจ 3 อย่าง: Missing value (ค่าที่หายไป), Outliers (ค่าผิดปกติสุดขั้ว), Data Unit (หน่วยไม่สอดคล้องกัน เช่น Height ปนกันระหว่าง cm กับ m)</li>
+      <li><b>Complete Case Analysis</b> — ตัดสินใจว่าจะตัด record ที่มี missing/ผิดปกติทิ้งหรือไม่ — <b>ควรตัดทิ้งไม่เกิน &lt;5%</b> ของข้อมูลทั้งหมด เพราะตัดมากเกินไปจะกระทบผลวิเคราะห์ (bias จากการเสียกลุ่มตัวอย่าง)</li>
+      <li><b>Data Imputation</b> (ถ้าไม่ตัดทิ้ง) — เลือกวิธีเติมค่าที่หายไปแทน</li>
+    </ol>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>วิธี Imputation</th><th>ใช้เมื่อไหร่</th></tr>
+        <tr><td>Replace with 0</td><td>เมื่อ "ไม่มีข้อมูล" มีความหมายเท่ากับ "ค่า 0" จริงๆ (เช่น จำนวนยาที่ใช้ = ไม่ได้ใช้เลย)</td></tr>
+        <tr><td>Forward/Backward Filling</td><td>ข้อมูลตามช่วงเวลา (time-series) ที่ค่าไม่ควรเปลี่ยนบ่อย เช่น เพศ/หมู่เลือดที่กรอกไว้ตอนแรกแล้วไม่ต้องกรอกซ้ำทุกนัด</td></tr>
+        <tr><td>Mean/Mode/Median Filling</td><td>ค่าตัวแปรต่อเนื่อง/หมวดหมู่ทั่วไปที่ไม่มี pattern ตามเวลาชัดเจน (เทียบเท่า mean imputation ในแท็บ Data Wrangling — ใช้ระวัง เพราะลด variance ของข้อมูล)</td></tr>
+        <tr><td>Interpolation/Extrapolation</td><td>ข้อมูลตัวเลขต่อเนื่องตามเวลาที่มีค่าก่อนหน้า-หลังจริง — ประมาณค่าคั่นกลางเชิงเส้น</td></tr>
+      </table>
+    </div>
+    <div class="gloss-formula">y = y₁ + (x − x₁) × (y₂ − y₁) / (x₂ − x₁)</div>
+    <div class="gloss-why">สูตร Linear Interpolation — ประมาณค่า y ที่ตำแหน่ง x ใดๆ ระหว่างจุดที่รู้ค่าจริง 2 จุด (x₁,y₁) และ (x₂,y₂)</div>
+    <div class="warn-box">
+      <div class="wt">⚠️ เชื่อมกับแท็บ "Data Wrangling & Cleaning"</div>
+      Imputation แบบง่ายๆ ในนี้ (0/fill/mean/interpolation) เหมาะกับงานเตรียมข้อมูลเบื้องต้นด้วย Excel — แต่ถ้าข้อมูลมี pattern
+      การหายไม่สุ่ม (MAR/MNAR) ซับซ้อน ควรใช้ MICE (Multiple Imputation by Chained Equations) แทน ตามที่อธิบายไว้ในแท็บ
+      "Data Wrangling &amp; Cleaning" — Excel ธรรมดาทำ MICE เองไม่ได้ ต้องใช้ R/Python
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>7. Introduction to Power BI</h2>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>Business Intelligence (BI) คืออะไร</h4></div>
+      <div class="gloss-why">
+        ชุดวิธีการ/กระบวนการ/สถาปัตยกรรม/เทคโนโลยี ที่<b>แปลงข้อมูลดิบให้เป็นข้อมูลที่มีความหมาย</b> เพื่อช่วยตัดสินใจเชิงกลยุทธ์/ยุทธวิธี/ปฏิบัติการ —
+        ประกอบด้วย 3 ส่วน: Data gathering (เก็บข้อมูล) + Data storage (จัดเก็บ) + Knowledge management (จัดการองค์ความรู้)
+      </div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Power BI คืออะไร</h4></div>
+      <div class="gloss-why">
+        แพลตฟอร์ม self-service + enterprise BI ของ Microsoft — เชื่อมต่อ/แสดงผลข้อมูลจากแหล่งไหนก็ได้แบบ interactive —
+        ถูกจัดเป็น "Leader" ใน Gartner Magic Quadrant for Analytics and BI Platforms (2024)
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>ขั้นตอน BI Workflow</th><th>รายละเอียด</th></tr>
+        <tr><td>1. Data Preparation (ETL)</td><td>รวบรวม+แปลงข้อมูลจากหลายแหล่ง (Extract-Transform-Load) — ตรงกับหัวข้อ 1-6 ด้านบนทั้งหมด</td></tr>
+        <tr><td>2. Exploratory Data Analysis (EDA)</td><td>สำรวจหา trend/ความผิดปกติในข้อมูล</td></tr>
+        <tr><td>3. Create Visualization</td><td>ใช้กราฟ/แผนภูมิสื่อสารสิ่งที่พบ</td></tr>
+        <tr><td>4. Create Dashboard</td><td>รวมภาพเป็นแผงควบคุม ใช้ตัดสินใจ/ลงมือทำได้แบบ real-time</td></tr>
+      </table>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Four Stages of Self-Service BI</h4></div>
+      <div class="gloss-why">
+        <b>Acquisition</b> (Power Query — ดึงข้อมูลจากแหล่งไหนก็ได้) → <b>Modelling</b> (Power Pivot/Analysis Services —
+        เชื่อมความสัมพันธ์ระหว่างตาราง) → <b>Visualisation</b> (Pivot Tables/PBI Visuals — สร้างกราฟ) →
+        <b>Sharing</b> (PowerBI.com — เผยแพร่ให้คนอื่นดู)
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>8. Power BI vs Excel + Components + Pricing</h2>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>มิติ</th><th>Excel</th><th>Power BI</th></tr>
+        <tr><td>Tabular reports</td><td>เหมาะมาก, แสดงตารางซ้ำ (duplicate) ได้</td><td>จำกัดกว่า, แสดงตารางซ้ำไม่ได้</td></tr>
+        <tr><td>Charts/Visuals</td><td>เยอะกว่า แต่เชื่อมต่อ data model ไม่ได้</td><td>สวยกว่า, interactive, cross-filter ระหว่างกราฟได้</td></tr>
+        <tr><td>Data model/ตารางหลายตาราง</td><td>เชื่อมตารางยาก</td><td>เชื่อมความสัมพันธ์หลายตารางได้ง่าย เหมาะกับ Big Data</td></tr>
+        <tr><td>Auto update / Collaboration</td><td>ไม่อัปเดตอัตโนมัติ, แชร์ทำงานร่วมกันยาก</td><td>อัปเดตอัตโนมัติ, แชร์ dashboard ให้ทีมดูพร้อมกันง่าย</td></tr>
+        <tr><td>Data Model Language</td><td>MDX</td><td>DAX (Data Analysis Expressions)</td></tr>
+      </table>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>3 Components ของ Power BI</h4></div>
+      <div class="gloss-why">
+        <b>Power BI Desktop</b> — โปรแกรมบน Windows ใช้เชื่อมข้อมูล/ทำความสะอาด/สร้าง data model/สร้าง report (ฟรี)<br>
+        <b>Power BI Service</b> — บริการบน cloud (SaaS) ใช้แชร์ dashboard/สร้าง app/ทำงานร่วมกัน (ต้องมี license ถึงจะแชร์ได้)<br>
+        <b>Power BI Mobile apps</b> — ดู report/dashboard ผ่านมือถือ (iOS/Android/Windows)
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>แพ็กเกจ</th><th>ราคา</th><th>ทำอะไรได้เพิ่ม</th></tr>
+        <tr><td>Free account</td><td>ฟรี</td><td>สร้าง report ด้วย Power BI Desktop ได้ แต่แชร์ให้คนอื่นดูผ่าน service ไม่ได้</td></tr>
+        <tr><td>Power BI Pro</td><td>$14/user/เดือน (จ่ายรายปี)</td><td>เผยแพร่+แชร์+ทำงานร่วมกันได้ — Model memory 1GB, refresh 8 ครั้ง/วัน, storage 10GB/license</td></tr>
+        <tr><td>Power BI Premium Per User</td><td>$24/user/เดือน (จ่ายรายปี)</td><td>เพิ่ม Advanced AI, Advanced dataflows/datamarts, XMLA endpoint — Model memory 100GB, refresh 48 ครั้ง/วัน, storage 100TB</td></tr>
+      </table>
+    </div>
+    <div class="interp-box">
+      <b>ติดตั้ง Power BI Desktop:</b> ดาวน์โหลดฟรีที่ powerbi.microsoft.com/en-us/desktop แนะนำ Sign in ด้วยอีเมลองค์กร/มหาวิทยาลัย
+      (Organization/University Email) เพื่อใช้ฟีเจอร์ share/collaborate ได้เต็มรูปแบบในอนาคต
     </div>
   </section>
   </div>
