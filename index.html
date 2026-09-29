@@ -4884,6 +4884,19 @@
         <b>ทำไมต้องหา:</b> เวอร์ชันของ AR ที่ใช้ในบริบทการรักษา (ยิ่งมากยิ่งดี แทนที่จะยิ่งมากยิ่งแย่แบบ AR) — เป็นตัวเลขที่ตรงไปตรงมา
         ที่สุดสำหรับตัดสินใจว่าการรักษา "ได้ผลเพิ่มขึ้นจริง" กี่เปอร์เซ็นต์ ก่อนนำไปคำนวณ NNT ต่อ
       </div>
+      <div class="table-scroll">
+        <table class="gloss-table">
+          <tr><th></th><th>AR (Attributable Risk)</th><th>ARR (Absolute Risk Reduction)</th></tr>
+          <tr><td>สูตร</td><td>Risk(exposed) − Risk(unexposed)</td><td>Risk(control) − Risk(treatment)</td></tr>
+          <tr><td>ใช้บริบท</td><td><b>ปัจจัยเสี่ยง</b> (เช่น สูบบุหรี่) ที่<b>เพิ่ม</b>ความเสี่ยง</td><td><b>การรักษา</b>ที่<b>ลด</b>ความเสี่ยง</td></tr>
+          <tr><td>ค่าปกติเป็น</td><td>บวก = ความเสี่ยงส่วนเกินจากการสัมผัสปัจจัย</td><td>บวก = ความเสี่ยงที่ลดลงจากการรักษา</td></tr>
+          <tr><td>ความหมาย</td><td>"ภาระโรค" ที่เกิดจากปัจจัยนั้นในประชากรที่สัมผัส</td><td>"ประโยชน์จริง" ของการรักษา ก่อนคำนวณ NNT ต่อ</td></tr>
+        </table>
+      </div>
+      <div class="interp-box">
+        <b>สรุป:</b> ลบ Risk สองกลุ่มเหมือนกันเป๊ะ (Risk Difference) — แค่<b>สลับทิศทาง</b>การพูดตามว่ากำลังพูดถึง "ปัจจัยเสี่ยง"
+        (AR) หรือ "การรักษา" (ARR) หน่วยเดียวกันคือ <b>pp</b> (percentage point) ทั้งคู่
+      </div>
     </div>
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>RRR (Relative Risk Reduction)</h4><span class="fw-tag freq">Frequentist</span></div>
