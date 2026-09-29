@@ -4005,6 +4005,23 @@
         <b>สรุปสั้นที่สุด:</b> prevalence ตรงกันพอดี → หยิบ PPV/NPV ใช้ได้เลย — ไม่ตรงกัน (ส่วนใหญ่ในคลินิก) → ต้องเอา LR ไปคูณ
         กับ prior ของคนไข้เอง (การ์ด Fagan's Nomogram) ไม่ใช่หยิบ PPV จาก paper มาใช้ตรงๆ
       </div>
+      <p class="desc" style="max-width:none;margin-top:10px">
+        <b>เลือกใช้แล้วต่างกันตรง "วิธีนำไปใช้จริง" ด้วย</b> — PPV/NPV เป็นคำตอบสำเร็จรูป ส่วน LR ต้องคำนวณต่ออีกขั้น:
+      </p>
+      <div class="table-scroll">
+        <table class="gloss-table">
+          <tr><th></th><th>PPV/NPV</th><th>LR</th></tr>
+          <tr><td>พร้อมใช้ทันทีไหม</td><td>✅ อ่านค่าแล้วบอกคนไข้ได้เลย</td><td>❌ ยังใช้ตรงๆ ไม่ได้ ต้องคูณกับ prior ของคนไข้ก่อน</td></tr>
+          <tr><td>ขั้นตอนใช้งาน</td><td>อ่านค่าจบเลย 1 ขั้น</td><td>3 ขั้น: ประเมิน prior → คูณ LR → แปลง odds กลับเป็น probability</td></tr>
+          <tr><td>ใช้ซ้ำกับคนไข้คนอื่นได้ไหม</td><td>❌ ไม่ได้ (ผูกกับ prevalence เดิม)</td><td>✅ ได้ — เอาไปคูณ prior คนละคนได้เรื่อยๆ</td></tr>
+          <tr><td>ต่อยอด sequential testing ได้ไหม</td><td>❌ ไม่ได้</td><td>✅ คูณ LR หลายตัวต่อกันได้เลย</td></tr>
+          <tr><td>ใช้แบบคร่าวๆ เร็วๆ ได้ไหม</td><td>ต้องมีตัวเลขจริงถึงอ่านได้</td><td>✅ ดูแค่ขนาด LR ก็บอกน้ำหนักหลักฐานได้ (ตาราง Large/Moderate/Small)</td></tr>
+        </table>
+      </div>
+      <div class="interp-box">
+        <b>พูดง่ายๆ:</b> PPV/NPV เหมาะเวลาอยากบอกคนไข้ตรงหน้าเป็นตัวเลขทันที (ถ้าตรงกับ prevalence เดิม) — LR เหมาะเวลา
+        อยากเอาไปคำนวณเองสำหรับคนไข้เฉพาะราย หรือต้องผสมหลักฐานหลายชิ้นเข้าด้วยกัน
+      </div>
     </div>
     <div class="gloss-item">
       <div class="gloss-item-head"><h4>Accuracy (ความแม่นยำโดยรวม)</h4><span class="fw-tag both">ใช้ทั้งคู่</span></div>
