@@ -555,6 +555,7 @@
     <button class="topic-btn" data-tab="media">Media</button>
     <button class="topic-btn" data-tab="exercises">📝 แบบฝึกหัด (15 ข้อ)</button>
     <button class="topic-btn" data-tab="realpapers">📚 Paper จริง 5 เคส</button>
+    <button class="topic-btn" data-tab="dataanalytics">Healthcare Data Analytics</button>
   </nav>
 
   <div class="tab-panel" data-tab="foundations">
@@ -7802,6 +7803,21 @@ P-value = 0.042</pre>
       <li>มี sensitivity analysis / negative control outcome ไหม?</li>
       <li>ผลสอดคล้องกับ RCT/ความรู้ชีววิทยาไหม (Bradford Hill)?</li>
     </ol>
+
+    <h3 style="margin-top:16px;font-size:14px">11. Healthcare Data Analytics — สรุปย่อ (แท็บ "Healthcare Data Analytics")</h3>
+    <div class="table-scroll">
+      <table class="gloss-table dsep-examples">
+        <tr><th>หัวข้อ</th><th>จำสั้นๆ</th></tr>
+        <tr><td>5 V's ของข้อมูล</td><td>Volume, Velocity, Variety, Veracity, Variability</td></tr>
+        <tr><td>5 ประเภท Analytics</td><td>Descriptive(เกิดอะไร)→Diagnostic(ทำไม)→Predictive(จะเกิดอะไร)→Prescriptive(ควรทำอะไร)→Discovery(pattern ใหม่)</td></tr>
+        <tr><td>มาตรฐานรหัสข้อมูล</td><td>ICD=โรค, CPT=หัตถการ, LOINC=lab, SNOMED CT=ศัพท์คลินิกละเอียด</td></tr>
+        <tr><td>Little's Law</td><td>L = λW (ความยาวคิว = อัตรามาถึง × เวลารอเฉลี่ย)</td></tr>
+        <tr><td>CDSS 2 ชนิด</td><td>Knowledge-based (IF-THEN, ตีความได้) vs Non-knowledge-based/ML (แม่นกว่า แต่ black box)</td></tr>
+        <tr><td>CDSS 3 อุปสรรค</td><td>Workflow integration, Explainability gap, Alert fatigue</td></tr>
+        <tr><td>บิดา/มารดาแห่งวงการ</td><td>John Snow (1854 cholera map) และ Florence Nightingale (coxcomb diagram)</td></tr>
+        <tr><td>จุดเปลี่ยนสำคัญ</td><td>HITECH Act (2009) → EHR แพร่หลายในสหรัฐฯ</td></tr>
+      </table>
+    </div>
   </section>
   </div>
 
@@ -8697,6 +8713,189 @@ P-value = 0.042</pre>
       ยาปฏิชีวนะหลีกเลี่ยงการผ่าตัดได้ ~73% ของคนไข้ complication น้อยกว่า แต่มีโอกาส treatment failure ต้องผ่าตัดตามหลังอยู่ดี
       ~27% — <b>นี่คือตัวอย่างที่ Applicability + Patient Preference (EBM 3 เสาหลัก) สำคัญกว่า "ตัวเลขไหนดีกว่า" อย่างเดียว</b>
       ต้องคุยกับคนไข้ว่าให้ความสำคัญกับอะไรมากกว่า (หลีกเลี่ยงผ่าตัด vs ความแน่นอนของผล) ก่อนตัดสินใจร่วมกัน
+    </div>
+  </section>
+  </div>
+
+  <div class="tab-panel" data-tab="dataanalytics" hidden>
+  <section class="card">
+    <h2>Foundations of Data Analytics in a Healthcare Context</h2>
+    <p class="desc" style="max-width:none">
+      สรุปจากบรรยาย "Foundations of Data Analytics in a Healthcare Context" — มองภาพกว้างกว่าสถิติ/Bayesian ในแท็บอื่นๆ ของเว็บนี้
+      เป็นเรื่อง<b>Data Analytics ในบริบทสุขภาพทั้งระบบ</b> (แหล่งข้อมูล, ประเภทการวิเคราะห์, การนำไปใช้ในโรงพยาบาล/สาธารณสุข/วิจัย)
+      — เป็นสาขาสหวิทยาการ (interdisciplinary) ที่ต้องอาศัย 3 ด้านร่วมกันเสมอ: <b>Medicine/Clinical Domain Knowledge</b>
+      (pathways, physiology, workflow), <b>Statistics/Mathematics</b>, และ <b>Computing/Technology</b> (EHR, cloud, ML)
+    </p>
+    <div class="warn-box">
+      <div class="wt">⚠️ หัวใจสำคัญที่สุด: "Garbage In, Garbage Out"</div>
+      ข้อมูลทางการแพทย์มีความซับซ้อน อ่อนไหว และกระทบชีวิตคนไข้โดยตรง (life-critical) — ข้อมูลที่ "สกปรก" หรือมี bias
+      (ไม่ครบถ้วน/ไม่แม่นยำ/ไม่เป็นมาตรฐานเดียวกัน) จะทำให้ผลการวิเคราะห์ทั้งหมด<b>เข้าใจผิดได้</b> ไม่ว่าเทคนิคสถิติ/AI จะซับซ้อนแค่ไหนก็ตาม
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>ต้นกำเนิด — สองบุคคลที่ถือเป็นบิดา/มารดาของ Data Analytics ทางการแพทย์</h2>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>John Snow (1854)</h3>
+        <div class="compare-point"><b>เหตุการณ์</b><span>การระบาดอหิวาตกโรค ย่าน Soho กรุงลอนดอน</span></div>
+        <div class="compare-point"><b>วิธีการ</b><span>ทำ geospatial data analysis ยุคแรก — วาดแผนที่จุดเสียชีวิตทุกรายอย่างเป็นระบบ</span></div>
+        <div class="compare-point"><b>พบว่า</b><span>อัตราตายในบ้านที่ใช้น้ำจากปั๊ม Broad Street (แหล่งปนเปื้อน) สูงกว่าถึง <b>14 เท่า</b></span></div>
+        <div class="compare-point"><b>ผลลัพธ์</b><span>Data-driven intervention — ถอดด้ามปั๊มน้ำทิ้ง หยุดการระบาดได้จริง</span></div>
+      </div>
+      <div class="compare-col bayes">
+        <h3>Florence Nightingale (1850s)</h3>
+        <div class="compare-point"><b>เหตุการณ์</b><span>โรงพยาบาล Scutari สงคราม Crimean War — อัตราตายสูงมากจากสุขาภิบาลที่แย่</span></div>
+        <div class="compare-point"><b>วิธีการ</b><span>เก็บข้อมูลสาเหตุการตายอย่างละเอียด + คิดค้น "coxcomb diagram" (polar area chart) เพื่อสื่อสารข้อมูล</span></div>
+        <div class="compare-point"><b>พบว่า</b><span>ทหารส่วนใหญ่ตายจากโรคติดเชื้อที่ป้องกันได้ (สุขาภิบาลแย่) ไม่ใช่บาดแผลจากสนามรบ</span></div>
+        <div class="compare-point"><b>ผลลัพธ์</b><span>ใช้ข้อมูล+visualization โน้มน้าวให้เกิดการปฏิรูปสุขาภิบาลจริง</span></div>
+      </div>
+    </div>
+    <div class="gloss-why">
+      <b>ทำไมสองเคสนี้ถึงสำคัญ:</b> เป็นตัวอย่างคลาสสิกที่แสดงแก่นของ data analytics ทางการแพทย์ตั้งแต่ยุคแรก — ไม่ใช่แค่ "เก็บตัวเลข"
+      แต่คือ<b>เก็บข้อมูลอย่างเป็นระบบ → วิเคราะห์หา pattern → นำไปสู่การตัดสินใจ/แทรกแซงที่เปลี่ยนผลลัพธ์จริง</b> ตรงกับนิยาม
+      Data Analytics สมัยใหม่ทุกประการ แค่ยังไม่มีคอมพิวเตอร์ช่วย
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>5 V's of Healthcare Data — ลักษณะของข้อมูลสุขภาพที่ทำให้วิเคราะห์ยาก</h2>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>V</th><th>ความหมาย</th><th>ตัวอย่าง</th></tr>
+        <tr><td><b>Volume</b></td><td>ปริมาณข้อมูลมหาศาลที่เกิดขึ้นต่อเนื่อง</td><td>ข้อมูล EHR สะสมทั้งโรงพยาบาล</td></tr>
+        <tr><td><b>Velocity</b></td><td>ความเร็วที่ข้อมูลถูกสร้างขึ้น</td><td>ข้อมูล real-time จาก ICU monitor, sensor</td></tr>
+        <tr><td><b>Variety</b></td><td>ความหลากหลายของรูปแบบข้อมูล</td><td>ข้อมูลมีโครงสร้าง (lab, diagnosis) + ไม่มีโครงสร้าง (clinical note) + ภาพ + สัญญาณ + genomics</td></tr>
+        <tr><td><b>Veracity</b></td><td>ความน่าเชื่อถือของข้อมูล — สำคัญมากเพราะความเสี่ยงสูง (high stakes)</td><td>ข้อมูลผิดพลาด/ไม่ครบ นำไปสู่การตัดสินใจผิดที่กระทบชีวิตคนไข้</td></tr>
+        <tr><td><b>Variability</b></td><td>ความไม่คงที่ของข้อมูลตามบริบท</td><td>ค่าปกติของ lab เปลี่ยนตามอายุ/เพศ/สถานการณ์</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>5 ประเภทของ Analytics — ไล่จากง่ายไปยาก คำถามต่างกัน</h2>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>ประเภท</th><th>ตอบคำถาม</th><th>ตัวอย่าง</th></tr>
+        <tr><td><b>Descriptive</b></td><td>เกิดอะไรขึ้น (What happened?)</td><td>อัตรา readmission เดือนที่แล้ว, KPI, dashboard</td></tr>
+        <tr><td><b>Diagnostic</b></td><td>ทำไมถึงเกิด (Why did it happen?)</td><td>Root cause analysis ของ medication error, หา correlation ระหว่างโรคร่วมกับภาวะแทรกซ้อนหลังผ่าตัด</td></tr>
+        <tr><td><b>Predictive</b></td><td>อะไรมีแนวโน้มจะเกิด (What is likely to happen?)</td><td>ทำนายความเสี่ยง readmission ใน 30 วัน, ทำนายจำนวนเตียงที่ต้องใช้</td></tr>
+        <tr><td><b>Prescriptive</b></td><td>ควรทำอะไรต่อ (What should we do?)</td><td>แนะนำแผนการรักษาเฉพาะบุคคล, จัดตารางเวรพยาบาลให้เหมาะกับภาระงานที่ทำนายไว้</td></tr>
+        <tr><td><b>Discovery</b></td><td>มี pattern ใหม่อะไรซ่อนอยู่ (ไม่ตั้งสมมติฐานล่วงหน้า)</td><td>ขุดข้อมูล genomic หา genetic marker ใหม่, จัดกลุ่มผู้ป่วยเป็น subgroup โรคที่ไม่เคยรู้จักมาก่อน</td></tr>
+      </table>
+    </div>
+    <div class="interp-box">
+      <b>เชื่อมกับ Pearl's Causal Hierarchy (แท็บ "แนวคิดพื้นฐาน"):</b> Descriptive/Discovery อยู่ที่ระดับ L1 (Seeing/Association)
+      Diagnostic เริ่มแตะ L2 (หา cause), Predictive มักยังเป็น association-based (ทำนายได้ไม่ต้องรู้ว่าทำไม) ส่วน Prescriptive
+      ต้องอาศัยความเข้าใจเชิงสาเหตุจริง (L2-L3) ถึงจะ "แนะนำการกระทำ" ได้อย่างน่าเชื่อถือ
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>แหล่งข้อมูลสุขภาพ (Healthcare Data Sources)</h2>
+    <div class="gloss-item" style="padding-top:0">
+      <div class="gloss-item-head"><h4>Electronic Health Records (EHR)</h4></div>
+      <div class="gloss-why">แหล่งข้อมูลที่สมบูรณ์ที่สุด (richest repository) — มี longitudinal history ของผู้ป่วยและประชากร
+        แบ่งเป็น <b>Structured data</b> (demographics, lab, diagnosis, medication — วิเคราะห์ง่าย) และ
+        <b>Unstructured data</b> (clinical note, operative note, transcribed report — ต้องใช้ NLP ถึงจะวิเคราะห์ได้)</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Administrative and Claims Data</h4></div>
+      <div class="gloss-why">ข้อมูลการเงิน/ต้นทุน + master data (เตียง/ยา/ทรัพยากร) — ใช้วิเคราะห์ utilization, cost,
+        operational performance เช่น length of stay</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Patient-Generated Data (PGD)</h4></div>
+      <div class="gloss-why">ข้อมูลจาก wearable device (heart rate, sleep), mobile health app, Patient-Reported Outcomes (PROs)
+        — สำคัญมากสำหรับติดตามโรคเรื้อรังแบบต่อเนื่อง (continuous monitoring)</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Medical Imaging, Signals และ Genomic/"Omics" Data</h4></div>
+      <div class="gloss-why">ข้อมูล high-dimensional เช่น MRI/CT/X-ray, ECG/EEG/vital sign monitor, genomics/proteomics
+        (จาก high-throughput sequencing) — ปริมาณมหาศาล (พันล้าน DNA base ต่อวัน) ต้องใช้ bioinformatics algorithm เฉพาะทาง
+        (sequence alignment, variant identification)</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head"><h4>Public Health และ Social Data (SDOH)</h4></div>
+      <div class="gloss-why">ข้อมูลบริบทแวดล้อม เช่น Social Determinants of Health (สถานะเศรษฐกิจสังคม, คุณภาพอากาศ) —
+        ผสานกับข้อมูลคลินิกให้เห็นภาพความเสี่ยงของผู้ป่วยแบบองค์รวม (holistic)</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Data Quality & Standardization</h2>
+    <p class="desc" style="max-width:none">4 มิติของคุณภาพข้อมูล: <b>Completeness</b> (ครบถ้วน), <b>Accuracy</b> (ถูกต้อง),
+      <b>Consistency</b> (สอดคล้องกัน), <b>Timeliness</b> (ทันเวลา) — ขาดมิติไหนไปก็ทำให้ "Garbage In, Garbage Out"</p>
+    <div class="interp-box">
+      <b>ปัญหา Lack of Standardization:</b> ข้อมูลจากคนละระบบมักไม่เป็นมาตรฐานเดียวกัน ทำให้รวมข้อมูล (integration) ยาก —
+      จึงต้องมีระบบรหัสมาตรฐานกลาง:
+    </div>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>มาตรฐาน</th><th>ชื่อเต็ม</th><th>ใช้กับ</th></tr>
+        <tr><td>ICD</td><td>International Classification of Diseases</td><td>รหัสโรค/การวินิจฉัย</td></tr>
+        <tr><td>CPT</td><td>Current Procedural Terminology</td><td>รหัสหัตถการ/บริการทางการแพทย์</td></tr>
+        <tr><td>LOINC</td><td>Logical Observation Identifiers Names and Codes</td><td>รหัสผลตรวจ lab/observation</td></tr>
+        <tr><td>SNOMED CT</td><td>Systematized Nomenclature of Medicine—Clinical Terms</td><td>คำศัพท์ทางคลินิกแบบละเอียด ครอบคลุมกว้างที่สุด</td></tr>
+      </table>
+    </div>
+    <div class="gloss-why">
+      <b>HITECH Act (2009):</b> จุดเปลี่ยนสำคัญที่ทำให้ EHR แพร่หลาย — รัฐบาลสหรัฐฯ ให้แรงจูงใจทางการเงิน (incentive) ผลักดันให้
+      โรงพยาบาลเปลี่ยนเวชระเบียนกระดาษเป็นดิจิทัลจำนวนมากในช่วงปี 2010s เป็นจุดเริ่มต้นที่ทำให้มีข้อมูล EHR มากพอจะทำ analytics ได้จริง
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>6 Domains ที่ใช้ Healthcare Analytics จริง</h2>
+    <div class="table-scroll">
+      <table class="gloss-table">
+        <tr><th>Domain</th><th>ตัวอย่างการใช้งาน</th></tr>
+        <tr><td>Hospital Operations</td><td>Flow ผู้ป่วย, การใช้ทรัพยากร, ตารางเวร, ประสิทธิภาพโดยรวม (Little's Law ด้านล่าง)</td></tr>
+        <tr><td>Clinical Decision-Making</td><td>CDSS (Clinical Decision Support System) — ด้านล่าง</td></tr>
+        <tr><td>Biomedical Research</td><td>ต้องใช้ computing power สูง + data sharing/collaborative analytics</td></tr>
+        <tr><td>Public Health</td><td>เฝ้าระวังโรคระบาด, epidemiological modeling, scenario planning ("ถ้าฉีดวัคซีน 70% จะเป็นอย่างไร")</td></tr>
+        <tr><td>Healthcare Quality & Safety</td><td>ลด medical error (IOM report "To Err is Human" 1999 — จุดเริ่มต้นสำคัญของสาขานี้)</td></tr>
+        <tr><td>Health Informatics Infrastructure</td><td>EHR, HL7, FHIR — มาตรฐานการแลกเปลี่ยนข้อมูลสุขภาพ</td></tr>
+      </table>
+    </div>
+    <h3 style="margin-top:16px;font-size:15px">Little's Law — สูตรพื้นฐานของ Queuing Theory ในโรงพยาบาล</h3>
+    <div class="gloss-formula">L = λ × W</div>
+    <div class="gloss-why">
+      <b>L</b> = ความยาวคิวเฉลี่ย (จำนวนผู้ป่วยที่รอ/อยู่ในระบบ), <b>λ</b> = อัตราที่ผู้ป่วยมาถึง (arrival rate),
+      <b>W</b> = เวลารอเฉลี่ยต่อคน (average wait time) — ใช้ทำนาย/วิเคราะห์ความแออัดของแผนกฉุกเฉิน/OPD เมื่อ arrival rate
+      ไม่แน่นอน (variability) มาก จะเกิด congestion → รอนาน ใช้ทรัพยากรไม่คุ้มค่า เสียค่าใช้จ่ายเพิ่ม
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Clinical Decision Support System (CDSS)</h2>
+    <div class="compare-row">
+      <div class="compare-col freq">
+        <h3>Knowledge-Based CDSS <span class="tag">แบบดั้งเดิม</span></h3>
+        <div class="compare-point"><b>โครงสร้าง</b><span>Knowledge base (กฎ IF-THEN) + Inference engine (รวมกฎเข้ากับข้อมูลผู้ป่วย) + ช่องทางสื่อสารผล</span></div>
+        <div class="compare-point"><b>จุดแข็ง</b><span>ตีความได้ (interpretable), ผู้เชี่ยวชาญแก้ไขกฎเองได้ง่าย</span></div>
+      </div>
+      <div class="compare-col bayes">
+        <h3>Non-Knowledge-Based CDSS <span class="tag">ML/AI สมัยใหม่</span></h3>
+        <div class="compare-point"><b>จุดแข็ง</b><span>ไม่ต้องเขียนกฎเอง, จับ pattern ซับซ้อนได้ดีกว่ามาก</span></div>
+        <div class="compare-point"><b>จุดอ่อน (Black Box)</b><span>อธิบายเหตุผลของคำตอบไม่ได้ ทำให้แพทย์ไม่ไว้ใจ ไม่กล้าใช้วินิจฉัยตรงๆ</span></div>
+      </div>
+    </div>
+    <h3 style="margin-top:16px;font-size:15px">3 อุปสรรคหลักที่ทำให้ CDSS ไม่ถูกใช้จริง (Adoption Barriers)</h3>
+    <ol class="dsep-steps">
+      <li><b>Workflow Integration Barrier</b> — โปรแกรมแยกต่างหาก (stand-alone) ขัดจังหวะการทำงาน ต้องกรอกข้อมูลซ้ำซ้อน</li>
+      <li><b>Explainability Gap</b> — โมเดล ML ต้องการคำอธิบาย (Explainable AI, XAI) ก่อนแพทย์จะเชื่อถือได้</li>
+      <li><b>Alert Fatigue</b> — เตือนบ่อยเกินไปแต่ความสำคัญต่ำ (low-yield) จนแพทย์เริ่ม<b>ละเลยแม้แต่ alert ที่สำคัญจริง</b></li>
+    </ol>
+    <div class="interp-box">
+      <b>ตัวอย่างการใช้งานจริง:</b> ทำนายภาวะทรุดลงของผู้ป่วย (sepsis/respiratory failure/cardiac arrest จาก real-time
+      EHR + vital signs) เพื่อแทรกแซงทันเวลาลด ICU mortality — และระบบ Cleveland Clinic ที่ใช้ NLP+ML วิเคราะห์คำสั่งใช้ยา
+      หา pattern ที่นำไปสู่ medication error แล้วแจ้งเตือนแบบ real-time ลด adverse drug event ได้จริง
+    </div>
+    <div class="warn-box">
+      <div class="wt">⚠️ Algorithmic Bias ใน Risk Prediction Model</div>
+      ถ้าข้อมูลฝึกโมเดล (training data) ขาดความหลากหลาย หรือสะท้อนความเหลื่อมล้ำในอดีต — โมเดลจะ<b>ทำนายผิดพลาดอย่างเป็นระบบ</b>
+      สำหรับกลุ่มประชากรบางกลุ่ม (เชื้อชาติ, สถานะทางเศรษฐกิจ) ซ้ำเติมความเหลื่อมล้ำด้านสุขภาพที่มีอยู่แล้วให้แย่ลงไปอีก
     </div>
   </section>
   </div>
