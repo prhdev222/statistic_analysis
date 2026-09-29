@@ -4218,6 +4218,30 @@
         Precision/Recall เท่านั้น ไม่ใช่ Sensitivity/Specificity
       </div>
     </div>
+    <div class="gloss-item">
+      <div class="gloss-item-head" id="metricMentalModelCard"><h4>Mental Model เลือก Metric — สรุปรวมทุกตัวในหน้าเดียว</h4><span class="fw-tag both">ใช้ทั้งคู่</span></div>
+      <div class="gloss-why">
+        รวมทุกค่าที่อธิบายมาทั้งกลุ่ม A และ B ให้เห็นภาพว่า "ต้องการอะไร → ดูตัวไหน" ในคำศัพท์ทั้งฝั่งการแพทย์ (Sensitivity/
+        Specificity/PPV/NPV) และฝั่ง ML (Recall/Precision) พร้อมกัน:
+      </div>
+      <div class="table-scroll">
+        <table class="gloss-table">
+          <tr><th>ต้องการ...</th><th>ดูค่านี้สูง</th><th>ความหมาย</th></tr>
+          <tr><td><b>Screening</b> (ไม่พลาดเคสจริง)</td><td>Recall ↑ (= Sensitivity)</td><td>จับ TP ได้ครบที่สุด — เหมาะคัดกรอง</td></tr>
+          <tr><td><b>Confirmatory</b> (ไม่วินิจฉัยผิดคนปกติ)</td><td>Specificity ↑</td><td>ไม่เรียกคนปกติว่าเป็นบวก — เหมาะยืนยันก่อนรักษา</td></tr>
+          <tr><td><b>เชื่อถือได้</b> เมื่อโมเดล/ผลตรวจบอกว่า "บวก"</td><td>Precision ↑ (= PPV)</td><td>ถ้าทายว่าบวก มั่นใจได้ว่าบวกจริง</td></tr>
+          <tr><td><b>วางใจได้</b> เมื่อโมเดล/ผลตรวจบอกว่า "ลบ"</td><td>NPV ↑</td><td>ถ้าทายว่าลบ มั่นใจได้ว่าลบจริง</td></tr>
+          <tr><td><b>Class balanced</b> (สัดส่วนบวก/ลบใกล้เคียงกัน)</td><td>Accuracy (ระวัง imbalance)</td><td>ภาพรวมความถูกต้องทั้งหมด — ใช้ไม่ได้ถ้า class ไม่สมดุล (Accuracy Paradox)</td></tr>
+        </table>
+      </div>
+      <div class="interp-box">
+        <b>ตอบตรงๆ "วางใจได้ NPV ขึ้น" คืออะไร:</b> NPV = P(ไม่มีโรคจริง | ผลตรวจ/โมเดลทำนายว่า "ลบ") — ถ้า NPV สูง แปลว่าเวลา
+        ผลตรวจออกมาเป็น<b>ลบ</b> คนไข้/ผู้ใช้งาน<b>วางใจได้จริงๆ</b>ว่าไม่ได้เป็นโรค/ไม่ใช่ class ที่สนใจ ไม่ต้องกังวลต่อ — คำว่า
+        "วางใจ" ในที่นี้หมายถึงความมั่นใจใน<b>ผลลบ</b> โดยเฉพาะ (ตรงข้ามกับ "เชื่อถือได้" ที่หมายถึงความมั่นใจใน<b>ผลบวก</b> = Precision/PPV)<br><br>
+        NPV สูงได้เพราะ Sensitivity สูง (สูตร NPV กลุ่ม B) — ตรงกับหลัก <b>SnNout</b> ที่อธิบายไว้ในการ์ด Sensitivity ด้านบน:
+        ยิ่ง test จับ TP ได้ครบแค่ไหน คนที่เหลือในกลุ่ม "ผลลบ" ก็ยิ่งบริสุทธิ์ (ปนเปื้อน false negative น้อย) NPV จึงสูงตาม
+      </div>
+    </div>
   </section>
 
 
