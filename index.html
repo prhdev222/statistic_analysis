@@ -3024,7 +3024,7 @@
   </section>
 
   <section class="card">
-    <h2>Fagan's Nomogram — Prior → Posterior แบบกราฟิก</h2>
+    <h2 id="faganCard">Fagan's Nomogram — Prior → Posterior แบบกราฟิก</h2>
     <p class="desc" style="max-width:none">
       วิธีคิดเลขเดียวกันเป๊ะกับเครื่องคิดเลข "Prior → Posterior" ด้านบน (Posterior Odds = Prior Odds × LR) แค่เปลี่ยนจาก
       "กดคำนวณ" มาเป็น "<b>ลากเส้นตรง</b>" บนกระดาษ/สไลด์ — ใช้บ่อยในห้องตรวจที่ไม่มีเครื่องคิดเลขอยู่ตรงหน้า: ปักหมุดที่ Pre-test
@@ -4005,6 +4005,26 @@
         <text x="495" y="296" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">ของคนไข้เอง</text>
         <text x="495" y="314" font-size="12" fill="var(--good)" text-anchor="middle" font-weight="700">→ Posterior Probability</text>
       </svg>
+      <div class="compare-row" style="margin-top:-4px;gap:14px">
+        <div style="flex:1 1 250px;text-align:center">
+          <div style="font-size:15px;color:var(--good);line-height:1">↓</div>
+          <a href="#" class="term-link" data-tab="realpapers" data-target="paperCase6" style="display:inline-flex;margin-top:2px">🔗 ตัวอย่างจริง: Mammogram BI-RADS 4 (เคสที่ 6)</a>
+        </div>
+        <div style="flex:1 1 300px;text-align:center">
+          <div style="font-size:15px;color:var(--good);line-height:1">↓</div>
+          <a href="#" class="term-link" data-tab="realpapers" data-target="paperCase1" style="display:inline-flex;margin-top:2px">🔗 ตัวอย่างจริง: Wells+D-dimer→CT (เคสที่ 1)</a><br>
+          <a href="#" class="term-link" data-tab="posterior" data-target="faganCard" style="display:inline-flex;margin-top:6px">🔗 คำนวณ LR×Prior จริง — Fagan's Nomogram</a>
+        </div>
+      </div>
+      <div class="interp-box">
+        <b>Pretest/Posttest Probability คือคำเดียวกับ Prior/Posterior (ศัพท์คลินิก vs ศัพท์สถิติ):</b> ทั้ง 2 เส้นทางด้านบน
+        สุดท้ายให้คำตอบเป็น <b>Posttest Probability</b> เหมือนกันทั้งคู่ แค่คำนวณมาคนละทาง — เส้นทางซ้าย: Posttest
+        probability (ผลบวก) = <b>PPV</b> ตรงๆ, (ผลลบ) = <b>1−NPV</b> — ใช้ได้เมื่อ Pretest probability ของคนไข้ = Prevalence
+        ของ study พอดี — เส้นทางขวา: Posttest Probability = แปลงจาก Posterior Odds (= <b>Pretest Odds × LR</b>) สูตรทั่วไป
+        ใช้ได้กับ Pretest probability เท่าไรก็ได้ (นี่คือเหตุผลที่ Fagan's Nomogram มีแกน "Pre-test Probability" ซ้าย
+        กับ "Post-test Probability" ขวา ลากผ่าน LR ตรงกลางได้เลย) — พูดง่ายๆ <b>PPV/NPV คือ Posttest Probability กรณีพิเศษ</b>
+        ส่วน LR ให้สูตรทั่วไปที่ใช้แทนได้ทุกกรณี
+      </div>
       <div class="warn-box" style="margin-top:8px">
         <div class="wt">🧭 ใช้ LR หรือ PPV/NPV ดี — กฎตัดสินใจสั้นๆ</div>
         <b>ใช้ PPV/NPV ได้เลย เมื่อ:</b> prevalence ของกลุ่มตัวอย่างที่คำนวณ PPV/NPV มาตรงกับคนไข้ตรงหน้าจริงๆ (เช่น โครงการ
@@ -8695,7 +8715,7 @@ P-value = 0.042</pre>
   </section>
 
   <section class="card">
-    <h2>1. Diagnostic — สงสัย Pulmonary Embolism ต้องส่ง CT ทุกคนไหม</h2>
+    <h2 id="paperCase1">1. Diagnostic — สงสัย Pulmonary Embolism ต้องส่ง CT ทุกคนไหม</h2>
     <div class="interp-box">
       <b>สถานการณ์คนไข้:</b> หญิง 45 ปี เจ็บแปลบชายปอด+เหนื่อยเล็กน้อย หลังนั่งเครื่องบินไกลๆ ตรวจร่างกาย HR 95 ไม่มีโรคอื่นที่
       อธิบายอาการได้ชัดเจน — สงสัย Pulmonary Embolism (PE) แต่ CT Pulmonary Angiogram มีทั้งรังสีและ contrast ต้องส่งตรวจทุกคน
@@ -8903,7 +8923,7 @@ P-value = 0.042</pre>
   </section>
 
   <section class="card">
-    <h2>6. Diagnostic — Mammogram คัดกรองพบก้อนสงสัย ต้อง Biopsy ทุกคนไหม</h2>
+    <h2 id="paperCase6">6. Diagnostic — Mammogram คัดกรองพบก้อนสงสัย ต้อง Biopsy ทุกคนไหม</h2>
     <div class="interp-box">
       <b>สถานการณ์คนไข้:</b> หญิง 55 ปี มาตรวจคัดกรอง mammogram ประจำปีตามปกติ (ไม่มีอาการ) ผลออกมาเป็น <b>BI-RADS 4</b>
       ("suspicious abnormality") รังสีแพทย์แนะนำให้ทำ biopsy — คนไข้ตกใจมาก คิดว่าตัวเองเป็นมะเร็งแน่นอนแล้ว จะอธิบายให้เข้าใจ
