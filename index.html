@@ -8015,6 +8015,52 @@ P-value = 0.042</pre>
     </svg>
     <p class="compare-note" style="text-align:center">ไม่ว่าได้ RR/OR/HR ตัวไหน → คำนวณ AR/ARR เพิ่มเสมอเพื่อดู NNT/NNH (ผลกระทบจริง)</p>
 
+    <svg viewBox="0 0 620 270" width="100%" height="240" style="display:block;margin:10px auto;max-width:520px" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrowhead-parci-c" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,8 L4,0 L8,8 Z" fill="var(--accent)"/></marker></defs>
+      <rect x="100" y="15" width="420" height="55" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="310" y="37" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">ต้องการรู้ผลกระทบของปัจจัยเสี่ยง</text>
+      <text x="310" y="55" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="700">ในระดับไหน?</text>
+      <line x1="310" y1="70" x2="310" y2="85" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="150" y1="85" x2="470" y2="85" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="150" y1="85" x2="150" y2="107" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-parci-c)"/>
+      <line x1="470" y1="85" x2="470" y2="107" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-parci-c)"/>
+      <text x="150" y="122" font-size="11" fill="var(--accent)" text-anchor="middle" font-weight="700">เฉพาะกลุ่มที่สัมผัสปัจจัย</text>
+      <text x="150" y="137" font-size="11" fill="var(--accent)" text-anchor="middle" font-weight="700">(บุคคล/คลินิก)</text>
+      <text x="470" y="122" font-size="11" fill="var(--accent)" text-anchor="middle" font-weight="700">ทั้งประชากร รวมคนไม่สัมผัส</text>
+      <text x="470" y="137" font-size="11" fill="var(--accent)" text-anchor="middle" font-weight="700">(นโยบายสาธารณสุข)</text>
+      <line x1="150" y1="144" x2="150" y2="168" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-parci-c)"/>
+      <line x1="470" y1="144" x2="470" y2="168" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-parci-c)"/>
+      <rect x="40" y="170" width="220" height="55" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="150" y="193" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">AR / AR%</text>
+      <text x="150" y="211" font-size="10.5" fill="var(--good)" text-anchor="middle">(Attributable Risk)</text>
+      <rect x="360" y="170" width="220" height="55" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="470" y="193" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">PAR / PAR%</text>
+      <text x="470" y="211" font-size="10.5" fill="var(--good)" text-anchor="middle">(ต้องรู้ Pe เพิ่ม)</text>
+    </svg>
+
+    <svg viewBox="0 0 620 260" width="100%" height="230" style="display:block;margin:10px auto;max-width:520px" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="arrowhead-parci-d" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,8 L4,0 L8,8 Z" fill="var(--accent)"/></marker></defs>
+      <rect x="80" y="15" width="460" height="55" rx="8" fill="var(--surface-2)" stroke="var(--line-soft)" stroke-width="1.5"/>
+      <text x="310" y="37" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">ทุกคนติดตามได้ครบเวลาเท่ากันทุกคน</text>
+      <text x="310" y="55" font-size="12.5" fill="var(--ink)" text-anchor="middle" font-weight="700">ไม่มีใครเข้า-ออกไม่พร้อมกันไหม?</text>
+      <line x1="310" y1="70" x2="310" y2="85" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="150" y1="85" x2="470" y2="85" stroke="var(--muted)" stroke-width="1.5"/>
+      <line x1="150" y1="85" x2="150" y2="107" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-parci-d)"/>
+      <line x1="470" y1="85" x2="470" y2="107" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrowhead-parci-d)"/>
+      <text x="150" y="122" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">ใช่ (fixed cohort,</text>
+      <text x="150" y="137" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">fixed period, ไม่มี loss)</text>
+      <text x="470" y="122" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">ไม่ใช่ (มี censoring/</text>
+      <text x="470" y="137" font-size="11.5" fill="var(--accent)" text-anchor="middle" font-weight="700">staggered entry)</text>
+      <line x1="150" y1="144" x2="150" y2="168" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-parci-d)"/>
+      <line x1="470" y1="144" x2="470" y2="168" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowhead-parci-d)"/>
+      <rect x="40" y="170" width="220" height="55" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="150" y="193" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">Cumulative Incidence</text>
+      <text x="150" y="211" font-size="10.5" fill="var(--good)" text-anchor="middle">(Risk / Proportion)</text>
+      <rect x="360" y="170" width="220" height="55" rx="8" fill="var(--good-soft)" stroke="var(--good)" stroke-width="1.5"/>
+      <text x="470" y="193" font-size="13" fill="var(--good)" text-anchor="middle" font-weight="700">Incidence Rate</text>
+      <text x="470" y="211" font-size="10.5" fill="var(--good)" text-anchor="middle">(person-time)</text>
+    </svg>
+
     <h3 style="margin-top:16px;font-size:14px">4. Hypothesis Testing (Frequentist เท่านั้น)</h3>
     <div class="table-scroll">
       <table class="gloss-table dsep-examples">
