@@ -8121,9 +8121,14 @@ P-value = 0.042</pre>
       <summary><b>ข้อ 12.</b> ผู้ป่วยมี Pretest probability = 25% ตรวจแล้วได้ผลบวก จาก Index test ที่มี LR+ = 6 — หา Post-test
         probability (ใช้ odds form)</summary>
       <div class="dsep-answer">
-        Prior Odds = 0.25/0.75 = 1/3<br>
-        Posterior Odds = (1/3) × 6 = 2<br>
-        <b>Post-test probability = 2/(1+2) = 2/3 ≈ 66.7%</b>
+        <b>ขั้นที่ 1 — แปลง Pretest Probability → Prior Odds</b> (สูตร: Odds = P/(1−P)):<br>
+        Prior Odds = 0.25/(1−0.25) = 0.25/0.75 = 1/3 ≈ 0.33 — ความหมาย: ทุก 4 คนแบบนี้ มี 1 คนเป็นโรค ต่อ 3 คนไม่เป็น<br><br>
+        <b>ขั้นที่ 2 — คูณด้วย LR+ เพื่อได้ Posterior Odds</b> (สูตร: Posterior Odds = Prior Odds × LR):<br>
+        Posterior Odds = (1/3) × 6 = 2 — LR+ คือ "ตัวคูณ" บอกว่าผลบวกทำให้ odds เพิ่มกี่เท่า (จาก 0.33 เป็น 2 คือ 2 ต่อ 1 ว่าเป็นโรค)<br><br>
+        <b>ขั้นที่ 3 — แปลง Posterior Odds กลับเป็น Probability</b> (สูตร: P = Odds/(1+Odds), กลับด้านกับขั้นที่ 1):<br>
+        Post-test probability = 2/(1+2) = 2/3 ≈ <b>66.7%</b><br><br>
+        <b>สรุป:</b> pretest 25% → ผลบวก (LR+=6 แรงมาก) → posttest 66.7% — เพิ่มขึ้นมากเพราะ LR+=6 ถือเป็นชุดตรวจที่ดี
+        (Moderate-to-Large effect ตามตาราง LR กลุ่ม B)
       </div>
     </details>
 
