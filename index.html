@@ -8150,6 +8150,22 @@ P-value = 0.042</pre>
       <li>ผลสอดคล้องกับ RCT/ความรู้ชีววิทยาไหม (Bradford Hill)?</li>
     </ol>
 
+    <h3 style="margin-top:16px;font-size:14px">10b. ต้องมี Prevalence ไหม — เช็คลิสต์รวมทั้งเว็บ</h3>
+    <p class="compare-note" style="text-align:center;margin-bottom:8px">เกณฑ์ง่ายๆ: "คุณสมบัติของตัว test/effect เอง" → ไม่ต้องมี prevalence — "คำตอบเกี่ยวกับผู้ป่วย/ประชากรจริง" → ต้องมี prevalence</p>
+    <div class="table-scroll">
+      <table class="gloss-table dsep-examples">
+        <tr><th>✅ ต้องมี Prevalence</th><th>❌ ไม่ต้องมี Prevalence</th></tr>
+        <tr><td>PPV, NPV</td><td>Sensitivity, Specificity</td></tr>
+        <tr><td>Accuracy (Accuracy Paradox)</td><td>LR+, LR−, DOR (=LR+/LR−)</td></tr>
+        <tr><td>F1 Score (มี PPV ซ่อนในสูตร)</td><td>Youden's J, AUROC/AUC(ROC)</td></tr>
+        <tr><td>AUPRC (baseline = prevalence เอง)</td><td>Bayes Factor</td></tr>
+        <tr><td>PAR/PAR% (ใช้ <b>Pe</b> = prevalence ของการสัมผัสปัจจัยเสี่ยง)</td><td>RR, OR, AR, ARR, NNT/NNH, HR, Incidence Rate</td></tr>
+        <tr><td>Posterior Probability ทาง PPV/NPV</td><td>SE, CI, P-value (มาจาก SD/n เท่านั้น)</td></tr>
+        <tr><td></td><td>Posterior Probability ทาง LR (ใช้ Prior เฉพาะบุคคลแทน)</td></tr>
+      </table>
+    </div>
+    <div class="compare-note" style="text-align:center">⚠️ PAR% ใช้ prevalence คนละแบบกับ PPV/NPV — PPV/NPV ใช้ prevalence <b>ของโรค</b> ส่วน PAR% ใช้ Pe = prevalence <b>ของการสัมผัสปัจจัยเสี่ยง</b> (เช่น สัดส่วนคนสูบบุหรี่ในประชากร) คนละตัวเลขกัน</div>
+
     <h3 style="margin-top:16px;font-size:14px">11. Healthcare Data Analytics — สรุปย่อ (แท็บ "Healthcare Data Analytics")</h3>
     <div class="table-scroll">
       <table class="gloss-table dsep-examples">
