@@ -4230,6 +4230,29 @@
       </div>
     </div>
     <div class="gloss-item">
+      <div class="gloss-item-head" id="balancedAccCard"><h4>Balanced Accuracy</h4><span class="fw-tag both">ใช้ทั้งคู่</span></div>
+      <div class="gloss-formula">Balanced Accuracy = (Sensitivity + Specificity) / 2</div>
+      <div class="gloss-why">
+        <b>ทำไมต้องหา:</b> เป็นอีกวิธีแก้ปัญหา Accuracy Paradox แบบตรงไปตรงมาที่สุด — เฉลี่ย Sensitivity กับ Specificity
+        แบบถ่วงน้ำหนักเท่ากัน ไม่สนใจว่า class ไหนมีคนเยอะกว่ากัน (ต่างจาก Accuracy ธรรมดาที่ถูก class ใหญ่ครอบงำ) — ถ้า
+        Balanced Accuracy = 50% แปลว่าโมเดล/ชุดตรวจนี้<b>ไม่ต่างจากเดาสุ่ม</b>เลย ไม่ว่า dataset จะ imbalance แค่ไหนก็ตาม
+      </div>
+      <div class="table-scroll">
+        <table class="gloss-table">
+          <tr><th>ตัวอย่าง: คัดกรองเบาหวาน 150 คน (เป็นจริง 50, ไม่เป็น 100)</th><th>Sens</th><th>Spec</th><th>Accuracy</th><th>Balanced Accuracy</th></tr>
+          <tr><td>กฎจริง — จับได้ 40/50 คนป่วย, บวกลวง 20/100 คนปกติ</td><td>80%</td><td>80%</td><td>80%</td><td>80%</td></tr>
+          <tr><td>"ทายว่าไม่เป็นเบาหวานทุกคน" (ไม่ตรวจอะไรเลย)</td><td>0%</td><td>100%</td><td style="color:var(--warn)"><b>66.7%</b> ← ดูดีเกินจริง</td><td style="color:var(--good)"><b>50%</b> ← เผยว่าห่วยพอๆ เดาสุ่ม</td></tr>
+        </table>
+      </div>
+      <div class="warn-box">
+        <div class="wt">⚠️ จุดที่ตาราง quiz นี้ต้องการสื่อ</div>
+        "ทายว่าไม่เป็นทุกคน" ได้ Accuracy สูงถึง 66.7% เพราะ dataset ไม่สมดุล (ไม่ป่วย 100 : ป่วย 50) ทั้งที่กฎนี้จับเบาหวาน
+        ไม่ได้เลยสักคน (Sensitivity=0%) — Accuracy เฉยๆ<b>หลอกตา</b>ได้ แต่ Balanced Accuracy เท่ากับ 50% ตรงเป๊ะ (=เดาสุ่ม)
+        เผยความจริงออกมาชัดเจนกว่ามาก — นี่คือเหตุผลที่ต้องใช้ Balanced Accuracy (หรือ F1 การ์ดถัดไป) แทน Accuracy ธรรมดา
+        เวลา class ไม่สมดุล
+      </div>
+    </div>
+    <div class="gloss-item">
       <div class="gloss-item-head"><h4>F1 Score <span class="tag" style="font-size:9.5px;padding:2px 7px;border-radius:999px;background:var(--line-soft);color:var(--muted);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.05em">ศัพท์ ML</span></h4><span class="fw-tag both">ใช้ทั้งคู่</span></div>
       <div class="gloss-formula">F1 = 2 × (Precision × Recall) / (Precision + Recall) = 2×TP / (2×TP + FP + FN)</div>
       <div class="gloss-why">
